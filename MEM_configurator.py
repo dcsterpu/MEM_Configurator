@@ -1,30 +1,19 @@
-from lxml import etree
-import argparse
-import logging
-import os
-import copy
-from xml.sax import make_parser
-from xml.sax.handler import ContentHandler
-from xml.dom.minidom import parseString
-import time
-import psutil
+from lxml import etree                              # pragma: no cover
+import argparse                                     # pragma: no cover
+import logging                                      # pragma: no cover
+import os                                           # pragma: no cover
+import copy                                         # pragma: no cover
+from xml.sax import make_parser                     # pragma: no cover
+from xml.sax.handler import ContentHandler          # pragma: no cover
+from xml.dom.minidom import parseString             # pragma: no cover
+from coverage import Coverage                       # pragma: no cover
+import time                                         # pragma: no cover
+import psutil                                       # pragma: no cover
 
 
 def arg_parse(parser):
     parser.add_argument("-config", action="store_const", const="-config")
     parser.add_argument("input_configuration_file", help="configuration file location")
-
-
-def validate_xml_with_xsd(path_xsd, path_xml, logger):
-    # load xsd file
-    xmlschema_xsd = etree.parse(path_xsd)
-    xmlschema = etree.XMLSchema(xmlschema_xsd)
-    # validate xml file
-    xmldoc = etree.parse(path_xml)
-    if xmlschema.validate(xmldoc) is not True:
-        logger.warning('The file: ' + path_xml + ' is NOT valid with the provided xsd schema')
-    else:
-        logger.info('The file: ' + path_xml + ' is valid with the provided xsd schema')
 
 
 def remove_duplicates(list_to_check):
@@ -102,12 +91,18 @@ def retrieve_data(recursive_arxml, simple_arxml, recursive_config, simple_config
     blocks = []
     subblocks = []
     profiles = []
+    mappings = []
     nvm_blocks = []
+    final_fixed_blocks = []
     arxml_interfaces = []
     arxml_data_types = []
     arxml_base_types = []
     NSMAP = {None: 'http://autosar.org/schema/r4.0', "xsi": 'http://www.w3.org/2001/XMLSchema-instance'}
     attr_qname = etree.QName("http://www.w3.org/2001/XMLSchema-instance", "schemaLocation")
+    xmlschema_xsd_arxml = etree.parse(xsd_arxml)
+    xmlschema_arxml = etree.XMLSchema(xmlschema_xsd_arxml)
+    xmlschema_xsd_config = etree.parse(xsd_config)
+    xmlschema_config = etree.XMLSchema(xmlschema_xsd_config)
     # parse the arxml files and get the necessary data
     for each_path in recursive_arxml:
         for directory, directories, files in os.walk(each_path):
@@ -120,8 +115,12 @@ def retrieve_data(recursive_arxml, simple_arxml, recursive_config, simple_config
                     except Exception as e:
                         logger.error('The file: ' + fullname + ' is not well-formed: ' + str(e))
                         return
-                    validate_xml_with_xsd(xsd_arxml, fullname, logger)
+                    # validate_xml_with_xsd(xsd_arxml, fullname, logger)
                     tree = etree.parse(fullname)
+                    if xmlschema_arxml.validate(tree) is not True:
+                        logger.warning('The file: ' + fullname + ' is NOT valid with the provided xsd schema')
+                    else:
+                        logger.info('The file: ' + fullname + ' is valid with the provided xsd schema')
                     root = tree.getroot()
                     sender_receiver_interface = root.findall(".//{http://autosar.org/schema/r4.0}SENDER-RECEIVER-INTERFACE")
                     for elem in sender_receiver_interface:
@@ -134,6 +133,11 @@ def retrieve_data(recursive_arxml, simple_arxml, recursive_config, simple_config
                             obj_variable = {}
                             obj_variable['NAME'] = data_prototype.find('.//{http://autosar.org/schema/r4.0}SHORT-NAME').text
                             obj_variable['TYPE'] = data_prototype.find('.//{http://autosar.org/schema/r4.0}TYPE-TREF').text
+                            if data_prototype.find('.//{http://autosar.org/schema/r4.0}VALUE') is not None:
+                                obj_variable['INIT'] = data_prototype.find('.//{http://autosar.org/schema/r4.0}VALUE').text
+                            else:
+                                obj_variable['INIT'] = 0
+                                logger.warning(obj_variable['NAME'] + " doesn't have an initial value defined")
                             obj_variable['SW-BASE-TYPE'] = None
                             obj_variable['SIZE'] = None
                             variable_data_prototype.append(obj_variable)
@@ -166,8 +170,12 @@ def retrieve_data(recursive_arxml, simple_arxml, recursive_config, simple_config
                 except Exception as e:
                     logger.error(' The file ' + fullname + ' is not well-formed: ' + str(e))
                     return
-                validate_xml_with_xsd(xsd_arxml, fullname, logger)
+                # validate_xml_with_xsd(xsd_arxml, fullname, logger)
                 tree = etree.parse(fullname)
+                if xmlschema_arxml.validate(tree) is not True:
+                    logger.warning('The file: ' + fullname + ' is NOT valid with the provided xsd schema')
+                else:
+                    logger.info('The file: ' + fullname + ' is valid with the provided xsd schema')
                 root = tree.getroot()
                 sender_receiver_interface = root.findall(".//{http://autosar.org/schema/r4.0}SENDER-RECEIVER-INTERFACE")
                 for elem in sender_receiver_interface:
@@ -180,6 +188,11 @@ def retrieve_data(recursive_arxml, simple_arxml, recursive_config, simple_config
                         obj_variable = {}
                         obj_variable['NAME'] = data_prototype.find('.//{http://autosar.org/schema/r4.0}SHORT-NAME').text
                         obj_variable['TYPE'] = data_prototype.find('.//{http://autosar.org/schema/r4.0}TYPE-TREF').text
+                        if data_prototype.find('.//{http://autosar.org/schema/r4.0}VALUE') is not None:
+                            obj_variable['INIT'] = data_prototype.find('.//{http://autosar.org/schema/r4.0}VALUE').text
+                        else:
+                            obj_variable['INIT'] = 0
+                            logger.warning(obj_variable['NAME'] + " doesn't have an initial value defined")
                         obj_variable['SW-BASE-TYPE'] = None
                         obj_variable['SIZE'] = None
                         variable_data_prototype.append(obj_variable)
@@ -214,8 +227,12 @@ def retrieve_data(recursive_arxml, simple_arxml, recursive_config, simple_config
                     except Exception as e:
                         logger.error('The file: ' + fullname + ' is not well-formed: ' + str(e))
                         return
-                    validate_xml_with_xsd(xsd_config, fullname, logger)
+                    # validate_xml_with_xsd(xsd_arxml, fullname, logger)
                     tree = etree.parse(fullname)
+                    if xmlschema_config.validate(tree) is not True:
+                        logger.warning('The file: ' + fullname + ' is NOT valid with the provided xsd schema')
+                    else:
+                        logger.info('The file: ' + fullname + ' is valid with the provided xsd schema')
                     root = tree.getroot()
                     block = root.findall(".//BLOCK")
                     for elem in block:
@@ -256,6 +273,8 @@ def retrieve_data(recursive_arxml, simple_arxml, recursive_config, simple_config
                         else:
                             obj_block['SDF'] = None
                         obj_block['DEVICE'] = None
+                        obj_block['RESISTENT'] = None
+                        obj_block['POSITION'] = None
                         sender_receiver_interfaces = elem.findall('.//SENDER-RECEIVER-INTERFACE-REF')
                         for element in sender_receiver_interfaces:
                             obj_interface = {}
@@ -286,6 +305,12 @@ def retrieve_data(recursive_arxml, simple_arxml, recursive_config, simple_config
                             params.append(obj)
                         obj_profile['PARAM'] = params
                         profiles.append(obj_profile)
+                    mapping = root.findall(".//MAPPING")
+                    for elem in mapping:
+                        obj_mapping = {}
+                        obj_mapping['BLOCK'] = elem.find('BLOCK-REF').text
+                        obj_mapping['POSITION'] = int(elem.find('POSITION').text)
+                        mappings.append(obj_mapping)
     for each_path in simple_config:
         for file in os.listdir(each_path):
             if file.endswith('.xml'):
@@ -296,8 +321,12 @@ def retrieve_data(recursive_arxml, simple_arxml, recursive_config, simple_config
                 except Exception as e:
                     logger.error(' The file ' + fullname + ' is not well-formed: ' + str(e))
                     return
-                validate_xml_with_xsd(xsd_config, fullname, logger)
+                # validate_xml_with_xsd(xsd_arxml, fullname, logger)
                 tree = etree.parse(fullname)
+                if xmlschema_config.validate(tree) is not True:
+                    logger.warning('The file: ' + fullname + ' is NOT valid with the provided xsd schema')
+                else:
+                    logger.info('The file: ' + fullname + ' is valid with the provided xsd schema')
                 root = tree.getroot()
                 block = root.findall(".//BLOCK")
                 for elem in block:
@@ -338,6 +367,8 @@ def retrieve_data(recursive_arxml, simple_arxml, recursive_config, simple_config
                     else:
                         obj_block['SDF'] = None
                     obj_block['DEVICE'] = None
+                    obj_block['RESISTENT'] = None
+                    obj_block['POSITION'] = None
                     sender_receiver_interfaces = elem.findall('.//SENDER-RECEIVER-INTERFACE-REF')
                     for element in sender_receiver_interfaces:
                         obj_interface = {}
@@ -368,6 +399,12 @@ def retrieve_data(recursive_arxml, simple_arxml, recursive_config, simple_config
                         params.append(obj)
                     obj_profile['PARAM'] = params
                     profiles.append(obj_profile)
+                mapping = root.findall(".//MAPPING")
+                for elem in mapping:
+                    obj_mapping = {}
+                    obj_mapping['BLOCK'] = elem.find('BLOCK-REF').text
+                    obj_mapping['POSITION'] = int(elem.find('POSITION').text)
+                    mappings.append(obj_mapping)
     # implement TRS.SYSDESC.CHECK.001
     for index1 in range(len(blocks)):
         for index2 in range(len(blocks)):
@@ -397,28 +434,25 @@ def retrieve_data(recursive_arxml, simple_arxml, recursive_config, simple_config
                         except OSError:
                             pass
                         return
-    # merge two block with the same name:
-    for elem1 in blocks[:]:
-        for elem2 in blocks[:]:
-            if blocks.index(elem1) != blocks.index(elem2):
-                if elem1['NAME'] == elem2['NAME']:
-                    for interface in elem2['INTERFACE']:
-                        elem1['INTERFACE'].append(interface)
-    blocks = list(remove_duplicates(blocks))
     # compute size for each interface
     for interface in arxml_interfaces:
         interface_size = 0
         for data_element in interface['DATA-ELEMENTS']:
-            # type = data_element.find(".//{http://autosar.org/schema/r4.0}TYPE-TREF").text.split("/")[-1]
+            found = False
             for data_type in arxml_data_types:
-                if data_type['NAME'] == data_element['TYPE'].split("/")[-1]:
-                    data_element['SW-BASE-TYPE'] = data_type['BASE-TYPE']
-                    base = data_type['BASE-TYPE'].split("/")[-1]
-                    package = data_type['BASE-TYPE'].split("/")[-2]
-                    for base_type in arxml_base_types:
-                        if base_type['NAME'] == base and base_type['PACKAGE'] == package:
-                            interface_size = interface_size + int(base_type['SIZE'])
-                            data_element['SIZE'] = int(base_type['SIZE'])
+                if not found:
+                    if data_type['NAME'] == data_element['TYPE'].split("/")[-1]:
+                        data_element['SW-BASE-TYPE'] = data_type['BASE-TYPE']
+                        base = data_type['BASE-TYPE'].split("/")[-1]
+                        package = data_type['BASE-TYPE'].split("/")[-2]
+                        for base_type in arxml_base_types:
+                            if base_type['NAME'] == base and base_type['PACKAGE'] == package:
+                                interface_size = interface_size + int(base_type['SIZE'])
+                                data_element['SIZE'] = int(base_type['SIZE'])
+                                found = True
+                                break
+                else:
+                    break
         interface['SIZE'] = int(interface_size / 8)
     # implement TRS.SYSDESC.CHECK.003
     all_interfaces = []
@@ -450,7 +484,7 @@ def retrieve_data(recursive_arxml, simple_arxml, recursive_config, simple_config
             if index1 != index2:
                 if all_interfaces[index1]['INTERFACE'] == all_interfaces[index2]['INTERFACE']:
                     if all_interfaces[index1]['BLOCK'] != all_interfaces[index2]['BLOCK']:
-                        logger.error('Interface ' + all_interfaces[index1]['INTERFACE'] + ' is defined in multiple blocks: ' + all_interfaces[index1]['BLOCK'] + ' and ' + all_interfaces[index2]['BLOCK'])
+                        logger.error('Interface ' + all_interfaces[index1]['INTERFACE']['NAME'] + ' is defined in multiple blocks: ' + all_interfaces[index1]['BLOCK'] + ' and ' + all_interfaces[index2]['BLOCK'])
                         try:
                             os.remove(output_path + '/NvM.epc')
                             os.remove(output_path + '/NvDM.epc')
@@ -464,14 +498,11 @@ def retrieve_data(recursive_arxml, simple_arxml, recursive_config, simple_config
             if block['PROFILE'] == profile['NAME']:
                 block['MAX-SIZE'] = profile['MAX-SIZE']
                 block['DEVICE'] = profile['DEVICE']
-                if profile['SAFETY'] != 'true' and block['SDF'] is not None:
-                    logger.error('The block ' + block['NAME'] + ' is not allowed to have SDF parameter set')
-                    try:
-                        os.remove(output_path + '/NvM.epc')
-                        os.remove(output_path + '/NvDM.epc')
-                    except OSError:
-                        pass
-                    return
+                if profile['SAFETY'] != 'true':
+                    block['SDF'] = 'false'
+                for param in profile['PARAM']:
+                    if param['TYPE'] == 'NvMResistantToChangedSw':
+                        block['RESISTENT'] = param['VALUE']
                 found = True
         if not found:
             logger.error('The profile ' + block['PROFILE'] + ' used in block ' + block['NAME'] + ' is not valid (not defined in the project)')
@@ -481,6 +512,50 @@ def retrieve_data(recursive_arxml, simple_arxml, recursive_config, simple_config
             except OSError:
                 pass
             return
+    # one block with SDF = true cannot be present in multiple files
+    for elem1 in blocks[:]:
+        for elem2 in blocks[:]:
+            if blocks.index(elem1) != blocks.index(elem2):
+                if elem1['NAME'] == elem2['NAME']:
+                    if elem1['SDF'] == 'true':
+                        logger.error('The block  ' + elem1['NAME'] + ' cannot be defined in multiple ASWC because SDF = true')
+                        try:
+                            os.remove(output_path + '/NvM.epc')
+                            os.remove(output_path + '/NvDM.epc')
+                        except OSError:
+                            pass
+                        return
+    # merge two block with the same name:
+    for elem1 in blocks[:]:
+        for elem2 in blocks[:]:
+            if blocks.index(elem1) != blocks.index(elem2):
+                if elem1['NAME'] == elem2['NAME']:
+                    for interface in elem2['INTERFACE']:
+                        elem1['INTERFACE'].append(interface)
+    blocks = list(remove_duplicates(blocks))
+    # check if there are NvMResistantToChangedSw blocks
+    for block in blocks:
+        if block['RESISTENT'] == "True":
+            found = False
+            for mapping in mappings:
+                if mapping['BLOCK'] == block['NAME']:
+                    block['POSITION'] = mapping['POSITION']
+                    found = True
+            if not found:
+                logger.error('No mapping defined for block ' + block['NAME'])
+                try:
+                    os.remove(output_path + '/NvM.epc')
+                    os.remove(output_path + '/NvDM.epc')
+                except OSError:
+                    pass
+                return
+    # treat NvMResistantToChangedSw blocks separately
+    fixed_blocks = []
+    for block in blocks[:]:
+        if block['RESISTENT'] == "True":
+            fixed_blocks.append(block)
+            blocks.remove(block)
+    fixed_blocks = sorted(fixed_blocks, key=lambda x: x['POSITION'])
     # implement TRS.SYSDESC.FUNC.002
     blocks = sorted(blocks, key=lambda x: x['PROFILE'])
     for block in blocks[:]:
@@ -490,6 +565,7 @@ def retrieve_data(recursive_arxml, simple_arxml, recursive_config, simple_config
         splitted = False
         obj_subblock = {}
         for interface in block['INTERFACE']:
+            old_size = temp_size
             temp_size = temp_size + interface['SIZE']
             if temp_size <= int(block['MAX-SIZE']):
                 temp_interfaces.append(interface)
@@ -501,6 +577,7 @@ def retrieve_data(recursive_arxml, simple_arxml, recursive_config, simple_config
                     obj_subblock['MAPPING'] = block['MAPPING']
                     obj_subblock['DEVICE'] = block['DEVICE']
                     obj_subblock['SDF'] = block['SDF']
+                    obj_subblock['SIZE'] = old_size
                     obj_subblock['INTERFACE'] = temp_interfaces
                     new_dict = copy.deepcopy(obj_subblock)
                     subblocks.append(new_dict)
@@ -515,6 +592,7 @@ def retrieve_data(recursive_arxml, simple_arxml, recursive_config, simple_config
                 obj_subblock['MAPPING'] = block['MAPPING']
                 obj_subblock['DEVICE'] = block['DEVICE']
                 obj_subblock['SDF'] = block['SDF']
+                obj_subblock['SIZE'] = old_size
                 obj_subblock['INTERFACE'] = temp_interfaces
                 new_dict = copy.deepcopy(obj_subblock)
                 subblocks.append(new_dict)
@@ -530,6 +608,7 @@ def retrieve_data(recursive_arxml, simple_arxml, recursive_config, simple_config
     final_blocks = []
     for subblock in subblocks:
         obj_block = {}
+        block_size = 0
         data_elements = []
         obj_block['NAME'] = subblock['NAME']
         obj_block['MAPPING'] = subblock['MAPPING']
@@ -537,18 +616,24 @@ def retrieve_data(recursive_arxml, simple_arxml, recursive_config, simple_config
         obj_block['DEVICE'] = subblock['DEVICE']
         obj_block['TIMEOUT'] = subblock['TIMEOUT']
         obj_block['SDF'] = subblock['SDF']
+        obj_block['SIZE'] = subblock['SIZE']
         for interface in subblock['INTERFACE']:
             for data in interface['DATA-PROTOTYPE']:
                 obj_data_prototype = {}
                 obj_data_prototype['NAME'] = interface['NAME'].split('/')[-1] + "_" + data['NAME']
                 obj_data_prototype['DATA'] = interface['NAME'] + "/" + data['NAME']
                 obj_data_prototype['SW-BASE-TYPE'] = data['SW-BASE-TYPE']
+                obj_data_prototype['TYPE'] = data['TYPE']
+                obj_data_prototype['INIT'] = data['INIT']
                 obj_data_prototype['SIZE'] = data['SIZE']
+                block_size = block_size + int(data['SIZE'])
                 data_elements.append(obj_data_prototype)
+        obj_block['SIZE'] = int(block_size/8)
         obj_block['DATA'] = data_elements
         final_blocks.append(obj_block)
     for block in blocks:
         obj_block = {}
+        block_size = 0
         data_elements = []
         obj_block['NAME'] = block['NAME']
         obj_block['MAPPING'] = block['MAPPING']
@@ -562,21 +647,49 @@ def retrieve_data(recursive_arxml, simple_arxml, recursive_config, simple_config
                 obj_data_prototype['NAME'] = interface['NAME'].split('/')[-1] + "_" + data['NAME']
                 obj_data_prototype['DATA'] = interface['NAME'] + "/" + data['NAME']
                 obj_data_prototype['SW-BASE-TYPE'] = data['SW-BASE-TYPE']
+                obj_data_prototype['TYPE'] = data['TYPE']
+                obj_data_prototype['INIT'] = data['INIT']
                 obj_data_prototype['SIZE'] = data['SIZE']
+                block_size = block_size + int(data['SIZE'])
                 data_elements.append(obj_data_prototype)
+        obj_block['SIZE'] = int(block_size/8)
         obj_block['DATA'] = data_elements
         final_blocks.append(obj_block)
+    for block in fixed_blocks:
+        obj_block = {}
+        block_size = 0
+        data_elements = []
+        obj_block['NAME'] = block['NAME']
+        obj_block['MAPPING'] = block['MAPPING']
+        obj_block['PROFILE'] = block['PROFILE']
+        obj_block['DEVICE'] = block['DEVICE']
+        obj_block['TIMEOUT'] = block['TIMEOUT']
+        obj_block['SDF'] = block['SDF']
+        obj_block['POSITION'] = block['POSITION']
+        for interface in block['INTERFACE']:
+            for data in interface['DATA-PROTOTYPE']:
+                obj_data_prototype = {}
+                obj_data_prototype['NAME'] = interface['NAME'].split('/')[-1] + "_" + data['NAME']
+                obj_data_prototype['DATA'] = interface['NAME'] + "/" + data['NAME']
+                obj_data_prototype['SW-BASE-TYPE'] = data['SW-BASE-TYPE']
+                obj_data_prototype['TYPE'] = data['TYPE']
+                obj_data_prototype['INIT'] = data['INIT']
+                obj_data_prototype['SIZE'] = data['SIZE']
+                block_size = block_size + int(data['SIZE'])
+                data_elements.append(obj_data_prototype)
+        obj_block['SIZE'] = int(block_size/8)
+        obj_block['DATA'] = data_elements
+        final_fixed_blocks.append(obj_block)
     for block in final_blocks:
         if block['MAPPING'] == 'false':
             block['DATA'] = sorted(block['DATA'], key=lambda x: x['SIZE'], reverse=True)
-    index_name = 0
-    for block in final_blocks:
-        index_name = index_name + 1
+    for block in final_fixed_blocks:
         obj_nvm = {}
         obj_nvm['NAME'] = block['NAME']
         obj_nvm['DEVICE'] = block['DEVICE']
-        obj_nvm['NvMRomBlockDataAddress'] = "&NvDM_RomBlock_" + str(index_name)
-        obj_nvm['NvMRamBlockDataAddress'] = "&NvDM_RamBlock_" + str(index_name)
+        obj_nvm['NvMNvramBlockIdentifier'] = block['POSITION']
+        obj_nvm['NvMRomBlockDataAddress'] = "&NvDM_RomBlock_" + block['NAME']
+        obj_nvm['NvMRamBlockDataAddress'] = "&NvDM_RamBlock_" + block['NAME']
         obj_nvm['NvMSingleBlockCallback'] = None
         obj_nvm['NvMBlockUseAutoValidation'] = None
         obj_nvm['NvMStaticBlockIDCheck'] = None
@@ -773,18 +886,225 @@ def retrieve_data(recursive_arxml, simple_arxml, recursive_config, simple_config
                             except OSError:
                                 pass
                             return
-                    # TODO: check the possible valid values of this parameter
                     if elem['TYPE'] == 'NvMSingleBlockCallback':
-                        if elem['VALUE'] in ['Null', 'NULL']:
-                            obj_nvm['NvMSingleBlockCallback'] = elem['VALUE']
+                        obj_nvm['NvMSingleBlockCallback'] = elem['VALUE']
+        for key, value in obj_nvm.items():
+            if value is None:
+                logger.error('Mandatory parameters are not configured for NvM block ' + obj_nvm['NAME'])
+                try:
+                    os.remove(output_path + '/NvM.epc')
+                    os.remove(output_path + '/NvDM.epc')
+                except OSError:
+                    pass
+                return
+        nvm_blocks.append(obj_nvm)
+    index_name = len(fixed_blocks)
+    for block in final_blocks:
+        index_name = index_name + 1
+        obj_nvm = {}
+        obj_nvm['NAME'] = block['NAME']
+        obj_nvm['DEVICE'] = block['DEVICE']
+        obj_nvm['NvMNvramBlockIdentifier'] = str(index_name)
+        obj_nvm['NvMRomBlockDataAddress'] = "&NvDM_RomBlock_" + block['NAME']
+        obj_nvm['NvMRamBlockDataAddress'] = "&NvDM_RamBlock_" + block['NAME']
+        obj_nvm['NvMSingleBlockCallback'] = None
+        obj_nvm['NvMBlockUseAutoValidation'] = None
+        obj_nvm['NvMStaticBlockIDCheck'] = None
+        obj_nvm['NvMSelectBlockForWriteAll'] = None
+        obj_nvm['NvMSelectBlockForReadAll'] = None
+        obj_nvm['NvMResistantToChangedSw'] = None
+        obj_nvm['NvMCalcRamBlockCrc'] = None
+        obj_nvm['NvMBswMBlockStatusInformation'] = None
+        obj_nvm['NvMRomBlockNum'] = None
+        obj_nvm['NvMNvramDeviceId'] = "0"
+        obj_nvm['NvMWriteVerification'] = None
+        obj_nvm['NvMWriteBlockOnce'] = None
+        obj_nvm['NvMMaxNumOfWriteRetries'] = None
+        obj_nvm['NvMMaxNumOfReadRetries'] = None
+        obj_nvm['NvMBlockManagementType'] = None
+        obj_nvm['NvMBlockCrcType'] = None
+        obj_nvm['NvMBlockJobPriority'] = None
+        for profile in profiles:
+            if profile['NAME'] == block['PROFILE']:
+                for elem in profile['PARAM']:
+                    if elem['TYPE'] == 'NvMBlockJobPriority':
+                        if 0 <= int(elem['VALUE']) <= 255:
+                            obj_nvm['NvMBlockJobPriority'] = elem['VALUE']
                         else:
-                            logger.error('The parameter NvMSingleBlockCallback is not correctly defined in profile ' + profile['NAME'])
+                            logger.error('The parameter NvMBlockJobPriority is not correctly defined in profile ' + profile['NAME'])
                             try:
                                 os.remove(output_path + '/NvM.epc')
                                 os.remove(output_path + '/NvDM.epc')
                             except OSError:
                                 pass
                             return
+                    if elem['TYPE'] == 'NvMBlockCrcType':
+                        if elem['VALUE'] in ['NVM_CRC8', 'NVM_CRC16', 'NVM_CRC32']:
+                            obj_nvm['NvMBlockCrcType'] = elem['VALUE']
+                        else:
+                            logger.error('The parameter NvMBlockCrcType is not correctly defined in profile ' + profile['NAME'])
+                            try:
+                                os.remove(output_path + '/NvM.epc')
+                                os.remove(output_path + '/NvDM.epc')
+                            except OSError:
+                                pass
+                            return
+                    if elem['TYPE'] == 'NvMBlockManagementType':
+                        if elem['VALUE'] in ['NVM_BLOCK_REDUNDANT', 'NVM_BLOCK_NATIVE', 'NVM_BLOCK_DATASET']:
+                            obj_nvm['NvMBlockManagementType'] = elem['VALUE']
+                        else:
+                            logger.error('The parameter NvMBlockManagementType is not correctly defined in profile ' + profile['NAME'])
+                            try:
+                                os.remove(output_path + '/NvM.epc')
+                                os.remove(output_path + '/NvDM.epc')
+                            except OSError:
+                                pass
+                            return
+                    if elem['TYPE'] == 'NvMMaxNumOfReadRetries':
+                        if 0 <= int(elem['VALUE']) <= 7:
+                            obj_nvm['NvMMaxNumOfReadRetries'] = elem['VALUE']
+                        else:
+                            logger.error('The parameter NvMMaxNumOfReadRetries is not correctly defined in profile ' + profile['NAME'])
+                            try:
+                                os.remove(output_path + '/NvM.epc')
+                                os.remove(output_path + '/NvDM.epc')
+                            except OSError:
+                                pass
+                            return
+                    if elem['TYPE'] == 'NvMMaxNumOfWriteRetries':
+                        if 0 <= int(elem['VALUE']) <= 7:
+                            obj_nvm['NvMMaxNumOfWriteRetries'] = elem['VALUE']
+                        else:
+                            logger.error('The parameter NvMMaxNumOfWriteRetries is not correctly defined in profile ' + profile['NAME'])
+                            try:
+                                os.remove(output_path + '/NvM.epc')
+                                os.remove(output_path + '/NvDM.epc')
+                            except OSError:
+                                pass
+                            return
+                    if elem['TYPE'] == 'NvMWriteBlockOnce':
+                        if elem['VALUE'] in ['False', 'True']:
+                            obj_nvm['NvMWriteBlockOnce'] = elem['VALUE']
+                        else:
+                            logger.error('The parameter NvMWriteBlockOnce is not correctly defined in profile ' + profile['NAME'])
+                            try:
+                                os.remove(output_path + '/NvM.epc')
+                                os.remove(output_path + '/NvDM.epc')
+                            except OSError:
+                                pass
+                            return
+                    if elem['TYPE'] == 'NvMWriteVerification':
+                        if elem['VALUE'] in ['False', 'True']:
+                            obj_nvm['NvMWriteVerification'] = elem['VALUE']
+                        else:
+                            logger.error('The parameter NvMWriteVerification is not correctly defined in profile ' + profile['NAME'])
+                            try:
+                                os.remove(output_path + '/NvM.epc')
+                                os.remove(output_path + '/NvDM.epc')
+                            except OSError:
+                                pass
+                            return
+                    if elem['TYPE'] == 'NvMNvBlockNum':
+                        if 1 <= int(elem['VALUE']) <= 255:
+                            obj_nvm['NvMNvBlockNum'] = elem['VALUE']
+                        else:
+                            logger.error('The parameter NvMNvBlockNum is not correctly defined in profile ' + profile['NAME'])
+                            try:
+                                os.remove(output_path + '/NvM.epc')
+                                os.remove(output_path + '/NvDM.epc')
+                            except OSError:
+                                pass
+                            return
+                    if elem['TYPE'] == 'NvMRomBlockNum':
+                        if 0 <= int(elem['VALUE']) <= 254:
+                            obj_nvm['NvMRomBlockNum'] = elem['VALUE']
+                        else:
+                            logger.error('The parameter NvMRomBlockNum is not correctly defined in profile ' + profile['NAME'])
+                            try:
+                                os.remove(output_path + '/NvM.epc')
+                                os.remove(output_path + '/NvDM.epc')
+                            except OSError:
+                                pass
+                            return
+                    if elem['TYPE'] == 'NvMBswMBlockStatusInformation':
+                        if elem['VALUE'] in ['False', 'True']:
+                            obj_nvm['NvMBswMBlockStatusInformation'] = elem['VALUE']
+                        else:
+                            logger.error('The parameter NvMBswMBlockStatusInformation is not correctly defined in profile ' + profile['NAME'])
+                            try:
+                                os.remove(output_path + '/NvM.epc')
+                                os.remove(output_path + '/NvDM.epc')
+                            except OSError:
+                                pass
+                            return
+                    if elem['TYPE'] == 'NvMCalcRamBlockCrc':
+                        if elem['VALUE'] in ['False', 'True']:
+                            obj_nvm['NvMCalcRamBlockCrc'] = elem['VALUE']
+                        else:
+                            logger.error('The parameter NvMCalcRamBlockCrc is not correctly defined in profile ' + profile['NAME'])
+                            try:
+                                os.remove(output_path + '/NvM.epc')
+                                os.remove(output_path + '/NvDM.epc')
+                            except OSError:
+                                pass
+                            return
+                    if elem['TYPE'] == 'NvMResistantToChangedSw':
+                        if elem['VALUE'] in ['False', 'True']:
+                            obj_nvm['NvMResistantToChangedSw'] = elem['VALUE']
+                        else:
+                            logger.error('The parameter NvMResistantToChangedSw is not correctly defined in profile ' + profile['NAME'])
+                            try:
+                                os.remove(output_path + '/NvM.epc')
+                                os.remove(output_path + '/NvDM.epc')
+                            except OSError:
+                                pass
+                            return
+                    if elem['TYPE'] == 'NvMSelectBlockForReadAll':
+                        if elem['VALUE'] in ['False', 'True']:
+                            obj_nvm['NvMSelectBlockForReadAll'] = elem['VALUE']
+                        else:
+                            logger.error('The parameter NvMSelectBlockForReadAll is not correctly defined in profile ' + profile['NAME'])
+                            try:
+                                os.remove(output_path + '/NvM.epc')
+                                os.remove(output_path + '/NvDM.epc')
+                            except OSError:
+                                pass
+                            return
+                    if elem['TYPE'] == 'NvMSelectBlockForWriteAll':
+                        if elem['VALUE'] in ['False', 'True']:
+                            obj_nvm['NvMSelectBlockForWriteAll'] = elem['VALUE']
+                        else:
+                            logger.error('The parameter NvMSelectBlockForWriteAll is not correctly defined in profile ' + profile['NAME'])
+                            try:
+                                os.remove(output_path + '/NvM.epc')
+                                os.remove(output_path + '/NvDM.epc')
+                            except OSError:
+                                pass
+                            return
+                    if elem['TYPE'] == 'NvMStaticBlockIDCheck':
+                        if elem['VALUE'] in ['False', 'True']:
+                            obj_nvm['NvMStaticBlockIDCheck'] = elem['VALUE']
+                        else:
+                            logger.error('The parameter NvMStaticBlockIDCheck is not correctly defined in profile ' + profile['NAME'])
+                            try:
+                                os.remove(output_path + '/NvM.epc')
+                                os.remove(output_path + '/NvDM.epc')
+                            except OSError:
+                                pass
+                            return
+                    if elem['TYPE'] == 'NvMBlockUseAutoValidation':
+                        if elem['VALUE'] in ['False', 'True']:
+                            obj_nvm['NvMBlockUseAutoValidation'] = elem['VALUE']
+                        else:
+                            logger.error('The parameter NvMBlockUseAutoValidation is not correctly defined in profile ' + profile['NAME'])
+                            try:
+                                os.remove(output_path + '/NvM.epc')
+                                os.remove(output_path + '/NvDM.epc')
+                            except OSError:
+                                pass
+                            return
+                    if elem['TYPE'] == 'NvMSingleBlockCallback':
+                        obj_nvm['NvMSingleBlockCallback'] = elem['VALUE']
         for key, value in obj_nvm.items():
             if value is None:
                 logger.error('Mandatory parameters are not configured for NvM block ' + obj_nvm['NAME'])
@@ -873,6 +1193,18 @@ def retrieve_data(recursive_arxml, simple_arxml, recursive_config, simple_config
         definition.attrib['DEST'] = "ECUC-PARAM-CONF-CONTAINER-DEF"
         definition.text = "/TS_TxDxM6I16R0/NvM/NvMBlockDescriptor"
         parameter = etree.SubElement(ecuc_container, 'PARAMETER-VALUES')
+        # NvMNvramBlockIdentifier
+        ecuc_numerical_NvMNvramBlockIdentifier = etree.SubElement(parameter, 'ECUC-NUMERICAL-PARAM-VALUE')
+        definition = etree.SubElement(ecuc_numerical_NvMNvramBlockIdentifier, 'DEFINITION-REF')
+        definition.attrib['DEST'] = "ECUC-INTEGER-PARAM-DEF"
+        definition.text = "/TS_TxDxM6I16R0/NvM/NvMBlockDescriptor/NvMNvramBlockIdentifier"
+        value = etree.SubElement(ecuc_numerical_NvMNvramBlockIdentifier, 'VALUE').text = str(block['NvMNvramBlockIdentifier'])
+        # NvMNvBlockNum
+        ecuc_numerical_NvMNvBlockNum = etree.SubElement(parameter, 'ECUC-NUMERICAL-PARAM-VALUE')
+        definition = etree.SubElement(ecuc_numerical_NvMNvBlockNum, 'DEFINITION-REF')
+        definition.attrib['DEST'] = "ECUC-INTEGER-PARAM-DEF"
+        definition.text = "/TS_TxDxM6I16R0/NvM/NvMBlockDescriptor/NvMNvBlockNum"
+        value = etree.SubElement(ecuc_numerical_NvMNvBlockNum, 'VALUE').text = str(block['NvMNvBlockNum'])
         # NvMRomBlockDataAddress
         ecuc_textual_NvMRomBlockDataAddress = etree.SubElement(parameter, 'ECUC-TEXTUAL-PARAM-VALUE')
         definition = etree.SubElement(ecuc_textual_NvMRomBlockDataAddress, 'DEFINITION-REF')
@@ -1025,7 +1357,13 @@ def retrieve_data(recursive_arxml, simple_arxml, recursive_config, simple_config
     output = etree.ElementTree(etree.fromstring(pretty_xml))
     output.write(output_path + '/NvM.epc', encoding='UTF-8', xml_declaration=True, method="xml")
     # logger.info('=================Output file information=================')
-    validate_xml_with_xsd(xsd_arxml, output_path + '/NvM.epc', logger)
+    # validate_xml_with_xsd(xsd_arxml, output_path + '/NvM.epc', logger)
+    # validate_xml_with_xsd(xsd_arxml, fullname, logger)
+    #tree = etree.parse(fullname)
+    if xmlschema_arxml.validate(etree.parse(output_path + '/NvM.epc')) is not True:
+        logger.warning('The file: NvM.epc is NOT valid with the provided xsd schema')
+    else:
+        logger.info('The file: NvM.epc is valid with the provided xsd schema')
 
     # generate NvDM.epc
     rootNvDM = etree.Element('AUTOSAR', {attr_qname: 'http://autosar.org/schema/r4.0 AUTOSAR_4-2-2_STRICT_COMPACT.xsd'}, nsmap=NSMAP)
@@ -1097,7 +1435,104 @@ def retrieve_data(recursive_arxml, simple_arxml, recursive_config, simple_config
     definition.attrib['DEST'] = "ECUC-INTEGER-PARAM-DEF"
     definition.text = "/TS_2018_01/NvDM/CommonPublishedInformation/VendorId"
     value = etree.SubElement(ecuc_numerical_VendorId, 'VALUE').text = "1"
-    index = 0
+    for block in final_fixed_blocks:
+        ecuc_container = etree.SubElement(containers, 'ECUC-CONTAINER-VALUE')
+        short_name = etree.SubElement(ecuc_container, 'SHORT-NAME').text = "NvDM_" + block['NAME']
+        definition = etree.SubElement(ecuc_container, 'DEFINITION-REF')
+        definition.attrib['DEST'] = "ECUC-PARAM-CONF-CONTAINER-DEF"
+        definition.text = "/TS_2018_01/NvDM/NvDMBlockDescriptor"
+        parameter = etree.SubElement(ecuc_container, 'PARAMETER-VALUES')
+        for profile in profiles:
+            if profile['NAME'] == block['PROFILE']:
+                # NvDMDurability
+                ecuc_textual_NvDMDurability = etree.SubElement(parameter, 'ECUC-TEXTUAL-PARAM-VALUE')
+                definition = etree.SubElement(ecuc_textual_NvDMDurability, 'DEFINITION-REF')
+                definition.attrib['DEST'] = "ECUC-ENUMERATION-PARAM-DEF"
+                definition.text = "/TS_2018_01/NvDM/NvDMBlockDescriptor/NvDMDurability"
+                value = etree.SubElement(ecuc_textual_NvDMDurability, 'VALUE').text = profile['DURABILITY']
+                # NvDMSafetyBlock
+                ecuc_numerical_NvDMSafetyBlock = etree.SubElement(parameter, 'ECUC-NUMERICAL-PARAM-VALUE')
+                definition = etree.SubElement(ecuc_numerical_NvDMSafetyBlock, 'DEFINITION-REF')
+                definition.attrib['DEST'] = "ECUC-BOOLEAN-PARAM-DEF"
+                definition.text = "/TS_2018_01/NvDM/NvDMBlockDescriptor/NvDMSafetyBlock"
+                value = etree.SubElement(ecuc_numerical_NvDMSafetyBlock, 'VALUE')
+                if block['SDF'] == 'true':
+                    value.text = '1'
+                else:
+                    value.text = '0'
+                # NvDMWriteTimeout
+                ecuc_numerical_NvDMWriteTimeout = etree.SubElement(parameter, 'ECUC-NUMERICAL-PARAM-VALUE')
+                definition = etree.SubElement(ecuc_numerical_NvDMWriteTimeout, 'DEFINITION-REF')
+                definition.attrib['DEST'] = "ECUC-FLOAT-PARAM-DEF"
+                definition.text = "/TS_2018_01/NvDM/NvDMBlockDescriptor/NvDMWriteTimeout"
+                value = etree.SubElement(ecuc_numerical_NvDMWriteTimeout, 'VALUE').text = block['TIMEOUT']
+                # NvDMWritingManagment
+                ecuc_textual_NvDMWritingManagment = etree.SubElement(parameter, 'ECUC-TEXTUAL-PARAM-VALUE')
+                definition = etree.SubElement(ecuc_textual_NvDMWritingManagment, 'DEFINITION-REF')
+                definition.attrib['DEST'] = "ECUC-ENUMERATION-PARAM-DEF"
+                definition.text = "/TS_2018_01/NvDM/NvDMBlockDescriptor/NvDMWritingManagment"
+                value = etree.SubElement(ecuc_textual_NvDMWritingManagment, 'VALUE').text = profile['MANAGEMENT']
+                # NvDMProfile
+                ecuc_textual_NvDMProfile = etree.SubElement(parameter, 'ECUC-TEXTUAL-PARAM-VALUE')
+                definition = etree.SubElement(ecuc_textual_NvDMProfile, 'DEFINITION-REF')
+                definition.attrib['DEST'] = "ECUC-ENUMERATION-PARAM-DEF"
+                definition.text = "/TS_2018_01/NvDM/NvDMBlockDescriptor/NvDMProfile"
+                value = etree.SubElement(ecuc_textual_NvDMProfile, 'VALUE').text = profile['NAME']
+                # NvDMBlockSize
+                ecuc_numerical_NvDMBlockSize = etree.SubElement(parameter, 'ECUC-NUMERICAL-PARAM-VALUE')
+                definition = etree.SubElement(ecuc_numerical_NvDMBlockSize, 'DEFINITION-REF')
+                definition.attrib['DEST'] = "ECUC-FLOAT-PARAM-DEF"
+                definition.text = "/TS_2018_01/NvDM/NvDMBlockDescriptor/NvDMBlockSize"
+                value = etree.SubElement(ecuc_numerical_NvDMBlockSize, 'VALUE').text = str(block['SIZE'])
+        reference = etree.SubElement(ecuc_container, 'REFERENCE-VALUES')
+        ecuc_reference = etree.SubElement(reference, 'ECUC-REFERENCE-VALUE')
+        ecuc_reference.attrib['DEST'] = "ECUC-REFERENCE-DEF"
+        ecuc_reference.text = "/TS_2018_01/NvDM/NvDMBlockDescriptor/NvDMNvMBlockDescriptorRef"
+        value = etree.SubElement(reference, 'VALUE-REF')
+        value.attrib['DEST'] = "ECUC-CONTAINER-VALUE"
+        value.text = "/NvM/NvM/NvM_" + block['NAME']
+        subcontainers = etree.SubElement(ecuc_container, 'SUB-CONTAINERS')
+        index = 0
+        for element in block['DATA']:
+            ecuc_container = etree.SubElement(subcontainers, 'ECUC-CONTAINER-VALUE')
+            short_name = etree.SubElement(ecuc_container, 'SHORT-NAME').text = element['NAME']
+            index = index + 1
+            definition = etree.SubElement(ecuc_container, 'DEFINITION-REF')
+            definition.attrib['DEST'] = "ECUC-PARAM-CONF-CONTAINER-DEF"
+            definition.text = "/TS_2018_01/NvDM/NvDMBlockDescriptor/NvDMVariableDataPrototype"
+            reference_values = etree.SubElement(ecuc_container, 'REFERENCE-VALUES')
+            ecuc_reference_values = etree.SubElement(reference_values, 'ECUC-REFERENCE-VALUE')
+            definition = etree.SubElement(reference_values, 'DEFINITION-REF')
+            definition.attrib['DEST'] = "ECUC-FOREIGN-REFERENCE-DEF"
+            definition.text = "/TS_2018_01/NvDM/NvDMBlockDescriptor/NvDMVariableDataPrototype/NvDMBaseTypeRef"
+            value = etree.SubElement(reference_values, 'VALUE-REF')
+            value.attrib['DEST'] = "SW-BASE-TYPE"
+            value.text = element['SW-BASE-TYPE']
+            reference_values = etree.SubElement(ecuc_container, 'REFERENCE-VALUES')
+            ecuc_reference_values = etree.SubElement(reference_values, 'ECUC-REFERENCE-VALUE')
+            definition = etree.SubElement(reference_values, 'DEFINITION-REF')
+            definition.attrib['DEST'] = "ECUC-FOREIGN-REFERENCE-DEF"
+            definition.text = "/TS_2018_01/NvDM/NvDMBlockDescriptor/NvDMVariableDataPrototype/NvDMVariableDataPrototypeRef"
+            value = etree.SubElement(reference_values, 'VALUE-REF')
+            value.attrib['DEST'] = "VARIABLE-DATA-PROTOTYPE"
+            value.text = element['DATA']
+            reference_values = etree.SubElement(ecuc_container, 'REFERENCE-VALUES')
+            ecuc_reference_values = etree.SubElement(reference_values, 'ECUC-REFERENCE-VALUE')
+            definition = etree.SubElement(reference_values, 'DEFINITION-REF')
+            definition.attrib['DEST'] = "ECUC-FOREIGN-REFERENCE-DEF"
+            definition.text = "/TS_2018_01/NvDM/NvDMBlockDescriptor/NvDMVariableDataPrototype/NvDMTypeRef"
+            value = etree.SubElement(reference_values, 'VALUE-REF')
+            value.attrib['DEST'] = "IMPLEMENTATION-DATA-TYPE"
+            value.text = element['TYPE']
+            reference_values = etree.SubElement(ecuc_container, 'REFERENCE-VALUES')
+            ecuc_reference_values = etree.SubElement(reference_values, 'ECUC-NUMERICAL-PARAM-VALUE')
+            definition = etree.SubElement(reference_values, 'DEFINITION-REF')
+            definition.attrib['DEST'] = "ECUC-FLOAT-PARAM-DEF"
+            definition.text = "/TS_2018_01/NvDM/NvDMBlockDescriptor/NvDMVariableDataPrototype/NvDMInitValue"
+            value = etree.SubElement(reference_values, 'VALUE-REF')
+            value.attrib['DEST'] = "VALUE"
+            value.text = element['INIT']
+    index = len(fixed_blocks)
     for block in final_blocks:
         ecuc_container = etree.SubElement(containers, 'ECUC-CONTAINER-VALUE')
         short_name = etree.SubElement(ecuc_container, 'SHORT-NAME').text = "NvDM_" + block['NAME']
@@ -1135,6 +1570,18 @@ def retrieve_data(recursive_arxml, simple_arxml, recursive_config, simple_config
                 definition.attrib['DEST'] = "ECUC-ENUMERATION-PARAM-DEF"
                 definition.text = "/TS_2018_01/NvDM/NvDMBlockDescriptor/NvDMWritingManagment"
                 value = etree.SubElement(ecuc_textual_NvDMWritingManagment, 'VALUE').text = profile['MANAGEMENT']
+                # NvDMProfile
+                ecuc_textual_NvDMProfile = etree.SubElement(parameter, 'ECUC-TEXTUAL-PARAM-VALUE')
+                definition = etree.SubElement(ecuc_textual_NvDMProfile, 'DEFINITION-REF')
+                definition.attrib['DEST'] = "ECUC-ENUMERATION-PARAM-DEF"
+                definition.text = "/TS_2018_01/NvDM/NvDMBlockDescriptor/NvDMProfile"
+                value = etree.SubElement(ecuc_textual_NvDMProfile, 'VALUE').text = profile['NAME']
+                # NvDMBlockSize
+                ecuc_numerical_NvDMBlockSize = etree.SubElement(parameter, 'ECUC-NUMERICAL-PARAM-VALUE')
+                definition = etree.SubElement(ecuc_numerical_NvDMBlockSize, 'DEFINITION-REF')
+                definition.attrib['DEST'] = "ECUC-FLOAT-PARAM-DEF"
+                definition.text = "/TS_2018_01/NvDM/NvDMBlockDescriptor/NvDMBlockSize"
+                value = etree.SubElement(ecuc_numerical_NvDMBlockSize, 'VALUE').text = str(block['SIZE'])
         reference = etree.SubElement(ecuc_container, 'REFERENCE-VALUES')
         ecuc_reference = etree.SubElement(reference, 'ECUC-REFERENCE-VALUE')
         ecuc_reference.attrib['DEST'] = "ECUC-REFERENCE-DEF"
@@ -1167,16 +1614,40 @@ def retrieve_data(recursive_arxml, simple_arxml, recursive_config, simple_config
             value = etree.SubElement(reference_values, 'VALUE-REF')
             value.attrib['DEST'] = "VARIABLE-DATA-PROTOTYPE"
             value.text = element['DATA']
+            reference_values = etree.SubElement(ecuc_container, 'REFERENCE-VALUES')
+            ecuc_reference_values = etree.SubElement(reference_values, 'ECUC-REFERENCE-VALUE')
+            definition = etree.SubElement(reference_values, 'DEFINITION-REF')
+            definition.attrib['DEST'] = "ECUC-FOREIGN-REFERENCE-DEF"
+            definition.text = "/TS_2018_01/NvDM/NvDMBlockDescriptor/NvDMVariableDataPrototype/NvDMTypeRef"
+            value = etree.SubElement(reference_values, 'VALUE-REF')
+            value.attrib['DEST'] = "IMPLEMENTATION-DATA-TYPE"
+            value.text = element['TYPE']
+            reference_values = etree.SubElement(ecuc_container, 'REFERENCE-VALUES')
+            ecuc_reference_values = etree.SubElement(reference_values, 'ECUC-NUMERICAL-PARAM-VALUE')
+            definition = etree.SubElement(reference_values, 'DEFINITION-REF')
+            definition.attrib['DEST'] = "ECUC-FLOAT-PARAM-DEF"
+            definition.text = "/TS_2018_01/NvDM/NvDMBlockDescriptor/NvDMVariableDataPrototype/NvDMInitValue"
+            value = etree.SubElement(reference_values, 'VALUE-REF')
+            value.attrib['DEST'] = "VALUE"
+            value.text = element['INIT']
     pretty_xml = new_prettify(rootNvDM)
     output = etree.ElementTree(etree.fromstring(pretty_xml))
     output.write(output_path + '/NvDM.epc', encoding='UTF-8', xml_declaration=True, method="xml")
     # logger.info('=================Output file information=================')
-    validate_xml_with_xsd(xsd_arxml, output_path + '/NvDM.epc', logger)
+    # validate_xml_with_xsd(xsd_arxml, output_path + '/NvDM.epc', logger)
+    if xmlschema_arxml.validate(etree.parse(output_path + '/NvDM.epc')) is not True:
+        logger.warning('The file: NvDM.epc is NOT valid with the provided xsd schema')
+    else:
+        logger.info('The file: NvDM.epc is valid with the provided xsd schema')
 
 
-if __name__ == "__main__":
-    process = psutil.Process(os.getpid())
-    start_time = time.clock()
-    main()
-    print(str(time.clock() - start_time) + " seconds")
-    print(str(process.memory_info()[0]/float(2**20)) + " MB")
+if __name__ == "__main__":                                          # pragma: no cover
+    # process = psutil.Process(os.getpid())                         # pragma: no cover
+    # start_time = time.clock()                                     # pragma: no cover
+    cov = Coverage()                                                # pragma: no cover
+    cov.start()                                                     # pragma: no cover
+    main()                                                          # pragma: no cover
+    cov.stop()                                                      # pragma: no cover
+    cov.html_report(directory='coverage-html')                      # pragma: no cover
+    # print(str(time.clock() - start_time) + " seconds")            # pragma: no cover
+    # print(str(process.memory_info()[0]/float(2**20)) + " MB")     # pragma: no cover

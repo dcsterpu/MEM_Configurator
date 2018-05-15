@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CONFIG_PSA_NVM xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="C:\APP\NEA\XSD\ConfigPSA_NvM.xsd">
+    <BLOCKS>
+        <BLOCK>
+            <SHORT-NAME>Default_App_Ram_Implicit_SAV</SHORT-NAME>
+            <TYPE>Default</TYPE>
+            <PROFIL-REF>App_Ram_Implicit</PROFIL-REF>
+            <WRITE-TIMEOUT>0</WRITE-TIMEOUT>
+            <RESPECT-MAPPING>false</RESPECT-MAPPING>
+			<SDF>true</SDF>
+            <!-- 14 interfaces -->
+            <SENDER-RECEIVER-INTERFACE-REFS>
+                <!-- #0 - SR_ConsoMoyenneHY1 version 1.42853.93152 -->
+                <SENDER-RECEIVER-INTERFACE-REF DEST="SENDER-RECEIVER-INTERFACE">/RootP_SR_Data/SR_ConsoMoyenneHY1</SENDER-RECEIVER-INTERFACE-REF>
+                <!-- #13 - SR_SAV_ConsoLisse version 1.21807.17732 -->
+                <SENDER-RECEIVER-INTERFACE-REF DEST="SENDER-RECEIVER-INTERFACE">/RootP_SR_Data/SR_SAV_ConsoLisse</SENDER-RECEIVER-INTERFACE-REF>
+				<!-- #0 - SR_ConsoAutonomieGM version 1.10236.29748 -->
+                <SENDER-RECEIVER-INTERFACE-REF DEST="SENDER-RECEIVER-INTERFACE">/RootP_SR_Data/SR_ConsoAutonomieGM</SENDER-RECEIVER-INTERFACE-REF>
+            </SENDER-RECEIVER-INTERFACE-REFS>
+        </BLOCK>
+    </BLOCKS>
+</CONFIG_PSA_NVM>

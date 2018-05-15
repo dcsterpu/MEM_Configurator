@@ -1,0 +1,14 @@
+2018-05-15 15:06:12,079 INFO The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.GEN.003_1\input\ASWC_A26.aswc.arxml is well-formed
+2018-05-15 15:06:12,099 INFO The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.GEN.003_1\input\ASWC_A26.aswc.arxml is valid with the provided xsd schema
+2018-05-15 15:06:12,099 INFO The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.GEN.003_1\input\AUTOSAR_Datatypes.arxml is well-formed
+2018-05-15 15:06:12,099 INFO The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.GEN.003_1\input\AUTOSAR_Datatypes.arxml is valid with the provided xsd schema
+2018-05-15 15:06:12,199 INFO The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.GEN.003_1\input\SystemGenerated.arxml is well-formed
+2018-05-15 15:06:12,233 INFO The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.GEN.003_1\input\SystemGenerated.arxml is valid with the provided xsd schema
+2018-05-15 15:06:12,273 INFO The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.GEN.003_1\input\VSM_Types.arxml is well-formed
+2018-05-15 15:06:12,283 INFO The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.GEN.003_1\input\VSM_Types.arxml is valid with the provided xsd schema
+2018-05-15 15:06:12,283 INFO The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.GEN.003_1\input\ASWC_A26.config_mem.xml is well-formed
+2018-05-15 15:06:12,283 WARNING The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.GEN.003_1\input\ASWC_A26.config_mem.xml is NOT valid with the provided xsd schema
+2018-05-15 15:06:12,283 INFO The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.GEN.003_1\input\Profiles_cleaned.xml is well-formed
+2018-05-15 15:06:12,283 WARNING The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.GEN.003_1\input\Profiles_cleaned.xml is NOT valid with the provided xsd schema
+2018-05-15 15:06:12,613 WARNING The file: NvM.epc is NOT valid with the provided xsd schema
+2018-05-15 15:06:12,633 WARNING The file: NvDM.epc is NOT valid with the provided xsd schema
