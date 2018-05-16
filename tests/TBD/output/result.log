@@ -1,0 +1,22 @@
+2018-05-16 16:11:58,671 INFO The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TBD\input\ASWC_A26.aswc.arxml is well-formed
+2018-05-16 16:11:58,692 INFO The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TBD\input\ASWC_A26.aswc.arxml is valid with the provided xsd schema
+2018-05-16 16:11:58,712 INFO The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TBD\input\ASWC_A27.aswc.arxml is well-formed
+2018-05-16 16:11:58,725 INFO The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TBD\input\ASWC_A27.aswc.arxml is valid with the provided xsd schema
+2018-05-16 16:11:58,729 INFO The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TBD\input\AUTOSAR_Datatypes.arxml is well-formed
+2018-05-16 16:11:58,731 INFO The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TBD\input\AUTOSAR_Datatypes.arxml is valid with the provided xsd schema
+2018-05-16 16:11:58,838 INFO The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TBD\input\SystemGenerated.arxml is well-formed
+2018-05-16 16:11:58,892 INFO The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TBD\input\SystemGenerated.arxml is valid with the provided xsd schema
+2018-05-16 16:11:58,949 INFO The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TBD\input\VSM_Types.arxml is well-formed
+2018-05-16 16:11:58,950 INFO The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TBD\input\VSM_Types.arxml is valid with the provided xsd schema
+2018-05-16 16:11:58,951 INFO The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TBD\input\ASWC_A26.config_mem.xml is well-formed
+2018-05-16 16:11:58,952 WARNING The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TBD\input\ASWC_A26.config_mem.xml is NOT valid with the provided xsd schema
+2018-05-16 16:11:58,953 INFO The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TBD\input\ASWC_A27.config_mem.xml is well-formed
+2018-05-16 16:11:58,954 WARNING The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TBD\input\ASWC_A27.config_mem.xml is NOT valid with the provided xsd schema
+2018-05-16 16:11:58,954 INFO The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TBD\input\CompiledConfigID.xml is well-formed
+2018-05-16 16:11:58,955 INFO The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TBD\input\CompiledConfigID.xml is valid with the provided xsd schema
+2018-05-16 16:11:58,956 INFO The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TBD\input\MAPPING.xml is well-formed
+2018-05-16 16:11:58,956 INFO The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TBD\input\MAPPING.xml is valid with the provided xsd schema
+2018-05-16 16:11:58,957 INFO The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TBD\input\Profiles_cleaned.xml is well-formed
+2018-05-16 16:11:58,958 WARNING The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TBD\input\Profiles_cleaned.xml is NOT valid with the provided xsd schema
+2018-05-16 16:11:59,063 WARNING The file: NvM.epc is NOT valid with the provided xsd schema
+2018-05-16 16:11:59,087 WARNING The file: NvDM.epc is NOT valid with the provided xsd schema

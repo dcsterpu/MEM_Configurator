@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CONFIG_PSA_NVM xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="C:\APP\NEA\XSD\ConfigPSA_NvM.xsd">
+	<NVM_COMPILED_CONFIG_ID>300</NVM_COMPILED_CONFIG_ID>
+	<NVM_COMPILED_CONFIG_ID>301</NVM_COMPILED_CONFIG_ID>
+</CONFIG_PSA_NVM>
