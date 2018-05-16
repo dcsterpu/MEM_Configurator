@@ -188,7 +188,7 @@ class FileCompare():
         path = used for defining the file that contains the output data
         """
         structure_valid = True
-        attributes = ['NvDMDurability', 'NvDMSafetyBlock', 'NvDMWriteTimeout', 'NvDMWritingManagment', 'NvDMProfile', 'NvDMBlockSize']
+        attributes = ['NvDMDurability', 'NvDMSafetyBlock', 'NvDMWriteTimeout', 'NvDMWritingManagment', 'NvDMProfile', 'NvDMBlockSize', 'NvDMBlockID']
         tree = etree.parse(path)
         root = tree.getroot()
         blocks = root.findall(".//{http://autosar.org/schema/r4.0}ECUC-CONTAINER-VALUE")
@@ -248,7 +248,7 @@ class FileCompare():
         for block in blocks:
             obj_block = {}
             if block.getparent().tag == '{http://autosar.org/schema/r4.0}CONTAINERS':
-                if block.find(".//{http://autosar.org/schema/r4.0}SHORT-NAME").text != 'CommonPublishedInformation':
+                if block.find(".//{http://autosar.org/schema/r4.0}SHORT-NAME").text != 'CommonPublishedInformation' and block.find(".//{http://autosar.org/schema/r4.0}SHORT-NAME").text != 'NvMCommon':
                     parameters = ['NvMNvramBlockIdentifier', 'NvMNvBlockNum', 'NvMRomBlockDataAddress', 'NvMRamBlockDataAddress', 'NvMSingleBlockCallback', 'NvMBlockUseAutoValidation', 'NvMStaticBlockIDCheck', 'NvMSelectBlockForWriteAll',
                                   'NvMSelectBlockForReadAll', 'NvMResistantToChangedSw', 'NvMCalcRamBlockCrc', 'NvMBswMBlockStatusInformation', 'NvMRomBlockNum', 'NvMNvramDeviceId', 'NvMWriteVerification', 'NvMWriteBlockOnce',
                                   'NvMMaxNumOfWriteRetries', 'NvMMaxNumOfReadRetries', 'NvMBlockJobPriority', 'NvMBlockManagementType', 'NvMBlockCrcType']
@@ -316,7 +316,7 @@ class FileCompare():
         blocks = root.findall(".//{http://autosar.org/schema/r4.0}ECUC-CONTAINER-VALUE")
         for block in blocks:
             if block.getparent().tag == '{http://autosar.org/schema/r4.0}CONTAINERS':
-                if block.find(".//{http://autosar.org/schema/r4.0}SHORT-NAME").text != 'CommonPublishedInformation':
+                if block.find(".//{http://autosar.org/schema/r4.0}SHORT-NAME").text != 'CommonPublishedInformation' and block.find(".//{http://autosar.org/schema/r4.0}SHORT-NAME").text != 'NvMCommon':
                     obj_block = {}
                     obj_block['NAME'] = block.find(".//{http://autosar.org/schema/r4.0}SHORT-NAME").text
                     references = block.findall(".//{http://autosar.org/schema/r4.0}DEFINITION-REF")
@@ -334,6 +334,27 @@ class FileCompare():
                         ordered = False
         return ordered
 
+    def checkID(path):
+        """
+        path = used for defining the file that contains the output data
+        """
+        IDs = []
+        tree = etree.parse(path)
+        root = tree.getroot()
+        blocks = root.findall(".//{http://autosar.org/schema/r4.0}ECUC-CONTAINER-VALUE")
+        for block in blocks:
+            if block.getparent().tag == '{http://autosar.org/schema/r4.0}CONTAINERS':
+                if block.find(".//{http://autosar.org/schema/r4.0}SHORT-NAME").text != 'CommonPublishedInformation':
+                    references = block.findall(".//{http://autosar.org/schema/r4.0}DEFINITION-REF")
+                    for reference in references:
+                        if reference.text.split("/")[-1] == "NvDMBlockID":
+                            IDs.append(int(reference.getnext().text))
+        if IDs[0] != 2:
+            return False
+        if IDs == sorted(IDs):
+            return True
+        else:
+            return False
 
 class MEMConfigurator(unittest.TestCase):
 
@@ -566,11 +587,25 @@ class MEMConfigurator(unittest.TestCase):
         self.assertFalse(FileCompare.isOutput(head + '\\tests\\CHECK.XML\\output\\NvM.epc'))
         self.assertTrue(FileCompare.checkLog(head + '\\tests\\CHECK.XML\\output\\result.log', "ERROR", [""]))
 
+    def test_TBD(self):
+        current_path = os.path.realpath(__file__)
+        head, tail = ntpath.split(current_path)
+        os.system('MEM_Configurator.py -config ' + head + '\\tests\\TBD\\ConfigMemConfigurator.xml')
+        self.assertTrue(FileCompare.checkID(head + '\\tests\\TBD\\output\\NvDM.epc'))
 
-# suite = unittest.TestLoader().loadTestsFromTestCase(MEMConfigurator)
-# unittest.TextTestRunner(verbosity=2).run(suite)
+    def test_TBD_2(self):
+        current_path = os.path.realpath(__file__)
+        head, tail = ntpath.split(current_path)
+        os.system('MEM_Configurator.py -config ' + head + '\\tests\\TBD_2\\ConfigMemConfigurator.xml')
+        self.assertFalse(FileCompare.isOutput(head + '\\tests\\TBD_2\\output\\NvDM.epc'))
+        self.assertFalse(FileCompare.isOutput(head + '\\tests\\TBD_2\\output\\NvM.epc'))
+        self.assertTrue(FileCompare.checkLog(head + '\\tests\\TBD_2\\output\\result.log', "ERROR", [""]))
 
-current_path = os.path.realpath(__file__)
-head, tail = ntpath.split(current_path)
-if __name__ == "__main__":
-    unittest.main(testRunner=HtmlTestRunner.HTMLTestRunner(output=head + "\\tests"))
+
+suite = unittest.TestLoader().loadTestsFromTestCase(MEMConfigurator)
+unittest.TextTestRunner(verbosity=2).run(suite)
+
+# current_path = os.path.realpath(__file__)
+# head, tail = ntpath.split(current_path)
+# if __name__ == "__main__":
+#     unittest.main(testRunner=HtmlTestRunner.HTMLTestRunner(output=head + "\\tests"))

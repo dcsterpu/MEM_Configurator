@@ -20,6 +20,14 @@
 						</xs:sequence>
 					</xs:complexType>
 				</xs:element>
+				<xs:element name="MAPPINGS" minOccurs="0">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="MAPPING" type="MAPPINGType" maxOccurs="unbounded"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="NVM_COMPILED_CONFIG_ID" type="xs:unsignedShort" minOccurs="0"/>
 			</xs:sequence>
 		</xs:complexType>
 	</xs:element>
@@ -41,13 +49,32 @@
 			<xs:enumeration value="SENDER-RECEIVER-INTERFACE"/>
 		</xs:restriction>
 	</xs:simpleType>
+	<xs:simpleType name="MANAGEMENT-TYPE-ENUM">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="EXPLICIT"/>
+			<xs:enumeration value="IMPLICIT"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="DURABILITY-TYPE-ENUM">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="LONG_TERM"/>
+			<xs:enumeration value="SHORT_TERM"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="DEVICE-TYPE-ENUM">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="FEE"/>
+			<xs:enumeration value="EA"/>
+		</xs:restriction>
+	</xs:simpleType>
 	<xs:complexType name="BLOCKType">
 		<xs:sequence>
-			<xs:element name="SHORT-NAME"/>
-			<xs:element name="TYPE"/>
-			<xs:element name="PROFIL-REF"/>
-			<xs:element name="WRITE-TIMEOUT"/>
-			<xs:element name="RESPECT-MAPPING" type="xs:boolean"/>
+			<xs:element name="SHORT-NAME" type="xs:string"/>
+			<xs:element name="TYPE" type="xs:string"/>
+			<xs:element name="PROFIL-REF" type="xs:string"/>
+			<xs:element name="WRITE-TIMEOUT" minOccurs="0"/>
+			<xs:element name="RESPECT-MAPPING" type="xs:boolean" minOccurs="0"/>
+			<xs:element name="SDF" type="xs:boolean" minOccurs="0"/>
 			<xs:element name="SENDER-RECEIVER-INTERFACE-REFS">
 				<xs:complexType>
 					<xs:sequence>
@@ -68,9 +95,13 @@
 	<xs:element name="PROFILE" type="PROFILEType"/>
 	<xs:complexType name="PROFILEType">
 		<xs:sequence>
-			<xs:element name="SHORT-NAME"/>
-			<xs:element name="MANAGEMENT"/>
-			<xs:element name="BLOCK-SIZE-MAX"/>
+			<xs:element name="SHORT-NAME" type="xs:string"/>
+			<xs:element name="MANAGEMENT" type="MANAGEMENT-TYPE-ENUM"/>
+			<xs:element name="DURABILITY" type="DURABILITY-TYPE-ENUM"/>
+			<xs:element name="BLOCK-SIZE-MAX" type="xs:integer"/>
+			<xs:element name="SAFETY" type="xs:boolean"/>
+			<xs:element name="DEVICE" type="DEVICE-TYPE-ENUM"/>
+			<xs:element name="WRITING-NUMBER" type="xs:integer"/>
 			<xs:element name="PARAMS">
 				<xs:complexType>
 					<xs:sequence>
@@ -86,6 +117,12 @@
 					</xs:sequence>
 				</xs:complexType>
 			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="MAPPINGType">
+		<xs:sequence>
+			<xs:element name="BLOCK-REF" type="xs:string"/>
+			<xs:element name="POSITION" type="xs:integer"/>
 		</xs:sequence>
 	</xs:complexType>
 </xs:schema>

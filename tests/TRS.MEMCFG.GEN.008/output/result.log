@@ -1,13 +1,15 @@
-2018-05-15 15:06:16,195 INFO The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.GEN.008\input\ASWC_A26.aswc.arxml is well-formed
-2018-05-15 15:06:16,209 INFO The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.GEN.008\input\ASWC_A26.aswc.arxml is valid with the provided xsd schema
-2018-05-15 15:06:16,219 INFO The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.GEN.008\input\AUTOSAR_Datatypes.arxml is well-formed
-2018-05-15 15:06:16,219 INFO The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.GEN.008\input\AUTOSAR_Datatypes.arxml is valid with the provided xsd schema
-2018-05-15 15:06:16,319 INFO The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.GEN.008\input\SystemGenerated.arxml is well-formed
-2018-05-15 15:06:16,359 INFO The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.GEN.008\input\SystemGenerated.arxml is valid with the provided xsd schema
-2018-05-15 15:06:16,399 INFO The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.GEN.008\input\VSM_Types.arxml is well-formed
-2018-05-15 15:06:16,399 INFO The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.GEN.008\input\VSM_Types.arxml is valid with the provided xsd schema
-2018-05-15 15:06:16,399 INFO The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.GEN.008\input\ASWC_A26.config_mem.xml is well-formed
-2018-05-15 15:06:16,399 WARNING The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.GEN.008\input\ASWC_A26.config_mem.xml is NOT valid with the provided xsd schema
-2018-05-15 15:06:16,409 INFO The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.GEN.008\input\Profiles_cleaned.xml is well-formed
-2018-05-15 15:06:16,409 WARNING The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.GEN.008\input\Profiles_cleaned.xml is NOT valid with the provided xsd schema
-2018-05-15 15:06:16,689 ERROR Mandatory parameters are not configured for NvM block Default_App_Ram_Implicit_SAV
+2018-05-16 16:12:46,363 INFO The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.GEN.008\input\ASWC_A26.aswc.arxml is well-formed
+2018-05-16 16:12:46,379 INFO The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.GEN.008\input\ASWC_A26.aswc.arxml is valid with the provided xsd schema
+2018-05-16 16:12:46,381 INFO The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.GEN.008\input\AUTOSAR_Datatypes.arxml is well-formed
+2018-05-16 16:12:46,383 INFO The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.GEN.008\input\AUTOSAR_Datatypes.arxml is valid with the provided xsd schema
+2018-05-16 16:12:46,465 INFO The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.GEN.008\input\SystemGenerated.arxml is well-formed
+2018-05-16 16:12:46,513 INFO The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.GEN.008\input\SystemGenerated.arxml is valid with the provided xsd schema
+2018-05-16 16:12:46,561 INFO The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.GEN.008\input\VSM_Types.arxml is well-formed
+2018-05-16 16:12:46,562 INFO The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.GEN.008\input\VSM_Types.arxml is valid with the provided xsd schema
+2018-05-16 16:12:46,563 INFO The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.GEN.008\input\ASWC_A26.config_mem.xml is well-formed
+2018-05-16 16:12:46,564 WARNING The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.GEN.008\input\ASWC_A26.config_mem.xml is NOT valid with the provided xsd schema
+2018-05-16 16:12:46,564 INFO The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.GEN.008\input\CompiledConfigID.xml is well-formed
+2018-05-16 16:12:46,565 INFO The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.GEN.008\input\CompiledConfigID.xml is valid with the provided xsd schema
+2018-05-16 16:12:46,566 INFO The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.GEN.008\input\Profiles_cleaned.xml is well-formed
+2018-05-16 16:12:46,567 WARNING The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.GEN.008\input\Profiles_cleaned.xml is NOT valid with the provided xsd schema
+2018-05-16 16:12:46,632 ERROR Mandatory parameters are not configured for NvM block Default_App_Ram_Implicit_SAV
