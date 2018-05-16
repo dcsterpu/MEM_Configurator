@@ -92,6 +92,7 @@ def retrieve_data(recursive_arxml, simple_arxml, recursive_config, simple_config
     subblocks = []
     profiles = []
     mappings = []
+    config_ids = []
     nvm_blocks = []
     final_fixed_blocks = []
     arxml_interfaces = []
@@ -311,6 +312,9 @@ def retrieve_data(recursive_arxml, simple_arxml, recursive_config, simple_config
                         obj_mapping['BLOCK'] = elem.find('BLOCK-REF').text
                         obj_mapping['POSITION'] = int(elem.find('POSITION').text)
                         mappings.append(obj_mapping)
+                    ids = root.findall(".//NVM_COMPILED_CONFIG_ID")
+                    for elem in ids:
+                        config_ids.append(elem.text)
     for each_path in simple_config:
         for file in os.listdir(each_path):
             if file.endswith('.xml'):
@@ -405,6 +409,18 @@ def retrieve_data(recursive_arxml, simple_arxml, recursive_config, simple_config
                     obj_mapping['BLOCK'] = elem.find('BLOCK-REF').text
                     obj_mapping['POSITION'] = int(elem.find('POSITION').text)
                     mappings.append(obj_mapping)
+                ids = root.findall(".//NVM_COMPILED_CONFIG_ID")
+                for elem in ids:
+                    config_ids.append(elem.text)
+    # check that there is only one CompiledConfigID
+    if len(config_ids) > 1 or len(config_ids) == 0:
+        logger.error('None or multiple CompiledConfigID parameters defined')
+        try:
+            os.remove(output_path + '/NvM.epc')
+            os.remove(output_path + '/NvDM.epc')
+        except OSError:
+            pass
+        return
     # implement TRS.SYSDESC.CHECK.001
     for index1 in range(len(blocks)):
         for index2 in range(len(blocks)):
@@ -605,12 +621,42 @@ def retrieve_data(recursive_arxml, simple_arxml, recursive_config, simple_config
             blocks.remove(block)
 
     # implement TRS.SYSDESC.FUNC.001
+    index = 2
+    for block in fixed_blocks:
+        obj_block = {}
+        block_size = 0
+        data_elements = []
+        obj_block['NAME'] = block['NAME']
+        obj_block['ID'] = str(index)
+        index = index + 1
+        obj_block['MAPPING'] = block['MAPPING']
+        obj_block['PROFILE'] = block['PROFILE']
+        obj_block['DEVICE'] = block['DEVICE']
+        obj_block['TIMEOUT'] = block['TIMEOUT']
+        obj_block['SDF'] = block['SDF']
+        obj_block['POSITION'] = block['POSITION']
+        for interface in block['INTERFACE']:
+            for data in interface['DATA-PROTOTYPE']:
+                obj_data_prototype = {}
+                obj_data_prototype['NAME'] = interface['NAME'].split('/')[-1] + "_" + data['NAME']
+                obj_data_prototype['DATA'] = interface['NAME'] + "/" + data['NAME']
+                obj_data_prototype['SW-BASE-TYPE'] = data['SW-BASE-TYPE']
+                obj_data_prototype['TYPE'] = data['TYPE']
+                obj_data_prototype['INIT'] = data['INIT']
+                obj_data_prototype['SIZE'] = data['SIZE']
+                block_size = block_size + int(data['SIZE'])
+                data_elements.append(obj_data_prototype)
+        obj_block['SIZE'] = int(block_size/8)
+        obj_block['DATA'] = data_elements
+        final_fixed_blocks.append(obj_block)
     final_blocks = []
     for subblock in subblocks:
         obj_block = {}
         block_size = 0
         data_elements = []
         obj_block['NAME'] = subblock['NAME']
+        obj_block['ID'] = str(index)
+        index = index + 1
         obj_block['MAPPING'] = subblock['MAPPING']
         obj_block['PROFILE'] = subblock['PROFILE']
         obj_block['DEVICE'] = subblock['DEVICE']
@@ -636,6 +682,8 @@ def retrieve_data(recursive_arxml, simple_arxml, recursive_config, simple_config
         block_size = 0
         data_elements = []
         obj_block['NAME'] = block['NAME']
+        obj_block['ID'] = str(index)
+        index = index + 1
         obj_block['MAPPING'] = block['MAPPING']
         obj_block['PROFILE'] = block['PROFILE']
         obj_block['DEVICE'] = block['DEVICE']
@@ -655,31 +703,6 @@ def retrieve_data(recursive_arxml, simple_arxml, recursive_config, simple_config
         obj_block['SIZE'] = int(block_size/8)
         obj_block['DATA'] = data_elements
         final_blocks.append(obj_block)
-    for block in fixed_blocks:
-        obj_block = {}
-        block_size = 0
-        data_elements = []
-        obj_block['NAME'] = block['NAME']
-        obj_block['MAPPING'] = block['MAPPING']
-        obj_block['PROFILE'] = block['PROFILE']
-        obj_block['DEVICE'] = block['DEVICE']
-        obj_block['TIMEOUT'] = block['TIMEOUT']
-        obj_block['SDF'] = block['SDF']
-        obj_block['POSITION'] = block['POSITION']
-        for interface in block['INTERFACE']:
-            for data in interface['DATA-PROTOTYPE']:
-                obj_data_prototype = {}
-                obj_data_prototype['NAME'] = interface['NAME'].split('/')[-1] + "_" + data['NAME']
-                obj_data_prototype['DATA'] = interface['NAME'] + "/" + data['NAME']
-                obj_data_prototype['SW-BASE-TYPE'] = data['SW-BASE-TYPE']
-                obj_data_prototype['TYPE'] = data['TYPE']
-                obj_data_prototype['INIT'] = data['INIT']
-                obj_data_prototype['SIZE'] = data['SIZE']
-                block_size = block_size + int(data['SIZE'])
-                data_elements.append(obj_data_prototype)
-        obj_block['SIZE'] = int(block_size/8)
-        obj_block['DATA'] = data_elements
-        final_fixed_blocks.append(obj_block)
     for block in final_blocks:
         if block['MAPPING'] == 'false':
             block['DATA'] = sorted(block['DATA'], key=lambda x: x['SIZE'], reverse=True)
@@ -687,7 +710,7 @@ def retrieve_data(recursive_arxml, simple_arxml, recursive_config, simple_config
         obj_nvm = {}
         obj_nvm['NAME'] = block['NAME']
         obj_nvm['DEVICE'] = block['DEVICE']
-        obj_nvm['NvMNvramBlockIdentifier'] = block['POSITION']
+        obj_nvm['NvMNvramBlockIdentifier'] = block['ID']
         obj_nvm['NvMRomBlockDataAddress'] = "&NvDM_RomBlock_" + block['NAME']
         obj_nvm['NvMRamBlockDataAddress'] = "&NvDM_RamBlock_" + block['NAME']
         obj_nvm['NvMSingleBlockCallback'] = None
@@ -898,13 +921,11 @@ def retrieve_data(recursive_arxml, simple_arxml, recursive_config, simple_config
                     pass
                 return
         nvm_blocks.append(obj_nvm)
-    index_name = len(fixed_blocks)
     for block in final_blocks:
-        index_name = index_name + 1
         obj_nvm = {}
         obj_nvm['NAME'] = block['NAME']
         obj_nvm['DEVICE'] = block['DEVICE']
-        obj_nvm['NvMNvramBlockIdentifier'] = str(index_name)
+        obj_nvm['NvMNvramBlockIdentifier'] = block['ID']
         obj_nvm['NvMRomBlockDataAddress'] = "&NvDM_RomBlock_" + block['NAME']
         obj_nvm['NvMRamBlockDataAddress'] = "&NvDM_RamBlock_" + block['NAME']
         obj_nvm['NvMSingleBlockCallback'] = None
@@ -1129,6 +1150,18 @@ def retrieve_data(recursive_arxml, simple_arxml, recursive_config, simple_config
     definition.text = "/TS_TxDxM6I16R0/NvM"
     implementation = etree.SubElement(ecuc_module, 'IMPLEMENTATION-CONFIG-VARIANT').text = "VARIANT-PRE-COMPILE"
     containers = etree.SubElement(ecuc_module, 'CONTAINERS')
+    # common data
+    ecuc_container = etree.SubElement(containers, 'ECUC-CONTAINER-VALUE')
+    short_name = etree.SubElement(ecuc_container, 'SHORT-NAME').text = "NvMCommon"
+    definition = etree.SubElement(ecuc_container, 'DEFINITION-REF')
+    definition.attrib['DEST'] = "ECUC-PARAM-CONF-CONTAINER-DEF"
+    definition.text = "/TS_TxDxM6I16R0/NvM/NvMCommon"
+    parameter = etree.SubElement(ecuc_container, 'PARAMETER-VALUES')
+    ecuc_numerical_CompiledConfigID = etree.SubElement(parameter, 'ECUC-NUMERICAL-PARAM-VALUE')
+    definition = etree.SubElement(ecuc_numerical_CompiledConfigID, 'DEFINITION-REF')
+    definition.attrib['DEST'] = "ECUC-INTEGER-PARAM-DEF"
+    definition.text = "/TS_TxDxM6I16R0/NvM/NvMCommon/NvMCompiledConfigId"
+    value = etree.SubElement(ecuc_numerical_CompiledConfigID, 'VALUE').text = config_ids[0]
     # generic data
     ecuc_container = etree.SubElement(containers, 'ECUC-CONTAINER-VALUE')
     short_name = etree.SubElement(ecuc_container, 'SHORT-NAME').text = "CommonPublishedInformation"
@@ -1484,6 +1517,12 @@ def retrieve_data(recursive_arxml, simple_arxml, recursive_config, simple_config
                 definition.attrib['DEST'] = "ECUC-FLOAT-PARAM-DEF"
                 definition.text = "/TS_2018_01/NvDM/NvDMBlockDescriptor/NvDMBlockSize"
                 value = etree.SubElement(ecuc_numerical_NvDMBlockSize, 'VALUE').text = str(block['SIZE'])
+                # NvDMBlockID
+                ecuc_numerical_NvDMBlockID = etree.SubElement(parameter, 'ECUC-NUMERICAL-PARAM-VALUE')
+                definition = etree.SubElement(ecuc_numerical_NvDMBlockID, 'DEFINITION-REF')
+                definition.attrib['DEST'] = "ECUC-FLOAT-PARAM-DEF"
+                definition.text = "/TS_2018_01/NvDM/NvDMBlockDescriptor/NvDMBlockID"
+                value = etree.SubElement(ecuc_numerical_NvDMBlockID, 'VALUE').text = block['ID']
         reference = etree.SubElement(ecuc_container, 'REFERENCE-VALUES')
         ecuc_reference = etree.SubElement(reference, 'ECUC-REFERENCE-VALUE')
         ecuc_reference.attrib['DEST'] = "ECUC-REFERENCE-DEF"
@@ -1582,6 +1621,12 @@ def retrieve_data(recursive_arxml, simple_arxml, recursive_config, simple_config
                 definition.attrib['DEST'] = "ECUC-FLOAT-PARAM-DEF"
                 definition.text = "/TS_2018_01/NvDM/NvDMBlockDescriptor/NvDMBlockSize"
                 value = etree.SubElement(ecuc_numerical_NvDMBlockSize, 'VALUE').text = str(block['SIZE'])
+                # NvDMBlockID
+                ecuc_numerical_NvDMBlockID = etree.SubElement(parameter, 'ECUC-NUMERICAL-PARAM-VALUE')
+                definition = etree.SubElement(ecuc_numerical_NvDMBlockID, 'DEFINITION-REF')
+                definition.attrib['DEST'] = "ECUC-FLOAT-PARAM-DEF"
+                definition.text = "/TS_2018_01/NvDM/NvDMBlockDescriptor/NvDMBlockID"
+                value = etree.SubElement(ecuc_numerical_NvDMBlockID, 'VALUE').text = block['ID']
         reference = etree.SubElement(ecuc_container, 'REFERENCE-VALUES')
         ecuc_reference = etree.SubElement(reference, 'ECUC-REFERENCE-VALUE')
         ecuc_reference.attrib['DEST'] = "ECUC-REFERENCE-DEF"
@@ -1644,10 +1689,10 @@ def retrieve_data(recursive_arxml, simple_arxml, recursive_config, simple_config
 if __name__ == "__main__":                                          # pragma: no cover
     # process = psutil.Process(os.getpid())                         # pragma: no cover
     # start_time = time.clock()                                     # pragma: no cover
-    cov = Coverage()                                                # pragma: no cover
-    cov.start()                                                     # pragma: no cover
+    # cov = Coverage()                                                # pragma: no cover
+    # cov.start()                                                     # pragma: no cover
     main()                                                          # pragma: no cover
-    cov.stop()                                                      # pragma: no cover
-    cov.html_report(directory='coverage-html')                      # pragma: no cover
+    # cov.stop()                                                      # pragma: no cover
+    # cov.html_report(directory='coverage-html')                      # pragma: no cover
     # print(str(time.clock() - start_time) + " seconds")            # pragma: no cover
     # print(str(process.memory_info()[0]/float(2**20)) + " MB")     # pragma: no cover
