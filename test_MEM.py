@@ -249,9 +249,9 @@ class FileCompare():
             obj_block = {}
             if block.getparent().tag == '{http://autosar.org/schema/r4.0}CONTAINERS':
                 if block.find(".//{http://autosar.org/schema/r4.0}SHORT-NAME").text != 'CommonPublishedInformation' and block.find(".//{http://autosar.org/schema/r4.0}SHORT-NAME").text != 'NvMCommon':
-                    parameters = ['NvMNvramBlockIdentifier', 'NvMNvBlockNum', 'NvMRomBlockDataAddress', 'NvMRamBlockDataAddress', 'NvMSingleBlockCallback', 'NvMBlockUseAutoValidation', 'NvMStaticBlockIDCheck', 'NvMSelectBlockForWriteAll',
-                                  'NvMSelectBlockForReadAll', 'NvMResistantToChangedSw', 'NvMCalcRamBlockCrc', 'NvMBswMBlockStatusInformation', 'NvMRomBlockNum', 'NvMNvramDeviceId', 'NvMWriteVerification', 'NvMWriteBlockOnce',
-                                  'NvMMaxNumOfWriteRetries', 'NvMMaxNumOfReadRetries', 'NvMBlockJobPriority', 'NvMBlockManagementType', 'NvMBlockCrcType', 'NvMNvBlockLength', 'NvMBlockUseCrc']
+                    parameters = ['NvMNvramBlockIdentifier', 'NvMNvBlockNum', 'NvMRomBlockDataAddress', 'NvMRamBlockDataAddress', 'NvMBlockUseAutoValidation', 'NvMStaticBlockIDCheck',
+                                  'NvMResistantToChangedSw', 'NvMBswMBlockStatusInformation', 'NvMRomBlockNum', 'NvMNvramDeviceId', 'NvMWriteVerification', 'NvMWriteBlockOnce',
+                                  'NvMMaxNumOfWriteRetries', 'NvMMaxNumOfReadRetries', 'NvMBlockJobPriority', 'NvMBlockManagementType', 'NvMNvBlockLength', 'NvMBlockUseCrc']
                     references = block.findall(".//{http://autosar.org/schema/r4.0}DEFINITION-REF")
                     for reference in references:
                         if reference.text.split("/")[-1] in parameters[:]:

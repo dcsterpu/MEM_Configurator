@@ -84,8 +84,8 @@
 			<WRITING-NUMBER>1500</WRITING-NUMBER>
 			<PARAMS>
 				<PARAM DEST="NvMBlockJobPriority">3</PARAM>
-				<!--PARAM DEST="NvMBlockCrcType">NVM_CRC16</PARAM-->
-				<PARAM DEST="NvMBlockManagementType">NVM_BLOCK_NATIVE</PARAM>
+				<PARAM DEST="NvMBlockCrcType">NVM_CRC16</PARAM>
+				<!--PARAM DEST="NvMBlockManagementType">NVM_BLOCK_NATIVE</PARAM-->
 				<PARAM DEST="NvMRedundantRecovery">NVM_AUTOMATIC_RECOVERY</PARAM>
 				<PARAM DEST="NvMBlockUseAutoValidation">False</PARAM>
 				<PARAM DEST="NvMBlockUseCRCCompMechanism">False</PARAM>

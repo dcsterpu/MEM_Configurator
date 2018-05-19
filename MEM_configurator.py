@@ -759,14 +759,7 @@ def retrieve_data(recursive_arxml, simple_arxml, recursive_config, simple_config
                     if elem['TYPE'] == 'NvMBlockCrcType':
                         if elem['VALUE'] in ['NVM_CRC8', 'NVM_CRC16', 'NVM_CRC32']:
                             obj_nvm['NvMBlockCrcType'] = elem['VALUE']
-                        else:
-                            logger.error('The parameter NvMBlockCrcType is not correctly defined in profile ' + profile['NAME'])
-                            try:
-                                os.remove(output_path + '/NvM.epc')
-                                os.remove(output_path + '/NvDM.epc')
-                            except OSError:
-                                pass
-                            return
+                            obj_nvm['NvMBlockUseCrc'] = "True"
                     if elem['TYPE'] == 'NvMBlockManagementType':
                         if elem['VALUE'] in ['NVM_BLOCK_REDUNDANT', 'NVM_BLOCK_NATIVE', 'NVM_BLOCK_DATASET']:
                             obj_nvm['NvMBlockManagementType'] = elem['VALUE']
@@ -859,14 +852,6 @@ def retrieve_data(recursive_arxml, simple_arxml, recursive_config, simple_config
                     if elem['TYPE'] == 'NvMCalcRamBlockCrc':
                         if elem['VALUE'] in ['False', 'True']:
                             obj_nvm['NvMCalcRamBlockCrc'] = elem['VALUE']
-                        else:
-                            logger.error('The parameter NvMCalcRamBlockCrc is not correctly defined in profile ' + profile['NAME'])
-                            try:
-                                os.remove(output_path + '/NvM.epc')
-                                os.remove(output_path + '/NvDM.epc')
-                            except OSError:
-                                pass
-                            return
                     if elem['TYPE'] == 'NvMResistantToChangedSw':
                         if elem['VALUE'] in ['False', 'True']:
                             obj_nvm['NvMResistantToChangedSw'] = elem['VALUE']
@@ -881,25 +866,9 @@ def retrieve_data(recursive_arxml, simple_arxml, recursive_config, simple_config
                     if elem['TYPE'] == 'NvMSelectBlockForReadAll':
                         if elem['VALUE'] in ['False', 'True']:
                             obj_nvm['NvMSelectBlockForReadAll'] = elem['VALUE']
-                        else:
-                            logger.error('The parameter NvMSelectBlockForReadAll is not correctly defined in profile ' + profile['NAME'])
-                            try:
-                                os.remove(output_path + '/NvM.epc')
-                                os.remove(output_path + '/NvDM.epc')
-                            except OSError:
-                                pass
-                            return
                     if elem['TYPE'] == 'NvMSelectBlockForWriteAll':
                         if elem['VALUE'] in ['False', 'True']:
                             obj_nvm['NvMSelectBlockForWriteAll'] = elem['VALUE']
-                        else:
-                            logger.error('The parameter NvMSelectBlockForWriteAll is not correctly defined in profile ' + profile['NAME'])
-                            try:
-                                os.remove(output_path + '/NvM.epc')
-                                os.remove(output_path + '/NvDM.epc')
-                            except OSError:
-                                pass
-                            return
                     if elem['TYPE'] == 'NvMStaticBlockIDCheck':
                         if elem['VALUE'] in ['False', 'True']:
                             obj_nvm['NvMStaticBlockIDCheck'] = elem['VALUE']
@@ -926,13 +895,14 @@ def retrieve_data(recursive_arxml, simple_arxml, recursive_config, simple_config
                         obj_nvm['NvMSingleBlockCallback'] = elem['VALUE']
         for key, value in obj_nvm.items():
             if value is None:
-                logger.error('Mandatory parameters are not configured for NvM block ' + obj_nvm['NAME'])
-                try:
-                    os.remove(output_path + '/NvM.epc')
-                    os.remove(output_path + '/NvDM.epc')
-                except OSError:
-                    pass
-                return
+                if key not in ['NvMSingleBlockCallback', 'NvMSelectBlockForWriteAll', 'NvMSelectBlockForReadAll', 'NvMCalcRamBlockCrc', 'NvMBlockCrcType']:
+                    logger.error('Mandatory parameters are not configured for NvM block ' + obj_nvm['NAME'])
+                    try:
+                        os.remove(output_path + '/NvM.epc')
+                        os.remove(output_path + '/NvDM.epc')
+                    except OSError:
+                        pass
+                    return
         nvm_blocks.append(obj_nvm)
     for block in final_blocks:
         obj_nvm = {}
@@ -979,14 +949,6 @@ def retrieve_data(recursive_arxml, simple_arxml, recursive_config, simple_config
                         if elem['VALUE'] in ['NVM_CRC8', 'NVM_CRC16', 'NVM_CRC32']:
                             obj_nvm['NvMBlockCrcType'] = elem['VALUE']
                             obj_nvm['NvMBlockUseCrc'] = "True"
-                        else:
-                            logger.error('The parameter NvMBlockCrcType is not correctly defined in profile ' + profile['NAME'])
-                            try:
-                                os.remove(output_path + '/NvM.epc')
-                                os.remove(output_path + '/NvDM.epc')
-                            except OSError:
-                                pass
-                            return
                     if elem['TYPE'] == 'NvMBlockManagementType':
                         if elem['VALUE'] in ['NVM_BLOCK_REDUNDANT', 'NVM_BLOCK_NATIVE', 'NVM_BLOCK_DATASET']:
                             obj_nvm['NvMBlockManagementType'] = elem['VALUE']
@@ -1078,14 +1040,6 @@ def retrieve_data(recursive_arxml, simple_arxml, recursive_config, simple_config
                     if elem['TYPE'] == 'NvMCalcRamBlockCrc':
                         if elem['VALUE'] in ['False', 'True']:
                             obj_nvm['NvMCalcRamBlockCrc'] = elem['VALUE']
-                        else:
-                            logger.error('The parameter NvMCalcRamBlockCrc is not correctly defined in profile ' + profile['NAME'])
-                            try:
-                                os.remove(output_path + '/NvM.epc')
-                                os.remove(output_path + '/NvDM.epc')
-                            except OSError:
-                                pass
-                            return
                     if elem['TYPE'] == 'NvMResistantToChangedSw':
                         if elem['VALUE'] in ['False', 'True']:
                             obj_nvm['NvMResistantToChangedSw'] = elem['VALUE']
@@ -1100,25 +1054,9 @@ def retrieve_data(recursive_arxml, simple_arxml, recursive_config, simple_config
                     if elem['TYPE'] == 'NvMSelectBlockForReadAll':
                         if elem['VALUE'] in ['False', 'True']:
                             obj_nvm['NvMSelectBlockForReadAll'] = elem['VALUE']
-                        else:
-                            logger.error('The parameter NvMSelectBlockForReadAll is not correctly defined in profile ' + profile['NAME'])
-                            try:
-                                os.remove(output_path + '/NvM.epc')
-                                os.remove(output_path + '/NvDM.epc')
-                            except OSError:
-                                pass
-                            return
                     if elem['TYPE'] == 'NvMSelectBlockForWriteAll':
                         if elem['VALUE'] in ['False', 'True']:
                             obj_nvm['NvMSelectBlockForWriteAll'] = elem['VALUE']
-                        else:
-                            logger.error('The parameter NvMSelectBlockForWriteAll is not correctly defined in profile ' + profile['NAME'])
-                            try:
-                                os.remove(output_path + '/NvM.epc')
-                                os.remove(output_path + '/NvDM.epc')
-                            except OSError:
-                                pass
-                            return
                     if elem['TYPE'] == 'NvMStaticBlockIDCheck':
                         if elem['VALUE'] in ['False', 'True']:
                             obj_nvm['NvMStaticBlockIDCheck'] = elem['VALUE']
@@ -1145,13 +1083,14 @@ def retrieve_data(recursive_arxml, simple_arxml, recursive_config, simple_config
                         obj_nvm['NvMSingleBlockCallback'] = elem['VALUE']
         for key, value in obj_nvm.items():
             if value is None:
-                logger.error('Mandatory parameters are not configured for NvM block ' + obj_nvm['NAME'])
-                try:
-                    os.remove(output_path + '/NvM.epc')
-                    os.remove(output_path + '/NvDM.epc')
-                except OSError:
-                    pass
-                return
+                if key not in ['NvMSingleBlockCallback', 'NvMSelectBlockForWriteAll', 'NvMSelectBlockForReadAll', 'NvMCalcRamBlockCrc', 'NvMBlockCrcType']:
+                    logger.error('Mandatory parameters are not configured for NvM block ' + obj_nvm['NAME'])
+                    try:
+                        os.remove(output_path + '/NvM.epc')
+                        os.remove(output_path + '/NvDM.epc')
+                    except OSError:
+                        pass
+                    return
         nvm_blocks.append(obj_nvm)
 
     # generate NvM.epc
@@ -1217,11 +1156,12 @@ def retrieve_data(recursive_arxml, simple_arxml, recursive_config, simple_config
         definition.text = "/TS_TxDxM6I16R0/NvM/NvMBlockDescriptor/NvMRamBlockDataAddress"
         value = etree.SubElement(ecuc_textual_NvMRamBlockDataAddress, 'VALUE').text = block['NvMRamBlockDataAddress']
         # NvMSingleBlockCallback
-        ecuc_textual_NvMSingleBlockCallback = etree.SubElement(parameter, 'ECUC-TEXTUAL-PARAM-VALUE')
-        definition = etree.SubElement(ecuc_textual_NvMSingleBlockCallback, 'DEFINITION-REF')
-        definition.attrib['DEST'] = "ECUC-STRING-PARAM-DEF"
-        definition.text = "/TS_TxDxM6I16R0/NvM/NvMBlockDescriptor/NvMSingleBlockCallback"
-        value = etree.SubElement(ecuc_textual_NvMSingleBlockCallback, 'VALUE').text = block['NvMSingleBlockCallback']
+        if block['NvMSingleBlockCallback'] is not None:
+            ecuc_textual_NvMSingleBlockCallback = etree.SubElement(parameter, 'ECUC-TEXTUAL-PARAM-VALUE')
+            definition = etree.SubElement(ecuc_textual_NvMSingleBlockCallback, 'DEFINITION-REF')
+            definition.attrib['DEST'] = "ECUC-STRING-PARAM-DEF"
+            definition.text = "/TS_TxDxM6I16R0/NvM/NvMBlockDescriptor/NvMSingleBlockCallback"
+            value = etree.SubElement(ecuc_textual_NvMSingleBlockCallback, 'VALUE').text = block['NvMSingleBlockCallback']
         # NvMBlockUseAutoValidation
         ecuc_numerical_NvMBlockUseAutoValidation = etree.SubElement(parameter, 'ECUC-NUMERICAL-PARAM-VALUE')
         definition = etree.SubElement(ecuc_numerical_NvMBlockUseAutoValidation, 'DEFINITION-REF')
@@ -1235,17 +1175,19 @@ def retrieve_data(recursive_arxml, simple_arxml, recursive_config, simple_config
         definition.text = "/TS_TxDxM6I16R0/NvM/NvMBlockDescriptor/NvMStaticBlockIDCheck"
         value = etree.SubElement(ecuc_numerical_NvMStaticBlockIDCheck, 'VALUE').text = block['NvMStaticBlockIDCheck']
         # NvMSelectBlockForWriteAll
-        ecuc_numerical_NvMSelectBlockForWriteAll = etree.SubElement(parameter, 'ECUC-NUMERICAL-PARAM-VALUE')
-        definition = etree.SubElement(ecuc_numerical_NvMSelectBlockForWriteAll, 'DEFINITION-REF')
-        definition.attrib['DEST'] = "ECUC-BOOLEAN-PARAM-DEF"
-        definition.text = "/TS_TxDxM6I16R0/NvM/NvMBlockDescriptor/NvMSelectBlockForWriteAll"
-        value = etree.SubElement(ecuc_numerical_NvMSelectBlockForWriteAll, 'VALUE').text = block['NvMSelectBlockForWriteAll']
+        if block['NvMSelectBlockForWriteAll'] is not None:
+            ecuc_numerical_NvMSelectBlockForWriteAll = etree.SubElement(parameter, 'ECUC-NUMERICAL-PARAM-VALUE')
+            definition = etree.SubElement(ecuc_numerical_NvMSelectBlockForWriteAll, 'DEFINITION-REF')
+            definition.attrib['DEST'] = "ECUC-BOOLEAN-PARAM-DEF"
+            definition.text = "/TS_TxDxM6I16R0/NvM/NvMBlockDescriptor/NvMSelectBlockForWriteAll"
+            value = etree.SubElement(ecuc_numerical_NvMSelectBlockForWriteAll, 'VALUE').text = block['NvMSelectBlockForWriteAll']
         # NvMSelectBlockForReadAll
-        ecuc_numerical_NvMSelectBlockForReadAll = etree.SubElement(parameter, 'ECUC-NUMERICAL-PARAM-VALUE')
-        definition = etree.SubElement(ecuc_numerical_NvMSelectBlockForReadAll, 'DEFINITION-REF')
-        definition.attrib['DEST'] = "ECUC-BOOLEAN-PARAM-DEF"
-        definition.text = "/TS_TxDxM6I16R0/NvM/NvMBlockDescriptor/NvMSelectBlockForReadAll"
-        value = etree.SubElement(ecuc_numerical_NvMSelectBlockForReadAll, 'VALUE').text = block['NvMSelectBlockForReadAll']
+        if block['NvMSelectBlockForReadAll'] is not None:
+            ecuc_numerical_NvMSelectBlockForReadAll = etree.SubElement(parameter, 'ECUC-NUMERICAL-PARAM-VALUE')
+            definition = etree.SubElement(ecuc_numerical_NvMSelectBlockForReadAll, 'DEFINITION-REF')
+            definition.attrib['DEST'] = "ECUC-BOOLEAN-PARAM-DEF"
+            definition.text = "/TS_TxDxM6I16R0/NvM/NvMBlockDescriptor/NvMSelectBlockForReadAll"
+            value = etree.SubElement(ecuc_numerical_NvMSelectBlockForReadAll, 'VALUE').text = block['NvMSelectBlockForReadAll']
         # NvMResistantToChangedSw
         ecuc_numerical_NvMResistantToChangedSw = etree.SubElement(parameter, 'ECUC-NUMERICAL-PARAM-VALUE')
         definition = etree.SubElement(ecuc_numerical_NvMResistantToChangedSw, 'DEFINITION-REF')
@@ -1253,11 +1195,12 @@ def retrieve_data(recursive_arxml, simple_arxml, recursive_config, simple_config
         definition.text = "/TS_TxDxM6I16R0/NvM/NvMBlockDescriptor/NvMResistantToChangedSw"
         value = etree.SubElement(ecuc_numerical_NvMResistantToChangedSw, 'VALUE').text = block['NvMResistantToChangedSw']
         # NvMCalcRamBlockCrc
-        ecuc_numerical_NvMCalcRamBlockCrc = etree.SubElement(parameter, 'ECUC-NUMERICAL-PARAM-VALUE')
-        definition = etree.SubElement(ecuc_numerical_NvMCalcRamBlockCrc, 'DEFINITION-REF')
-        definition.attrib['DEST'] = "ECUC-BOOLEAN-PARAM-DEF"
-        definition.text = "/TS_TxDxM6I16R0/NvM/NvMBlockDescriptor/NvMCalcRamBlockCrc"
-        value = etree.SubElement(ecuc_numerical_NvMCalcRamBlockCrc, 'VALUE').text = block['NvMCalcRamBlockCrc']
+        if block['NvMCalcRamBlockCrc'] is not None:
+            ecuc_numerical_NvMCalcRamBlockCrc = etree.SubElement(parameter, 'ECUC-NUMERICAL-PARAM-VALUE')
+            definition = etree.SubElement(ecuc_numerical_NvMCalcRamBlockCrc, 'DEFINITION-REF')
+            definition.attrib['DEST'] = "ECUC-BOOLEAN-PARAM-DEF"
+            definition.text = "/TS_TxDxM6I16R0/NvM/NvMBlockDescriptor/NvMCalcRamBlockCrc"
+            value = etree.SubElement(ecuc_numerical_NvMCalcRamBlockCrc, 'VALUE').text = block['NvMCalcRamBlockCrc']
         # NvMBlockUseCrc
         ecuc_numerical_NvMBlockUseCrc = etree.SubElement(parameter, 'ECUC-NUMERICAL-PARAM-VALUE')
         definition = etree.SubElement(ecuc_numerical_NvMBlockUseCrc, 'DEFINITION-REF')
@@ -1319,11 +1262,12 @@ def retrieve_data(recursive_arxml, simple_arxml, recursive_config, simple_config
         definition.text = "/TS_TxDxM6I16R0/NvM/NvMBlockDescriptor/NvMBlockManagementType"
         value = etree.SubElement(ecuc_textual_NvMBlockManagementType, 'VALUE').text = block['NvMBlockManagementType']
         # NvMBlockCrcType
-        ecuc_textual_NvMBlockCrcType = etree.SubElement(parameter, 'ECUC-TEXTUAL-PARAM-VALUE')
-        definition = etree.SubElement(ecuc_textual_NvMBlockCrcType, 'DEFINITION-REF')
-        definition.attrib['DEST'] = "ECUC-ENUMERATION-PARAM-DEF"
-        definition.text = "/TS_TxDxM6I16R0/NvM/NvMBlockDescriptor/NvMBlockCrcType"
-        value = etree.SubElement(ecuc_textual_NvMBlockCrcType, 'VALUE').text = block['NvMBlockCrcType']
+        if block['NvMBlockCrcType'] is not None:
+            ecuc_textual_NvMBlockCrcType = etree.SubElement(parameter, 'ECUC-TEXTUAL-PARAM-VALUE')
+            definition = etree.SubElement(ecuc_textual_NvMBlockCrcType, 'DEFINITION-REF')
+            definition.attrib['DEST'] = "ECUC-ENUMERATION-PARAM-DEF"
+            definition.text = "/TS_TxDxM6I16R0/NvM/NvMBlockDescriptor/NvMBlockCrcType"
+            value = etree.SubElement(ecuc_textual_NvMBlockCrcType, 'VALUE').text = block['NvMBlockCrcType']
         # FEE or EA reference
         subcontainers = etree.SubElement(ecuc_container, 'SUB-CONTAINERS')
         container = etree.SubElement(subcontainers, 'ECUC-CONTAINER-VALUE')
