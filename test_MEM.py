@@ -188,7 +188,7 @@ class FileCompare():
         path = used for defining the file that contains the output data
         """
         structure_valid = True
-        attributes = ['NvDMDurability', 'NvDMSafetyBlock', 'NvDMWriteTimeout', 'NvDMWritingManagment', 'NvDMProfile', 'NvDMBlockSize', 'NvDMBlockID']
+        attributes = ['NvDMDurability', 'NvDMSafetyBlock', 'NvDMWriteTimeout', 'NvDMWritingManagement', 'NvDMProfile', 'NvDMBlockSize', 'NvDMBlockID']
         tree = etree.parse(path)
         root = tree.getroot()
         blocks = root.findall(".//{http://autosar.org/schema/r4.0}ECUC-CONTAINER-VALUE")
@@ -251,7 +251,7 @@ class FileCompare():
                 if block.find(".//{http://autosar.org/schema/r4.0}SHORT-NAME").text != 'CommonPublishedInformation' and block.find(".//{http://autosar.org/schema/r4.0}SHORT-NAME").text != 'NvMCommon':
                     parameters = ['NvMNvramBlockIdentifier', 'NvMNvBlockNum', 'NvMRomBlockDataAddress', 'NvMRamBlockDataAddress', 'NvMSingleBlockCallback', 'NvMBlockUseAutoValidation', 'NvMStaticBlockIDCheck', 'NvMSelectBlockForWriteAll',
                                   'NvMSelectBlockForReadAll', 'NvMResistantToChangedSw', 'NvMCalcRamBlockCrc', 'NvMBswMBlockStatusInformation', 'NvMRomBlockNum', 'NvMNvramDeviceId', 'NvMWriteVerification', 'NvMWriteBlockOnce',
-                                  'NvMMaxNumOfWriteRetries', 'NvMMaxNumOfReadRetries', 'NvMBlockJobPriority', 'NvMBlockManagementType', 'NvMBlockCrcType']
+                                  'NvMMaxNumOfWriteRetries', 'NvMMaxNumOfReadRetries', 'NvMBlockJobPriority', 'NvMBlockManagementType', 'NvMBlockCrcType', 'NvMNvBlockLength', 'NvMBlockUseCrc']
                     references = block.findall(".//{http://autosar.org/schema/r4.0}DEFINITION-REF")
                     for reference in references:
                         if reference.text.split("/")[-1] in parameters[:]:
@@ -347,7 +347,7 @@ class FileCompare():
                 if block.find(".//{http://autosar.org/schema/r4.0}SHORT-NAME").text != 'CommonPublishedInformation':
                     references = block.findall(".//{http://autosar.org/schema/r4.0}DEFINITION-REF")
                     for reference in references:
-                        if reference.text.split("/")[-1] == "NvDMBlockID":
+                        if reference.text.split("/")[-1] == "NvMNvramBlockIdentifier":
                             IDs.append(int(reference.getnext().text))
         if IDs[0] != 2:
             return False
@@ -591,7 +591,7 @@ class MEMConfigurator(unittest.TestCase):
         current_path = os.path.realpath(__file__)
         head, tail = ntpath.split(current_path)
         os.system('MEM_Configurator.py -config ' + head + '\\tests\\TBD\\ConfigMemConfigurator.xml')
-        self.assertTrue(FileCompare.checkID(head + '\\tests\\TBD\\output\\NvDM.epc'))
+        self.assertTrue(FileCompare.checkID(head + '\\tests\\TBD\\output\\NvM.epc'))
 
     def test_TBD_2(self):
         current_path = os.path.realpath(__file__)
