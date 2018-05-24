@@ -1,11 +1,11 @@
-2018-05-19 12:32:46,945 INFO The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\CHECK.XML\input\ASWC_A26.aswc.arxml is well-formed
-2018-05-19 12:32:46,965 INFO The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\CHECK.XML\input\ASWC_A26.aswc.arxml is valid with the provided xsd schema
-2018-05-19 12:32:46,990 INFO The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\CHECK.XML\input\ASWC_A27.aswc.arxml is well-formed
-2018-05-19 12:32:47,003 INFO The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\CHECK.XML\input\ASWC_A27.aswc.arxml is valid with the provided xsd schema
-2018-05-19 12:32:47,007 INFO The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\CHECK.XML\input\AUTOSAR_Datatypes.arxml is well-formed
-2018-05-19 12:32:47,008 INFO The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\CHECK.XML\input\AUTOSAR_Datatypes.arxml is valid with the provided xsd schema
-2018-05-19 12:32:47,108 INFO The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\CHECK.XML\input\SystemGenerated.arxml is well-formed
-2018-05-19 12:32:47,161 INFO The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\CHECK.XML\input\SystemGenerated.arxml is valid with the provided xsd schema
-2018-05-19 12:32:47,214 INFO The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\CHECK.XML\input\VSM_Types.arxml is well-formed
-2018-05-19 12:32:47,215 INFO The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\CHECK.XML\input\VSM_Types.arxml is valid with the provided xsd schema
-2018-05-19 12:32:47,217 ERROR The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\CHECK.XML\input\ASWC_A26.config_mem.xml is not well-formed: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\CHECK.XML\input\ASWC_A26.config_mem.xml:22:0: junk after document element
+2018-05-21 14:40:21,897 INFO The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\CHECK.XML\input\ASWC_A26.aswc.arxml is well-formed
+2018-05-21 14:40:21,914 INFO The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\CHECK.XML\input\ASWC_A26.aswc.arxml is valid with the provided xsd schema
+2018-05-21 14:40:21,934 INFO The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\CHECK.XML\input\ASWC_A27.aswc.arxml is well-formed
+2018-05-21 14:40:21,946 INFO The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\CHECK.XML\input\ASWC_A27.aswc.arxml is valid with the provided xsd schema
+2018-05-21 14:40:21,952 INFO The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\CHECK.XML\input\AUTOSAR_Datatypes.arxml is well-formed
+2018-05-21 14:40:21,954 INFO The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\CHECK.XML\input\AUTOSAR_Datatypes.arxml is valid with the provided xsd schema
+2018-05-21 14:40:22,080 INFO The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\CHECK.XML\input\SystemGenerated.arxml is well-formed
+2018-05-21 14:40:22,123 INFO The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\CHECK.XML\input\SystemGenerated.arxml is valid with the provided xsd schema
+2018-05-21 14:40:22,171 INFO The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\CHECK.XML\input\VSM_Types.arxml is well-formed
+2018-05-21 14:40:22,172 INFO The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\CHECK.XML\input\VSM_Types.arxml is valid with the provided xsd schema
+2018-05-21 14:40:22,173 ERROR The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\CHECK.XML\input\ASWC_A26.config_mem.xml is not well-formed: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\CHECK.XML\input\ASWC_A26.config_mem.xml:22:0: junk after document element

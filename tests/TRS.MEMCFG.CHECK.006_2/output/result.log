@@ -1,19 +1,19 @@
-2018-05-19 12:33:10,684 INFO The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.CHECK.006_2\input\ASWC_A26.aswc.arxml is well-formed
-2018-05-19 12:33:10,701 INFO The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.CHECK.006_2\input\ASWC_A26.aswc.arxml is valid with the provided xsd schema
-2018-05-19 12:33:10,717 INFO The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.CHECK.006_2\input\ASWC_A27.aswc.arxml is well-formed
-2018-05-19 12:33:10,727 INFO The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.CHECK.006_2\input\ASWC_A27.aswc.arxml is valid with the provided xsd schema
-2018-05-19 12:33:10,731 INFO The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.CHECK.006_2\input\AUTOSAR_Datatypes.arxml is well-formed
-2018-05-19 12:33:10,733 INFO The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.CHECK.006_2\input\AUTOSAR_Datatypes.arxml is valid with the provided xsd schema
-2018-05-19 12:33:10,813 INFO The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.CHECK.006_2\input\SystemGenerated.arxml is well-formed
-2018-05-19 12:33:10,857 INFO The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.CHECK.006_2\input\SystemGenerated.arxml is valid with the provided xsd schema
-2018-05-19 12:33:10,904 INFO The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.CHECK.006_2\input\VSM_Types.arxml is well-formed
-2018-05-19 12:33:10,905 INFO The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.CHECK.006_2\input\VSM_Types.arxml is valid with the provided xsd schema
-2018-05-19 12:33:10,906 INFO The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.CHECK.006_2\input\ASWC_A26.config_mem.xml is well-formed
-2018-05-19 12:33:10,906 WARNING The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.CHECK.006_2\input\ASWC_A26.config_mem.xml is NOT valid with the provided xsd schema
-2018-05-19 12:33:10,907 INFO The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.CHECK.006_2\input\ASWC_A27.config_mem.xml is well-formed
-2018-05-19 12:33:10,907 WARNING The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.CHECK.006_2\input\ASWC_A27.config_mem.xml is NOT valid with the provided xsd schema
-2018-05-19 12:33:10,908 INFO The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.CHECK.006_2\input\CompiledConfigID.xml is well-formed
-2018-05-19 12:33:10,908 INFO The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.CHECK.006_2\input\CompiledConfigID.xml is valid with the provided xsd schema
-2018-05-19 12:33:10,910 INFO The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.CHECK.006_2\input\Profiles_cleaned.xml is well-formed
-2018-05-19 12:33:10,910 WARNING The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.CHECK.006_2\input\Profiles_cleaned.xml is NOT valid with the provided xsd schema
-2018-05-19 12:33:10,971 ERROR The block  Default_App_Ram_Implicit_RAR cannot be defined in multiple ASWC because SDF = true
+2018-05-21 14:31:15,235 INFO The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.CHECK.006_2\input\ASWC_A26.aswc.arxml is well-formed
+2018-05-21 14:31:15,253 INFO The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.CHECK.006_2\input\ASWC_A26.aswc.arxml is valid with the provided xsd schema
+2018-05-21 14:31:15,274 INFO The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.CHECK.006_2\input\ASWC_A27.aswc.arxml is well-formed
+2018-05-21 14:31:15,285 INFO The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.CHECK.006_2\input\ASWC_A27.aswc.arxml is valid with the provided xsd schema
+2018-05-21 14:31:15,290 INFO The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.CHECK.006_2\input\AUTOSAR_Datatypes.arxml is well-formed
+2018-05-21 14:31:15,291 INFO The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.CHECK.006_2\input\AUTOSAR_Datatypes.arxml is valid with the provided xsd schema
+2018-05-21 14:31:15,397 INFO The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.CHECK.006_2\input\SystemGenerated.arxml is well-formed
+2018-05-21 14:31:15,440 INFO The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.CHECK.006_2\input\SystemGenerated.arxml is valid with the provided xsd schema
+2018-05-21 14:31:15,489 INFO The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.CHECK.006_2\input\VSM_Types.arxml is well-formed
+2018-05-21 14:31:15,490 INFO The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.CHECK.006_2\input\VSM_Types.arxml is valid with the provided xsd schema
+2018-05-21 14:31:15,491 INFO The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.CHECK.006_2\input\ASWC_A26.config_mem.xml is well-formed
+2018-05-21 14:31:15,492 WARNING The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.CHECK.006_2\input\ASWC_A26.config_mem.xml is NOT valid with the provided xsd schema
+2018-05-21 14:31:15,493 INFO The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.CHECK.006_2\input\ASWC_A27.config_mem.xml is well-formed
+2018-05-21 14:31:15,494 WARNING The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.CHECK.006_2\input\ASWC_A27.config_mem.xml is NOT valid with the provided xsd schema
+2018-05-21 14:31:15,495 INFO The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.CHECK.006_2\input\CompiledConfigID.xml is well-formed
+2018-05-21 14:31:15,495 INFO The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.CHECK.006_2\input\CompiledConfigID.xml is valid with the provided xsd schema
+2018-05-21 14:31:15,497 INFO The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.CHECK.006_2\input\Profiles_cleaned.xml is well-formed
+2018-05-21 14:31:15,498 WARNING The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.CHECK.006_2\input\Profiles_cleaned.xml is NOT valid with the provided xsd schema
+2018-05-21 14:31:15,797 ERROR The block  Default_App_Ram_Implicit_RAR cannot be defined in multiple ASWC because SDF = true

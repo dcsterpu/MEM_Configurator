@@ -6,7 +6,7 @@ import copy                                         # pragma: no cover
 from xml.sax import make_parser                     # pragma: no cover
 from xml.sax.handler import ContentHandler          # pragma: no cover
 from xml.dom.minidom import parseString             # pragma: no cover
-from coverage import Coverage                       # pragma: no cover
+# from coverage import Coverage                       # pragma: no cover
 
 
 def arg_parse(parser):
@@ -1542,6 +1542,6 @@ if __name__ == "__main__":                                          # pragma: no
     # cov.start()                                                     # pragma: no cover
     main()                                                          # pragma: no cover
     # cov.stop()                                                      # pragma: no cover
-    # cov.html_report(directory='coverage-html')                      # pragma: no cover
+    # cov.html_report(directory='Coverage Report')                      # pragma: no cover
     # print(str(time.clock() - start_time) + " seconds")            # pragma: no cover
     # print(str(process.memory_info()[0]/float(2**20)) + " MB")     # pragma: no cover

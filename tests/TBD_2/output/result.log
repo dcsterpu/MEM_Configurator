@@ -1,21 +1,21 @@
-2018-05-19 12:32:50,235 INFO The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TBD_2\input\ASWC_A26.aswc.arxml is well-formed
-2018-05-19 12:32:50,251 INFO The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TBD_2\input\ASWC_A26.aswc.arxml is valid with the provided xsd schema
-2018-05-19 12:32:50,267 INFO The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TBD_2\input\ASWC_A27.aswc.arxml is well-formed
-2018-05-19 12:32:50,277 INFO The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TBD_2\input\ASWC_A27.aswc.arxml is valid with the provided xsd schema
-2018-05-19 12:32:50,281 INFO The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TBD_2\input\AUTOSAR_Datatypes.arxml is well-formed
-2018-05-19 12:32:50,282 INFO The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TBD_2\input\AUTOSAR_Datatypes.arxml is valid with the provided xsd schema
-2018-05-19 12:32:50,363 INFO The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TBD_2\input\SystemGenerated.arxml is well-formed
-2018-05-19 12:32:50,409 INFO The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TBD_2\input\SystemGenerated.arxml is valid with the provided xsd schema
-2018-05-19 12:32:50,454 INFO The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TBD_2\input\VSM_Types.arxml is well-formed
-2018-05-19 12:32:50,455 INFO The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TBD_2\input\VSM_Types.arxml is valid with the provided xsd schema
-2018-05-19 12:32:50,456 INFO The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TBD_2\input\ASWC_A26.config_mem.xml is well-formed
-2018-05-19 12:32:50,457 WARNING The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TBD_2\input\ASWC_A26.config_mem.xml is NOT valid with the provided xsd schema
-2018-05-19 12:32:50,458 INFO The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TBD_2\input\ASWC_A27.config_mem.xml is well-formed
-2018-05-19 12:32:50,458 WARNING The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TBD_2\input\ASWC_A27.config_mem.xml is NOT valid with the provided xsd schema
-2018-05-19 12:32:50,458 INFO The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TBD_2\input\CompiledConfigID.xml is well-formed
-2018-05-19 12:32:50,459 WARNING The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TBD_2\input\CompiledConfigID.xml is NOT valid with the provided xsd schema
-2018-05-19 12:32:50,459 INFO The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TBD_2\input\MAPPING.xml is well-formed
-2018-05-19 12:32:50,460 INFO The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TBD_2\input\MAPPING.xml is valid with the provided xsd schema
-2018-05-19 12:32:50,461 INFO The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TBD_2\input\Profiles_cleaned.xml is well-formed
-2018-05-19 12:32:50,462 WARNING The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TBD_2\input\Profiles_cleaned.xml is NOT valid with the provided xsd schema
-2018-05-19 12:32:50,462 ERROR None or multiple CompiledConfigID parameters defined
+2018-05-21 14:41:54,431 INFO The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TBD_2\input\ASWC_A26.aswc.arxml is well-formed
+2018-05-21 14:41:54,451 INFO The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TBD_2\input\ASWC_A26.aswc.arxml is valid with the provided xsd schema
+2018-05-21 14:41:54,475 INFO The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TBD_2\input\ASWC_A27.aswc.arxml is well-formed
+2018-05-21 14:41:54,487 INFO The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TBD_2\input\ASWC_A27.aswc.arxml is valid with the provided xsd schema
+2018-05-21 14:41:54,492 INFO The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TBD_2\input\AUTOSAR_Datatypes.arxml is well-formed
+2018-05-21 14:41:54,494 INFO The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TBD_2\input\AUTOSAR_Datatypes.arxml is valid with the provided xsd schema
+2018-05-21 14:41:54,597 INFO The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TBD_2\input\SystemGenerated.arxml is well-formed
+2018-05-21 14:41:54,640 INFO The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TBD_2\input\SystemGenerated.arxml is valid with the provided xsd schema
+2018-05-21 14:41:54,690 INFO The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TBD_2\input\VSM_Types.arxml is well-formed
+2018-05-21 14:41:54,691 INFO The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TBD_2\input\VSM_Types.arxml is valid with the provided xsd schema
+2018-05-21 14:41:54,693 INFO The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TBD_2\input\ASWC_A26.config_mem.xml is well-formed
+2018-05-21 14:41:54,694 WARNING The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TBD_2\input\ASWC_A26.config_mem.xml is NOT valid with the provided xsd schema
+2018-05-21 14:41:54,695 INFO The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TBD_2\input\ASWC_A27.config_mem.xml is well-formed
+2018-05-21 14:41:54,696 WARNING The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TBD_2\input\ASWC_A27.config_mem.xml is NOT valid with the provided xsd schema
+2018-05-21 14:41:54,698 INFO The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TBD_2\input\CompiledConfigID.xml is well-formed
+2018-05-21 14:41:54,698 WARNING The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TBD_2\input\CompiledConfigID.xml is NOT valid with the provided xsd schema
+2018-05-21 14:41:54,700 INFO The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TBD_2\input\MAPPING.xml is well-formed
+2018-05-21 14:41:54,700 INFO The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TBD_2\input\MAPPING.xml is valid with the provided xsd schema
+2018-05-21 14:41:54,703 INFO The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TBD_2\input\Profiles_cleaned.xml is well-formed
+2018-05-21 14:41:54,704 WARNING The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TBD_2\input\Profiles_cleaned.xml is NOT valid with the provided xsd schema
+2018-05-21 14:41:54,706 ERROR None or multiple CompiledConfigID parameters defined
