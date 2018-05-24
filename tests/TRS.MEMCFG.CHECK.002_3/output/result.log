@@ -1,11 +1,15 @@
-2018-05-21 14:24:45,247 INFO The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.CHECK.002_3\input\ASWC_A26.aswc.arxml is well-formed
-2018-05-21 14:24:45,268 INFO The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.CHECK.002_3\input\ASWC_A26.aswc.arxml is valid with the provided xsd schema
-2018-05-21 14:24:45,272 INFO The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.CHECK.002_3\input\AUTOSAR_Datatypes.arxml is well-formed
-2018-05-21 14:24:45,274 INFO The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.CHECK.002_3\input\AUTOSAR_Datatypes.arxml is valid with the provided xsd schema
-2018-05-21 14:24:45,398 INFO The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.CHECK.002_3\input\SystemGenerated.arxml is well-formed
-2018-05-21 14:24:45,442 INFO The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.CHECK.002_3\input\SystemGenerated.arxml is valid with the provided xsd schema
-2018-05-21 14:24:45,492 INFO The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.CHECK.002_3\input\VSM_Types.arxml is well-formed
-2018-05-21 14:24:45,492 INFO The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.CHECK.002_3\input\VSM_Types.arxml is valid with the provided xsd schema
-2018-05-21 14:24:45,494 INFO The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.CHECK.002_3\input\ASWC_A26.config_mem.xml is well-formed
-2018-05-21 14:24:45,494 WARNING The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.CHECK.002_3\input\ASWC_A26.config_mem.xml is NOT valid with the provided xsd schema
-2018-05-21 14:24:45,494 ERROR No profile defined for block Default_App_Ram_Implicit_RAR
+2018-05-24 14:42:32,216 INFO The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.CHECK.002_3\input\ASWC_A26.aswc.arxml is well-formed
+2018-05-24 14:42:32,236 INFO The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.CHECK.002_3\input\ASWC_A26.aswc.arxml is valid with the provided xsd schema
+2018-05-24 14:42:32,239 INFO The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.CHECK.002_3\input\AUTOSAR_Datatypes.arxml is well-formed
+2018-05-24 14:42:32,241 INFO The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.CHECK.002_3\input\AUTOSAR_Datatypes.arxml is valid with the provided xsd schema
+2018-05-24 14:42:32,320 INFO The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.CHECK.002_3\input\SystemGenerated.arxml is well-formed
+2018-05-24 14:42:32,364 INFO The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.CHECK.002_3\input\SystemGenerated.arxml is valid with the provided xsd schema
+2018-05-24 14:42:32,409 INFO The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.CHECK.002_3\input\VSM_Types.arxml is well-formed
+2018-05-24 14:42:32,410 INFO The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.CHECK.002_3\input\VSM_Types.arxml is valid with the provided xsd schema
+2018-05-24 14:42:32,412 INFO The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.CHECK.002_3\input\ASWC_A26.config_mem.xml is well-formed
+2018-05-24 14:42:32,412 WARNING The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.CHECK.002_3\input\ASWC_A26.config_mem.xml is NOT valid with the provided xsd schema
+2018-05-24 14:42:32,413 ERROR No profile defined for block Default_App_Ram_Implicit_RAR
+2018-05-24 14:42:32,413 INFO The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.CHECK.002_3\input\CompiledConfigID.xml is well-formed
+2018-05-24 14:42:32,414 INFO The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.CHECK.002_3\input\CompiledConfigID.xml is valid with the provided xsd schema
+2018-05-24 14:42:32,415 INFO The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.CHECK.002_3\input\Profiles_cleaned.xml is well-formed
+2018-05-24 14:42:32,415 WARNING The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.CHECK.002_3\input\Profiles_cleaned.xml is NOT valid with the provided xsd schema

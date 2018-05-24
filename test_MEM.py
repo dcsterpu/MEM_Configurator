@@ -56,22 +56,14 @@ class FileCompare():
         """
         datafile = open(path)
         line_file = datafile.readline()
-        bool_message = []
-        for elem in message:
-            bool_message.append(False)
-        i = 0
         while line_file != "":
             for text in message:
                 if level in line_file:
                     if text in line_file:
                         # print(line_file)
-                        bool_message[i] = True
-                        i = i + 1
+                        return True
             line_file = datafile.readline()
-        for elem in bool_message:
-            if elem == False:
-                return False
-        return True
+        return False
 
     def checkError(path, level, message):
         """
