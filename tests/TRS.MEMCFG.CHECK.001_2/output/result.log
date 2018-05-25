@@ -1,22 +1,22 @@
-2018-05-24 14:42:27,843 INFO The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.CHECK.001_2\input\ASWC_A26.config_mem.xml is well-formed
-2018-05-24 14:42:27,845 WARNING The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.CHECK.001_2\input\ASWC_A26.config_mem.xml is NOT valid with the provided xsd schema
-2018-05-24 14:42:27,847 INFO The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.CHECK.001_2\input\ASWC_A27.config_mem.xml is well-formed
-2018-05-24 14:42:27,847 WARNING The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.CHECK.001_2\input\ASWC_A27.config_mem.xml is NOT valid with the provided xsd schema
-2018-05-24 14:42:27,848 INFO The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.CHECK.001_2\input\CompiledConfigID.xml is well-formed
-2018-05-24 14:42:27,849 INFO The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.CHECK.001_2\input\CompiledConfigID.xml is valid with the provided xsd schema
-2018-05-24 14:42:27,851 INFO The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.CHECK.001_2\input\Profiles_cleaned.xml is well-formed
-2018-05-24 14:42:27,853 WARNING The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.CHECK.001_2\input\Profiles_cleaned.xml is NOT valid with the provided xsd schema
-2018-05-24 14:42:27,855 ERROR Different profiles defined for same block: Default_App_Ram_Implicit_RAR
-2018-05-24 14:42:27,855 ERROR Different profiles defined for same block: Default_App_Ram_Implicit_RAR
-2018-05-24 14:42:27,856 ERROR Interface: /RootP_SR_Data/SR_ConsoMoyenneHY1 of block Default_App_Ram_Implicit_RAR is not present in the arxml files
-2018-05-24 14:42:27,856 ERROR Interface: /RootP_SR_Data/SR_SAV_ConsoLisse of block Default_App_Ram_Implicit_RAR is not present in the arxml files
-2018-05-24 14:42:27,856 ERROR Interface: /RootP_SR_Data/SR_ConsoAutonomieGM of block Default_App_Ram_Implicit_RAR is not present in the arxml files
-2018-05-24 14:42:27,856 ERROR Interface: /RootP_SR_Data/SR_SEC_Affichage of block Default_App_Ram_Implicit_RAR is not present in the arxml files
-2018-05-24 14:42:27,856 ERROR Interface: /RootP_SR_Data/SR_SEC_EtatProgRevGEEAQEB of block Default_App_Ram_Implicit_RAR is not present in the arxml files
-2018-05-24 14:42:27,856 ERROR Interface: /RootP_SR_Data/SR_SEC_EtatProgRevGEEDCM of block Default_App_Ram_Implicit_RAR is not present in the arxml files
-2018-05-24 14:42:27,857 ERROR Interface: /RootP_SR_Data/SR_SEC_EtatProgRevPrecond of block Default_App_Ram_Implicit_RAR is not present in the arxml files
-2018-05-24 14:42:27,857 ERROR Interface: /RootP_SR_Data/SR_SEC_EtatProgRevPrecondElec of block Default_App_Ram_Implicit_RAR is not present in the arxml files
-2018-05-24 14:42:27,857 ERROR Interface: /RootP_SR_Data/SR_SEC_EtatProgRevPrecondTherm of block Default_App_Ram_Implicit_RAR is not present in the arxml files
-2018-05-24 14:42:27,857 ERROR Interface: /RootP_SR_Data/SR_SEC_EtatProgRevRTAB of block Default_App_Ram_Implicit_RAR is not present in the arxml files
-2018-05-24 14:42:27,857 ERROR Interface: /RootP_SR_Data/SR_SEC_HProgRevPrecondTherm of block Default_App_Ram_Implicit_RAR is not present in the arxml files
-2018-05-24 14:42:27,858 ERROR Interface: /RootP_SR_Data/SR_SEC_TypeAffichageHorloge of block Default_App_Ram_Implicit_RAR is not present in the arxml files
+2018-05-25 09:29:41,634 INFO The file: ./tests\TRS.MEMCFG.CHECK.001_2\input\ASWC_A26.config_mem.xml is well-formed
+2018-05-25 09:29:41,635 WARNING The file: ./tests\TRS.MEMCFG.CHECK.001_2\input\ASWC_A26.config_mem.xml is NOT valid with the provided xsd schema
+2018-05-25 09:29:41,636 INFO The file: ./tests\TRS.MEMCFG.CHECK.001_2\input\ASWC_A27.config_mem.xml is well-formed
+2018-05-25 09:29:41,637 WARNING The file: ./tests\TRS.MEMCFG.CHECK.001_2\input\ASWC_A27.config_mem.xml is NOT valid with the provided xsd schema
+2018-05-25 09:29:41,638 INFO The file: ./tests\TRS.MEMCFG.CHECK.001_2\input\CompiledConfigID.xml is well-formed
+2018-05-25 09:29:41,639 INFO The file: ./tests\TRS.MEMCFG.CHECK.001_2\input\CompiledConfigID.xml is valid with the provided xsd schema
+2018-05-25 09:29:41,641 INFO The file: ./tests\TRS.MEMCFG.CHECK.001_2\input\Profiles_cleaned.xml is well-formed
+2018-05-25 09:29:41,642 WARNING The file: ./tests\TRS.MEMCFG.CHECK.001_2\input\Profiles_cleaned.xml is NOT valid with the provided xsd schema
+2018-05-25 09:29:41,645 ERROR Different profiles defined for same block: Default_App_Ram_Implicit_RAR
+2018-05-25 09:29:41,645 ERROR Different profiles defined for same block: Default_App_Ram_Implicit_RAR
+2018-05-25 09:29:41,645 ERROR Interface: /RootP_SR_Data/SR_ConsoMoyenneHY1 of block Default_App_Ram_Implicit_RAR is not present in the arxml files
+2018-05-25 09:29:41,645 ERROR Interface: /RootP_SR_Data/SR_SAV_ConsoLisse of block Default_App_Ram_Implicit_RAR is not present in the arxml files
+2018-05-25 09:29:41,646 ERROR Interface: /RootP_SR_Data/SR_ConsoAutonomieGM of block Default_App_Ram_Implicit_RAR is not present in the arxml files
+2018-05-25 09:29:41,646 ERROR Interface: /RootP_SR_Data/SR_SEC_Affichage of block Default_App_Ram_Implicit_RAR is not present in the arxml files
+2018-05-25 09:29:41,646 ERROR Interface: /RootP_SR_Data/SR_SEC_EtatProgRevGEEAQEB of block Default_App_Ram_Implicit_RAR is not present in the arxml files
+2018-05-25 09:29:41,646 ERROR Interface: /RootP_SR_Data/SR_SEC_EtatProgRevGEEDCM of block Default_App_Ram_Implicit_RAR is not present in the arxml files
+2018-05-25 09:29:41,646 ERROR Interface: /RootP_SR_Data/SR_SEC_EtatProgRevPrecond of block Default_App_Ram_Implicit_RAR is not present in the arxml files
+2018-05-25 09:29:41,646 ERROR Interface: /RootP_SR_Data/SR_SEC_EtatProgRevPrecondElec of block Default_App_Ram_Implicit_RAR is not present in the arxml files
+2018-05-25 09:29:41,647 ERROR Interface: /RootP_SR_Data/SR_SEC_EtatProgRevPrecondTherm of block Default_App_Ram_Implicit_RAR is not present in the arxml files
+2018-05-25 09:29:41,647 ERROR Interface: /RootP_SR_Data/SR_SEC_EtatProgRevRTAB of block Default_App_Ram_Implicit_RAR is not present in the arxml files
+2018-05-25 09:29:41,647 ERROR Interface: /RootP_SR_Data/SR_SEC_HProgRevPrecondTherm of block Default_App_Ram_Implicit_RAR is not present in the arxml files
+2018-05-25 09:29:41,647 ERROR Interface: /RootP_SR_Data/SR_SEC_TypeAffichageHorloge of block Default_App_Ram_Implicit_RAR is not present in the arxml files

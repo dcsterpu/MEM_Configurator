@@ -1,20 +1,20 @@
-2018-05-24 14:42:36,518 INFO The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.CHECK.004\input\ASWC_A26.aswc.arxml is well-formed
-2018-05-24 14:42:36,535 INFO The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.CHECK.004\input\ASWC_A26.aswc.arxml is valid with the provided xsd schema
-2018-05-24 14:42:36,550 INFO The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.CHECK.004\input\ASWC_A27.aswc.arxml is well-formed
-2018-05-24 14:42:36,561 INFO The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.CHECK.004\input\ASWC_A27.aswc.arxml is valid with the provided xsd schema
-2018-05-24 14:42:36,565 INFO The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.CHECK.004\input\AUTOSAR_Datatypes.arxml is well-formed
-2018-05-24 14:42:36,566 INFO The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.CHECK.004\input\AUTOSAR_Datatypes.arxml is valid with the provided xsd schema
-2018-05-24 14:42:36,646 INFO The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.CHECK.004\input\SystemGenerated.arxml is well-formed
-2018-05-24 14:42:36,688 INFO The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.CHECK.004\input\SystemGenerated.arxml is valid with the provided xsd schema
-2018-05-24 14:42:36,733 INFO The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.CHECK.004\input\VSM_Types.arxml is well-formed
-2018-05-24 14:42:36,736 INFO The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.CHECK.004\input\VSM_Types.arxml is valid with the provided xsd schema
-2018-05-24 14:42:36,737 INFO The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.CHECK.004\input\ASWC_A26.config_mem.xml is well-formed
-2018-05-24 14:42:36,737 WARNING The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.CHECK.004\input\ASWC_A26.config_mem.xml is NOT valid with the provided xsd schema
-2018-05-24 14:42:36,738 INFO The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.CHECK.004\input\ASWC_A27.config_mem.xml is well-formed
-2018-05-24 14:42:36,739 WARNING The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.CHECK.004\input\ASWC_A27.config_mem.xml is NOT valid with the provided xsd schema
-2018-05-24 14:42:36,740 INFO The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.CHECK.004\input\CompiledConfigID.xml is well-formed
-2018-05-24 14:42:36,741 INFO The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.CHECK.004\input\CompiledConfigID.xml is valid with the provided xsd schema
-2018-05-24 14:42:36,742 INFO The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.CHECK.004\input\Profiles_cleaned.xml is well-formed
-2018-05-24 14:42:36,743 WARNING The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.CHECK.004\input\Profiles_cleaned.xml is NOT valid with the provided xsd schema
-2018-05-24 14:42:36,805 ERROR Interface /RootP_SR_Data/SR_SEC_EtatProgRevPrecondTherm is defined in multiple blocks: Default_App_Ram_Implicit_RAR and Default_App_Ram_Implicit_SAV
-2018-05-24 14:42:36,805 ERROR Interface /RootP_SR_Data/SR_SEC_EtatProgRevPrecondTherm is defined in multiple blocks: Default_App_Ram_Implicit_SAV and Default_App_Ram_Implicit_RAR
+2018-05-25 09:29:50,161 INFO The file: ./tests\TRS.MEMCFG.CHECK.004\input\ASWC_A26.aswc.arxml is well-formed
+2018-05-25 09:29:50,176 INFO The file: ./tests\TRS.MEMCFG.CHECK.004\input\ASWC_A26.aswc.arxml is valid with the provided xsd schema
+2018-05-25 09:29:50,192 INFO The file: ./tests\TRS.MEMCFG.CHECK.004\input\ASWC_A27.aswc.arxml is well-formed
+2018-05-25 09:29:50,202 INFO The file: ./tests\TRS.MEMCFG.CHECK.004\input\ASWC_A27.aswc.arxml is valid with the provided xsd schema
+2018-05-25 09:29:50,205 INFO The file: ./tests\TRS.MEMCFG.CHECK.004\input\AUTOSAR_Datatypes.arxml is well-formed
+2018-05-25 09:29:50,207 INFO The file: ./tests\TRS.MEMCFG.CHECK.004\input\AUTOSAR_Datatypes.arxml is valid with the provided xsd schema
+2018-05-25 09:29:50,281 INFO The file: ./tests\TRS.MEMCFG.CHECK.004\input\SystemGenerated.arxml is well-formed
+2018-05-25 09:29:50,320 INFO The file: ./tests\TRS.MEMCFG.CHECK.004\input\SystemGenerated.arxml is valid with the provided xsd schema
+2018-05-25 09:29:50,362 INFO The file: ./tests\TRS.MEMCFG.CHECK.004\input\VSM_Types.arxml is well-formed
+2018-05-25 09:29:50,363 INFO The file: ./tests\TRS.MEMCFG.CHECK.004\input\VSM_Types.arxml is valid with the provided xsd schema
+2018-05-25 09:29:50,364 INFO The file: ./tests\TRS.MEMCFG.CHECK.004\input\ASWC_A26.config_mem.xml is well-formed
+2018-05-25 09:29:50,364 WARNING The file: ./tests\TRS.MEMCFG.CHECK.004\input\ASWC_A26.config_mem.xml is NOT valid with the provided xsd schema
+2018-05-25 09:29:50,365 INFO The file: ./tests\TRS.MEMCFG.CHECK.004\input\ASWC_A27.config_mem.xml is well-formed
+2018-05-25 09:29:50,365 WARNING The file: ./tests\TRS.MEMCFG.CHECK.004\input\ASWC_A27.config_mem.xml is NOT valid with the provided xsd schema
+2018-05-25 09:29:50,366 INFO The file: ./tests\TRS.MEMCFG.CHECK.004\input\CompiledConfigID.xml is well-formed
+2018-05-25 09:29:50,366 INFO The file: ./tests\TRS.MEMCFG.CHECK.004\input\CompiledConfigID.xml is valid with the provided xsd schema
+2018-05-25 09:29:50,367 INFO The file: ./tests\TRS.MEMCFG.CHECK.004\input\Profiles_cleaned.xml is well-formed
+2018-05-25 09:29:50,368 WARNING The file: ./tests\TRS.MEMCFG.CHECK.004\input\Profiles_cleaned.xml is NOT valid with the provided xsd schema
+2018-05-25 09:29:50,426 ERROR Interface /RootP_SR_Data/SR_SEC_EtatProgRevPrecondTherm is defined in multiple blocks: Default_App_Ram_Implicit_RAR and Default_App_Ram_Implicit_SAV
+2018-05-25 09:29:50,426 ERROR Interface /RootP_SR_Data/SR_SEC_EtatProgRevPrecondTherm is defined in multiple blocks: Default_App_Ram_Implicit_SAV and Default_App_Ram_Implicit_RAR

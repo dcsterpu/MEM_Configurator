@@ -1,21 +1,21 @@
-2018-05-24 14:42:24,649 INFO The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TBD_2\input\ASWC_A26.aswc.arxml is well-formed
-2018-05-24 14:42:24,669 INFO The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TBD_2\input\ASWC_A26.aswc.arxml is valid with the provided xsd schema
-2018-05-24 14:42:24,685 INFO The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TBD_2\input\ASWC_A27.aswc.arxml is well-formed
-2018-05-24 14:42:24,695 INFO The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TBD_2\input\ASWC_A27.aswc.arxml is valid with the provided xsd schema
-2018-05-24 14:42:24,699 INFO The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TBD_2\input\AUTOSAR_Datatypes.arxml is well-formed
-2018-05-24 14:42:24,700 INFO The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TBD_2\input\AUTOSAR_Datatypes.arxml is valid with the provided xsd schema
-2018-05-24 14:42:24,783 INFO The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TBD_2\input\SystemGenerated.arxml is well-formed
-2018-05-24 14:42:24,827 INFO The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TBD_2\input\SystemGenerated.arxml is valid with the provided xsd schema
-2018-05-24 14:42:24,874 INFO The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TBD_2\input\VSM_Types.arxml is well-formed
-2018-05-24 14:42:24,874 INFO The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TBD_2\input\VSM_Types.arxml is valid with the provided xsd schema
-2018-05-24 14:42:24,876 INFO The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TBD_2\input\ASWC_A26.config_mem.xml is well-formed
-2018-05-24 14:42:24,876 WARNING The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TBD_2\input\ASWC_A26.config_mem.xml is NOT valid with the provided xsd schema
-2018-05-24 14:42:24,877 INFO The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TBD_2\input\ASWC_A27.config_mem.xml is well-formed
-2018-05-24 14:42:24,877 WARNING The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TBD_2\input\ASWC_A27.config_mem.xml is NOT valid with the provided xsd schema
-2018-05-24 14:42:24,878 INFO The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TBD_2\input\CompiledConfigID.xml is well-formed
-2018-05-24 14:42:24,878 WARNING The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TBD_2\input\CompiledConfigID.xml is NOT valid with the provided xsd schema
-2018-05-24 14:42:24,879 INFO The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TBD_2\input\MAPPING.xml is well-formed
-2018-05-24 14:42:24,879 INFO The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TBD_2\input\MAPPING.xml is valid with the provided xsd schema
-2018-05-24 14:42:24,880 INFO The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TBD_2\input\Profiles_cleaned.xml is well-formed
-2018-05-24 14:42:24,881 WARNING The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TBD_2\input\Profiles_cleaned.xml is NOT valid with the provided xsd schema
-2018-05-24 14:42:24,882 ERROR None or multiple CompiledConfigID parameters defined
+2018-05-25 09:29:38,023 INFO The file: ./tests\TBD_2\input\ASWC_A26.aswc.arxml is well-formed
+2018-05-25 09:29:38,049 INFO The file: ./tests\TBD_2\input\ASWC_A26.aswc.arxml is valid with the provided xsd schema
+2018-05-25 09:29:38,073 INFO The file: ./tests\TBD_2\input\ASWC_A27.aswc.arxml is well-formed
+2018-05-25 09:29:38,090 INFO The file: ./tests\TBD_2\input\ASWC_A27.aswc.arxml is valid with the provided xsd schema
+2018-05-25 09:29:38,094 INFO The file: ./tests\TBD_2\input\AUTOSAR_Datatypes.arxml is well-formed
+2018-05-25 09:29:38,097 INFO The file: ./tests\TBD_2\input\AUTOSAR_Datatypes.arxml is valid with the provided xsd schema
+2018-05-25 09:29:38,209 INFO The file: ./tests\TBD_2\input\SystemGenerated.arxml is well-formed
+2018-05-25 09:29:38,268 INFO The file: ./tests\TBD_2\input\SystemGenerated.arxml is valid with the provided xsd schema
+2018-05-25 09:29:38,313 INFO The file: ./tests\TBD_2\input\VSM_Types.arxml is well-formed
+2018-05-25 09:29:38,314 INFO The file: ./tests\TBD_2\input\VSM_Types.arxml is valid with the provided xsd schema
+2018-05-25 09:29:38,315 INFO The file: ./tests\TBD_2\input\ASWC_A26.config_mem.xml is well-formed
+2018-05-25 09:29:38,316 WARNING The file: ./tests\TBD_2\input\ASWC_A26.config_mem.xml is NOT valid with the provided xsd schema
+2018-05-25 09:29:38,317 INFO The file: ./tests\TBD_2\input\ASWC_A27.config_mem.xml is well-formed
+2018-05-25 09:29:38,317 WARNING The file: ./tests\TBD_2\input\ASWC_A27.config_mem.xml is NOT valid with the provided xsd schema
+2018-05-25 09:29:38,318 INFO The file: ./tests\TBD_2\input\CompiledConfigID.xml is well-formed
+2018-05-25 09:29:38,319 WARNING The file: ./tests\TBD_2\input\CompiledConfigID.xml is NOT valid with the provided xsd schema
+2018-05-25 09:29:38,324 INFO The file: ./tests\TBD_2\input\MAPPING.xml is well-formed
+2018-05-25 09:29:38,324 INFO The file: ./tests\TBD_2\input\MAPPING.xml is valid with the provided xsd schema
+2018-05-25 09:29:38,327 INFO The file: ./tests\TBD_2\input\Profiles_cleaned.xml is well-formed
+2018-05-25 09:29:38,328 WARNING The file: ./tests\TBD_2\input\Profiles_cleaned.xml is NOT valid with the provided xsd schema
+2018-05-25 09:29:38,329 ERROR None or multiple CompiledConfigID parameters defined

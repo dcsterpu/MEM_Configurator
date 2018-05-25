@@ -3,20 +3,20 @@
 <CONFIG-MEM-CONFIGURATOR xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation=".\ConfigMemConfigurator.xsd">
 	<INPUTS>
 		<CONFIG>
-			<DIR RECURSIVE="true">C:\Users\Cristi\PycharmProjects\MEM_Config\tests\CHECK.XML\input</DIR>
-			<XSD>C:\Users\Cristi\PycharmProjects\MEM_Config\tests\CHECK.XML\ConfigPSA_NvM.xsd</XSD>
+			<DIR RECURSIVE="true">./tests\CHECK.XML\input</DIR>
+			<XSD>./tests\CHECK.XML\ConfigPSA_NvM.xsd</XSD>
 		</CONFIG>
 		<ARXML>
-			<DIR RECURSIVE="true">C:\Users\Cristi\PycharmProjects\MEM_Config\tests\CHECK.XML\input</DIR>
-			<XSD>C:\Users\Cristi\PycharmProjects\MEM_Config\tests\CHECK.XML\AUTOSAR_4-2-2_STRICT.xsd</XSD>
+			<DIR RECURSIVE="true">./tests\CHECK.XML\input</DIR>
+			<XSD>./tests\CHECK.XML\AUTOSAR_4-2-2_STRICT.xsd</XSD>
 		</ARXML>
 	</INPUTS>
 	<OUTPUTS>
 		<EPC>
-			<DIR>C:\Users\Cristi\PycharmProjects\MEM_Config\tests\CHECK.XML\output</DIR>
+			<DIR>./tests\CHECK.XML\output</DIR>
 		</EPC>
 		<REPORT>
-			<DIR>C:\Users\Cristi\PycharmProjects\MEM_Config\tests\CHECK.XML\output</DIR>
+			<DIR>./tests\CHECK.XML\output</DIR>
 		</REPORT>
 	</OUTPUTS>
 </CONFIG-MEM-CONFIGURATOR>

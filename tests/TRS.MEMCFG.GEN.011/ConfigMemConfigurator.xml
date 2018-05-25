@@ -3,20 +3,20 @@
 <CONFIG-MEM-CONFIGURATOR xmlns:xsi="http://www.w3.org/2011/XMLSchema-instance" xsi:noNamespaceSchemaLocation=".\ConfigMemConfigurator.xsd">
 	<INPUTS>
 		<CONFIG>
-			<DIR RECURSIVE="true">C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.GEN.011\input</DIR>
-			<XSD>C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.GEN.011\ConfigPSA_NvM.xsd</XSD>
+			<DIR RECURSIVE="true">./tests\TRS.MEMCFG.GEN.011\input</DIR>
+			<XSD>./tests\TRS.MEMCFG.GEN.011\ConfigPSA_NvM.xsd</XSD>
 		</CONFIG>
 		<ARXML>
-			<DIR RECURSIVE="true">C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.GEN.011\input</DIR>
-			<XSD>C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.GEN.011\AUTOSAR_4-2-2_STRICT.xsd</XSD>
+			<DIR RECURSIVE="true">./tests\TRS.MEMCFG.GEN.011\input</DIR>
+			<XSD>./tests\TRS.MEMCFG.GEN.011\AUTOSAR_4-2-2_STRICT.xsd</XSD>
 		</ARXML>
 	</INPUTS>
 	<OUTPUTS>
 		<EPC>
-			<DIR>C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.GEN.011\output</DIR>
+			<DIR>./tests\TRS.MEMCFG.GEN.011\output</DIR>
 		</EPC>
 		<REPORT>
-			<DIR>C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.GEN.011\output</DIR>
+			<DIR>./tests\TRS.MEMCFG.GEN.011\output</DIR>
 		</REPORT>
 	</OUTPUTS>
 </CONFIG-MEM-CONFIGURATOR>

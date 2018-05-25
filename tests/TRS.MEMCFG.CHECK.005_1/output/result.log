@@ -1,16 +1,16 @@
-2018-05-24 14:42:37,972 INFO The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.CHECK.005_1\input\ASWC_A26.aswc.arxml is well-formed
-2018-05-24 14:42:37,991 INFO The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.CHECK.005_1\input\ASWC_A26.aswc.arxml is valid with the provided xsd schema
-2018-05-24 14:42:37,994 INFO The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.CHECK.005_1\input\AUTOSAR_Datatypes.arxml is well-formed
-2018-05-24 14:42:37,995 INFO The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.CHECK.005_1\input\AUTOSAR_Datatypes.arxml is valid with the provided xsd schema
-2018-05-24 14:42:38,076 INFO The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.CHECK.005_1\input\SystemGenerated.arxml is well-formed
-2018-05-24 14:42:38,116 INFO The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.CHECK.005_1\input\SystemGenerated.arxml is valid with the provided xsd schema
-2018-05-24 14:42:38,158 INFO The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.CHECK.005_1\input\VSM_Types.arxml is well-formed
-2018-05-24 14:42:38,159 INFO The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.CHECK.005_1\input\VSM_Types.arxml is valid with the provided xsd schema
-2018-05-24 14:42:38,161 INFO The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.CHECK.005_1\input\ASWC_A26.config_mem.xml is well-formed
-2018-05-24 14:42:38,161 WARNING The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.CHECK.005_1\input\ASWC_A26.config_mem.xml is NOT valid with the provided xsd schema
-2018-05-24 14:42:38,162 INFO The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.CHECK.005_1\input\CompiledConfigID.xml is well-formed
-2018-05-24 14:42:38,163 INFO The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.CHECK.005_1\input\CompiledConfigID.xml is valid with the provided xsd schema
-2018-05-24 14:42:38,164 INFO The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.CHECK.005_1\input\Profiles_cleaned.xml is well-formed
-2018-05-24 14:42:38,165 WARNING The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.CHECK.005_1\input\Profiles_cleaned.xml is NOT valid with the provided xsd schema
-2018-05-24 14:42:38,236 WARNING The file: NvM.epc is NOT valid with the provided xsd schema
-2018-05-24 14:42:38,248 WARNING The file: NvDM.epc is NOT valid with the provided xsd schema
+2018-05-25 09:29:51,523 INFO The file: ./tests\TRS.MEMCFG.CHECK.005_1\input\ASWC_A26.aswc.arxml is well-formed
+2018-05-25 09:29:51,538 INFO The file: ./tests\TRS.MEMCFG.CHECK.005_1\input\ASWC_A26.aswc.arxml is valid with the provided xsd schema
+2018-05-25 09:29:51,541 INFO The file: ./tests\TRS.MEMCFG.CHECK.005_1\input\AUTOSAR_Datatypes.arxml is well-formed
+2018-05-25 09:29:51,543 INFO The file: ./tests\TRS.MEMCFG.CHECK.005_1\input\AUTOSAR_Datatypes.arxml is valid with the provided xsd schema
+2018-05-25 09:29:51,619 INFO The file: ./tests\TRS.MEMCFG.CHECK.005_1\input\SystemGenerated.arxml is well-formed
+2018-05-25 09:29:51,659 INFO The file: ./tests\TRS.MEMCFG.CHECK.005_1\input\SystemGenerated.arxml is valid with the provided xsd schema
+2018-05-25 09:29:51,699 INFO The file: ./tests\TRS.MEMCFG.CHECK.005_1\input\VSM_Types.arxml is well-formed
+2018-05-25 09:29:51,699 INFO The file: ./tests\TRS.MEMCFG.CHECK.005_1\input\VSM_Types.arxml is valid with the provided xsd schema
+2018-05-25 09:29:51,700 INFO The file: ./tests\TRS.MEMCFG.CHECK.005_1\input\ASWC_A26.config_mem.xml is well-formed
+2018-05-25 09:29:51,701 WARNING The file: ./tests\TRS.MEMCFG.CHECK.005_1\input\ASWC_A26.config_mem.xml is NOT valid with the provided xsd schema
+2018-05-25 09:29:51,701 INFO The file: ./tests\TRS.MEMCFG.CHECK.005_1\input\CompiledConfigID.xml is well-formed
+2018-05-25 09:29:51,702 INFO The file: ./tests\TRS.MEMCFG.CHECK.005_1\input\CompiledConfigID.xml is valid with the provided xsd schema
+2018-05-25 09:29:51,703 INFO The file: ./tests\TRS.MEMCFG.CHECK.005_1\input\Profiles_cleaned.xml is well-formed
+2018-05-25 09:29:51,703 WARNING The file: ./tests\TRS.MEMCFG.CHECK.005_1\input\Profiles_cleaned.xml is NOT valid with the provided xsd schema
+2018-05-25 09:29:51,771 WARNING The file: NvM.epc is NOT valid with the provided xsd schema
+2018-05-25 09:29:51,779 WARNING The file: NvDM.epc is NOT valid with the provided xsd schema
