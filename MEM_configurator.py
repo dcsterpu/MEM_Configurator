@@ -100,6 +100,7 @@ def retrieve_data(recursive_arxml, simple_arxml, recursive_config, simple_config
     arxml_interfaces = []
     arxml_data_types = []
     arxml_base_types = []
+    ports = []
     NSMAP = {None: 'http://autosar.org/schema/r4.0', "xsi": 'http://www.w3.org/2001/XMLSchema-instance'}
     attr_qname = etree.QName("http://www.w3.org/2001/XMLSchema-instance", "schemaLocation")
     xmlschema_xsd_arxml = etree.parse(xsd_arxml)
@@ -168,6 +169,16 @@ def retrieve_data(recursive_arxml, simple_arxml, recursive_config, simple_config
                             obj_elem['PACKAGE'] = elem.getparent().getparent().getchildren()[0].text
                             obj_elem['SIZE'] = elem.find(".//{http://autosar.org/schema/r4.0}BASE-TYPE-SIZE").text
                             arxml_base_types.append(obj_elem)
+                        pr_ports = root.findall(".//{http://autosar.org/schema/r4.0}PR-PORT-PROTOTYPE")
+                        for elem in pr_ports:
+                            obj_elem = {}
+                            obj_elem['NAME'] = elem.find(".//{http://autosar.org/schema/r4.0}SHORT-NAME").text
+                            obj_elem['ASWC'] = elem.getparent().getparent().getchildren()[0].text
+                            obj_elem['ROOT'] = elem.getparent().getparent().getparent().getparent().getchildren()[0].text
+                            obj_elem['INTERFACE'] = elem.find(".//{http://autosar.org/schema/r4.0}PROVIDED-REQUIRED-INTERFACE-TREF").text
+                            obj_elem['SIZE'] = None
+                            obj_elem['DATA-ELEMENTS'] = None
+                            ports.append(obj_elem)
         for each_path in simple_arxml:
             for file in os.listdir(each_path):
                 if file.endswith('.arxml'):
@@ -227,6 +238,15 @@ def retrieve_data(recursive_arxml, simple_arxml, recursive_config, simple_config
                         obj_elem['PACKAGE'] = elem.getparent().getparent().getchildren()[0].text
                         obj_elem['SIZE'] = elem.find(".//{http://autosar.org/schema/r4.0}BASE-TYPE-SIZE").text
                         arxml_base_types.append(obj_elem)
+                    for elem in pr_ports:
+                        obj_elem = {}
+                        obj_elem['NAME'] = elem.find(".//{http://autosar.org/schema/r4.0}SHORT-NAME").text
+                        obj_elem['ASWC'] = elem.getparent().getparent().getchildren()[0].text
+                        obj_elem['ROOT'] = elem.getparent().getparent().getparent().getparent().getchildren()[0].text
+                        obj_elem['INTERFACE'] = elem.find(".//{http://autosar.org/schema/r4.0}PROVIDED-REQUIRED-INTERFACE-TREF").text
+                        obj_elem['SIZE'] = None
+                        obj_elem['DATA-ELEMENTS'] = None
+                        ports.append(obj_elem)
         # parse the config files and retrieve the necesary information
         for each_path in recursive_config:
             for directory, directories, files in os.walk(each_path):
@@ -252,7 +272,7 @@ def retrieve_data(recursive_arxml, simple_arxml, recursive_config, simple_config
                         block = root.findall(".//BLOCK")
                         for elem in block:
                             obj_block = {}
-                            interfaces = []
+                            block_ports = []
                             obj_block['NAME'] = elem.find('SHORT-NAME').text
                             obj_block['TYPE'] = elem.find('TYPE').text
                             # implementing requirement TRS.SYSDESC.CHECK.002
@@ -282,16 +302,19 @@ def retrieve_data(recursive_arxml, simple_arxml, recursive_config, simple_config
                             obj_block['DEVICE'] = None
                             obj_block['RESISTENT'] = None
                             obj_block['POSITION'] = None
+                            obj_block['CONSISTENCY'] = None
+                            obj_block['CRC'] = None
                             obj_block['ID'] = None
-                            sender_receiver_interfaces = elem.findall('.//SENDER-RECEIVER-INTERFACE-REF')
-                            for element in sender_receiver_interfaces:
+                            pr_ports = elem.findall('.//PR-PORT-PROTOTYPE-REF')
+                            for element in pr_ports:
                                 obj_interface = {}
                                 obj_interface['NAME'] = element.text
+                                obj_interface['ASWC'] = None
                                 obj_interface['SIZE'] = 0
                                 obj_interface['SW-BASE-TYPE'] = None
                                 obj_interface['DATA-PROTOTYPE'] = None
-                                interfaces.append(obj_interface)
-                            obj_block['INTERFACE'] = interfaces
+                                block_ports.append(obj_interface)
+                            obj_block['PORT'] = block_ports
                             obj_block['MAX-SIZE'] = None
                             blocks.append(obj_block)
                         profile = root.findall(".//PROFILE")
@@ -302,7 +325,18 @@ def retrieve_data(recursive_arxml, simple_arxml, recursive_config, simple_config
                             obj_profile['MANAGEMENT'] = elem.find('MANAGEMENT').text
                             obj_profile['DURABILITY'] = elem.find('DURABILITY').text
                             obj_profile['MAX-SIZE'] = elem.find('BLOCK-SIZE-MAX').text
-                            obj_profile['SAFETY'] = elem.find('SAFETY').text
+                            if elem.find('SAFETY') is not None:
+                                obj_profile['SAFETY'] = elem.find('SAFETY').text
+                            else:
+                                obj_profile['SAFETY'] = 'false'
+                            if elem.find('CONSISTENCY') is not None:
+                                obj_profile['CONSISTENCY'] = elem.find('CONSISTENCY').text
+                            else:
+                                obj_profile['CONSISTENCY'] = 'false'
+                            if elem.find('CRC') is not None:
+                                obj_profile['CRC'] = elem.find('CRC').text
+                            else:
+                                obj_profile['CRC'] = 'false'
                             obj_profile['DEVICE'] = elem.find('DEVICE').text
                             obj_profile['WRITING-NUMBER'] = elem.find('WRITING-NUMBER').text
                             param = elem.findall('.//PARAM')
@@ -345,7 +379,7 @@ def retrieve_data(recursive_arxml, simple_arxml, recursive_config, simple_config
                     block = root.findall(".//BLOCK")
                     for elem in block:
                         obj_block = {}
-                        interfaces = []
+                        block_ports = []
                         obj_block['NAME'] = elem.find('SHORT-NAME').text
                         obj_block['TYPE'] = elem.find('TYPE').text
                         # implementing requirement TRS.SYSDESC.CHECK.002
@@ -375,17 +409,21 @@ def retrieve_data(recursive_arxml, simple_arxml, recursive_config, simple_config
                         obj_block['DEVICE'] = None
                         obj_block['RESISTENT'] = None
                         obj_block['POSITION'] = None
+                        obj_block['CONSISTENCY'] = None
+                        obj_block['CRC'] = None
                         obj_block['ID'] = None
-                        sender_receiver_interfaces = elem.findall('.//SENDER-RECEIVER-INTERFACE-REF')
-                        for element in sender_receiver_interfaces:
+                        pr_ports = elem.findall('.//PR-PORT-PROTOTYPE-REF')
+                        for element in pr_ports:
                             obj_interface = {}
                             obj_interface['NAME'] = element.text
+                            obj_interface['ASWC'] = None
                             obj_interface['SIZE'] = 0
                             obj_interface['SW-BASE-TYPE'] = None
                             obj_interface['DATA-PROTOTYPE'] = None
-                            interfaces.append(obj_interface)
-                        obj_block['INTERFACE'] = interfaces
+                            block_ports.append(obj_interface)
+                        obj_block['PORT'] = block_ports
                         obj_block['MAX-SIZE'] = None
+                        blocks.append(obj_block)
                         blocks.append(obj_block)
                     profile = root.findall(".//PROFILE")
                     for elem in profile:
@@ -395,7 +433,18 @@ def retrieve_data(recursive_arxml, simple_arxml, recursive_config, simple_config
                         obj_profile['MANAGEMENT'] = elem.find('MANAGEMENT').text
                         obj_profile['DURABILITY'] = elem.find('DURABILITY').text
                         obj_profile['MAX-SIZE'] = elem.find('BLOCK-SIZE-MAX').text
-                        obj_profile['SAFETY'] = elem.find('SAFETY').text
+                        if elem.find('SAFETY') is not None:
+                            obj_profile['SAFETY'] = elem.find('SAFETY').text
+                        else:
+                            obj_profile['SAFETY'] = 'false'
+                        if elem.find('CONSISTENCY') is not None:
+                            obj_profile['CONSISTENCY'] = elem.find('CONSISTENCY').text
+                        else:
+                            obj_profile['CONSISTENCY'] = 'false'
+                        if elem.find('CRC') is not None:
+                            obj_profile['CRC'] = elem.find('CRC').text
+                        else:
+                            obj_profile['CRC'] = 'false'
                         obj_profile['DEVICE'] = elem.find('DEVICE').text
                         obj_profile['WRITING-NUMBER'] = elem.find('WRITING-NUMBER').text
                         param = elem.findall('.//PARAM')
@@ -467,34 +516,46 @@ def retrieve_data(recursive_arxml, simple_arxml, recursive_config, simple_config
                     else:
                         break
             interface['SIZE'] = int(interface_size / 8)
+        # find size for each port
+        for port in ports:
+            for interface in arxml_interfaces:
+                if port['INTERFACE'].split("/")[-1] == interface['NAME']:
+                    port['SIZE'] = interface['SIZE']
+                    port['DATA-ELEMENTS'] = interface['DATA-ELEMENTS']
+        for port in ports:
+            if port['SIZE'] is None:
+                logger.error('The port ' + port['NAME'] + " doesn't have an interface defined in the project: " + port['INTERFACE'])
+                print('The port ' + port['NAME'] + " doesn't have an interface defined in the project: " + port['INTERFACE'])
+                error_no = error_no + 1
         # implement TRS.SYSDESC.CHECK.003
-        all_interfaces = []
+        all_ports = []
         for elem in blocks:
-            for interface in elem['INTERFACE']:
+            for port in elem['PORT']:
                 obj_temp = {}
-                obj_temp['INTERFACE'] = interface
+                obj_temp['PORT'] = port
                 obj_temp['BLOCK'] = elem['NAME']
-                all_interfaces.append(obj_temp)
-        for elem1 in all_interfaces:
+                all_ports.append(obj_temp)
+        for elem1 in all_ports:
             found = False
-            for elem2 in arxml_interfaces:
-                if elem1['INTERFACE']['NAME'] == "/" + elem2['ROOT'] + "/" + elem2['NAME']:
-                    elem1['INTERFACE']['SIZE'] = elem2['SIZE']
-                    elem1['INTERFACE']['DATA-PROTOTYPE'] = elem2['DATA-ELEMENTS']
+            for elem2 in ports:
+                if elem2['ROOT'] in elem1['PORT']['NAME'] and elem2['NAME'] in elem1['PORT']['NAME']:
+                    elem1['PORT']['SIZE'] = elem2['SIZE']
+                    elem1['PORT']['ASWC'] = elem2['ASWC']
+                    elem1['PORT']['DATA-PROTOTYPE'] = elem2['DATA-ELEMENTS']
                     found = True
                     break
             if not found:
-                logger.error('Interface: ' + elem1['INTERFACE']['NAME'] + ' of block ' + elem1['BLOCK'] + ' is not present in the arxml files')
-                print('ERROR: Interface: ' + elem1['INTERFACE']['NAME'] + ' of block ' + elem1['BLOCK'] + ' is not present in the arxml files')
+                logger.error('Port: ' + elem1['PORT']['NAME'] + ' of block ' + elem1['BLOCK'] + ' is not present in the arxml files')
+                print('ERROR: Port: ' + elem1['PORT']['NAME'] + ' of block ' + elem1['BLOCK'] + ' is not present in the arxml files')
                 error_no = error_no + 1
         # implement TRS.SYSDESC.CHECK.004
-        for index1 in range(len(all_interfaces)):
-            for index2 in range(len(all_interfaces)):
+        for index1 in range(len(all_ports)):
+            for index2 in range(len(all_ports)):
                 if index1 != index2:
-                    if all_interfaces[index1]['INTERFACE'] == all_interfaces[index2]['INTERFACE']:
-                        if all_interfaces[index1]['BLOCK'] != all_interfaces[index2]['BLOCK']:
-                            logger.error('Interface ' + all_interfaces[index1]['INTERFACE']['NAME'] + ' is defined in multiple blocks: ' + all_interfaces[index1]['BLOCK'] + ' and ' + all_interfaces[index2]['BLOCK'])
-                            print('ERROR: Interface ' + all_interfaces[index1]['INTERFACE']['NAME'] + ' is defined in multiple blocks: ' + all_interfaces[index1]['BLOCK'] + ' and ' + all_interfaces[index2]['BLOCK'])
+                    if all_ports[index1]['PORT'] == all_ports[index2]['PORT']:
+                        if all_ports[index1]['BLOCK'] != all_ports[index2]['BLOCK']:
+                            logger.error('Port ' + all_ports[index1]['PORT']['NAME'] + ' is defined in multiple blocks: ' + all_ports[index1]['BLOCK'] + ' and ' + all_ports[index2]['BLOCK'])
+                            print('ERROR: Port ' + all_ports[index1]['PORT']['NAME'] + ' is defined in multiple blocks: ' + all_ports[index1]['BLOCK'] + ' and ' + all_ports[index2]['BLOCK'])
                             error_no = error_no + 1
         # get the max-size information for each block from profile
         for block in blocks:
@@ -503,6 +564,8 @@ def retrieve_data(recursive_arxml, simple_arxml, recursive_config, simple_config
                 if block['PROFILE'] == profile['NAME']:
                     block['MAX-SIZE'] = profile['MAX-SIZE']
                     block['DEVICE'] = profile['DEVICE']
+                    block['CONSISTENCY'] = profile['CONSISTENCY']
+                    block['CRC'] = profile['CRC']
                     if profile['SAFETY'] != 'true':
                         block['SDF'] = 'false'
                     for param in profile['PARAM']:
@@ -527,8 +590,8 @@ def retrieve_data(recursive_arxml, simple_arxml, recursive_config, simple_config
             for elem2 in blocks[:]:
                 if blocks.index(elem1) != blocks.index(elem2):
                     if elem1['NAME'] == elem2['NAME']:
-                        for interface in elem2['INTERFACE']:
-                            elem1['INTERFACE'].append(interface)
+                        for port in elem2['PORT']:
+                            elem1['PORT'].append(port)
         blocks = list(remove_duplicates(blocks))
         # check if there are NvMResistantToChangedSw blocks
         for block in blocks:
@@ -571,25 +634,27 @@ def retrieve_data(recursive_arxml, simple_arxml, recursive_config, simple_config
         for block in blocks[:]:
             subblock_number = 1
             temp_size = 0
-            temp_interfaces = []
+            temp_ports = []
             splitted = False
             obj_subblock = {}
-            for interface in block['INTERFACE']:
+            for port in block['PORT']:
                 old_size = temp_size
-                temp_size = temp_size + interface['SIZE']
+                temp_size = temp_size + port['SIZE']
                 if temp_size <= int(block['MAX-SIZE']):
-                    temp_interfaces.append(interface)
-                    if splitted and block['INTERFACE'].index(interface) == len(block['INTERFACE'])-1:
+                    temp_ports.append(port)
+                    if splitted and block['PORT'].index(port) == len(block['PORT'])-1:
                         obj_subblock['NAME'] = block['NAME'] + "_" + str(subblock_number)
                         obj_subblock['TYPE'] = block['TYPE']
                         obj_subblock['PROFILE'] = block['PROFILE']
                         obj_subblock['TIMEOUT'] = block['TIMEOUT']
                         obj_subblock['MAPPING'] = block['MAPPING']
                         obj_subblock['DEVICE'] = block['DEVICE']
+                        obj_subblock['CONSISTENCY'] = block['CONSISTENCY']
+                        obj_subblock['CRC'] = block['CRC']
                         obj_subblock['SDF'] = block['SDF']
                         obj_subblock['ID'] = block['ID']
                         obj_subblock['SIZE'] = old_size
-                        obj_subblock['INTERFACE'] = temp_interfaces
+                        obj_subblock['PORT'] = temp_ports
                         new_dict = copy.deepcopy(obj_subblock)
                         subblocks.append(new_dict)
                         obj_subblock.clear()
@@ -602,17 +667,19 @@ def retrieve_data(recursive_arxml, simple_arxml, recursive_config, simple_config
                     obj_subblock['TIMEOUT'] = block['TIMEOUT']
                     obj_subblock['MAPPING'] = block['MAPPING']
                     obj_subblock['DEVICE'] = block['DEVICE']
+                    obj_subblock['CONSISTENCY'] = block['CONSISTENCY']
+                    obj_subblock['CRC'] = block['CRC']
                     obj_subblock['SDF'] = block['SDF']
                     obj_subblock['ID'] = block['ID']
                     obj_subblock['SIZE'] = old_size
-                    obj_subblock['INTERFACE'] = temp_interfaces
+                    obj_subblock['PORT'] = temp_ports
                     new_dict = copy.deepcopy(obj_subblock)
                     subblocks.append(new_dict)
                     obj_subblock.clear()
                     temp_size = 0
-                    temp_size = temp_size + interface['SIZE']
-                    del temp_interfaces[:]
-                    temp_interfaces.append(interface)
+                    temp_size = temp_size + port['SIZE']
+                    del temp_ports[:]
+                    temp_ports.append(port)
             if splitted:
                 blocks.remove(block)
 
@@ -628,13 +695,15 @@ def retrieve_data(recursive_arxml, simple_arxml, recursive_config, simple_config
             obj_block['PROFILE'] = block['PROFILE']
             obj_block['DEVICE'] = block['DEVICE']
             obj_block['TIMEOUT'] = block['TIMEOUT']
+            obj_block['CONSISTENCY'] = block['CONSISTENCY']
+            obj_block['CRC'] = block['CRC']
             obj_block['SDF'] = block['SDF']
             obj_block['POSITION'] = block['POSITION']
-            for interface in block['INTERFACE']:
-                for data in interface['DATA-PROTOTYPE']:
+            for port in block['PORT']:
+                for data in port['DATA-PROTOTYPE']:
                     obj_data_prototype = {}
-                    obj_data_prototype['NAME'] = interface['NAME'].split('/')[-1] + "_" + data['NAME']
-                    obj_data_prototype['DATA'] = interface['NAME'] + "/" + data['NAME']
+                    obj_data_prototype['NAME'] = port['ASWC'] + "_" + port['NAME'].split('/')[-1] + "_" + data['NAME']
+                    obj_data_prototype['DATA'] = port['NAME'] + "/" + data['NAME']
                     obj_data_prototype['SW-BASE-TYPE'] = data['SW-BASE-TYPE']
                     obj_data_prototype['TYPE'] = data['TYPE']
                     obj_data_prototype['INIT'] = data['INIT']
@@ -656,13 +725,15 @@ def retrieve_data(recursive_arxml, simple_arxml, recursive_config, simple_config
             obj_block['PROFILE'] = subblock['PROFILE']
             obj_block['DEVICE'] = subblock['DEVICE']
             obj_block['TIMEOUT'] = subblock['TIMEOUT']
+            obj_block['CONSISTENCY'] = block['CONSISTENCY']
+            obj_block['CRC'] = block['CRC']
             obj_block['SDF'] = subblock['SDF']
             obj_block['SIZE'] = subblock['SIZE']
-            for interface in subblock['INTERFACE']:
-                for data in interface['DATA-PROTOTYPE']:
+            for port in subblock['PORT']:
+                for data in port['DATA-PROTOTYPE']:
                     obj_data_prototype = {}
-                    obj_data_prototype['NAME'] = interface['NAME'].split('/')[-1] + "_" + data['NAME']
-                    obj_data_prototype['DATA'] = interface['NAME'] + "/" + data['NAME']
+                    obj_data_prototype['NAME'] = port['ASWC'] + "_" + port['NAME'].split('/')[-1] + "_" + data['NAME']
+                    obj_data_prototype['DATA'] = port['NAME'] + "/" + data['NAME']
                     obj_data_prototype['SW-BASE-TYPE'] = data['SW-BASE-TYPE']
                     obj_data_prototype['TYPE'] = data['TYPE']
                     obj_data_prototype['INIT'] = data['INIT']
@@ -683,12 +754,14 @@ def retrieve_data(recursive_arxml, simple_arxml, recursive_config, simple_config
             obj_block['PROFILE'] = block['PROFILE']
             obj_block['DEVICE'] = block['DEVICE']
             obj_block['TIMEOUT'] = block['TIMEOUT']
+            obj_block['CONSISTENCY'] = block['CONSISTENCY']
+            obj_block['CRC'] = block['CRC']
             obj_block['SDF'] = block['SDF']
-            for interface in block['INTERFACE']:
-                for data in interface['DATA-PROTOTYPE']:
+            for port in block['PORT']:
+                for data in port['DATA-PROTOTYPE']:
                     obj_data_prototype = {}
-                    obj_data_prototype['NAME'] = interface['NAME'].split('/')[-1] + "_" + data['NAME']
-                    obj_data_prototype['DATA'] = interface['NAME'] + "/" + data['NAME']
+                    obj_data_prototype['NAME'] = port['ASWC'] + "_" + port['NAME'].split('/')[-1] + "_" + data['NAME']
+                    obj_data_prototype['DATA'] = port['NAME'] + "/" + data['NAME']
                     obj_data_prototype['SW-BASE-TYPE'] = data['SW-BASE-TYPE']
                     obj_data_prototype['TYPE'] = data['TYPE']
                     obj_data_prototype['INIT'] = data['INIT']
@@ -1243,6 +1316,26 @@ def retrieve_data(recursive_arxml, simple_arxml, recursive_config, simple_config
                         value.text = '1'
                     else:
                         value.text = '0'
+                    # NvDMConsistency
+                    ecuc_numerical_NvDMConsistency = etree.SubElement(parameter, 'ECUC-NUMERICAL-PARAM-VALUE')
+                    definition = etree.SubElement(ecuc_numerical_NvDMConsistency, 'DEFINITION-REF')
+                    definition.attrib['DEST'] = "ECUC-BOOLEAN-PARAM-DEF"
+                    definition.text = "/TS_2018_01/NvDM/NvDMBlockDescriptor/NvDMConsistency"
+                    value = etree.SubElement(ecuc_numerical_NvDMConsistency, 'VALUE')
+                    if profile['CONSISTENCY'] == 'true':
+                        value.text = '1'
+                    else:
+                        value.text = '0'
+                    # NvDMCRC
+                    ecuc_numerical_NvDMCRC = etree.SubElement(parameter, 'ECUC-NUMERICAL-PARAM-VALUE')
+                    definition = etree.SubElement(ecuc_numerical_NvDMCRC, 'DEFINITION-REF')
+                    definition.attrib['DEST'] = "ECUC-BOOLEAN-PARAM-DEF"
+                    definition.text = "/TS_2018_01/NvDM/NvDMBlockDescriptor/NvDMCRC"
+                    value = etree.SubElement(ecuc_numerical_NvDMCRC, 'VALUE')
+                    if profile['CRC'] == 'true':
+                        value.text = '1'
+                    else:
+                        value.text = '0'
                     # NvDMWriteTimeout
                     ecuc_numerical_NvDMWriteTimeout = etree.SubElement(parameter, 'ECUC-NUMERICAL-PARAM-VALUE')
                     definition = etree.SubElement(ecuc_numerical_NvDMWriteTimeout, 'DEFINITION-REF')
@@ -1342,6 +1435,26 @@ def retrieve_data(recursive_arxml, simple_arxml, recursive_config, simple_config
                     definition.text = "/TS_2018_01/NvDM/NvDMBlockDescriptor/NvDMSafetyBlock"
                     value = etree.SubElement(ecuc_numerical_NvDMSafetyBlock, 'VALUE')
                     if block['SDF'] == 'true':
+                        value.text = '1'
+                    else:
+                        value.text = '0'
+                    # NvDMConsistency
+                    ecuc_numerical_NvDMConsistency = etree.SubElement(parameter, 'ECUC-NUMERICAL-PARAM-VALUE')
+                    definition = etree.SubElement(ecuc_numerical_NvDMConsistency, 'DEFINITION-REF')
+                    definition.attrib['DEST'] = "ECUC-BOOLEAN-PARAM-DEF"
+                    definition.text = "/TS_2018_01/NvDM/NvDMBlockDescriptor/NvDMConsistency"
+                    value = etree.SubElement(ecuc_numerical_NvDMConsistency, 'VALUE')
+                    if profile['CONSISTENCY'] == 'true':
+                        value.text = '1'
+                    else:
+                        value.text = '0'
+                    # NvDMCRC
+                    ecuc_numerical_NvDMCRC = etree.SubElement(parameter, 'ECUC-NUMERICAL-PARAM-VALUE')
+                    definition = etree.SubElement(ecuc_numerical_NvDMCRC, 'DEFINITION-REF')
+                    definition.attrib['DEST'] = "ECUC-BOOLEAN-PARAM-DEF"
+                    definition.text = "/TS_2018_01/NvDM/NvDMBlockDescriptor/NvDMCRC"
+                    value = etree.SubElement(ecuc_numerical_NvDMCRC, 'VALUE')
+                    if profile['CRC'] == 'true':
                         value.text = '1'
                     else:
                         value.text = '0'
