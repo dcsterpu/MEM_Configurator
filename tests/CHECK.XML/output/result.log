@@ -1,11 +1,11 @@
-2018-05-25 09:29:34,725 INFO The file: ./tests\CHECK.XML\input\ASWC_A26.aswc.arxml is well-formed
-2018-05-25 09:29:34,742 INFO The file: ./tests\CHECK.XML\input\ASWC_A26.aswc.arxml is valid with the provided xsd schema
-2018-05-25 09:29:34,759 INFO The file: ./tests\CHECK.XML\input\ASWC_A27.aswc.arxml is well-formed
-2018-05-25 09:29:34,769 INFO The file: ./tests\CHECK.XML\input\ASWC_A27.aswc.arxml is valid with the provided xsd schema
-2018-05-25 09:29:34,773 INFO The file: ./tests\CHECK.XML\input\AUTOSAR_Datatypes.arxml is well-formed
-2018-05-25 09:29:34,775 INFO The file: ./tests\CHECK.XML\input\AUTOSAR_Datatypes.arxml is valid with the provided xsd schema
-2018-05-25 09:29:34,866 INFO The file: ./tests\CHECK.XML\input\SystemGenerated.arxml is well-formed
-2018-05-25 09:29:34,914 INFO The file: ./tests\CHECK.XML\input\SystemGenerated.arxml is valid with the provided xsd schema
-2018-05-25 09:29:34,966 INFO The file: ./tests\CHECK.XML\input\VSM_Types.arxml is well-formed
-2018-05-25 09:29:34,967 INFO The file: ./tests\CHECK.XML\input\VSM_Types.arxml is valid with the provided xsd schema
-2018-05-25 09:29:34,968 ERROR The file: ./tests\CHECK.XML\input\ASWC_A26.config_mem.xml is not well-formed: ./tests\CHECK.XML\input\ASWC_A26.config_mem.xml:22:0: junk after document element
+2018-06-11 10:17:03,542 INFO The file: ./tests\CHECK.XML\input\ASWC_A26.aswc.arxml is well-formed
+2018-06-11 10:17:03,562 INFO The file: ./tests\CHECK.XML\input\ASWC_A26.aswc.arxml is valid with the provided xsd schema
+2018-06-11 10:17:03,579 INFO The file: ./tests\CHECK.XML\input\ASWC_A27.aswc.arxml is well-formed
+2018-06-11 10:17:03,593 INFO The file: ./tests\CHECK.XML\input\ASWC_A27.aswc.arxml is valid with the provided xsd schema
+2018-06-11 10:17:03,600 INFO The file: ./tests\CHECK.XML\input\AUTOSAR_Datatypes.arxml is well-formed
+2018-06-11 10:17:03,603 INFO The file: ./tests\CHECK.XML\input\AUTOSAR_Datatypes.arxml is valid with the provided xsd schema
+2018-06-11 10:17:03,695 INFO The file: ./tests\CHECK.XML\input\SystemGenerated.arxml is well-formed
+2018-06-11 10:17:03,743 INFO The file: ./tests\CHECK.XML\input\SystemGenerated.arxml is valid with the provided xsd schema
+2018-06-11 10:17:03,790 INFO The file: ./tests\CHECK.XML\input\VSM_Types.arxml is well-formed
+2018-06-11 10:17:03,792 INFO The file: ./tests\CHECK.XML\input\VSM_Types.arxml is valid with the provided xsd schema
+2018-06-11 10:17:03,794 ERROR The file: ./tests\CHECK.XML\input\ASWC_A26.config_mem.xml is not well-formed: ./tests\CHECK.XML\input\ASWC_A26.config_mem.xml:22:0: junk after document element

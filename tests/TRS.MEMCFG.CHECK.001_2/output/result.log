@@ -1,22 +1,23 @@
-2018-05-25 09:29:41,634 INFO The file: ./tests\TRS.MEMCFG.CHECK.001_2\input\ASWC_A26.config_mem.xml is well-formed
-2018-05-25 09:29:41,635 WARNING The file: ./tests\TRS.MEMCFG.CHECK.001_2\input\ASWC_A26.config_mem.xml is NOT valid with the provided xsd schema
-2018-05-25 09:29:41,636 INFO The file: ./tests\TRS.MEMCFG.CHECK.001_2\input\ASWC_A27.config_mem.xml is well-formed
-2018-05-25 09:29:41,637 WARNING The file: ./tests\TRS.MEMCFG.CHECK.001_2\input\ASWC_A27.config_mem.xml is NOT valid with the provided xsd schema
-2018-05-25 09:29:41,638 INFO The file: ./tests\TRS.MEMCFG.CHECK.001_2\input\CompiledConfigID.xml is well-formed
-2018-05-25 09:29:41,639 INFO The file: ./tests\TRS.MEMCFG.CHECK.001_2\input\CompiledConfigID.xml is valid with the provided xsd schema
-2018-05-25 09:29:41,641 INFO The file: ./tests\TRS.MEMCFG.CHECK.001_2\input\Profiles_cleaned.xml is well-formed
-2018-05-25 09:29:41,642 WARNING The file: ./tests\TRS.MEMCFG.CHECK.001_2\input\Profiles_cleaned.xml is NOT valid with the provided xsd schema
-2018-05-25 09:29:41,645 ERROR Different profiles defined for same block: Default_App_Ram_Implicit_RAR
-2018-05-25 09:29:41,645 ERROR Different profiles defined for same block: Default_App_Ram_Implicit_RAR
-2018-05-25 09:29:41,645 ERROR Interface: /RootP_SR_Data/SR_ConsoMoyenneHY1 of block Default_App_Ram_Implicit_RAR is not present in the arxml files
-2018-05-25 09:29:41,645 ERROR Interface: /RootP_SR_Data/SR_SAV_ConsoLisse of block Default_App_Ram_Implicit_RAR is not present in the arxml files
-2018-05-25 09:29:41,646 ERROR Interface: /RootP_SR_Data/SR_ConsoAutonomieGM of block Default_App_Ram_Implicit_RAR is not present in the arxml files
-2018-05-25 09:29:41,646 ERROR Interface: /RootP_SR_Data/SR_SEC_Affichage of block Default_App_Ram_Implicit_RAR is not present in the arxml files
-2018-05-25 09:29:41,646 ERROR Interface: /RootP_SR_Data/SR_SEC_EtatProgRevGEEAQEB of block Default_App_Ram_Implicit_RAR is not present in the arxml files
-2018-05-25 09:29:41,646 ERROR Interface: /RootP_SR_Data/SR_SEC_EtatProgRevGEEDCM of block Default_App_Ram_Implicit_RAR is not present in the arxml files
-2018-05-25 09:29:41,646 ERROR Interface: /RootP_SR_Data/SR_SEC_EtatProgRevPrecond of block Default_App_Ram_Implicit_RAR is not present in the arxml files
-2018-05-25 09:29:41,646 ERROR Interface: /RootP_SR_Data/SR_SEC_EtatProgRevPrecondElec of block Default_App_Ram_Implicit_RAR is not present in the arxml files
-2018-05-25 09:29:41,647 ERROR Interface: /RootP_SR_Data/SR_SEC_EtatProgRevPrecondTherm of block Default_App_Ram_Implicit_RAR is not present in the arxml files
-2018-05-25 09:29:41,647 ERROR Interface: /RootP_SR_Data/SR_SEC_EtatProgRevRTAB of block Default_App_Ram_Implicit_RAR is not present in the arxml files
-2018-05-25 09:29:41,647 ERROR Interface: /RootP_SR_Data/SR_SEC_HProgRevPrecondTherm of block Default_App_Ram_Implicit_RAR is not present in the arxml files
-2018-05-25 09:29:41,647 ERROR Interface: /RootP_SR_Data/SR_SEC_TypeAffichageHorloge of block Default_App_Ram_Implicit_RAR is not present in the arxml files
+2018-06-11 10:17:10,125 INFO The file: ./tests\TRS.MEMCFG.CHECK.001_2\input\ASWC_A26.config_mem.xml is well-formed
+2018-06-11 10:17:10,125 WARNING The file: ./tests\TRS.MEMCFG.CHECK.001_2\input\ASWC_A26.config_mem.xml is NOT valid with the provided xsd schema
+2018-06-11 10:17:10,126 INFO The file: ./tests\TRS.MEMCFG.CHECK.001_2\input\ASWC_A27.config_mem.xml is well-formed
+2018-06-11 10:17:10,127 WARNING The file: ./tests\TRS.MEMCFG.CHECK.001_2\input\ASWC_A27.config_mem.xml is NOT valid with the provided xsd schema
+2018-06-11 10:17:10,127 INFO The file: ./tests\TRS.MEMCFG.CHECK.001_2\input\CompiledConfigID.xml is well-formed
+2018-06-11 10:17:10,127 INFO The file: ./tests\TRS.MEMCFG.CHECK.001_2\input\CompiledConfigID.xml is valid with the provided xsd schema
+2018-06-11 10:17:10,128 INFO The file: ./tests\TRS.MEMCFG.CHECK.001_2\input\Profiles_cleaned.xml is well-formed
+2018-06-11 10:17:10,129 WARNING The file: ./tests\TRS.MEMCFG.CHECK.001_2\input\Profiles_cleaned.xml is NOT valid with the provided xsd schema
+2018-06-11 10:17:10,131 ERROR Different profiles defined for same block: Default_App_Ram_Implicit_RAR
+2018-06-11 10:17:10,131 ERROR Different profiles defined for same block: Default_App_Ram_Implicit_RAR
+2018-06-11 10:17:10,131 ERROR Port: /RootP_ASWC_A26/ASWC_A26/PRP_SR_Autonomie of block Default_App_Ram_Implicit_RAR is not present in the arxml files
+2018-06-11 10:17:10,131 ERROR Port: /RootP_ASWC_A26/ASWC_A26/PRP_SR_AutonomieGPL of block Default_App_Ram_Implicit_RAR is not present in the arxml files
+2018-06-11 10:17:10,131 ERROR Port: /RootP_ASWC_A26/ASWC_A26/PRP_SR_AutonomieInvalide of block Default_App_Ram_Implicit_RAR is not present in the arxml files
+2018-06-11 10:17:10,131 ERROR Port: /RootP_ASWC_A26/ASWC_A26/PRP_SR_AutonomieTOTAL of block Default_App_Ram_Implicit_RAR is not present in the arxml files
+2018-06-11 10:17:10,131 ERROR Port: /RootP_ASWC_A26/ASWC_A26/PRP_SR_Conso_WH_Gain5 of block Default_App_Ram_Implicit_RAR is not present in the arxml files
+2018-06-11 10:17:10,131 ERROR Port: /RootP_ASWC_A26/ASWC_A26/PRP_SR_Conso_WH_Gain6 of block Default_App_Ram_Implicit_RAR is not present in the arxml files
+2018-06-11 10:17:10,132 ERROR Port: /RootP_ASWC_A26/ASWC_A26/PRP_SR_PseudoConsoInvalide of block Default_App_Ram_Implicit_RAR is not present in the arxml files
+2018-06-11 10:17:10,132 ERROR Port: /RootP_ASWC_A27/ASWC_A27/PRP_SR_AnneePourAff of block Default_App_Ram_Implicit_RAR is not present in the arxml files
+2018-06-11 10:17:10,132 ERROR Port: /RootP_ASWC_A27/ASWC_A27/PRP_SR_CptTempVehicule of block Default_App_Ram_Implicit_RAR is not present in the arxml files
+2018-06-11 10:17:10,132 ERROR Port: /RootP_ASWC_A27/ASWC_A27/PRP_SR_HeureCAN of block Default_App_Ram_Implicit_RAR is not present in the arxml files
+2018-06-11 10:17:10,132 ERROR Port: /RootP_ASWC_A27/ASWC_A27/PRP_SR_Jour of block Default_App_Ram_Implicit_RAR is not present in the arxml files
+2018-06-11 10:17:10,132 ERROR Port: /RootP_ASWC_A27/ASWC_A27/PRP_SR_MinuteCAN of block Default_App_Ram_Implicit_RAR is not present in the arxml files
+2018-06-11 10:17:10,132 ERROR Port: /RootP_ASWC_A27/ASWC_A27/PRP_SR_Mois of block Default_App_Ram_Implicit_RAR is not present in the arxml files

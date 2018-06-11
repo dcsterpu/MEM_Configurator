@@ -1,16 +1,16 @@
-2018-05-25 09:30:06,478 INFO The file: ./tests\TRS.MEMCFG.FUNC.005\input\ASWC_A26.aswc.arxml is well-formed
-2018-05-25 09:30:06,493 INFO The file: ./tests\TRS.MEMCFG.FUNC.005\input\ASWC_A26.aswc.arxml is valid with the provided xsd schema
-2018-05-25 09:30:06,496 INFO The file: ./tests\TRS.MEMCFG.FUNC.005\input\AUTOSAR_Datatypes.arxml is well-formed
-2018-05-25 09:30:06,497 INFO The file: ./tests\TRS.MEMCFG.FUNC.005\input\AUTOSAR_Datatypes.arxml is valid with the provided xsd schema
-2018-05-25 09:30:06,574 INFO The file: ./tests\TRS.MEMCFG.FUNC.005\input\SystemGenerated.arxml is well-formed
-2018-05-25 09:30:06,613 INFO The file: ./tests\TRS.MEMCFG.FUNC.005\input\SystemGenerated.arxml is valid with the provided xsd schema
-2018-05-25 09:30:06,654 INFO The file: ./tests\TRS.MEMCFG.FUNC.005\input\VSM_Types.arxml is well-formed
-2018-05-25 09:30:06,655 INFO The file: ./tests\TRS.MEMCFG.FUNC.005\input\VSM_Types.arxml is valid with the provided xsd schema
-2018-05-25 09:30:06,656 INFO The file: ./tests\TRS.MEMCFG.FUNC.005\input\ASWC_A26.config_mem.xml is well-formed
-2018-05-25 09:30:06,656 WARNING The file: ./tests\TRS.MEMCFG.FUNC.005\input\ASWC_A26.config_mem.xml is NOT valid with the provided xsd schema
-2018-05-25 09:30:06,657 INFO The file: ./tests\TRS.MEMCFG.FUNC.005\input\CompiledConfigID.xml is well-formed
-2018-05-25 09:30:06,657 INFO The file: ./tests\TRS.MEMCFG.FUNC.005\input\CompiledConfigID.xml is valid with the provided xsd schema
-2018-05-25 09:30:06,658 INFO The file: ./tests\TRS.MEMCFG.FUNC.005\input\Profiles_cleaned.xml is well-formed
-2018-05-25 09:30:06,659 WARNING The file: ./tests\TRS.MEMCFG.FUNC.005\input\Profiles_cleaned.xml is NOT valid with the provided xsd schema
-2018-05-25 09:30:06,727 WARNING The file: NvM.epc is NOT valid with the provided xsd schema
-2018-05-25 09:30:06,735 WARNING The file: NvDM.epc is NOT valid with the provided xsd schema
+2018-06-11 10:17:34,704 INFO The file: ./tests\TRS.MEMCFG.FUNC.005\input\ASWC_A26.aswc.arxml is well-formed
+2018-06-11 10:17:34,721 INFO The file: ./tests\TRS.MEMCFG.FUNC.005\input\ASWC_A26.aswc.arxml is valid with the provided xsd schema
+2018-06-11 10:17:34,725 INFO The file: ./tests\TRS.MEMCFG.FUNC.005\input\AUTOSAR_Datatypes.arxml is well-formed
+2018-06-11 10:17:34,726 INFO The file: ./tests\TRS.MEMCFG.FUNC.005\input\AUTOSAR_Datatypes.arxml is valid with the provided xsd schema
+2018-06-11 10:17:34,802 INFO The file: ./tests\TRS.MEMCFG.FUNC.005\input\SystemGenerated.arxml is well-formed
+2018-06-11 10:17:34,842 INFO The file: ./tests\TRS.MEMCFG.FUNC.005\input\SystemGenerated.arxml is valid with the provided xsd schema
+2018-06-11 10:17:34,883 INFO The file: ./tests\TRS.MEMCFG.FUNC.005\input\VSM_Types.arxml is well-formed
+2018-06-11 10:17:34,884 INFO The file: ./tests\TRS.MEMCFG.FUNC.005\input\VSM_Types.arxml is valid with the provided xsd schema
+2018-06-11 10:17:34,885 INFO The file: ./tests\TRS.MEMCFG.FUNC.005\input\ASWC_A26.config_mem.xml is well-formed
+2018-06-11 10:17:34,886 WARNING The file: ./tests\TRS.MEMCFG.FUNC.005\input\ASWC_A26.config_mem.xml is NOT valid with the provided xsd schema
+2018-06-11 10:17:34,886 INFO The file: ./tests\TRS.MEMCFG.FUNC.005\input\CompiledConfigID.xml is well-formed
+2018-06-11 10:17:34,887 INFO The file: ./tests\TRS.MEMCFG.FUNC.005\input\CompiledConfigID.xml is valid with the provided xsd schema
+2018-06-11 10:17:34,888 INFO The file: ./tests\TRS.MEMCFG.FUNC.005\input\Profiles_cleaned.xml is well-formed
+2018-06-11 10:17:34,888 WARNING The file: ./tests\TRS.MEMCFG.FUNC.005\input\Profiles_cleaned.xml is NOT valid with the provided xsd schema
+2018-06-11 10:17:34,973 WARNING The file: NvM.epc is NOT valid with the provided xsd schema
+2018-06-11 10:17:34,981 WARNING The file: NvDM.epc is NOT valid with the provided xsd schema

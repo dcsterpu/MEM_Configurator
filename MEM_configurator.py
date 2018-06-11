@@ -1069,7 +1069,7 @@ def retrieve_data(recursive_arxml, simple_arxml, recursive_config, simple_config
         short_name = etree.SubElement(ecuc_module, 'SHORT-NAME').text = "NvM"
         definition = etree.SubElement(ecuc_module, 'DEFINITION-REF')
         definition.attrib['DEST'] = "ECUC-MODULE-DEF"
-        definition.text = "/TS_TxDxM6I16R0/NvM"
+        definition.text = "/AUTOSAR/EcuDefs/NvM"
         implementation = etree.SubElement(ecuc_module, 'IMPLEMENTATION-CONFIG-VARIANT').text = "VARIANT-PRE-COMPILE"
         containers = etree.SubElement(ecuc_module, 'CONTAINERS')
         # common data
@@ -1077,162 +1077,162 @@ def retrieve_data(recursive_arxml, simple_arxml, recursive_config, simple_config
         short_name = etree.SubElement(ecuc_container, 'SHORT-NAME').text = "NvMCommon"
         definition = etree.SubElement(ecuc_container, 'DEFINITION-REF')
         definition.attrib['DEST'] = "ECUC-PARAM-CONF-CONTAINER-DEF"
-        definition.text = "/TS_TxDxM6I16R0/NvM/NvMCommon"
+        definition.text = "/AUTOSAR/EcuDefs/NvM/NvMCommon"
         parameter = etree.SubElement(ecuc_container, 'PARAMETER-VALUES')
         ecuc_numerical_CompiledConfigID = etree.SubElement(parameter, 'ECUC-NUMERICAL-PARAM-VALUE')
         definition = etree.SubElement(ecuc_numerical_CompiledConfigID, 'DEFINITION-REF')
         definition.attrib['DEST'] = "ECUC-INTEGER-PARAM-DEF"
-        definition.text = "/TS_TxDxM6I16R0/NvM/NvMCommon/NvMCompiledConfigId"
+        definition.text = "/AUTOSAR/EcuDefs/NvM/NvMCommon/NvMCompiledConfigId"
         value = etree.SubElement(ecuc_numerical_CompiledConfigID, 'VALUE').text = config_ids[0]
         for block in nvm_blocks:
             ecuc_container = etree.SubElement(containers, 'ECUC-CONTAINER-VALUE')
             short_name = etree.SubElement(ecuc_container, 'SHORT-NAME').text = "NvM_" + block['NAME']
             definition = etree.SubElement(ecuc_container, 'DEFINITION-REF')
             definition.attrib['DEST'] = "ECUC-PARAM-CONF-CONTAINER-DEF"
-            definition.text = "/TS_TxDxM6I16R0/NvM/NvMBlockDescriptor"
+            definition.text = "/AUTOSAR/EcuDefs/NvM/NvMBlockDescriptor"
             parameter = etree.SubElement(ecuc_container, 'PARAMETER-VALUES')
             # NvMNvramBlockIdentifier
             ecuc_numerical_NvMNvramBlockIdentifier = etree.SubElement(parameter, 'ECUC-NUMERICAL-PARAM-VALUE')
             definition = etree.SubElement(ecuc_numerical_NvMNvramBlockIdentifier, 'DEFINITION-REF')
             definition.attrib['DEST'] = "ECUC-INTEGER-PARAM-DEF"
-            definition.text = "/TS_TxDxM6I16R0/NvM/NvMBlockDescriptor/NvMNvramBlockIdentifier"
+            definition.text = "/AUTOSAR/EcuDefs/NvM/NvMBlockDescriptor/NvMNvramBlockIdentifier"
             value = etree.SubElement(ecuc_numerical_NvMNvramBlockIdentifier, 'VALUE').text = str(block['NvMNvramBlockIdentifier'])
             # NvMNvBlockNum
             ecuc_numerical_NvMNvBlockNum = etree.SubElement(parameter, 'ECUC-NUMERICAL-PARAM-VALUE')
             definition = etree.SubElement(ecuc_numerical_NvMNvBlockNum, 'DEFINITION-REF')
             definition.attrib['DEST'] = "ECUC-INTEGER-PARAM-DEF"
-            definition.text = "/TS_TxDxM6I16R0/NvM/NvMBlockDescriptor/NvMNvBlockNum"
+            definition.text = "/AUTOSAR/EcuDefs/NvM/NvMBlockDescriptor/NvMNvBlockNum"
             value = etree.SubElement(ecuc_numerical_NvMNvBlockNum, 'VALUE').text = str(block['NvMNvBlockNum'])
             # NvMNvBlockLength
             ecuc_numerical_NvMNvBlockLength = etree.SubElement(parameter, 'ECUC-NUMERICAL-PARAM-VALUE')
             definition = etree.SubElement(ecuc_numerical_NvMNvBlockLength, 'DEFINITION-REF')
             definition.attrib['DEST'] = "ECUC-INTEGER-PARAM-DEF"
-            definition.text = "/TS_TxDxM6I16R0/NvM/NvMBlockDescriptor/NvMNvBlockLength"
+            definition.text = "/AUTOSAR/EcuDefs/NvM/NvMBlockDescriptor/NvMNvBlockLength"
             value = etree.SubElement(ecuc_numerical_NvMNvBlockLength, 'VALUE').text = str(block['NvMNvBlockLength'])
             # NvMRomBlockDataAddress
             ecuc_textual_NvMRomBlockDataAddress = etree.SubElement(parameter, 'ECUC-TEXTUAL-PARAM-VALUE')
             definition = etree.SubElement(ecuc_textual_NvMRomBlockDataAddress, 'DEFINITION-REF')
             definition.attrib['DEST'] = "ECUC-STRING-PARAM-DEF"
-            definition.text = "/TS_TxDxM6I16R0/NvM/NvMBlockDescriptor/NvMRomBlockDataAddress"
+            definition.text = "/AUTOSAR/EcuDefs/NvM/NvMBlockDescriptor/NvMRomBlockDataAddress"
             value = etree.SubElement(ecuc_textual_NvMRomBlockDataAddress, 'VALUE').text = block['NvMRomBlockDataAddress']
             # NvMRamBlockDataAddress
             ecuc_textual_NvMRamBlockDataAddress = etree.SubElement(parameter, 'ECUC-TEXTUAL-PARAM-VALUE')
             definition = etree.SubElement(ecuc_textual_NvMRamBlockDataAddress, 'DEFINITION-REF')
             definition.attrib['DEST'] = "ECUC-STRING-PARAM-DEF"
-            definition.text = "/TS_TxDxM6I16R0/NvM/NvMBlockDescriptor/NvMRamBlockDataAddress"
+            definition.text = "/AUTOSAR/EcuDefs/NvM/NvMBlockDescriptor/NvMRamBlockDataAddress"
             value = etree.SubElement(ecuc_textual_NvMRamBlockDataAddress, 'VALUE').text = block['NvMRamBlockDataAddress']
             # NvMSingleBlockCallback
             if block['NvMSingleBlockCallback'] is not None:
                 ecuc_textual_NvMSingleBlockCallback = etree.SubElement(parameter, 'ECUC-TEXTUAL-PARAM-VALUE')
                 definition = etree.SubElement(ecuc_textual_NvMSingleBlockCallback, 'DEFINITION-REF')
                 definition.attrib['DEST'] = "ECUC-STRING-PARAM-DEF"
-                definition.text = "/TS_TxDxM6I16R0/NvM/NvMBlockDescriptor/NvMSingleBlockCallback"
+                definition.text = "/AUTOSAR/EcuDefs/NvM/NvMBlockDescriptor/NvMSingleBlockCallback"
                 value = etree.SubElement(ecuc_textual_NvMSingleBlockCallback, 'VALUE').text = block['NvMSingleBlockCallback']
             # NvMBlockUseAutoValidation
             ecuc_numerical_NvMBlockUseAutoValidation = etree.SubElement(parameter, 'ECUC-NUMERICAL-PARAM-VALUE')
             definition = etree.SubElement(ecuc_numerical_NvMBlockUseAutoValidation, 'DEFINITION-REF')
             definition.attrib['DEST'] = "ECUC-BOOLEAN-PARAM-DEF"
-            definition.text = "/TS_TxDxM6I16R0/NvM/NvMBlockDescriptor/NvMBlockUseAutoValidation"
+            definition.text = "/AUTOSAR/EcuDefs/NvM/NvMBlockDescriptor/NvMBlockUseAutoValidation"
             value = etree.SubElement(ecuc_numerical_NvMBlockUseAutoValidation, 'VALUE').text = block['NvMBlockUseAutoValidation']
             # NvMStaticBlockIDCheck
             ecuc_numerical_NvMStaticBlockIDCheck = etree.SubElement(parameter, 'ECUC-NUMERICAL-PARAM-VALUE')
             definition = etree.SubElement(ecuc_numerical_NvMStaticBlockIDCheck, 'DEFINITION-REF')
             definition.attrib['DEST'] = "ECUC-BOOLEAN-PARAM-DEF"
-            definition.text = "/TS_TxDxM6I16R0/NvM/NvMBlockDescriptor/NvMStaticBlockIDCheck"
+            definition.text = "/AUTOSAR/EcuDefs/NvM/NvMBlockDescriptor/NvMStaticBlockIDCheck"
             value = etree.SubElement(ecuc_numerical_NvMStaticBlockIDCheck, 'VALUE').text = block['NvMStaticBlockIDCheck']
             # NvMSelectBlockForWriteAll
             if block['NvMSelectBlockForWriteAll'] is not None:
                 ecuc_numerical_NvMSelectBlockForWriteAll = etree.SubElement(parameter, 'ECUC-NUMERICAL-PARAM-VALUE')
                 definition = etree.SubElement(ecuc_numerical_NvMSelectBlockForWriteAll, 'DEFINITION-REF')
                 definition.attrib['DEST'] = "ECUC-BOOLEAN-PARAM-DEF"
-                definition.text = "/TS_TxDxM6I16R0/NvM/NvMBlockDescriptor/NvMSelectBlockForWriteAll"
+                definition.text = "/AUTOSAR/EcuDefs/NvM/NvMBlockDescriptor/NvMSelectBlockForWriteAll"
                 value = etree.SubElement(ecuc_numerical_NvMSelectBlockForWriteAll, 'VALUE').text = block['NvMSelectBlockForWriteAll']
             # NvMSelectBlockForReadAll
             if block['NvMSelectBlockForReadAll'] is not None:
                 ecuc_numerical_NvMSelectBlockForReadAll = etree.SubElement(parameter, 'ECUC-NUMERICAL-PARAM-VALUE')
                 definition = etree.SubElement(ecuc_numerical_NvMSelectBlockForReadAll, 'DEFINITION-REF')
                 definition.attrib['DEST'] = "ECUC-BOOLEAN-PARAM-DEF"
-                definition.text = "/TS_TxDxM6I16R0/NvM/NvMBlockDescriptor/NvMSelectBlockForReadAll"
+                definition.text = "/AUTOSAR/EcuDefs/NvM/NvMBlockDescriptor/NvMSelectBlockForReadAll"
                 value = etree.SubElement(ecuc_numerical_NvMSelectBlockForReadAll, 'VALUE').text = block['NvMSelectBlockForReadAll']
             # NvMResistantToChangedSw
             ecuc_numerical_NvMResistantToChangedSw = etree.SubElement(parameter, 'ECUC-NUMERICAL-PARAM-VALUE')
             definition = etree.SubElement(ecuc_numerical_NvMResistantToChangedSw, 'DEFINITION-REF')
             definition.attrib['DEST'] = "ECUC-BOOLEAN-PARAM-DEF"
-            definition.text = "/TS_TxDxM6I16R0/NvM/NvMBlockDescriptor/NvMResistantToChangedSw"
+            definition.text = "/AUTOSAR/EcuDefs/NvM/NvMBlockDescriptor/NvMResistantToChangedSw"
             value = etree.SubElement(ecuc_numerical_NvMResistantToChangedSw, 'VALUE').text = block['NvMResistantToChangedSw']
             # NvMCalcRamBlockCrc
             if block['NvMCalcRamBlockCrc'] is not None:
                 ecuc_numerical_NvMCalcRamBlockCrc = etree.SubElement(parameter, 'ECUC-NUMERICAL-PARAM-VALUE')
                 definition = etree.SubElement(ecuc_numerical_NvMCalcRamBlockCrc, 'DEFINITION-REF')
                 definition.attrib['DEST'] = "ECUC-BOOLEAN-PARAM-DEF"
-                definition.text = "/TS_TxDxM6I16R0/NvM/NvMBlockDescriptor/NvMCalcRamBlockCrc"
+                definition.text = "/AUTOSAR/EcuDefs/NvM/NvMBlockDescriptor/NvMCalcRamBlockCrc"
                 value = etree.SubElement(ecuc_numerical_NvMCalcRamBlockCrc, 'VALUE').text = block['NvMCalcRamBlockCrc']
             # NvMBlockUseCrc
             ecuc_numerical_NvMBlockUseCrc = etree.SubElement(parameter, 'ECUC-NUMERICAL-PARAM-VALUE')
             definition = etree.SubElement(ecuc_numerical_NvMBlockUseCrc, 'DEFINITION-REF')
             definition.attrib['DEST'] = "ECUC-BOOLEAN-PARAM-DEF"
-            definition.text = "/TS_TxDxM6I16R0/NvM/NvMBlockDescriptor/NvMBlockUseCrc"
+            definition.text = "/AUTOSAR/EcuDefs/NvM/NvMBlockDescriptor/NvMBlockUseCrc"
             value = etree.SubElement(ecuc_numerical_NvMBlockUseCrc, 'VALUE').text = block['NvMBlockUseCrc']
             # NvMBswMBlockStatusInformation
             ecuc_numerical_NvMBswMBlockStatusInformation = etree.SubElement(parameter, 'ECUC-NUMERICAL-PARAM-VALUE')
             definition = etree.SubElement(ecuc_numerical_NvMBswMBlockStatusInformation, 'DEFINITION-REF')
             definition.attrib['DEST'] = "ECUC-BOOLEAN-PARAM-DEF"
-            definition.text = "/TS_TxDxM6I16R0/NvM/NvMBlockDescriptor/NvMBswMBlockStatusInformation"
+            definition.text = "/AUTOSAR/EcuDefs/NvM/NvMBlockDescriptor/NvMBswMBlockStatusInformation"
             value = etree.SubElement(ecuc_numerical_NvMBswMBlockStatusInformation, 'VALUE').text = block['NvMBswMBlockStatusInformation']
             # NvMRomBlockNum
             ecuc_numerical_NvMRomBlockNum = etree.SubElement(parameter, 'ECUC-NUMERICAL-PARAM-VALUE')
             definition = etree.SubElement(ecuc_numerical_NvMRomBlockNum, 'DEFINITION-REF')
             definition.attrib['DEST'] = "ECUC-INTEGER-PARAM-DEF"
-            definition.text = "/TS_TxDxM6I16R0/NvM/NvMBlockDescriptor/NvMRomBlockNum"
+            definition.text = "/AUTOSAR/EcuDefs/NvM/NvMBlockDescriptor/NvMRomBlockNum"
             value = etree.SubElement(ecuc_numerical_NvMRomBlockNum, 'VALUE').text = block['NvMRomBlockNum']
             # NvMNvramDeviceId
             ecuc_numerical_NvMNvramDeviceId = etree.SubElement(parameter, 'ECUC-NUMERICAL-PARAM-VALUE')
             definition = etree.SubElement(ecuc_numerical_NvMNvramDeviceId, 'DEFINITION-REF')
             definition.attrib['DEST'] = "ECUC-INTEGER-PARAM-DEF"
-            definition.text = "/TS_TxDxM6I16R0/NvM/NvMBlockDescriptor/NvMNvramDeviceId"
+            definition.text = "/AUTOSAR/EcuDefs/NvM/NvMBlockDescriptor/NvMNvramDeviceId"
             value = etree.SubElement(ecuc_numerical_NvMNvramDeviceId, 'VALUE').text = block['NvMNvramDeviceId']
             # NvMWriteVerification
             ecuc_numerical_NvMWriteVerification = etree.SubElement(parameter, 'ECUC-NUMERICAL-PARAM-VALUE')
             definition = etree.SubElement(ecuc_numerical_NvMWriteVerification, 'DEFINITION-REF')
             definition.attrib['DEST'] = "ECUC-BOOLEAN-PARAM-DEF"
-            definition.text = "/TS_TxDxM6I16R0/NvM/NvMBlockDescriptor/NvMWriteVerification"
+            definition.text = "/AUTOSAR/EcuDefs/NvM/NvMBlockDescriptor/NvMWriteVerification"
             value = etree.SubElement(ecuc_numerical_NvMWriteVerification, 'VALUE').text = block['NvMWriteVerification']
             # NvMWriteBlockOnce
             ecuc_numerical_NvMWriteBlockOnce = etree.SubElement(parameter, 'ECUC-NUMERICAL-PARAM-VALUE')
             definition = etree.SubElement(ecuc_numerical_NvMWriteBlockOnce, 'DEFINITION-REF')
             definition.attrib['DEST'] = "ECUC-BOOLEAN-PARAM-DEF"
-            definition.text = "/TS_TxDxM6I16R0/NvM/NvMBlockDescriptor/NvMWriteBlockOnce"
+            definition.text = "/AUTOSAR/EcuDefs/NvM/NvMBlockDescriptor/NvMWriteBlockOnce"
             value = etree.SubElement(ecuc_numerical_NvMWriteBlockOnce, 'VALUE').text = block['NvMWriteBlockOnce']
             # NvMMaxNumOfWriteRetries
             ecuc_numerical_NvMMaxNumOfWriteRetries = etree.SubElement(parameter, 'ECUC-NUMERICAL-PARAM-VALUE')
             definition = etree.SubElement(ecuc_numerical_NvMMaxNumOfWriteRetries, 'DEFINITION-REF')
             definition.attrib['DEST'] = "ECUC-INTEGER-PARAM-DEF"
-            definition.text = "/TS_TxDxM6I16R0/NvM/NvMBlockDescriptor/NvMMaxNumOfWriteRetries"
+            definition.text = "/AUTOSAR/EcuDefs/NvM/NvMBlockDescriptor/NvMMaxNumOfWriteRetries"
             value = etree.SubElement(ecuc_numerical_NvMMaxNumOfWriteRetries, 'VALUE').text = block['NvMMaxNumOfWriteRetries']
             # NvMMaxNumOfReadRetries
             ecuc_numerical_NvMMaxNumOfReadRetries = etree.SubElement(parameter, 'ECUC-NUMERICAL-PARAM-VALUE')
             definition = etree.SubElement(ecuc_numerical_NvMMaxNumOfReadRetries, 'DEFINITION-REF')
             definition.attrib['DEST'] = "ECUC-INTEGER-PARAM-DEF"
-            definition.text = "/TS_TxDxM6I16R0/NvM/NvMBlockDescriptor/NvMMaxNumOfReadRetries"
+            definition.text = "/AUTOSAR/EcuDefs/NvM/NvMBlockDescriptor/NvMMaxNumOfReadRetries"
             value = etree.SubElement(ecuc_numerical_NvMMaxNumOfReadRetries, 'VALUE').text = block['NvMMaxNumOfReadRetries']
             # NvMBlockJobPriority
             ecuc_numerical_NvMBlockJobPriority = etree.SubElement(parameter, 'ECUC-NUMERICAL-PARAM-VALUE')
             definition = etree.SubElement(ecuc_numerical_NvMBlockJobPriority, 'DEFINITION-REF')
             definition.attrib['DEST'] = "ECUC-INTEGER-PARAM-DEF"
-            definition.text = "/TS_TxDxM6I16R0/NvM/NvMBlockDescriptor/NvMBlockJobPriority"
+            definition.text = "/AUTOSAR/EcuDefs/NvM/NvMBlockDescriptor/NvMBlockJobPriority"
             value = etree.SubElement(ecuc_numerical_NvMBlockJobPriority, 'VALUE').text = block['NvMBlockJobPriority']
             # NvMBlockManagementType
             ecuc_textual_NvMBlockManagementType = etree.SubElement(parameter, 'ECUC-TEXTUAL-PARAM-VALUE')
             definition = etree.SubElement(ecuc_textual_NvMBlockManagementType, 'DEFINITION-REF')
             definition.attrib['DEST'] = "ECUC-ENUMERATION-PARAM-DEF"
-            definition.text = "/TS_TxDxM6I16R0/NvM/NvMBlockDescriptor/NvMBlockManagementType"
+            definition.text = "/AUTOSAR/EcuDefs/NvM/NvMBlockDescriptor/NvMBlockManagementType"
             value = etree.SubElement(ecuc_textual_NvMBlockManagementType, 'VALUE').text = block['NvMBlockManagementType']
             # NvMBlockCrcType
             if block['NvMBlockCrcType'] is not None:
                 ecuc_textual_NvMBlockCrcType = etree.SubElement(parameter, 'ECUC-TEXTUAL-PARAM-VALUE')
                 definition = etree.SubElement(ecuc_textual_NvMBlockCrcType, 'DEFINITION-REF')
                 definition.attrib['DEST'] = "ECUC-ENUMERATION-PARAM-DEF"
-                definition.text = "/TS_TxDxM6I16R0/NvM/NvMBlockDescriptor/NvMBlockCrcType"
+                definition.text = "/AUTOSAR/EcuDefs/NvM/NvMBlockDescriptor/NvMBlockCrcType"
                 value = etree.SubElement(ecuc_textual_NvMBlockCrcType, 'VALUE').text = block['NvMBlockCrcType']
             # FEE or EA reference
             subcontainers = etree.SubElement(ecuc_container, 'SUB-CONTAINERS')
@@ -1240,31 +1240,31 @@ def retrieve_data(recursive_arxml, simple_arxml, recursive_config, simple_config
             short_name = etree.SubElement(container, 'SHORT-NAME').text = "NvMTargetBlockReference"
             definition = etree.SubElement(container, 'DEFINITION-REF')
             definition.attrib['DEST'] = "ECUC-CHOICE-CONTAINER-DEF"
-            definition.text = "/TS_TxDxM6I16R0/NvM/NvMBlockDescriptor/NvMTargetBlockReference"
+            definition.text = "/AUTOSAR/EcuDefs/NvM/NvMBlockDescriptor/NvMTargetBlockReference"
             subcontainer = etree.SubElement(container, 'SUB-CONTAINERS')
             container_value = etree.SubElement(subcontainer, 'ECUC-CONTAINER-VALUE')
             short_name = etree.SubElement(container_value, 'SHORT-NAME').text = "NvMTargetBlockReference"
             if block['DEVICE'] in ["FEE", "Fee", "fee"]:
                 definition = etree.SubElement(container_value, 'DEFINITION-REF')
                 definition.attrib['DEST'] = "ECUC-PARAM-CONF-CONTAINER-DEF"
-                definition.text = "/TS_TxDxM6I16R0/NvM/NvMBlockDescriptor/NvMTargetBlockReference/NvMFeeRef"
+                definition.text = "/AUTOSAR/EcuDefs/NvM/NvMBlockDescriptor/NvMTargetBlockReference/NvMFeeRef"
                 reference_values = etree.SubElement(container_value, 'REFERENCE-VALUES')
                 ecuc_reference_values = etree.SubElement(reference_values, 'ECUC-REFERENCE-VALUE')
                 definition = etree.SubElement(ecuc_reference_values, 'DEFINITION-REF')
                 definition.attrib['DEST'] = "ECUC-SYMBOLIC-NAME-REFERENCE-DEF"
-                definition.text = "/TS_TxDxM6I16R0/NvM/NvMBlockDescriptor/NvMTargetBlockReference/NvMFeeRef/NvMNameOfFeeBlock"
+                definition.text = "/AUTOSAR/EcuDefs/NvM/NvMBlockDescriptor/NvMTargetBlockReference/NvMFeeRef/NvMNameOfFeeBlock"
                 value = etree.SubElement(ecuc_reference_values, 'VALUE-REF')
                 value.attrib['DEST'] = "ECUC-CONTAINER-VALUE"
                 value.text = ""
             else:
                 definition = etree.SubElement(container_value, 'DEFINITION-REF')
                 definition.attrib['DEST'] = "ECUC-PARAM-CONF-CONTAINER-DEF"
-                definition.text = "/TS_TxDxM6I16R0/NvM/NvMBlockDescriptor/NvMTargetBlockReference/NvMEaRef"
+                definition.text = "/AUTOSAR/EcuDefs/NvM/NvMBlockDescriptor/NvMTargetBlockReference/NvMEaRef"
                 reference_values = etree.SubElement(container_value, 'REFERENCE-VALUES')
                 ecuc_reference_values = etree.SubElement(reference_values, 'ECUC-REFERENCE-VALUE')
                 definition = etree.SubElement(ecuc_reference_values, 'DEFINITION-REF')
                 definition.attrib['DEST'] = "ECUC-SYMBOLIC-NAME-REFERENCE-DEF"
-                definition.text = "/TS_TxDxM6I16R0/NvM/NvMBlockDescriptor/NvMTargetBlockReference/NvMEaRef/NvMNameOfEaBlock"
+                definition.text = "/AUTOSAR/EcuDefs/NvM/NvMBlockDescriptor/NvMTargetBlockReference/NvMEaRef/NvMNameOfEaBlock"
                 value = etree.SubElement(ecuc_reference_values, 'VALUE-REF')
                 value.attrib['DEST'] = "ECUC-CONTAINER-VALUE"
                 value.text = ""
@@ -1288,7 +1288,7 @@ def retrieve_data(recursive_arxml, simple_arxml, recursive_config, simple_config
         short_name = etree.SubElement(ecuc_module, 'SHORT-NAME').text = "NvDM"
         definition = etree.SubElement(ecuc_module, 'DEFINITION-REF')
         definition.attrib['DEST'] = "ECUC-MODULE-DEF"
-        definition.text = "/TS_2018_01/NvDM"
+        definition.text = "/AUTOSAR/EcuDefs/NvDM"
         implementation = etree.SubElement(ecuc_module, 'IMPLEMENTATION-CONFIG-VARIANT').text = "VARIANT-PRE-COMPILE"
         containers = etree.SubElement(ecuc_module, 'CONTAINERS')
         for block in final_fixed_blocks:
@@ -1296,7 +1296,7 @@ def retrieve_data(recursive_arxml, simple_arxml, recursive_config, simple_config
             short_name = etree.SubElement(ecuc_container, 'SHORT-NAME').text = "NvDM_" + block['NAME']
             definition = etree.SubElement(ecuc_container, 'DEFINITION-REF')
             definition.attrib['DEST'] = "ECUC-PARAM-CONF-CONTAINER-DEF"
-            definition.text = "/TS_2018_01/NvDM/NvDMBlockDescriptor"
+            definition.text = "/AUTOSAR/EcuDefs/NvDM/NvDMBlockDescriptor"
             parameter = etree.SubElement(ecuc_container, 'PARAMETER-VALUES')
             for profile in profiles:
                 if profile['NAME'] == block['PROFILE']:
@@ -1304,13 +1304,13 @@ def retrieve_data(recursive_arxml, simple_arxml, recursive_config, simple_config
                     ecuc_textual_NvDMDurability = etree.SubElement(parameter, 'ECUC-TEXTUAL-PARAM-VALUE')
                     definition = etree.SubElement(ecuc_textual_NvDMDurability, 'DEFINITION-REF')
                     definition.attrib['DEST'] = "ECUC-ENUMERATION-PARAM-DEF"
-                    definition.text = "/TS_2018_01/NvDM/NvDMBlockDescriptor/NvDMDurability"
+                    definition.text = "/AUTOSAR/EcuDefs/NvDM/NvDMBlockDescriptor/NvDMDurability"
                     value = etree.SubElement(ecuc_textual_NvDMDurability, 'VALUE').text = profile['DURABILITY']
                     # NvDMSafetyBlock
                     ecuc_numerical_NvDMSafetyBlock = etree.SubElement(parameter, 'ECUC-NUMERICAL-PARAM-VALUE')
                     definition = etree.SubElement(ecuc_numerical_NvDMSafetyBlock, 'DEFINITION-REF')
                     definition.attrib['DEST'] = "ECUC-BOOLEAN-PARAM-DEF"
-                    definition.text = "/TS_2018_01/NvDM/NvDMBlockDescriptor/NvDMSafetyBlock"
+                    definition.text = "/AUTOSAR/EcuDefs/NvDM/NvDMBlockDescriptor/NvDMSafetyBlock"
                     value = etree.SubElement(ecuc_numerical_NvDMSafetyBlock, 'VALUE')
                     if block['SDF'] == 'true':
                         value.text = '1'
@@ -1320,7 +1320,7 @@ def retrieve_data(recursive_arxml, simple_arxml, recursive_config, simple_config
                     ecuc_numerical_NvDMConsistency = etree.SubElement(parameter, 'ECUC-NUMERICAL-PARAM-VALUE')
                     definition = etree.SubElement(ecuc_numerical_NvDMConsistency, 'DEFINITION-REF')
                     definition.attrib['DEST'] = "ECUC-BOOLEAN-PARAM-DEF"
-                    definition.text = "/TS_2018_01/NvDM/NvDMBlockDescriptor/NvDMConsistency"
+                    definition.text = "/AUTOSAR/EcuDefs/NvDM/NvDMBlockDescriptor/NvDMConsistency"
                     value = etree.SubElement(ecuc_numerical_NvDMConsistency, 'VALUE')
                     if profile['CONSISTENCY'] == 'true':
                         value.text = '1'
@@ -1330,7 +1330,7 @@ def retrieve_data(recursive_arxml, simple_arxml, recursive_config, simple_config
                     ecuc_numerical_NvDMCRC = etree.SubElement(parameter, 'ECUC-NUMERICAL-PARAM-VALUE')
                     definition = etree.SubElement(ecuc_numerical_NvDMCRC, 'DEFINITION-REF')
                     definition.attrib['DEST'] = "ECUC-BOOLEAN-PARAM-DEF"
-                    definition.text = "/TS_2018_01/NvDM/NvDMBlockDescriptor/NvDMCRC"
+                    definition.text = "/AUTOSAR/EcuDefs/NvDM/NvDMBlockDescriptor/NvDMCRC"
                     value = etree.SubElement(ecuc_numerical_NvDMCRC, 'VALUE')
                     if profile['CRC'] == 'true':
                         value.text = '1'
@@ -1340,37 +1340,37 @@ def retrieve_data(recursive_arxml, simple_arxml, recursive_config, simple_config
                     ecuc_numerical_NvDMWriteTimeout = etree.SubElement(parameter, 'ECUC-NUMERICAL-PARAM-VALUE')
                     definition = etree.SubElement(ecuc_numerical_NvDMWriteTimeout, 'DEFINITION-REF')
                     definition.attrib['DEST'] = "ECUC-FLOAT-PARAM-DEF"
-                    definition.text = "/TS_2018_01/NvDM/NvDMBlockDescriptor/NvDMWriteTimeout"
+                    definition.text = "/AUTOSAR/EcuDefs/NvDM/NvDMBlockDescriptor/NvDMWriteTimeout"
                     value = etree.SubElement(ecuc_numerical_NvDMWriteTimeout, 'VALUE').text = block['TIMEOUT']
                     # NvDMWritingManagement
                     ecuc_textual_NvDMWritingManagement = etree.SubElement(parameter, 'ECUC-TEXTUAL-PARAM-VALUE')
                     definition = etree.SubElement(ecuc_textual_NvDMWritingManagement, 'DEFINITION-REF')
                     definition.attrib['DEST'] = "ECUC-ENUMERATION-PARAM-DEF"
-                    definition.text = "/TS_2018_01/NvDM/NvDMBlockDescriptor/NvDMWritingManagement"
+                    definition.text = "/AUTOSAR/EcuDefs/NvDM/NvDMBlockDescriptor/NvDMWritingManagement"
                     value = etree.SubElement(ecuc_textual_NvDMWritingManagement, 'VALUE').text = profile['MANAGEMENT']
                     # NvDMProfile
                     ecuc_textual_NvDMProfile = etree.SubElement(parameter, 'ECUC-TEXTUAL-PARAM-VALUE')
                     definition = etree.SubElement(ecuc_textual_NvDMProfile, 'DEFINITION-REF')
                     definition.attrib['DEST'] = "ECUC-ENUMERATION-PARAM-DEF"
-                    definition.text = "/TS_2018_01/NvDM/NvDMBlockDescriptor/NvDMProfile"
+                    definition.text = "/AUTOSAR/EcuDefs/NvDM/NvDMBlockDescriptor/NvDMProfile"
                     value = etree.SubElement(ecuc_textual_NvDMProfile, 'VALUE').text = profile['NAME']
                     # NvDMBlockSize
                     ecuc_numerical_NvDMBlockSize = etree.SubElement(parameter, 'ECUC-NUMERICAL-PARAM-VALUE')
                     definition = etree.SubElement(ecuc_numerical_NvDMBlockSize, 'DEFINITION-REF')
                     definition.attrib['DEST'] = "ECUC-INTEGER-PARAM-DEF"
-                    definition.text = "/TS_2018_01/NvDM/NvDMBlockDescriptor/NvDMBlockSize"
+                    definition.text = "/AUTOSAR/EcuDefs/NvDM/NvDMBlockDescriptor/NvDMBlockSize"
                     value = etree.SubElement(ecuc_numerical_NvDMBlockSize, 'VALUE').text = str(block['SIZE'])
                     # NvDMBlockID
                     ecuc_numerical_NvDMBlockID = etree.SubElement(parameter, 'ECUC-NUMERICAL-PARAM-VALUE')
                     definition = etree.SubElement(ecuc_numerical_NvDMBlockID, 'DEFINITION-REF')
                     definition.attrib['DEST'] = "ECUC-INTEGER-PARAM-DEF"
-                    definition.text = "/TS_2018_01/NvDM/NvDMBlockDescriptor/NvDMBlockID"
+                    definition.text = "/AUTOSAR/EcuDefs/NvDM/NvDMBlockDescriptor/NvDMBlockID"
                     value = etree.SubElement(ecuc_numerical_NvDMBlockID, 'VALUE').text = str(block['ID'])
             reference = etree.SubElement(ecuc_container, 'REFERENCE-VALUES')
             ecuc_container_reference = etree.SubElement(reference, 'ECUC-REFERENCE-VALUE')
             ecuc_reference = etree.SubElement(ecuc_container_reference, 'DEFINITION-REF')
             ecuc_reference.attrib['DEST'] = "ECUC-REFERENCE-DEF"
-            ecuc_reference.text = "/TS_2018_01/NvDM/NvDMBlockDescriptor/NvDMNvMBlockDescriptorRef"
+            ecuc_reference.text = "/AUTOSAR/EcuDefs/NvDM/NvDMBlockDescriptor/NvDMNvMBlockDescriptorRef"
             value = etree.SubElement(ecuc_container_reference, 'VALUE-REF')
             value.attrib['DEST'] = "ECUC-CONTAINER-VALUE"
             value.text = "/NvM/NvM/NvM_" + block['NAME']
@@ -1382,33 +1382,33 @@ def retrieve_data(recursive_arxml, simple_arxml, recursive_config, simple_config
                 index = index + 1
                 definition = etree.SubElement(ecuc_container, 'DEFINITION-REF')
                 definition.attrib['DEST'] = "ECUC-PARAM-CONF-CONTAINER-DEF"
-                definition.text = "/TS_2018_01/NvDM/NvDMBlockDescriptor/NvDMVariableDataPrototype"
+                definition.text = "/AUTOSAR/EcuDefs/NvDM/NvDMBlockDescriptor/NvDMVariableDataPrototype"
                 parameter = etree.SubElement(ecuc_container, 'PARAMETER-VALUES')
                 ecuc_reference_values = etree.SubElement(parameter, 'ECUC-NUMERICAL-PARAM-VALUE')
                 definition = etree.SubElement(ecuc_reference_values, 'DEFINITION-REF')
                 definition.attrib['DEST'] = "ECUC-FLOAT-PARAM-DEF"
-                definition.text = "/TS_2018_01/NvDM/NvDMBlockDescriptor/NvDMVariableDataPrototype/NvDMInitValue"
+                definition.text = "/AUTOSAR/EcuDefs/NvDM/NvDMBlockDescriptor/NvDMVariableDataPrototype/NvDMInitValue"
                 value = etree.SubElement(ecuc_reference_values, 'VALUE')
                 value.text = element['INIT']
                 reference_values = etree.SubElement(ecuc_container, 'REFERENCE-VALUES')
                 ecuc_reference_values = etree.SubElement(reference_values, 'ECUC-REFERENCE-VALUE')
                 definition = etree.SubElement(ecuc_reference_values, 'DEFINITION-REF')
                 definition.attrib['DEST'] = "ECUC-FOREIGN-REFERENCE-DEF"
-                definition.text = "/TS_2018_01/NvDM/NvDMBlockDescriptor/NvDMVariableDataPrototype/NvDMBaseTypeRef"
+                definition.text = "/AUTOSAR/EcuDefs/NvDM/NvDMBlockDescriptor/NvDMVariableDataPrototype/NvDMBaseTypeRef"
                 value = etree.SubElement(ecuc_reference_values, 'VALUE-REF')
                 value.attrib['DEST'] = "SW-BASE-TYPE"
                 value.text = element['SW-BASE-TYPE']
                 ecuc_reference_values = etree.SubElement(reference_values, 'ECUC-REFERENCE-VALUE')
                 definition = etree.SubElement(ecuc_reference_values, 'DEFINITION-REF')
                 definition.attrib['DEST'] = "ECUC-FOREIGN-REFERENCE-DEF"
-                definition.text = "/TS_2018_01/NvDM/NvDMBlockDescriptor/NvDMVariableDataPrototype/NvDMVariableDataPrototypeRef"
+                definition.text = "/AUTOSAR/EcuDefs/NvDM/NvDMBlockDescriptor/NvDMVariableDataPrototype/NvDMVariableDataPrototypeRef"
                 value = etree.SubElement(ecuc_reference_values, 'VALUE-REF')
                 value.attrib['DEST'] = "VARIABLE-DATA-PROTOTYPE"
                 value.text = element['DATA']
                 ecuc_reference_values = etree.SubElement(reference_values, 'ECUC-REFERENCE-VALUE')
                 definition = etree.SubElement(ecuc_reference_values, 'DEFINITION-REF')
                 definition.attrib['DEST'] = "ECUC-FOREIGN-REFERENCE-DEF"
-                definition.text = "/TS_2018_01/NvDM/NvDMBlockDescriptor/NvDMVariableDataPrototype/NvDMTypeRef"
+                definition.text = "/AUTOSAR/EcuDefs/NvDM/NvDMBlockDescriptor/NvDMVariableDataPrototype/NvDMTypeRef"
                 value = etree.SubElement(ecuc_reference_values, 'VALUE-REF')
                 value.attrib['DEST'] = "IMPLEMENTATION-DATA-TYPE"
                 value.text = element['TYPE']
@@ -1418,7 +1418,7 @@ def retrieve_data(recursive_arxml, simple_arxml, recursive_config, simple_config
             short_name = etree.SubElement(ecuc_container, 'SHORT-NAME').text = "NvDM_" + block['NAME']
             definition = etree.SubElement(ecuc_container, 'DEFINITION-REF')
             definition.attrib['DEST'] = "ECUC-PARAM-CONF-CONTAINER-DEF"
-            definition.text = "/TS_2018_01/NvDM/NvDMBlockDescriptor"
+            definition.text = "/AUTOSAR/EcuDefs/NvDM/NvDMBlockDescriptor"
             parameter = etree.SubElement(ecuc_container, 'PARAMETER-VALUES')
             for profile in profiles:
                 if profile['NAME'] == block['PROFILE']:
@@ -1426,13 +1426,13 @@ def retrieve_data(recursive_arxml, simple_arxml, recursive_config, simple_config
                     ecuc_textual_NvDMDurability = etree.SubElement(parameter, 'ECUC-TEXTUAL-PARAM-VALUE')
                     definition = etree.SubElement(ecuc_textual_NvDMDurability, 'DEFINITION-REF')
                     definition.attrib['DEST'] = "ECUC-ENUMERATION-PARAM-DEF"
-                    definition.text = "/TS_2018_01/NvDM/NvDMBlockDescriptor/NvDMDurability"
+                    definition.text = "/AUTOSAR/EcuDefs/NvDM/NvDMBlockDescriptor/NvDMDurability"
                     value = etree.SubElement(ecuc_textual_NvDMDurability, 'VALUE').text = profile['DURABILITY']
                     # NvDMSafetyBlock
                     ecuc_numerical_NvDMSafetyBlock = etree.SubElement(parameter, 'ECUC-NUMERICAL-PARAM-VALUE')
                     definition = etree.SubElement(ecuc_numerical_NvDMSafetyBlock, 'DEFINITION-REF')
                     definition.attrib['DEST'] = "ECUC-BOOLEAN-PARAM-DEF"
-                    definition.text = "/TS_2018_01/NvDM/NvDMBlockDescriptor/NvDMSafetyBlock"
+                    definition.text = "/AUTOSAR/EcuDefs/NvDM/NvDMBlockDescriptor/NvDMSafetyBlock"
                     value = etree.SubElement(ecuc_numerical_NvDMSafetyBlock, 'VALUE')
                     if block['SDF'] == 'true':
                         value.text = '1'
@@ -1442,7 +1442,7 @@ def retrieve_data(recursive_arxml, simple_arxml, recursive_config, simple_config
                     ecuc_numerical_NvDMConsistency = etree.SubElement(parameter, 'ECUC-NUMERICAL-PARAM-VALUE')
                     definition = etree.SubElement(ecuc_numerical_NvDMConsistency, 'DEFINITION-REF')
                     definition.attrib['DEST'] = "ECUC-BOOLEAN-PARAM-DEF"
-                    definition.text = "/TS_2018_01/NvDM/NvDMBlockDescriptor/NvDMConsistency"
+                    definition.text = "/AUTOSAR/EcuDefs/NvDM/NvDMBlockDescriptor/NvDMConsistency"
                     value = etree.SubElement(ecuc_numerical_NvDMConsistency, 'VALUE')
                     if profile['CONSISTENCY'] == 'true':
                         value.text = '1'
@@ -1452,7 +1452,7 @@ def retrieve_data(recursive_arxml, simple_arxml, recursive_config, simple_config
                     ecuc_numerical_NvDMCRC = etree.SubElement(parameter, 'ECUC-NUMERICAL-PARAM-VALUE')
                     definition = etree.SubElement(ecuc_numerical_NvDMCRC, 'DEFINITION-REF')
                     definition.attrib['DEST'] = "ECUC-BOOLEAN-PARAM-DEF"
-                    definition.text = "/TS_2018_01/NvDM/NvDMBlockDescriptor/NvDMCRC"
+                    definition.text = "/AUTOSAR/EcuDefs/NvDM/NvDMBlockDescriptor/NvDMCRC"
                     value = etree.SubElement(ecuc_numerical_NvDMCRC, 'VALUE')
                     if profile['CRC'] == 'true':
                         value.text = '1'
@@ -1462,37 +1462,37 @@ def retrieve_data(recursive_arxml, simple_arxml, recursive_config, simple_config
                     ecuc_numerical_NvDMWriteTimeout = etree.SubElement(parameter, 'ECUC-NUMERICAL-PARAM-VALUE')
                     definition = etree.SubElement(ecuc_numerical_NvDMWriteTimeout, 'DEFINITION-REF')
                     definition.attrib['DEST'] = "ECUC-FLOAT-PARAM-DEF"
-                    definition.text = "/TS_2018_01/NvDM/NvDMBlockDescriptor/NvDMWriteTimeout"
+                    definition.text = "/AUTOSAR/EcuDefs/NvDM/NvDMBlockDescriptor/NvDMWriteTimeout"
                     value = etree.SubElement(ecuc_numerical_NvDMWriteTimeout, 'VALUE').text = block['TIMEOUT']
                     # NvDMWritingManagement
                     ecuc_textual_NvDMWritingManagement = etree.SubElement(parameter, 'ECUC-TEXTUAL-PARAM-VALUE')
                     definition = etree.SubElement(ecuc_textual_NvDMWritingManagement, 'DEFINITION-REF')
                     definition.attrib['DEST'] = "ECUC-ENUMERATION-PARAM-DEF"
-                    definition.text = "/TS_2018_01/NvDM/NvDMBlockDescriptor/NvDMWritingManagement"
+                    definition.text = "/AUTOSAR/EcuDefs/NvDM/NvDMBlockDescriptor/NvDMWritingManagement"
                     value = etree.SubElement(ecuc_textual_NvDMWritingManagement, 'VALUE').text = profile['MANAGEMENT']
                     # NvDMProfile
                     ecuc_textual_NvDMProfile = etree.SubElement(parameter, 'ECUC-TEXTUAL-PARAM-VALUE')
                     definition = etree.SubElement(ecuc_textual_NvDMProfile, 'DEFINITION-REF')
                     definition.attrib['DEST'] = "ECUC-ENUMERATION-PARAM-DEF"
-                    definition.text = "/TS_2018_01/NvDM/NvDMBlockDescriptor/NvDMProfile"
+                    definition.text = "/AUTOSAR/EcuDefs/NvDM/NvDMBlockDescriptor/NvDMProfile"
                     value = etree.SubElement(ecuc_textual_NvDMProfile, 'VALUE').text = profile['NAME']
                     # NvDMBlockSize
                     ecuc_numerical_NvDMBlockSize = etree.SubElement(parameter, 'ECUC-NUMERICAL-PARAM-VALUE')
                     definition = etree.SubElement(ecuc_numerical_NvDMBlockSize, 'DEFINITION-REF')
                     definition.attrib['DEST'] = "ECUC-INTEGER-PARAM-DEF"
-                    definition.text = "/TS_2018_01/NvDM/NvDMBlockDescriptor/NvDMBlockSize"
+                    definition.text = "/AUTOSAR/EcuDefs/NvDM/NvDMBlockDescriptor/NvDMBlockSize"
                     value = etree.SubElement(ecuc_numerical_NvDMBlockSize, 'VALUE').text = str(block['SIZE'])
                     # NvDMBlockID
                     ecuc_numerical_NvDMBlockID = etree.SubElement(parameter, 'ECUC-NUMERICAL-PARAM-VALUE')
                     definition = etree.SubElement(ecuc_numerical_NvDMBlockID, 'DEFINITION-REF')
                     definition.attrib['DEST'] = "ECUC-INTEGER-PARAM-DEF"
-                    definition.text = "/TS_2018_01/NvDM/NvDMBlockDescriptor/NvDMBlockID"
+                    definition.text = "/AUTOSAR/EcuDefs/NvDM/NvDMBlockDescriptor/NvDMBlockID"
                     value = etree.SubElement(ecuc_numerical_NvDMBlockID, 'VALUE').text = str(block['ID'])
             reference = etree.SubElement(ecuc_container, 'REFERENCE-VALUES')
             ecuc_container_reference = etree.SubElement(reference, 'ECUC-REFERENCE-VALUE')
             ecuc_reference = etree.SubElement(ecuc_container_reference, 'DEFINITION-REF')
             ecuc_reference.attrib['DEST'] = "ECUC-REFERENCE-DEF"
-            ecuc_reference.text = "/TS_2018_01/NvDM/NvDMBlockDescriptor/NvDMNvMBlockDescriptorRef"
+            ecuc_reference.text = "/AUTOSAR/EcuDefs/NvDM/NvDMBlockDescriptor/NvDMNvMBlockDescriptorRef"
             value = etree.SubElement(ecuc_container_reference, 'VALUE-REF')
             value.attrib['DEST'] = "ECUC-CONTAINER-VALUE"
             value.text = "/NvM/NvM/NvM_" + block['NAME']
@@ -1504,33 +1504,33 @@ def retrieve_data(recursive_arxml, simple_arxml, recursive_config, simple_config
                 index = index + 1
                 definition = etree.SubElement(ecuc_container, 'DEFINITION-REF')
                 definition.attrib['DEST'] = "ECUC-PARAM-CONF-CONTAINER-DEF"
-                definition.text = "/TS_2018_01/NvDM/NvDMBlockDescriptor/NvDMVariableDataPrototype"
+                definition.text = "/AUTOSAR/EcuDefs/NvDM/NvDMBlockDescriptor/NvDMVariableDataPrototype"
                 parameter = etree.SubElement(ecuc_container, 'PARAMETER-VALUES')
                 ecuc_reference_values = etree.SubElement(parameter, 'ECUC-NUMERICAL-PARAM-VALUE')
                 definition = etree.SubElement(ecuc_reference_values, 'DEFINITION-REF')
                 definition.attrib['DEST'] = "ECUC-FLOAT-PARAM-DEF"
-                definition.text = "/TS_2018_01/NvDM/NvDMBlockDescriptor/NvDMVariableDataPrototype/NvDMInitValue"
+                definition.text = "/AUTOSAR/EcuDefs/NvDM/NvDMBlockDescriptor/NvDMVariableDataPrototype/NvDMInitValue"
                 value = etree.SubElement(ecuc_reference_values, 'VALUE')
                 value.text = element['INIT']
                 reference_values = etree.SubElement(ecuc_container, 'REFERENCE-VALUES')
                 ecuc_reference_values = etree.SubElement(reference_values, 'ECUC-REFERENCE-VALUE')
                 definition = etree.SubElement(ecuc_reference_values, 'DEFINITION-REF')
                 definition.attrib['DEST'] = "ECUC-FOREIGN-REFERENCE-DEF"
-                definition.text = "/TS_2018_01/NvDM/NvDMBlockDescriptor/NvDMVariableDataPrototype/NvDMBaseTypeRef"
+                definition.text = "/AUTOSAR/EcuDefs/NvDM/NvDMBlockDescriptor/NvDMVariableDataPrototype/NvDMBaseTypeRef"
                 value = etree.SubElement(ecuc_reference_values, 'VALUE-REF')
                 value.attrib['DEST'] = "SW-BASE-TYPE"
                 value.text = element['SW-BASE-TYPE']
                 ecuc_reference_values = etree.SubElement(reference_values, 'ECUC-REFERENCE-VALUE')
                 definition = etree.SubElement(ecuc_reference_values, 'DEFINITION-REF')
                 definition.attrib['DEST'] = "ECUC-FOREIGN-REFERENCE-DEF"
-                definition.text = "/TS_2018_01/NvDM/NvDMBlockDescriptor/NvDMVariableDataPrototype/NvDMVariableDataPrototypeRef"
+                definition.text = "/AUTOSAR/EcuDefs/NvDM/NvDMBlockDescriptor/NvDMVariableDataPrototype/NvDMVariableDataPrototypeRef"
                 value = etree.SubElement(ecuc_reference_values, 'VALUE-REF')
                 value.attrib['DEST'] = "VARIABLE-DATA-PROTOTYPE"
                 value.text = element['DATA']
                 ecuc_reference_values = etree.SubElement(reference_values, 'ECUC-REFERENCE-VALUE')
                 definition = etree.SubElement(ecuc_reference_values, 'DEFINITION-REF')
                 definition.attrib['DEST'] = "ECUC-FOREIGN-REFERENCE-DEF"
-                definition.text = "/TS_2018_01/NvDM/NvDMBlockDescriptor/NvDMVariableDataPrototype/NvDMTypeRef"
+                definition.text = "/AUTOSAR/EcuDefs/NvDM/NvDMBlockDescriptor/NvDMVariableDataPrototype/NvDMTypeRef"
                 value = etree.SubElement(ecuc_reference_values, 'VALUE-REF')
                 value.attrib['DEST'] = "IMPLEMENTATION-DATA-TYPE"
                 value.text = element['TYPE']

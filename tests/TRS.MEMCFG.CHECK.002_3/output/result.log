@@ -1,15 +1,15 @@
-2018-05-25 09:29:46,192 INFO The file: ./tests\TRS.MEMCFG.CHECK.002_3\input\ASWC_A26.aswc.arxml is well-formed
-2018-05-25 09:29:46,207 INFO The file: ./tests\TRS.MEMCFG.CHECK.002_3\input\ASWC_A26.aswc.arxml is valid with the provided xsd schema
-2018-05-25 09:29:46,210 INFO The file: ./tests\TRS.MEMCFG.CHECK.002_3\input\AUTOSAR_Datatypes.arxml is well-formed
-2018-05-25 09:29:46,211 INFO The file: ./tests\TRS.MEMCFG.CHECK.002_3\input\AUTOSAR_Datatypes.arxml is valid with the provided xsd schema
-2018-05-25 09:29:46,286 INFO The file: ./tests\TRS.MEMCFG.CHECK.002_3\input\SystemGenerated.arxml is well-formed
-2018-05-25 09:29:46,327 INFO The file: ./tests\TRS.MEMCFG.CHECK.002_3\input\SystemGenerated.arxml is valid with the provided xsd schema
-2018-05-25 09:29:46,369 INFO The file: ./tests\TRS.MEMCFG.CHECK.002_3\input\VSM_Types.arxml is well-formed
-2018-05-25 09:29:46,369 INFO The file: ./tests\TRS.MEMCFG.CHECK.002_3\input\VSM_Types.arxml is valid with the provided xsd schema
-2018-05-25 09:29:46,371 INFO The file: ./tests\TRS.MEMCFG.CHECK.002_3\input\ASWC_A26.config_mem.xml is well-formed
-2018-05-25 09:29:46,371 WARNING The file: ./tests\TRS.MEMCFG.CHECK.002_3\input\ASWC_A26.config_mem.xml is NOT valid with the provided xsd schema
-2018-05-25 09:29:46,371 ERROR No profile defined for block Default_App_Ram_Implicit_RAR
-2018-05-25 09:29:46,372 INFO The file: ./tests\TRS.MEMCFG.CHECK.002_3\input\CompiledConfigID.xml is well-formed
-2018-05-25 09:29:46,372 INFO The file: ./tests\TRS.MEMCFG.CHECK.002_3\input\CompiledConfigID.xml is valid with the provided xsd schema
-2018-05-25 09:29:46,373 INFO The file: ./tests\TRS.MEMCFG.CHECK.002_3\input\Profiles_cleaned.xml is well-formed
-2018-05-25 09:29:46,374 WARNING The file: ./tests\TRS.MEMCFG.CHECK.002_3\input\Profiles_cleaned.xml is NOT valid with the provided xsd schema
+2018-06-11 10:17:14,028 INFO The file: ./tests\TRS.MEMCFG.CHECK.002_3\input\ASWC_A26.aswc.arxml is well-formed
+2018-06-11 10:17:14,048 INFO The file: ./tests\TRS.MEMCFG.CHECK.002_3\input\ASWC_A26.aswc.arxml is valid with the provided xsd schema
+2018-06-11 10:17:14,053 INFO The file: ./tests\TRS.MEMCFG.CHECK.002_3\input\AUTOSAR_Datatypes.arxml is well-formed
+2018-06-11 10:17:14,055 INFO The file: ./tests\TRS.MEMCFG.CHECK.002_3\input\AUTOSAR_Datatypes.arxml is valid with the provided xsd schema
+2018-06-11 10:17:14,144 INFO The file: ./tests\TRS.MEMCFG.CHECK.002_3\input\SystemGenerated.arxml is well-formed
+2018-06-11 10:17:14,187 INFO The file: ./tests\TRS.MEMCFG.CHECK.002_3\input\SystemGenerated.arxml is valid with the provided xsd schema
+2018-06-11 10:17:14,230 INFO The file: ./tests\TRS.MEMCFG.CHECK.002_3\input\VSM_Types.arxml is well-formed
+2018-06-11 10:17:14,231 INFO The file: ./tests\TRS.MEMCFG.CHECK.002_3\input\VSM_Types.arxml is valid with the provided xsd schema
+2018-06-11 10:17:14,232 INFO The file: ./tests\TRS.MEMCFG.CHECK.002_3\input\ASWC_A26.config_mem.xml is well-formed
+2018-06-11 10:17:14,232 WARNING The file: ./tests\TRS.MEMCFG.CHECK.002_3\input\ASWC_A26.config_mem.xml is NOT valid with the provided xsd schema
+2018-06-11 10:17:14,232 ERROR No profile defined for block Default_App_Ram_Implicit_RAR
+2018-06-11 10:17:14,233 INFO The file: ./tests\TRS.MEMCFG.CHECK.002_3\input\CompiledConfigID.xml is well-formed
+2018-06-11 10:17:14,233 INFO The file: ./tests\TRS.MEMCFG.CHECK.002_3\input\CompiledConfigID.xml is valid with the provided xsd schema
+2018-06-11 10:17:14,234 INFO The file: ./tests\TRS.MEMCFG.CHECK.002_3\input\Profiles_cleaned.xml is well-formed
+2018-06-11 10:17:14,235 WARNING The file: ./tests\TRS.MEMCFG.CHECK.002_3\input\Profiles_cleaned.xml is NOT valid with the provided xsd schema

@@ -349,7 +349,6 @@ class FileCompare():
             return False
 
 class MEMConfigurator(unittest.TestCase):
-
     def test_TRS_MEMCFG_INOUT_001(self):
         current_path = os.path.realpath(__file__)
         head, tail = ntpath.split(current_path)
@@ -445,7 +444,7 @@ class MEMConfigurator(unittest.TestCase):
         os.system('MEM_Configurator.py -config ' + head + '\\tests\\TRS.MEMCFG.CHECK.004\\ConfigMemConfigurator.xml')
         self.assertFalse(FileCompare.isOutput(head + '\\tests\\TRS.MEMCFG.CHECK.004\\output\\NvDM.epc'))
         self.assertFalse(FileCompare.isOutput(head + '\\tests\\TRS.MEMCFG.CHECK.004\\output\\NvM.epc'))
-        self.assertTrue(FileCompare.checkLog(head + '\\tests\TRS.MEMCFG.CHECK.004\\output\\result.log', "ERROR", ["SR_SEC_EtatProgRevPrecondTherm"]))
+        self.assertTrue(FileCompare.checkLog(head + '\\tests\TRS.MEMCFG.CHECK.004\\output\\result.log', "ERROR", ["EEEEEE"]))
 
     def test_TRS_MEMCFG_CHECK_005_1(self):
         current_path = os.path.realpath(__file__)
@@ -551,7 +550,7 @@ class MEMConfigurator(unittest.TestCase):
         head, tail = ntpath.split(current_path)
         os.system('MEM_Configurator.py -config ' + head + '\\tests\\TRS.MEMCFG.GEN.008\\ConfigMemConfigurator.xml')
         self.assertFalse(FileCompare.isOutput(head + '\\tests\\TRS.MEMCFG.GEN.008\\output\\NvM.epc'))
-        self.assertTrue(FileCompare.checkLog(head + '\\tests\TRS.MEMCFG.CHECK.004\\output\\result.log', "ERROR", ["Default_App_Ram_Implicit_SAV"]))
+        self.assertTrue(FileCompare.checkLog(head + '\\tests\\TRS.MEMCFG.GEN.008\\output\\result.log', "ERROR", ["Default_App_Ram_Implicit_SAV"]))
 
     def test_TRS_MEMCFG_GEN_009(self):
         current_path = os.path.realpath(__file__)
@@ -584,6 +583,7 @@ class MEMConfigurator(unittest.TestCase):
         head, tail = ntpath.split(current_path)
         os.system('MEM_Configurator.py -config ' + head + '\\tests\\TBD\\ConfigMemConfigurator.xml')
         self.assertTrue(FileCompare.checkID(head + '\\tests\\TBD\\output\\NvM.epc'))
+
 
     def test_TBD_2(self):
         current_path = os.path.realpath(__file__)
