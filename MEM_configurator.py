@@ -538,7 +538,7 @@ def retrieve_data(recursive_arxml, simple_arxml, recursive_config, simple_config
         for elem1 in all_ports:
             found = False
             for elem2 in ports:
-                if elem2['ROOT'] in elem1['PORT']['NAME'] and elem2['NAME'] in elem1['PORT']['NAME']:
+                if elem2['ROOT'] == elem1['PORT']['NAME'].split("/")[1] and elem2['NAME'] == elem1['PORT']['NAME'].split("/")[-1]:
                     elem1['PORT']['SIZE'] = elem2['SIZE']
                     elem1['PORT']['ASWC'] = elem2['ASWC']
                     elem1['PORT']['DATA-PROTOTYPE'] = elem2['DATA-ELEMENTS']
