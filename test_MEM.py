@@ -403,14 +403,14 @@ class MEMConfigurator(unittest.TestCase):
     def test_TRS_MEMCFG_CHECK_002_1(self):
         current_path = os.path.realpath(__file__)
         head, tail = ntpath.split(current_path)
-        os.system('MEM_Configurator.py -in ' + head + '\\tests\\TRS.MEMCFG.CHECK.002_1\\input -out ' + head + '\\tests\\TRS.MEMCFG.CHECK.002_1\\output')
+        os.system('MEM_Configurator.py -in ' + head + '\\tests\\TRS.MEMCFG.CHECK.002_1\\input\\ASWC_A26.aswc.arxml ' + head + '\\tests\\TRS.MEMCFG.CHECK.002_1\\input\\AUTOSAR_Datatypes.arxml ' + head + '\\tests\\TRS.MEMCFG.CHECK.002_1\\input\\CompiledConfigID.xml' + head + '\\tests\\TRS.MEMCFG.CHECK.002_1\\input\\Profiles_cleaned.xml ' + head + '\\tests\\TRS.MEMCFG.CHECK.002_1\\input\\SystemGenerated.arxml ' + head + '\\tests\\TRS.MEMCFG.CHECK.002_1\\input\\VSM_Types.arxml ' + head + '\\tests\\TRS.MEMCFG.CHECK.002_1\\input\\ASWC_A26.config_mem.xml -out ' + head + '\\tests\\TRS.MEMCFG.CHECK.002_1\\output')
         self.assertTrue(FileCompare.isOutput(head + '\\tests\\TRS.MEMCFG.CHECK.002_1\\output\\NvDM.epc'))
         self.assertTrue(FileCompare.isOutput(head + '\\tests\\TRS.MEMCFG.CHECK.002_1\\output\\NvM.epc'))
 
     def test_TRS_MEMCFG_CHECK_002_2(self):
         current_path = os.path.realpath(__file__)
         head, tail = ntpath.split(current_path)
-        os.system('MEM_Configurator.py -in ' + head + '\\tests\\TRS.MEMCFG.CHECK.002_2\\input -out ' + head + '\\tests\\TRS.MEMCFG.CHECK.002_2\\output')
+        os.system('MEM_Configurator.py -in @' + head + '\\tests\\TRS.MEMCFG.CHECK.002_2\\input_list.txt -out ' + head + '\\tests\\TRS.MEMCFG.CHECK.002_2\\output')
         self.assertFalse(FileCompare.isOutput(head + '\\tests\\TRS.MEMCFG.CHECK.002_2\\output\\NvDM.epc'))
         self.assertFalse(FileCompare.isOutput(head + '\\tests\\TRS.MEMCFG.CHECK.002_2\\output\\NvM.epc'))
         self.assertTrue(FileCompare.checkLog(head + '\\tests\TRS.MEMCFG.CHECK.002_2\\output\\result_MEM.log', "ERROR", ["App_Ram_Implicit"]))

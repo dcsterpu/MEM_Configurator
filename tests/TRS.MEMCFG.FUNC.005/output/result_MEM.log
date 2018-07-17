@@ -1,7 +1,7 @@
-2018-07-17 10:22:14,915 INFO The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.FUNC.005\input\ASWC_A26.aswc.arxml is well-formed
-2018-07-17 10:22:14,924 INFO  The file C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.FUNC.005\input\ASWC_A26.config_mem.xml is well-formed
-2018-07-17 10:22:14,928 INFO The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.FUNC.005\input\AUTOSAR_Datatypes.arxml is well-formed
-2018-07-17 10:22:14,931 INFO  The file C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.FUNC.005\input\CompiledConfigID.xml is well-formed
-2018-07-17 10:22:14,933 INFO  The file C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.FUNC.005\input\Profiles_cleaned.xml is well-formed
-2018-07-17 10:22:15,011 INFO The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.FUNC.005\input\SystemGenerated.arxml is well-formed
-2018-07-17 10:22:15,072 INFO The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.FUNC.005\input\VSM_Types.arxml is well-formed
+2018-07-17 10:38:59,442 INFO The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.FUNC.005\input\ASWC_A26.aswc.arxml is well-formed
+2018-07-17 10:38:59,451 INFO  The file C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.FUNC.005\input\ASWC_A26.config_mem.xml is well-formed
+2018-07-17 10:38:59,456 INFO The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.FUNC.005\input\AUTOSAR_Datatypes.arxml is well-formed
+2018-07-17 10:38:59,458 INFO  The file C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.FUNC.005\input\CompiledConfigID.xml is well-formed
+2018-07-17 10:38:59,460 INFO  The file C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.FUNC.005\input\Profiles_cleaned.xml is well-formed
+2018-07-17 10:38:59,539 INFO The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.FUNC.005\input\SystemGenerated.arxml is well-formed
+2018-07-17 10:38:59,601 INFO The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.FUNC.005\input\VSM_Types.arxml is well-formed

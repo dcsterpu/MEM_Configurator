@@ -1,0 +1,7 @@
+C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.CHECK.002_2\ASWC_A26.aswc.arxml
+C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.CHECK.002_2\ASWC_A26.config_mem.xml
+C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.CHECK.002_2\AUTOSAR_Datatypes.arxml
+C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.CHECK.002_2\CompiledConfigID.xml
+C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.CHECK.002_2\Profiles_cleaned.xml
+C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.CHECK.002_2\SystemGenerated.arxml
+C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.CHECK.002_2\VSM_Types.arxml
