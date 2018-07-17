@@ -15,8 +15,6 @@ def arg_parse(parser):
     parser.add_argument('-out', '--out', help="output path", required=False, default="")
     parser.add_argument('-out_epc', '--out_epc', help="output path for configuration file(s)", required=False, default="")
     parser.add_argument('-out_log', '--out_log', help="output path for log file", required=False, default="")
-    # parser.add_argument("-config", action="store_const", const="-config")
-    # parser.add_argument("input_configuration_file", help="configuration file location")
 
 
 def remove_duplicates(list_to_check):
@@ -1267,12 +1265,6 @@ def create_MEM_config(file_list, path_list, output_path, logger):
         pretty_xml = new_prettify(rootNvM)
         output = etree.ElementTree(etree.fromstring(pretty_xml))
         output.write(output_path + '/NvM.epc', encoding='UTF-8', xml_declaration=True, method="xml")
-        # if xmlschema_arxml.validate(etree.parse(output_path + '/NvM.epc')) is not True:
-        #     logger.warning('The file: NvM.epc is NOT valid with the provided xsd schema')
-        #     warning_no = warning_no + 1
-        # else:
-        #     logger.info('The file: NvM.epc is valid with the provided xsd schema')
-        #     info_no = info_no + 1
 
         # generate NvDM.epc
         rootNvDM = etree.Element('AUTOSAR', {attr_qname: 'http://autosar.org/schema/r4.0 AUTOSAR_4-2-2_STRICT_COMPACT.xsd'}, nsmap=NSMAP)
@@ -1533,13 +1525,7 @@ def create_MEM_config(file_list, path_list, output_path, logger):
         pretty_xml = new_prettify(rootNvDM)
         output = etree.ElementTree(etree.fromstring(pretty_xml))
         output.write(output_path + '/NvDM.epc', encoding='UTF-8', xml_declaration=True, method="xml")
-        # if xmlschema_arxml.validate(etree.parse(output_path + '/NvDM.epc')) is not True:
-        #     logger.warning('The file: NvDM.epc is NOT valid with the provided xsd schema')
-        #     warning_no = warning_no + 1
-        # else:
-        #     logger.info('The file: NvDM.epc is valid with the provided xsd schema')
-        #     info_no = info_no + 1
-
+        ##########################################
         if error_no != 0:
             print("There is at least one blocking error! Check the generated log.")
             print("\nExecution stopped with: " + str(info_no) + " infos, " + str(warning_no) + " warnings, " + str(error_no) + " errors\n")
