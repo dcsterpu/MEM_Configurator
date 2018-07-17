@@ -1,0 +1,17 @@
+2018-07-17 10:22:11,086 INFO The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.CHECK.006_2\input\ASWC_A26.aswc.arxml is well-formed
+2018-07-17 10:22:11,096 INFO  The file C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.CHECK.006_2\input\ASWC_A26.config_mem.xml is well-formed
+2018-07-17 10:22:11,113 INFO The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.CHECK.006_2\input\ASWC_A27.aswc.arxml is well-formed
+2018-07-17 10:22:11,120 INFO  The file C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.CHECK.006_2\input\ASWC_A27.config_mem.xml is well-formed
+2018-07-17 10:22:11,123 INFO The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.CHECK.006_2\input\AUTOSAR_Datatypes.arxml is well-formed
+2018-07-17 10:22:11,125 INFO  The file C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.CHECK.006_2\input\CompiledConfigID.xml is well-formed
+2018-07-17 10:22:11,127 INFO  The file C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.CHECK.006_2\input\Profiles_cleaned.xml is well-formed
+2018-07-17 10:22:11,205 INFO The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.CHECK.006_2\input\SystemGenerated.arxml is well-formed
+2018-07-17 10:22:11,266 INFO The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.CHECK.006_2\input\VSM_Types.arxml is well-formed
+2018-07-17 10:22:11,366 ERROR The block  Default_App_Ram_Implicit_RAR cannot be defined in multiple ASWC because SDF = true
+2018-07-17 10:22:11,366 ERROR The block  Default_App_Ram_Implicit_RAR cannot be defined in multiple ASWC because SDF = true
+2018-07-17 10:22:11,366 ERROR The block  Default_App_Ram_Implicit_RAR cannot be defined in multiple ASWC because SDF = true
+2018-07-17 10:22:11,366 ERROR The block  Default_App_Ram_Implicit_RAR cannot be defined in multiple ASWC because SDF = true
+2018-07-17 10:22:11,366 ERROR The block  Default_App_Ram_Implicit_RAR cannot be defined in multiple ASWC because SDF = true
+2018-07-17 10:22:11,366 ERROR The block  Default_App_Ram_Implicit_RAR cannot be defined in multiple ASWC because SDF = true
+2018-07-17 10:22:11,367 ERROR The block  Default_App_Ram_Implicit_RAR cannot be defined in multiple ASWC because SDF = true
+2018-07-17 10:22:11,367 ERROR The block  Default_App_Ram_Implicit_RAR cannot be defined in multiple ASWC because SDF = true

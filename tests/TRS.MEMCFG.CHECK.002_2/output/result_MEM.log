@@ -1,0 +1,9 @@
+2018-07-17 10:22:04,763 INFO The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.CHECK.002_2\input\ASWC_A26.aswc.arxml is well-formed
+2018-07-17 10:22:04,774 INFO  The file C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.CHECK.002_2\input\ASWC_A26.config_mem.xml is well-formed
+2018-07-17 10:22:04,778 INFO The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.CHECK.002_2\input\AUTOSAR_Datatypes.arxml is well-formed
+2018-07-17 10:22:04,781 INFO  The file C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.CHECK.002_2\input\CompiledConfigID.xml is well-formed
+2018-07-17 10:22:04,782 INFO  The file C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.CHECK.002_2\input\Profiles_cleaned.xml is well-formed
+2018-07-17 10:22:04,858 INFO The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.CHECK.002_2\input\SystemGenerated.arxml is well-formed
+2018-07-17 10:22:04,919 INFO The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.CHECK.002_2\input\VSM_Types.arxml is well-formed
+2018-07-17 10:22:04,999 ERROR The profile App_Ram_Implicit used in block Default_App_Ram_Implicit_RAR is not valid (not defined in the project)
+2018-07-17 10:22:04,999 ERROR The profile App_Ram_Implicit used in block Default_App_Ram_Implicit_RAR is not valid (not defined in the project)

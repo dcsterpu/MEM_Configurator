@@ -1,0 +1,12 @@
+2018-07-17 10:22:01,287 INFO The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TBD_2\input\ASWC_A26.aswc.arxml is well-formed
+2018-07-17 10:22:01,300 INFO  The file C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TBD_2\input\ASWC_A26.config_mem.xml is well-formed
+2018-07-17 10:22:01,324 INFO The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TBD_2\input\ASWC_A27.aswc.arxml is well-formed
+2018-07-17 10:22:01,333 INFO  The file C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TBD_2\input\ASWC_A27.config_mem.xml is well-formed
+2018-07-17 10:22:01,435 INFO The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TBD_2\input\ASWC_A28.aswc.arxml is well-formed
+2018-07-17 10:22:01,470 INFO The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TBD_2\input\AUTOSAR_Datatypes.arxml is well-formed
+2018-07-17 10:22:01,485 INFO  The file C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TBD_2\input\CompiledConfigID.xml is well-formed
+2018-07-17 10:22:01,486 INFO  The file C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TBD_2\input\MAPPING.xml is well-formed
+2018-07-17 10:22:01,487 INFO  The file C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TBD_2\input\Profiles_cleaned.xml is well-formed
+2018-07-17 10:22:01,585 INFO The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TBD_2\input\SystemGenerated.arxml is well-formed
+2018-07-17 10:22:01,665 INFO The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TBD_2\input\VSM_Types.arxml is well-formed
+2018-07-17 10:22:01,666 ERROR None or multiple CompiledConfigID parameters defined

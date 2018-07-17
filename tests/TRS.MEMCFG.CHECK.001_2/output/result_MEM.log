@@ -1,0 +1,17 @@
+2018-07-17 10:22:03,439 INFO The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.CHECK.001_2\input\ASWC_A26.aswc.arxml is well-formed
+2018-07-17 10:22:03,449 INFO  The file C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.CHECK.001_2\input\ASWC_A26.config_mem.xml is well-formed
+2018-07-17 10:22:03,465 INFO The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.CHECK.001_2\input\ASWC_A27.aswc.arxml is well-formed
+2018-07-17 10:22:03,472 INFO  The file C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.CHECK.001_2\input\ASWC_A27.config_mem.xml is well-formed
+2018-07-17 10:22:03,475 INFO The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.CHECK.001_2\input\AUTOSAR_Datatypes.arxml is well-formed
+2018-07-17 10:22:03,477 INFO  The file C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.CHECK.001_2\input\CompiledConfigID.xml is well-formed
+2018-07-17 10:22:03,479 INFO  The file C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.CHECK.001_2\input\Profiles_cleaned.xml is well-formed
+2018-07-17 10:22:03,559 INFO The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.CHECK.001_2\input\SystemGenerated.arxml is well-formed
+2018-07-17 10:22:03,625 INFO The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.CHECK.001_2\input\VSM_Types.arxml is well-formed
+2018-07-17 10:22:03,626 ERROR Different profiles defined for same block: Default_App_Ram_Implicit_RAR
+2018-07-17 10:22:03,626 ERROR Different profiles defined for same block: Default_App_Ram_Implicit_RAR
+2018-07-17 10:22:03,626 ERROR Different profiles defined for same block: Default_App_Ram_Implicit_RAR
+2018-07-17 10:22:03,626 ERROR Different profiles defined for same block: Default_App_Ram_Implicit_RAR
+2018-07-17 10:22:03,626 ERROR Different profiles defined for same block: Default_App_Ram_Implicit_RAR
+2018-07-17 10:22:03,626 ERROR Different profiles defined for same block: Default_App_Ram_Implicit_RAR
+2018-07-17 10:22:03,626 ERROR Different profiles defined for same block: Default_App_Ram_Implicit_RAR
+2018-07-17 10:22:03,626 ERROR Different profiles defined for same block: Default_App_Ram_Implicit_RAR

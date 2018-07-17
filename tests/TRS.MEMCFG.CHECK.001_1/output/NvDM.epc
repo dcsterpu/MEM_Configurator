@@ -82,12 +82,12 @@
                                     </REFERENCE-VALUES>
                                 </ECUC-CONTAINER-VALUE>
                                 <ECUC-CONTAINER-VALUE>
-                                    <SHORT-NAME>ASWC_A26_PRP_SR_ConsoInstGPL_ConsoInst</SHORT-NAME>
+                                    <SHORT-NAME>ASWC_A26_PRP_SR_ConsoInstGPL_ConsoInstGPL</SHORT-NAME>
                                     <DEFINITION-REF DEST="ECUC-PARAM-CONF-CONTAINER-DEF">/AUTOSAR/EcuDefs/NvDM/NvDMBlockDescriptor/NvDMVariableDataPrototype</DEFINITION-REF>
                                     <PARAMETER-VALUES>
                                         <ECUC-NUMERICAL-PARAM-VALUE>
                                             <DEFINITION-REF DEST="ECUC-FLOAT-PARAM-DEF">/AUTOSAR/EcuDefs/NvDM/NvDMBlockDescriptor/NvDMVariableDataPrototype/NvDMInitValue</DEFINITION-REF>
-                                            <VALUE>65535</VALUE>
+                                            <VALUE>511</VALUE>
                                         </ECUC-NUMERICAL-PARAM-VALUE>
                                     </PARAMETER-VALUES>
                                     <REFERENCE-VALUES>
@@ -97,7 +97,7 @@
                                         </ECUC-REFERENCE-VALUE>
                                         <ECUC-REFERENCE-VALUE>
                                             <DEFINITION-REF DEST="ECUC-FOREIGN-REFERENCE-DEF">/AUTOSAR/EcuDefs/NvDM/NvDMBlockDescriptor/NvDMVariableDataPrototype/NvDMVariableDataPrototypeRef</DEFINITION-REF>
-                                            <VALUE-REF DEST="VARIABLE-DATA-PROTOTYPE">/RootP_ASWC_A26/ASWC_A26/PRP_SR_ConsoInstGPL/ConsoInst</VALUE-REF>
+                                            <VALUE-REF DEST="VARIABLE-DATA-PROTOTYPE">/RootP_ASWC_A26/ASWC_A26/PRP_SR_ConsoInstGPL/ConsoInstGPL</VALUE-REF>
                                         </ECUC-REFERENCE-VALUE>
                                         <ECUC-REFERENCE-VALUE>
                                             <DEFINITION-REF DEST="ECUC-FOREIGN-REFERENCE-DEF">/AUTOSAR/EcuDefs/NvDM/NvDMBlockDescriptor/NvDMVariableDataPrototype/NvDMTypeRef</DEFINITION-REF>
@@ -440,6 +440,830 @@
                                         <ECUC-REFERENCE-VALUE>
                                             <DEFINITION-REF DEST="ECUC-FOREIGN-REFERENCE-DEF">/AUTOSAR/EcuDefs/NvDM/NvDMBlockDescriptor/NvDMVariableDataPrototype/NvDMTypeRef</DEFINITION-REF>
                                             <VALUE-REF DEST="IMPLEMENTATION-DATA-TYPE">/Pack_sw_Types/tBYTE</VALUE-REF>
+                                        </ECUC-REFERENCE-VALUE>
+                                    </REFERENCE-VALUES>
+                                </ECUC-CONTAINER-VALUE>
+                            </SUB-CONTAINERS>
+                        </ECUC-CONTAINER-VALUE>
+                        <ECUC-CONTAINER-VALUE>
+                            <SHORT-NAME>NvDM_Default_App_Ram_Implicit_RAR_3</SHORT-NAME>
+                            <DEFINITION-REF DEST="ECUC-PARAM-CONF-CONTAINER-DEF">/AUTOSAR/EcuDefs/NvDM/NvDMBlockDescriptor</DEFINITION-REF>
+                            <PARAMETER-VALUES>
+                                <ECUC-TEXTUAL-PARAM-VALUE>
+                                    <DEFINITION-REF DEST="ECUC-ENUMERATION-PARAM-DEF">/AUTOSAR/EcuDefs/NvDM/NvDMBlockDescriptor/NvDMDurability</DEFINITION-REF>
+                                    <VALUE>SHORT_TERM</VALUE>
+                                </ECUC-TEXTUAL-PARAM-VALUE>
+                                <ECUC-NUMERICAL-PARAM-VALUE>
+                                    <DEFINITION-REF DEST="ECUC-BOOLEAN-PARAM-DEF">/AUTOSAR/EcuDefs/NvDM/NvDMBlockDescriptor/NvDMSafetyBlock</DEFINITION-REF>
+                                    <VALUE>0</VALUE>
+                                </ECUC-NUMERICAL-PARAM-VALUE>
+                                <ECUC-NUMERICAL-PARAM-VALUE>
+                                    <DEFINITION-REF DEST="ECUC-BOOLEAN-PARAM-DEF">/AUTOSAR/EcuDefs/NvDM/NvDMBlockDescriptor/NvDMConsistency</DEFINITION-REF>
+                                    <VALUE>0</VALUE>
+                                </ECUC-NUMERICAL-PARAM-VALUE>
+                                <ECUC-NUMERICAL-PARAM-VALUE>
+                                    <DEFINITION-REF DEST="ECUC-BOOLEAN-PARAM-DEF">/AUTOSAR/EcuDefs/NvDM/NvDMBlockDescriptor/NvDMCRC</DEFINITION-REF>
+                                    <VALUE>0</VALUE>
+                                </ECUC-NUMERICAL-PARAM-VALUE>
+                                <ECUC-NUMERICAL-PARAM-VALUE>
+                                    <DEFINITION-REF DEST="ECUC-FLOAT-PARAM-DEF">/AUTOSAR/EcuDefs/NvDM/NvDMBlockDescriptor/NvDMWriteTimeout</DEFINITION-REF>
+                                    <VALUE>0</VALUE>
+                                </ECUC-NUMERICAL-PARAM-VALUE>
+                                <ECUC-TEXTUAL-PARAM-VALUE>
+                                    <DEFINITION-REF DEST="ECUC-ENUMERATION-PARAM-DEF">/AUTOSAR/EcuDefs/NvDM/NvDMBlockDescriptor/NvDMWritingManagement</DEFINITION-REF>
+                                    <VALUE>Implicit</VALUE>
+                                </ECUC-TEXTUAL-PARAM-VALUE>
+                                <ECUC-TEXTUAL-PARAM-VALUE>
+                                    <DEFINITION-REF DEST="ECUC-ENUMERATION-PARAM-DEF">/AUTOSAR/EcuDefs/NvDM/NvDMBlockDescriptor/NvDMProfile</DEFINITION-REF>
+                                    <VALUE>App_Ram_Implicit</VALUE>
+                                </ECUC-TEXTUAL-PARAM-VALUE>
+                                <ECUC-NUMERICAL-PARAM-VALUE>
+                                    <DEFINITION-REF DEST="ECUC-INTEGER-PARAM-DEF">/AUTOSAR/EcuDefs/NvDM/NvDMBlockDescriptor/NvDMBlockSize</DEFINITION-REF>
+                                    <VALUE>10</VALUE>
+                                </ECUC-NUMERICAL-PARAM-VALUE>
+                                <ECUC-NUMERICAL-PARAM-VALUE>
+                                    <DEFINITION-REF DEST="ECUC-INTEGER-PARAM-DEF">/AUTOSAR/EcuDefs/NvDM/NvDMBlockDescriptor/NvDMBlockID</DEFINITION-REF>
+                                    <VALUE>0</VALUE>
+                                </ECUC-NUMERICAL-PARAM-VALUE>
+                            </PARAMETER-VALUES>
+                            <REFERENCE-VALUES>
+                                <ECUC-REFERENCE-VALUE>
+                                    <DEFINITION-REF DEST="ECUC-REFERENCE-DEF">/AUTOSAR/EcuDefs/NvDM/NvDMBlockDescriptor/NvDMNvMBlockDescriptorRef</DEFINITION-REF>
+                                    <VALUE-REF DEST="ECUC-CONTAINER-VALUE">/NvM/NvM/NvM_Default_App_Ram_Implicit_RAR_3</VALUE-REF>
+                                </ECUC-REFERENCE-VALUE>
+                            </REFERENCE-VALUES>
+                            <SUB-CONTAINERS>
+                                <ECUC-CONTAINER-VALUE>
+                                    <SHORT-NAME>ASWC_A26_PRP_SR_ConsoInst_ConsoInst</SHORT-NAME>
+                                    <DEFINITION-REF DEST="ECUC-PARAM-CONF-CONTAINER-DEF">/AUTOSAR/EcuDefs/NvDM/NvDMBlockDescriptor/NvDMVariableDataPrototype</DEFINITION-REF>
+                                    <PARAMETER-VALUES>
+                                        <ECUC-NUMERICAL-PARAM-VALUE>
+                                            <DEFINITION-REF DEST="ECUC-FLOAT-PARAM-DEF">/AUTOSAR/EcuDefs/NvDM/NvDMBlockDescriptor/NvDMVariableDataPrototype/NvDMInitValue</DEFINITION-REF>
+                                            <VALUE>65535</VALUE>
+                                        </ECUC-NUMERICAL-PARAM-VALUE>
+                                    </PARAMETER-VALUES>
+                                    <REFERENCE-VALUES>
+                                        <ECUC-REFERENCE-VALUE>
+                                            <DEFINITION-REF DEST="ECUC-FOREIGN-REFERENCE-DEF">/AUTOSAR/EcuDefs/NvDM/NvDMBlockDescriptor/NvDMVariableDataPrototype/NvDMBaseTypeRef</DEFINITION-REF>
+                                            <VALUE-REF DEST="SW-BASE-TYPE">/AUTOSAR_Platform/BaseTypes/uint16</VALUE-REF>
+                                        </ECUC-REFERENCE-VALUE>
+                                        <ECUC-REFERENCE-VALUE>
+                                            <DEFINITION-REF DEST="ECUC-FOREIGN-REFERENCE-DEF">/AUTOSAR/EcuDefs/NvDM/NvDMBlockDescriptor/NvDMVariableDataPrototype/NvDMVariableDataPrototypeRef</DEFINITION-REF>
+                                            <VALUE-REF DEST="VARIABLE-DATA-PROTOTYPE">/RootP_ASWC_A26/ASWC_A26/PRP_SR_ConsoInst/ConsoInst</VALUE-REF>
+                                        </ECUC-REFERENCE-VALUE>
+                                        <ECUC-REFERENCE-VALUE>
+                                            <DEFINITION-REF DEST="ECUC-FOREIGN-REFERENCE-DEF">/AUTOSAR/EcuDefs/NvDM/NvDMBlockDescriptor/NvDMVariableDataPrototype/NvDMTypeRef</DEFINITION-REF>
+                                            <VALUE-REF DEST="IMPLEMENTATION-DATA-TYPE">/Pack_sw_Types/tWORD</VALUE-REF>
+                                        </ECUC-REFERENCE-VALUE>
+                                    </REFERENCE-VALUES>
+                                </ECUC-CONTAINER-VALUE>
+                                <ECUC-CONTAINER-VALUE>
+                                    <SHORT-NAME>ASWC_A26_PRP_SR_ConsoInstGPL_ConsoInstGPL</SHORT-NAME>
+                                    <DEFINITION-REF DEST="ECUC-PARAM-CONF-CONTAINER-DEF">/AUTOSAR/EcuDefs/NvDM/NvDMBlockDescriptor/NvDMVariableDataPrototype</DEFINITION-REF>
+                                    <PARAMETER-VALUES>
+                                        <ECUC-NUMERICAL-PARAM-VALUE>
+                                            <DEFINITION-REF DEST="ECUC-FLOAT-PARAM-DEF">/AUTOSAR/EcuDefs/NvDM/NvDMBlockDescriptor/NvDMVariableDataPrototype/NvDMInitValue</DEFINITION-REF>
+                                            <VALUE>511</VALUE>
+                                        </ECUC-NUMERICAL-PARAM-VALUE>
+                                    </PARAMETER-VALUES>
+                                    <REFERENCE-VALUES>
+                                        <ECUC-REFERENCE-VALUE>
+                                            <DEFINITION-REF DEST="ECUC-FOREIGN-REFERENCE-DEF">/AUTOSAR/EcuDefs/NvDM/NvDMBlockDescriptor/NvDMVariableDataPrototype/NvDMBaseTypeRef</DEFINITION-REF>
+                                            <VALUE-REF DEST="SW-BASE-TYPE">/AUTOSAR_Platform/BaseTypes/uint16</VALUE-REF>
+                                        </ECUC-REFERENCE-VALUE>
+                                        <ECUC-REFERENCE-VALUE>
+                                            <DEFINITION-REF DEST="ECUC-FOREIGN-REFERENCE-DEF">/AUTOSAR/EcuDefs/NvDM/NvDMBlockDescriptor/NvDMVariableDataPrototype/NvDMVariableDataPrototypeRef</DEFINITION-REF>
+                                            <VALUE-REF DEST="VARIABLE-DATA-PROTOTYPE">/RootP_ASWC_A26/ASWC_A26/PRP_SR_ConsoInstGPL/ConsoInstGPL</VALUE-REF>
+                                        </ECUC-REFERENCE-VALUE>
+                                        <ECUC-REFERENCE-VALUE>
+                                            <DEFINITION-REF DEST="ECUC-FOREIGN-REFERENCE-DEF">/AUTOSAR/EcuDefs/NvDM/NvDMBlockDescriptor/NvDMVariableDataPrototype/NvDMTypeRef</DEFINITION-REF>
+                                            <VALUE-REF DEST="IMPLEMENTATION-DATA-TYPE">/Pack_sw_Types/tWORD</VALUE-REF>
+                                        </ECUC-REFERENCE-VALUE>
+                                    </REFERENCE-VALUES>
+                                </ECUC-CONTAINER-VALUE>
+                                <ECUC-CONTAINER-VALUE>
+                                    <SHORT-NAME>ASWC_A26_PRP_SR_ConsoMoyenneGPLT1_ConsoMoyenneGPLT1</SHORT-NAME>
+                                    <DEFINITION-REF DEST="ECUC-PARAM-CONF-CONTAINER-DEF">/AUTOSAR/EcuDefs/NvDM/NvDMBlockDescriptor/NvDMVariableDataPrototype</DEFINITION-REF>
+                                    <PARAMETER-VALUES>
+                                        <ECUC-NUMERICAL-PARAM-VALUE>
+                                            <DEFINITION-REF DEST="ECUC-FLOAT-PARAM-DEF">/AUTOSAR/EcuDefs/NvDM/NvDMBlockDescriptor/NvDMVariableDataPrototype/NvDMInitValue</DEFINITION-REF>
+                                            <VALUE>0</VALUE>
+                                        </ECUC-NUMERICAL-PARAM-VALUE>
+                                    </PARAMETER-VALUES>
+                                    <REFERENCE-VALUES>
+                                        <ECUC-REFERENCE-VALUE>
+                                            <DEFINITION-REF DEST="ECUC-FOREIGN-REFERENCE-DEF">/AUTOSAR/EcuDefs/NvDM/NvDMBlockDescriptor/NvDMVariableDataPrototype/NvDMBaseTypeRef</DEFINITION-REF>
+                                            <VALUE-REF DEST="SW-BASE-TYPE">/AUTOSAR_Platform/BaseTypes/uint16</VALUE-REF>
+                                        </ECUC-REFERENCE-VALUE>
+                                        <ECUC-REFERENCE-VALUE>
+                                            <DEFINITION-REF DEST="ECUC-FOREIGN-REFERENCE-DEF">/AUTOSAR/EcuDefs/NvDM/NvDMBlockDescriptor/NvDMVariableDataPrototype/NvDMVariableDataPrototypeRef</DEFINITION-REF>
+                                            <VALUE-REF DEST="VARIABLE-DATA-PROTOTYPE">/RootP_ASWC_A26/ASWC_A26/PRP_SR_ConsoMoyenneGPLT1/ConsoMoyenneGPLT1</VALUE-REF>
+                                        </ECUC-REFERENCE-VALUE>
+                                        <ECUC-REFERENCE-VALUE>
+                                            <DEFINITION-REF DEST="ECUC-FOREIGN-REFERENCE-DEF">/AUTOSAR/EcuDefs/NvDM/NvDMBlockDescriptor/NvDMVariableDataPrototype/NvDMTypeRef</DEFINITION-REF>
+                                            <VALUE-REF DEST="IMPLEMENTATION-DATA-TYPE">/Pack_sw_Types/tWORD</VALUE-REF>
+                                        </ECUC-REFERENCE-VALUE>
+                                    </REFERENCE-VALUES>
+                                </ECUC-CONTAINER-VALUE>
+                                <ECUC-CONTAINER-VALUE>
+                                    <SHORT-NAME>ASWC_A26_PRP_SR_ConsoMoyenneGPLT2_ConsoMoyenneGPLT2</SHORT-NAME>
+                                    <DEFINITION-REF DEST="ECUC-PARAM-CONF-CONTAINER-DEF">/AUTOSAR/EcuDefs/NvDM/NvDMBlockDescriptor/NvDMVariableDataPrototype</DEFINITION-REF>
+                                    <PARAMETER-VALUES>
+                                        <ECUC-NUMERICAL-PARAM-VALUE>
+                                            <DEFINITION-REF DEST="ECUC-FLOAT-PARAM-DEF">/AUTOSAR/EcuDefs/NvDM/NvDMBlockDescriptor/NvDMVariableDataPrototype/NvDMInitValue</DEFINITION-REF>
+                                            <VALUE>0</VALUE>
+                                        </ECUC-NUMERICAL-PARAM-VALUE>
+                                    </PARAMETER-VALUES>
+                                    <REFERENCE-VALUES>
+                                        <ECUC-REFERENCE-VALUE>
+                                            <DEFINITION-REF DEST="ECUC-FOREIGN-REFERENCE-DEF">/AUTOSAR/EcuDefs/NvDM/NvDMBlockDescriptor/NvDMVariableDataPrototype/NvDMBaseTypeRef</DEFINITION-REF>
+                                            <VALUE-REF DEST="SW-BASE-TYPE">/AUTOSAR_Platform/BaseTypes/uint16</VALUE-REF>
+                                        </ECUC-REFERENCE-VALUE>
+                                        <ECUC-REFERENCE-VALUE>
+                                            <DEFINITION-REF DEST="ECUC-FOREIGN-REFERENCE-DEF">/AUTOSAR/EcuDefs/NvDM/NvDMBlockDescriptor/NvDMVariableDataPrototype/NvDMVariableDataPrototypeRef</DEFINITION-REF>
+                                            <VALUE-REF DEST="VARIABLE-DATA-PROTOTYPE">/RootP_ASWC_A26/ASWC_A26/PRP_SR_ConsoMoyenneGPLT2/ConsoMoyenneGPLT2</VALUE-REF>
+                                        </ECUC-REFERENCE-VALUE>
+                                        <ECUC-REFERENCE-VALUE>
+                                            <DEFINITION-REF DEST="ECUC-FOREIGN-REFERENCE-DEF">/AUTOSAR/EcuDefs/NvDM/NvDMBlockDescriptor/NvDMVariableDataPrototype/NvDMTypeRef</DEFINITION-REF>
+                                            <VALUE-REF DEST="IMPLEMENTATION-DATA-TYPE">/Pack_sw_Types/tWORD</VALUE-REF>
+                                        </ECUC-REFERENCE-VALUE>
+                                    </REFERENCE-VALUES>
+                                </ECUC-CONTAINER-VALUE>
+                                <ECUC-CONTAINER-VALUE>
+                                    <SHORT-NAME>ASWC_A26_PRP_SR_ConsoMoyenneHY1_ConsoMoyenneHY1</SHORT-NAME>
+                                    <DEFINITION-REF DEST="ECUC-PARAM-CONF-CONTAINER-DEF">/AUTOSAR/EcuDefs/NvDM/NvDMBlockDescriptor/NvDMVariableDataPrototype</DEFINITION-REF>
+                                    <PARAMETER-VALUES>
+                                        <ECUC-NUMERICAL-PARAM-VALUE>
+                                            <DEFINITION-REF DEST="ECUC-FLOAT-PARAM-DEF">/AUTOSAR/EcuDefs/NvDM/NvDMBlockDescriptor/NvDMVariableDataPrototype/NvDMInitValue</DEFINITION-REF>
+                                            <VALUE>0</VALUE>
+                                        </ECUC-NUMERICAL-PARAM-VALUE>
+                                    </PARAMETER-VALUES>
+                                    <REFERENCE-VALUES>
+                                        <ECUC-REFERENCE-VALUE>
+                                            <DEFINITION-REF DEST="ECUC-FOREIGN-REFERENCE-DEF">/AUTOSAR/EcuDefs/NvDM/NvDMBlockDescriptor/NvDMVariableDataPrototype/NvDMBaseTypeRef</DEFINITION-REF>
+                                            <VALUE-REF DEST="SW-BASE-TYPE">/AUTOSAR_Platform/BaseTypes/uint8</VALUE-REF>
+                                        </ECUC-REFERENCE-VALUE>
+                                        <ECUC-REFERENCE-VALUE>
+                                            <DEFINITION-REF DEST="ECUC-FOREIGN-REFERENCE-DEF">/AUTOSAR/EcuDefs/NvDM/NvDMBlockDescriptor/NvDMVariableDataPrototype/NvDMVariableDataPrototypeRef</DEFINITION-REF>
+                                            <VALUE-REF DEST="VARIABLE-DATA-PROTOTYPE">/RootP_ASWC_A26/ASWC_A26/PRP_SR_ConsoMoyenneHY1/ConsoMoyenneHY1</VALUE-REF>
+                                        </ECUC-REFERENCE-VALUE>
+                                        <ECUC-REFERENCE-VALUE>
+                                            <DEFINITION-REF DEST="ECUC-FOREIGN-REFERENCE-DEF">/AUTOSAR/EcuDefs/NvDM/NvDMBlockDescriptor/NvDMVariableDataPrototype/NvDMTypeRef</DEFINITION-REF>
+                                            <VALUE-REF DEST="IMPLEMENTATION-DATA-TYPE">/Pack_sw_Types/tBYTE</VALUE-REF>
+                                        </ECUC-REFERENCE-VALUE>
+                                    </REFERENCE-VALUES>
+                                </ECUC-CONTAINER-VALUE>
+                                <ECUC-CONTAINER-VALUE>
+                                    <SHORT-NAME>ASWC_A26_PRP_SR_ConsoMoyenneHY2_ConsoMoyenneHY2</SHORT-NAME>
+                                    <DEFINITION-REF DEST="ECUC-PARAM-CONF-CONTAINER-DEF">/AUTOSAR/EcuDefs/NvDM/NvDMBlockDescriptor/NvDMVariableDataPrototype</DEFINITION-REF>
+                                    <PARAMETER-VALUES>
+                                        <ECUC-NUMERICAL-PARAM-VALUE>
+                                            <DEFINITION-REF DEST="ECUC-FLOAT-PARAM-DEF">/AUTOSAR/EcuDefs/NvDM/NvDMBlockDescriptor/NvDMVariableDataPrototype/NvDMInitValue</DEFINITION-REF>
+                                            <VALUE>0</VALUE>
+                                        </ECUC-NUMERICAL-PARAM-VALUE>
+                                    </PARAMETER-VALUES>
+                                    <REFERENCE-VALUES>
+                                        <ECUC-REFERENCE-VALUE>
+                                            <DEFINITION-REF DEST="ECUC-FOREIGN-REFERENCE-DEF">/AUTOSAR/EcuDefs/NvDM/NvDMBlockDescriptor/NvDMVariableDataPrototype/NvDMBaseTypeRef</DEFINITION-REF>
+                                            <VALUE-REF DEST="SW-BASE-TYPE">/AUTOSAR_Platform/BaseTypes/uint8</VALUE-REF>
+                                        </ECUC-REFERENCE-VALUE>
+                                        <ECUC-REFERENCE-VALUE>
+                                            <DEFINITION-REF DEST="ECUC-FOREIGN-REFERENCE-DEF">/AUTOSAR/EcuDefs/NvDM/NvDMBlockDescriptor/NvDMVariableDataPrototype/NvDMVariableDataPrototypeRef</DEFINITION-REF>
+                                            <VALUE-REF DEST="VARIABLE-DATA-PROTOTYPE">/RootP_ASWC_A26/ASWC_A26/PRP_SR_ConsoMoyenneHY2/ConsoMoyenneHY2</VALUE-REF>
+                                        </ECUC-REFERENCE-VALUE>
+                                        <ECUC-REFERENCE-VALUE>
+                                            <DEFINITION-REF DEST="ECUC-FOREIGN-REFERENCE-DEF">/AUTOSAR/EcuDefs/NvDM/NvDMBlockDescriptor/NvDMVariableDataPrototype/NvDMTypeRef</DEFINITION-REF>
+                                            <VALUE-REF DEST="IMPLEMENTATION-DATA-TYPE">/Pack_sw_Types/tBYTE</VALUE-REF>
+                                        </ECUC-REFERENCE-VALUE>
+                                    </REFERENCE-VALUES>
+                                </ECUC-CONTAINER-VALUE>
+                            </SUB-CONTAINERS>
+                        </ECUC-CONTAINER-VALUE>
+                        <ECUC-CONTAINER-VALUE>
+                            <SHORT-NAME>NvDM_Default_App_Ram_Implicit_RAR_4</SHORT-NAME>
+                            <DEFINITION-REF DEST="ECUC-PARAM-CONF-CONTAINER-DEF">/AUTOSAR/EcuDefs/NvDM/NvDMBlockDescriptor</DEFINITION-REF>
+                            <PARAMETER-VALUES>
+                                <ECUC-TEXTUAL-PARAM-VALUE>
+                                    <DEFINITION-REF DEST="ECUC-ENUMERATION-PARAM-DEF">/AUTOSAR/EcuDefs/NvDM/NvDMBlockDescriptor/NvDMDurability</DEFINITION-REF>
+                                    <VALUE>SHORT_TERM</VALUE>
+                                </ECUC-TEXTUAL-PARAM-VALUE>
+                                <ECUC-NUMERICAL-PARAM-VALUE>
+                                    <DEFINITION-REF DEST="ECUC-BOOLEAN-PARAM-DEF">/AUTOSAR/EcuDefs/NvDM/NvDMBlockDescriptor/NvDMSafetyBlock</DEFINITION-REF>
+                                    <VALUE>0</VALUE>
+                                </ECUC-NUMERICAL-PARAM-VALUE>
+                                <ECUC-NUMERICAL-PARAM-VALUE>
+                                    <DEFINITION-REF DEST="ECUC-BOOLEAN-PARAM-DEF">/AUTOSAR/EcuDefs/NvDM/NvDMBlockDescriptor/NvDMConsistency</DEFINITION-REF>
+                                    <VALUE>0</VALUE>
+                                </ECUC-NUMERICAL-PARAM-VALUE>
+                                <ECUC-NUMERICAL-PARAM-VALUE>
+                                    <DEFINITION-REF DEST="ECUC-BOOLEAN-PARAM-DEF">/AUTOSAR/EcuDefs/NvDM/NvDMBlockDescriptor/NvDMCRC</DEFINITION-REF>
+                                    <VALUE>0</VALUE>
+                                </ECUC-NUMERICAL-PARAM-VALUE>
+                                <ECUC-NUMERICAL-PARAM-VALUE>
+                                    <DEFINITION-REF DEST="ECUC-FLOAT-PARAM-DEF">/AUTOSAR/EcuDefs/NvDM/NvDMBlockDescriptor/NvDMWriteTimeout</DEFINITION-REF>
+                                    <VALUE>0</VALUE>
+                                </ECUC-NUMERICAL-PARAM-VALUE>
+                                <ECUC-TEXTUAL-PARAM-VALUE>
+                                    <DEFINITION-REF DEST="ECUC-ENUMERATION-PARAM-DEF">/AUTOSAR/EcuDefs/NvDM/NvDMBlockDescriptor/NvDMWritingManagement</DEFINITION-REF>
+                                    <VALUE>Implicit</VALUE>
+                                </ECUC-TEXTUAL-PARAM-VALUE>
+                                <ECUC-TEXTUAL-PARAM-VALUE>
+                                    <DEFINITION-REF DEST="ECUC-ENUMERATION-PARAM-DEF">/AUTOSAR/EcuDefs/NvDM/NvDMBlockDescriptor/NvDMProfile</DEFINITION-REF>
+                                    <VALUE>App_Ram_Implicit</VALUE>
+                                </ECUC-TEXTUAL-PARAM-VALUE>
+                                <ECUC-NUMERICAL-PARAM-VALUE>
+                                    <DEFINITION-REF DEST="ECUC-INTEGER-PARAM-DEF">/AUTOSAR/EcuDefs/NvDM/NvDMBlockDescriptor/NvDMBlockSize</DEFINITION-REF>
+                                    <VALUE>10</VALUE>
+                                </ECUC-NUMERICAL-PARAM-VALUE>
+                                <ECUC-NUMERICAL-PARAM-VALUE>
+                                    <DEFINITION-REF DEST="ECUC-INTEGER-PARAM-DEF">/AUTOSAR/EcuDefs/NvDM/NvDMBlockDescriptor/NvDMBlockID</DEFINITION-REF>
+                                    <VALUE>0</VALUE>
+                                </ECUC-NUMERICAL-PARAM-VALUE>
+                            </PARAMETER-VALUES>
+                            <REFERENCE-VALUES>
+                                <ECUC-REFERENCE-VALUE>
+                                    <DEFINITION-REF DEST="ECUC-REFERENCE-DEF">/AUTOSAR/EcuDefs/NvDM/NvDMBlockDescriptor/NvDMNvMBlockDescriptorRef</DEFINITION-REF>
+                                    <VALUE-REF DEST="ECUC-CONTAINER-VALUE">/NvM/NvM/NvM_Default_App_Ram_Implicit_RAR_4</VALUE-REF>
+                                </ECUC-REFERENCE-VALUE>
+                            </REFERENCE-VALUES>
+                            <SUB-CONTAINERS>
+                                <ECUC-CONTAINER-VALUE>
+                                    <SHORT-NAME>ASWC_A26_PRP_SR_ConsoMoyenneT1_ConsoMoyenneT1</SHORT-NAME>
+                                    <DEFINITION-REF DEST="ECUC-PARAM-CONF-CONTAINER-DEF">/AUTOSAR/EcuDefs/NvDM/NvDMBlockDescriptor/NvDMVariableDataPrototype</DEFINITION-REF>
+                                    <PARAMETER-VALUES>
+                                        <ECUC-NUMERICAL-PARAM-VALUE>
+                                            <DEFINITION-REF DEST="ECUC-FLOAT-PARAM-DEF">/AUTOSAR/EcuDefs/NvDM/NvDMBlockDescriptor/NvDMVariableDataPrototype/NvDMInitValue</DEFINITION-REF>
+                                            <VALUE>0</VALUE>
+                                        </ECUC-NUMERICAL-PARAM-VALUE>
+                                    </PARAMETER-VALUES>
+                                    <REFERENCE-VALUES>
+                                        <ECUC-REFERENCE-VALUE>
+                                            <DEFINITION-REF DEST="ECUC-FOREIGN-REFERENCE-DEF">/AUTOSAR/EcuDefs/NvDM/NvDMBlockDescriptor/NvDMVariableDataPrototype/NvDMBaseTypeRef</DEFINITION-REF>
+                                            <VALUE-REF DEST="SW-BASE-TYPE">/AUTOSAR_Platform/BaseTypes/uint16</VALUE-REF>
+                                        </ECUC-REFERENCE-VALUE>
+                                        <ECUC-REFERENCE-VALUE>
+                                            <DEFINITION-REF DEST="ECUC-FOREIGN-REFERENCE-DEF">/AUTOSAR/EcuDefs/NvDM/NvDMBlockDescriptor/NvDMVariableDataPrototype/NvDMVariableDataPrototypeRef</DEFINITION-REF>
+                                            <VALUE-REF DEST="VARIABLE-DATA-PROTOTYPE">/RootP_ASWC_A26/ASWC_A26/PRP_SR_ConsoMoyenneT1/ConsoMoyenneT1</VALUE-REF>
+                                        </ECUC-REFERENCE-VALUE>
+                                        <ECUC-REFERENCE-VALUE>
+                                            <DEFINITION-REF DEST="ECUC-FOREIGN-REFERENCE-DEF">/AUTOSAR/EcuDefs/NvDM/NvDMBlockDescriptor/NvDMVariableDataPrototype/NvDMTypeRef</DEFINITION-REF>
+                                            <VALUE-REF DEST="IMPLEMENTATION-DATA-TYPE">/Pack_sw_Types/tWORD</VALUE-REF>
+                                        </ECUC-REFERENCE-VALUE>
+                                    </REFERENCE-VALUES>
+                                </ECUC-CONTAINER-VALUE>
+                                <ECUC-CONTAINER-VALUE>
+                                    <SHORT-NAME>ASWC_A26_PRP_SR_ConsoInst_ConsoInst</SHORT-NAME>
+                                    <DEFINITION-REF DEST="ECUC-PARAM-CONF-CONTAINER-DEF">/AUTOSAR/EcuDefs/NvDM/NvDMBlockDescriptor/NvDMVariableDataPrototype</DEFINITION-REF>
+                                    <PARAMETER-VALUES>
+                                        <ECUC-NUMERICAL-PARAM-VALUE>
+                                            <DEFINITION-REF DEST="ECUC-FLOAT-PARAM-DEF">/AUTOSAR/EcuDefs/NvDM/NvDMBlockDescriptor/NvDMVariableDataPrototype/NvDMInitValue</DEFINITION-REF>
+                                            <VALUE>65535</VALUE>
+                                        </ECUC-NUMERICAL-PARAM-VALUE>
+                                    </PARAMETER-VALUES>
+                                    <REFERENCE-VALUES>
+                                        <ECUC-REFERENCE-VALUE>
+                                            <DEFINITION-REF DEST="ECUC-FOREIGN-REFERENCE-DEF">/AUTOSAR/EcuDefs/NvDM/NvDMBlockDescriptor/NvDMVariableDataPrototype/NvDMBaseTypeRef</DEFINITION-REF>
+                                            <VALUE-REF DEST="SW-BASE-TYPE">/AUTOSAR_Platform/BaseTypes/uint16</VALUE-REF>
+                                        </ECUC-REFERENCE-VALUE>
+                                        <ECUC-REFERENCE-VALUE>
+                                            <DEFINITION-REF DEST="ECUC-FOREIGN-REFERENCE-DEF">/AUTOSAR/EcuDefs/NvDM/NvDMBlockDescriptor/NvDMVariableDataPrototype/NvDMVariableDataPrototypeRef</DEFINITION-REF>
+                                            <VALUE-REF DEST="VARIABLE-DATA-PROTOTYPE">/RootP_ASWC_A26/ASWC_A26/PRP_SR_ConsoInst/ConsoInst</VALUE-REF>
+                                        </ECUC-REFERENCE-VALUE>
+                                        <ECUC-REFERENCE-VALUE>
+                                            <DEFINITION-REF DEST="ECUC-FOREIGN-REFERENCE-DEF">/AUTOSAR/EcuDefs/NvDM/NvDMBlockDescriptor/NvDMVariableDataPrototype/NvDMTypeRef</DEFINITION-REF>
+                                            <VALUE-REF DEST="IMPLEMENTATION-DATA-TYPE">/Pack_sw_Types/tWORD</VALUE-REF>
+                                        </ECUC-REFERENCE-VALUE>
+                                    </REFERENCE-VALUES>
+                                </ECUC-CONTAINER-VALUE>
+                                <ECUC-CONTAINER-VALUE>
+                                    <SHORT-NAME>ASWC_A26_PRP_SR_ConsoInstGPL_ConsoInstGPL</SHORT-NAME>
+                                    <DEFINITION-REF DEST="ECUC-PARAM-CONF-CONTAINER-DEF">/AUTOSAR/EcuDefs/NvDM/NvDMBlockDescriptor/NvDMVariableDataPrototype</DEFINITION-REF>
+                                    <PARAMETER-VALUES>
+                                        <ECUC-NUMERICAL-PARAM-VALUE>
+                                            <DEFINITION-REF DEST="ECUC-FLOAT-PARAM-DEF">/AUTOSAR/EcuDefs/NvDM/NvDMBlockDescriptor/NvDMVariableDataPrototype/NvDMInitValue</DEFINITION-REF>
+                                            <VALUE>511</VALUE>
+                                        </ECUC-NUMERICAL-PARAM-VALUE>
+                                    </PARAMETER-VALUES>
+                                    <REFERENCE-VALUES>
+                                        <ECUC-REFERENCE-VALUE>
+                                            <DEFINITION-REF DEST="ECUC-FOREIGN-REFERENCE-DEF">/AUTOSAR/EcuDefs/NvDM/NvDMBlockDescriptor/NvDMVariableDataPrototype/NvDMBaseTypeRef</DEFINITION-REF>
+                                            <VALUE-REF DEST="SW-BASE-TYPE">/AUTOSAR_Platform/BaseTypes/uint16</VALUE-REF>
+                                        </ECUC-REFERENCE-VALUE>
+                                        <ECUC-REFERENCE-VALUE>
+                                            <DEFINITION-REF DEST="ECUC-FOREIGN-REFERENCE-DEF">/AUTOSAR/EcuDefs/NvDM/NvDMBlockDescriptor/NvDMVariableDataPrototype/NvDMVariableDataPrototypeRef</DEFINITION-REF>
+                                            <VALUE-REF DEST="VARIABLE-DATA-PROTOTYPE">/RootP_ASWC_A26/ASWC_A26/PRP_SR_ConsoInstGPL/ConsoInstGPL</VALUE-REF>
+                                        </ECUC-REFERENCE-VALUE>
+                                        <ECUC-REFERENCE-VALUE>
+                                            <DEFINITION-REF DEST="ECUC-FOREIGN-REFERENCE-DEF">/AUTOSAR/EcuDefs/NvDM/NvDMBlockDescriptor/NvDMVariableDataPrototype/NvDMTypeRef</DEFINITION-REF>
+                                            <VALUE-REF DEST="IMPLEMENTATION-DATA-TYPE">/Pack_sw_Types/tWORD</VALUE-REF>
+                                        </ECUC-REFERENCE-VALUE>
+                                    </REFERENCE-VALUES>
+                                </ECUC-CONTAINER-VALUE>
+                                <ECUC-CONTAINER-VALUE>
+                                    <SHORT-NAME>ASWC_A26_PRP_SR_ConsoMoyenneHY3_ConsoMoyenneHY3</SHORT-NAME>
+                                    <DEFINITION-REF DEST="ECUC-PARAM-CONF-CONTAINER-DEF">/AUTOSAR/EcuDefs/NvDM/NvDMBlockDescriptor/NvDMVariableDataPrototype</DEFINITION-REF>
+                                    <PARAMETER-VALUES>
+                                        <ECUC-NUMERICAL-PARAM-VALUE>
+                                            <DEFINITION-REF DEST="ECUC-FLOAT-PARAM-DEF">/AUTOSAR/EcuDefs/NvDM/NvDMBlockDescriptor/NvDMVariableDataPrototype/NvDMInitValue</DEFINITION-REF>
+                                            <VALUE>0</VALUE>
+                                        </ECUC-NUMERICAL-PARAM-VALUE>
+                                    </PARAMETER-VALUES>
+                                    <REFERENCE-VALUES>
+                                        <ECUC-REFERENCE-VALUE>
+                                            <DEFINITION-REF DEST="ECUC-FOREIGN-REFERENCE-DEF">/AUTOSAR/EcuDefs/NvDM/NvDMBlockDescriptor/NvDMVariableDataPrototype/NvDMBaseTypeRef</DEFINITION-REF>
+                                            <VALUE-REF DEST="SW-BASE-TYPE">/AUTOSAR_Platform/BaseTypes/uint8</VALUE-REF>
+                                        </ECUC-REFERENCE-VALUE>
+                                        <ECUC-REFERENCE-VALUE>
+                                            <DEFINITION-REF DEST="ECUC-FOREIGN-REFERENCE-DEF">/AUTOSAR/EcuDefs/NvDM/NvDMBlockDescriptor/NvDMVariableDataPrototype/NvDMVariableDataPrototypeRef</DEFINITION-REF>
+                                            <VALUE-REF DEST="VARIABLE-DATA-PROTOTYPE">/RootP_ASWC_A26/ASWC_A26/PRP_SR_ConsoMoyenneHY3/ConsoMoyenneHY3</VALUE-REF>
+                                        </ECUC-REFERENCE-VALUE>
+                                        <ECUC-REFERENCE-VALUE>
+                                            <DEFINITION-REF DEST="ECUC-FOREIGN-REFERENCE-DEF">/AUTOSAR/EcuDefs/NvDM/NvDMBlockDescriptor/NvDMVariableDataPrototype/NvDMTypeRef</DEFINITION-REF>
+                                            <VALUE-REF DEST="IMPLEMENTATION-DATA-TYPE">/Pack_sw_Types/tBYTE</VALUE-REF>
+                                        </ECUC-REFERENCE-VALUE>
+                                    </REFERENCE-VALUES>
+                                </ECUC-CONTAINER-VALUE>
+                                <ECUC-CONTAINER-VALUE>
+                                    <SHORT-NAME>ASWC_A26_PRP_SR_ConsoMoyenneHY4_ConsoMoyenneHY4</SHORT-NAME>
+                                    <DEFINITION-REF DEST="ECUC-PARAM-CONF-CONTAINER-DEF">/AUTOSAR/EcuDefs/NvDM/NvDMBlockDescriptor/NvDMVariableDataPrototype</DEFINITION-REF>
+                                    <PARAMETER-VALUES>
+                                        <ECUC-NUMERICAL-PARAM-VALUE>
+                                            <DEFINITION-REF DEST="ECUC-FLOAT-PARAM-DEF">/AUTOSAR/EcuDefs/NvDM/NvDMBlockDescriptor/NvDMVariableDataPrototype/NvDMInitValue</DEFINITION-REF>
+                                            <VALUE>0</VALUE>
+                                        </ECUC-NUMERICAL-PARAM-VALUE>
+                                    </PARAMETER-VALUES>
+                                    <REFERENCE-VALUES>
+                                        <ECUC-REFERENCE-VALUE>
+                                            <DEFINITION-REF DEST="ECUC-FOREIGN-REFERENCE-DEF">/AUTOSAR/EcuDefs/NvDM/NvDMBlockDescriptor/NvDMVariableDataPrototype/NvDMBaseTypeRef</DEFINITION-REF>
+                                            <VALUE-REF DEST="SW-BASE-TYPE">/AUTOSAR_Platform/BaseTypes/uint8</VALUE-REF>
+                                        </ECUC-REFERENCE-VALUE>
+                                        <ECUC-REFERENCE-VALUE>
+                                            <DEFINITION-REF DEST="ECUC-FOREIGN-REFERENCE-DEF">/AUTOSAR/EcuDefs/NvDM/NvDMBlockDescriptor/NvDMVariableDataPrototype/NvDMVariableDataPrototypeRef</DEFINITION-REF>
+                                            <VALUE-REF DEST="VARIABLE-DATA-PROTOTYPE">/RootP_ASWC_A26/ASWC_A26/PRP_SR_ConsoMoyenneHY4/ConsoMoyenneHY4</VALUE-REF>
+                                        </ECUC-REFERENCE-VALUE>
+                                        <ECUC-REFERENCE-VALUE>
+                                            <DEFINITION-REF DEST="ECUC-FOREIGN-REFERENCE-DEF">/AUTOSAR/EcuDefs/NvDM/NvDMBlockDescriptor/NvDMVariableDataPrototype/NvDMTypeRef</DEFINITION-REF>
+                                            <VALUE-REF DEST="IMPLEMENTATION-DATA-TYPE">/Pack_sw_Types/tBYTE</VALUE-REF>
+                                        </ECUC-REFERENCE-VALUE>
+                                    </REFERENCE-VALUES>
+                                </ECUC-CONTAINER-VALUE>
+                                <ECUC-CONTAINER-VALUE>
+                                    <SHORT-NAME>ASWC_A26_PRP_SR_ConsoMoyenneHY5_ConsoMoyenneHY5</SHORT-NAME>
+                                    <DEFINITION-REF DEST="ECUC-PARAM-CONF-CONTAINER-DEF">/AUTOSAR/EcuDefs/NvDM/NvDMBlockDescriptor/NvDMVariableDataPrototype</DEFINITION-REF>
+                                    <PARAMETER-VALUES>
+                                        <ECUC-NUMERICAL-PARAM-VALUE>
+                                            <DEFINITION-REF DEST="ECUC-FLOAT-PARAM-DEF">/AUTOSAR/EcuDefs/NvDM/NvDMBlockDescriptor/NvDMVariableDataPrototype/NvDMInitValue</DEFINITION-REF>
+                                            <VALUE>0</VALUE>
+                                        </ECUC-NUMERICAL-PARAM-VALUE>
+                                    </PARAMETER-VALUES>
+                                    <REFERENCE-VALUES>
+                                        <ECUC-REFERENCE-VALUE>
+                                            <DEFINITION-REF DEST="ECUC-FOREIGN-REFERENCE-DEF">/AUTOSAR/EcuDefs/NvDM/NvDMBlockDescriptor/NvDMVariableDataPrototype/NvDMBaseTypeRef</DEFINITION-REF>
+                                            <VALUE-REF DEST="SW-BASE-TYPE">/AUTOSAR_Platform/BaseTypes/uint8</VALUE-REF>
+                                        </ECUC-REFERENCE-VALUE>
+                                        <ECUC-REFERENCE-VALUE>
+                                            <DEFINITION-REF DEST="ECUC-FOREIGN-REFERENCE-DEF">/AUTOSAR/EcuDefs/NvDM/NvDMBlockDescriptor/NvDMVariableDataPrototype/NvDMVariableDataPrototypeRef</DEFINITION-REF>
+                                            <VALUE-REF DEST="VARIABLE-DATA-PROTOTYPE">/RootP_ASWC_A26/ASWC_A26/PRP_SR_ConsoMoyenneHY5/ConsoMoyenneHY5</VALUE-REF>
+                                        </ECUC-REFERENCE-VALUE>
+                                        <ECUC-REFERENCE-VALUE>
+                                            <DEFINITION-REF DEST="ECUC-FOREIGN-REFERENCE-DEF">/AUTOSAR/EcuDefs/NvDM/NvDMBlockDescriptor/NvDMVariableDataPrototype/NvDMTypeRef</DEFINITION-REF>
+                                            <VALUE-REF DEST="IMPLEMENTATION-DATA-TYPE">/Pack_sw_Types/tBYTE</VALUE-REF>
+                                        </ECUC-REFERENCE-VALUE>
+                                    </REFERENCE-VALUES>
+                                </ECUC-CONTAINER-VALUE>
+                                <ECUC-CONTAINER-VALUE>
+                                    <SHORT-NAME>ASWC_A26_PRP_SR_ConsoMoyenneHY6_ConsoMoyenneHY6</SHORT-NAME>
+                                    <DEFINITION-REF DEST="ECUC-PARAM-CONF-CONTAINER-DEF">/AUTOSAR/EcuDefs/NvDM/NvDMBlockDescriptor/NvDMVariableDataPrototype</DEFINITION-REF>
+                                    <PARAMETER-VALUES>
+                                        <ECUC-NUMERICAL-PARAM-VALUE>
+                                            <DEFINITION-REF DEST="ECUC-FLOAT-PARAM-DEF">/AUTOSAR/EcuDefs/NvDM/NvDMBlockDescriptor/NvDMVariableDataPrototype/NvDMInitValue</DEFINITION-REF>
+                                            <VALUE>0</VALUE>
+                                        </ECUC-NUMERICAL-PARAM-VALUE>
+                                    </PARAMETER-VALUES>
+                                    <REFERENCE-VALUES>
+                                        <ECUC-REFERENCE-VALUE>
+                                            <DEFINITION-REF DEST="ECUC-FOREIGN-REFERENCE-DEF">/AUTOSAR/EcuDefs/NvDM/NvDMBlockDescriptor/NvDMVariableDataPrototype/NvDMBaseTypeRef</DEFINITION-REF>
+                                            <VALUE-REF DEST="SW-BASE-TYPE">/AUTOSAR_Platform/BaseTypes/uint8</VALUE-REF>
+                                        </ECUC-REFERENCE-VALUE>
+                                        <ECUC-REFERENCE-VALUE>
+                                            <DEFINITION-REF DEST="ECUC-FOREIGN-REFERENCE-DEF">/AUTOSAR/EcuDefs/NvDM/NvDMBlockDescriptor/NvDMVariableDataPrototype/NvDMVariableDataPrototypeRef</DEFINITION-REF>
+                                            <VALUE-REF DEST="VARIABLE-DATA-PROTOTYPE">/RootP_ASWC_A26/ASWC_A26/PRP_SR_ConsoMoyenneHY6/ConsoMoyenneHY6</VALUE-REF>
+                                        </ECUC-REFERENCE-VALUE>
+                                        <ECUC-REFERENCE-VALUE>
+                                            <DEFINITION-REF DEST="ECUC-FOREIGN-REFERENCE-DEF">/AUTOSAR/EcuDefs/NvDM/NvDMBlockDescriptor/NvDMVariableDataPrototype/NvDMTypeRef</DEFINITION-REF>
+                                            <VALUE-REF DEST="IMPLEMENTATION-DATA-TYPE">/Pack_sw_Types/tBYTE</VALUE-REF>
+                                        </ECUC-REFERENCE-VALUE>
+                                    </REFERENCE-VALUES>
+                                </ECUC-CONTAINER-VALUE>
+                            </SUB-CONTAINERS>
+                        </ECUC-CONTAINER-VALUE>
+                        <ECUC-CONTAINER-VALUE>
+                            <SHORT-NAME>NvDM_Default_App_Ram_Implicit_RAR_5</SHORT-NAME>
+                            <DEFINITION-REF DEST="ECUC-PARAM-CONF-CONTAINER-DEF">/AUTOSAR/EcuDefs/NvDM/NvDMBlockDescriptor</DEFINITION-REF>
+                            <PARAMETER-VALUES>
+                                <ECUC-TEXTUAL-PARAM-VALUE>
+                                    <DEFINITION-REF DEST="ECUC-ENUMERATION-PARAM-DEF">/AUTOSAR/EcuDefs/NvDM/NvDMBlockDescriptor/NvDMDurability</DEFINITION-REF>
+                                    <VALUE>SHORT_TERM</VALUE>
+                                </ECUC-TEXTUAL-PARAM-VALUE>
+                                <ECUC-NUMERICAL-PARAM-VALUE>
+                                    <DEFINITION-REF DEST="ECUC-BOOLEAN-PARAM-DEF">/AUTOSAR/EcuDefs/NvDM/NvDMBlockDescriptor/NvDMSafetyBlock</DEFINITION-REF>
+                                    <VALUE>0</VALUE>
+                                </ECUC-NUMERICAL-PARAM-VALUE>
+                                <ECUC-NUMERICAL-PARAM-VALUE>
+                                    <DEFINITION-REF DEST="ECUC-BOOLEAN-PARAM-DEF">/AUTOSAR/EcuDefs/NvDM/NvDMBlockDescriptor/NvDMConsistency</DEFINITION-REF>
+                                    <VALUE>0</VALUE>
+                                </ECUC-NUMERICAL-PARAM-VALUE>
+                                <ECUC-NUMERICAL-PARAM-VALUE>
+                                    <DEFINITION-REF DEST="ECUC-BOOLEAN-PARAM-DEF">/AUTOSAR/EcuDefs/NvDM/NvDMBlockDescriptor/NvDMCRC</DEFINITION-REF>
+                                    <VALUE>0</VALUE>
+                                </ECUC-NUMERICAL-PARAM-VALUE>
+                                <ECUC-NUMERICAL-PARAM-VALUE>
+                                    <DEFINITION-REF DEST="ECUC-FLOAT-PARAM-DEF">/AUTOSAR/EcuDefs/NvDM/NvDMBlockDescriptor/NvDMWriteTimeout</DEFINITION-REF>
+                                    <VALUE>0</VALUE>
+                                </ECUC-NUMERICAL-PARAM-VALUE>
+                                <ECUC-TEXTUAL-PARAM-VALUE>
+                                    <DEFINITION-REF DEST="ECUC-ENUMERATION-PARAM-DEF">/AUTOSAR/EcuDefs/NvDM/NvDMBlockDescriptor/NvDMWritingManagement</DEFINITION-REF>
+                                    <VALUE>Implicit</VALUE>
+                                </ECUC-TEXTUAL-PARAM-VALUE>
+                                <ECUC-TEXTUAL-PARAM-VALUE>
+                                    <DEFINITION-REF DEST="ECUC-ENUMERATION-PARAM-DEF">/AUTOSAR/EcuDefs/NvDM/NvDMBlockDescriptor/NvDMProfile</DEFINITION-REF>
+                                    <VALUE>App_Ram_Implicit</VALUE>
+                                </ECUC-TEXTUAL-PARAM-VALUE>
+                                <ECUC-NUMERICAL-PARAM-VALUE>
+                                    <DEFINITION-REF DEST="ECUC-INTEGER-PARAM-DEF">/AUTOSAR/EcuDefs/NvDM/NvDMBlockDescriptor/NvDMBlockSize</DEFINITION-REF>
+                                    <VALUE>10</VALUE>
+                                </ECUC-NUMERICAL-PARAM-VALUE>
+                                <ECUC-NUMERICAL-PARAM-VALUE>
+                                    <DEFINITION-REF DEST="ECUC-INTEGER-PARAM-DEF">/AUTOSAR/EcuDefs/NvDM/NvDMBlockDescriptor/NvDMBlockID</DEFINITION-REF>
+                                    <VALUE>0</VALUE>
+                                </ECUC-NUMERICAL-PARAM-VALUE>
+                            </PARAMETER-VALUES>
+                            <REFERENCE-VALUES>
+                                <ECUC-REFERENCE-VALUE>
+                                    <DEFINITION-REF DEST="ECUC-REFERENCE-DEF">/AUTOSAR/EcuDefs/NvDM/NvDMBlockDescriptor/NvDMNvMBlockDescriptorRef</DEFINITION-REF>
+                                    <VALUE-REF DEST="ECUC-CONTAINER-VALUE">/NvM/NvM/NvM_Default_App_Ram_Implicit_RAR_5</VALUE-REF>
+                                </ECUC-REFERENCE-VALUE>
+                            </REFERENCE-VALUES>
+                            <SUB-CONTAINERS>
+                                <ECUC-CONTAINER-VALUE>
+                                    <SHORT-NAME>ASWC_A26_PRP_SR_ConsoMoyenneGPLT1_ConsoMoyenneGPLT1</SHORT-NAME>
+                                    <DEFINITION-REF DEST="ECUC-PARAM-CONF-CONTAINER-DEF">/AUTOSAR/EcuDefs/NvDM/NvDMBlockDescriptor/NvDMVariableDataPrototype</DEFINITION-REF>
+                                    <PARAMETER-VALUES>
+                                        <ECUC-NUMERICAL-PARAM-VALUE>
+                                            <DEFINITION-REF DEST="ECUC-FLOAT-PARAM-DEF">/AUTOSAR/EcuDefs/NvDM/NvDMBlockDescriptor/NvDMVariableDataPrototype/NvDMInitValue</DEFINITION-REF>
+                                            <VALUE>0</VALUE>
+                                        </ECUC-NUMERICAL-PARAM-VALUE>
+                                    </PARAMETER-VALUES>
+                                    <REFERENCE-VALUES>
+                                        <ECUC-REFERENCE-VALUE>
+                                            <DEFINITION-REF DEST="ECUC-FOREIGN-REFERENCE-DEF">/AUTOSAR/EcuDefs/NvDM/NvDMBlockDescriptor/NvDMVariableDataPrototype/NvDMBaseTypeRef</DEFINITION-REF>
+                                            <VALUE-REF DEST="SW-BASE-TYPE">/AUTOSAR_Platform/BaseTypes/uint16</VALUE-REF>
+                                        </ECUC-REFERENCE-VALUE>
+                                        <ECUC-REFERENCE-VALUE>
+                                            <DEFINITION-REF DEST="ECUC-FOREIGN-REFERENCE-DEF">/AUTOSAR/EcuDefs/NvDM/NvDMBlockDescriptor/NvDMVariableDataPrototype/NvDMVariableDataPrototypeRef</DEFINITION-REF>
+                                            <VALUE-REF DEST="VARIABLE-DATA-PROTOTYPE">/RootP_ASWC_A26/ASWC_A26/PRP_SR_ConsoMoyenneGPLT1/ConsoMoyenneGPLT1</VALUE-REF>
+                                        </ECUC-REFERENCE-VALUE>
+                                        <ECUC-REFERENCE-VALUE>
+                                            <DEFINITION-REF DEST="ECUC-FOREIGN-REFERENCE-DEF">/AUTOSAR/EcuDefs/NvDM/NvDMBlockDescriptor/NvDMVariableDataPrototype/NvDMTypeRef</DEFINITION-REF>
+                                            <VALUE-REF DEST="IMPLEMENTATION-DATA-TYPE">/Pack_sw_Types/tWORD</VALUE-REF>
+                                        </ECUC-REFERENCE-VALUE>
+                                    </REFERENCE-VALUES>
+                                </ECUC-CONTAINER-VALUE>
+                                <ECUC-CONTAINER-VALUE>
+                                    <SHORT-NAME>ASWC_A26_PRP_SR_ConsoMoyenneGPLT2_ConsoMoyenneGPLT2</SHORT-NAME>
+                                    <DEFINITION-REF DEST="ECUC-PARAM-CONF-CONTAINER-DEF">/AUTOSAR/EcuDefs/NvDM/NvDMBlockDescriptor/NvDMVariableDataPrototype</DEFINITION-REF>
+                                    <PARAMETER-VALUES>
+                                        <ECUC-NUMERICAL-PARAM-VALUE>
+                                            <DEFINITION-REF DEST="ECUC-FLOAT-PARAM-DEF">/AUTOSAR/EcuDefs/NvDM/NvDMBlockDescriptor/NvDMVariableDataPrototype/NvDMInitValue</DEFINITION-REF>
+                                            <VALUE>0</VALUE>
+                                        </ECUC-NUMERICAL-PARAM-VALUE>
+                                    </PARAMETER-VALUES>
+                                    <REFERENCE-VALUES>
+                                        <ECUC-REFERENCE-VALUE>
+                                            <DEFINITION-REF DEST="ECUC-FOREIGN-REFERENCE-DEF">/AUTOSAR/EcuDefs/NvDM/NvDMBlockDescriptor/NvDMVariableDataPrototype/NvDMBaseTypeRef</DEFINITION-REF>
+                                            <VALUE-REF DEST="SW-BASE-TYPE">/AUTOSAR_Platform/BaseTypes/uint16</VALUE-REF>
+                                        </ECUC-REFERENCE-VALUE>
+                                        <ECUC-REFERENCE-VALUE>
+                                            <DEFINITION-REF DEST="ECUC-FOREIGN-REFERENCE-DEF">/AUTOSAR/EcuDefs/NvDM/NvDMBlockDescriptor/NvDMVariableDataPrototype/NvDMVariableDataPrototypeRef</DEFINITION-REF>
+                                            <VALUE-REF DEST="VARIABLE-DATA-PROTOTYPE">/RootP_ASWC_A26/ASWC_A26/PRP_SR_ConsoMoyenneGPLT2/ConsoMoyenneGPLT2</VALUE-REF>
+                                        </ECUC-REFERENCE-VALUE>
+                                        <ECUC-REFERENCE-VALUE>
+                                            <DEFINITION-REF DEST="ECUC-FOREIGN-REFERENCE-DEF">/AUTOSAR/EcuDefs/NvDM/NvDMBlockDescriptor/NvDMVariableDataPrototype/NvDMTypeRef</DEFINITION-REF>
+                                            <VALUE-REF DEST="IMPLEMENTATION-DATA-TYPE">/Pack_sw_Types/tWORD</VALUE-REF>
+                                        </ECUC-REFERENCE-VALUE>
+                                    </REFERENCE-VALUES>
+                                </ECUC-CONTAINER-VALUE>
+                                <ECUC-CONTAINER-VALUE>
+                                    <SHORT-NAME>ASWC_A26_PRP_SR_ConsoMoyenneHY1_ConsoMoyenneHY1</SHORT-NAME>
+                                    <DEFINITION-REF DEST="ECUC-PARAM-CONF-CONTAINER-DEF">/AUTOSAR/EcuDefs/NvDM/NvDMBlockDescriptor/NvDMVariableDataPrototype</DEFINITION-REF>
+                                    <PARAMETER-VALUES>
+                                        <ECUC-NUMERICAL-PARAM-VALUE>
+                                            <DEFINITION-REF DEST="ECUC-FLOAT-PARAM-DEF">/AUTOSAR/EcuDefs/NvDM/NvDMBlockDescriptor/NvDMVariableDataPrototype/NvDMInitValue</DEFINITION-REF>
+                                            <VALUE>0</VALUE>
+                                        </ECUC-NUMERICAL-PARAM-VALUE>
+                                    </PARAMETER-VALUES>
+                                    <REFERENCE-VALUES>
+                                        <ECUC-REFERENCE-VALUE>
+                                            <DEFINITION-REF DEST="ECUC-FOREIGN-REFERENCE-DEF">/AUTOSAR/EcuDefs/NvDM/NvDMBlockDescriptor/NvDMVariableDataPrototype/NvDMBaseTypeRef</DEFINITION-REF>
+                                            <VALUE-REF DEST="SW-BASE-TYPE">/AUTOSAR_Platform/BaseTypes/uint8</VALUE-REF>
+                                        </ECUC-REFERENCE-VALUE>
+                                        <ECUC-REFERENCE-VALUE>
+                                            <DEFINITION-REF DEST="ECUC-FOREIGN-REFERENCE-DEF">/AUTOSAR/EcuDefs/NvDM/NvDMBlockDescriptor/NvDMVariableDataPrototype/NvDMVariableDataPrototypeRef</DEFINITION-REF>
+                                            <VALUE-REF DEST="VARIABLE-DATA-PROTOTYPE">/RootP_ASWC_A26/ASWC_A26/PRP_SR_ConsoMoyenneHY1/ConsoMoyenneHY1</VALUE-REF>
+                                        </ECUC-REFERENCE-VALUE>
+                                        <ECUC-REFERENCE-VALUE>
+                                            <DEFINITION-REF DEST="ECUC-FOREIGN-REFERENCE-DEF">/AUTOSAR/EcuDefs/NvDM/NvDMBlockDescriptor/NvDMVariableDataPrototype/NvDMTypeRef</DEFINITION-REF>
+                                            <VALUE-REF DEST="IMPLEMENTATION-DATA-TYPE">/Pack_sw_Types/tBYTE</VALUE-REF>
+                                        </ECUC-REFERENCE-VALUE>
+                                    </REFERENCE-VALUES>
+                                </ECUC-CONTAINER-VALUE>
+                                <ECUC-CONTAINER-VALUE>
+                                    <SHORT-NAME>ASWC_A26_PRP_SR_ConsoMoyenneHY2_ConsoMoyenneHY2</SHORT-NAME>
+                                    <DEFINITION-REF DEST="ECUC-PARAM-CONF-CONTAINER-DEF">/AUTOSAR/EcuDefs/NvDM/NvDMBlockDescriptor/NvDMVariableDataPrototype</DEFINITION-REF>
+                                    <PARAMETER-VALUES>
+                                        <ECUC-NUMERICAL-PARAM-VALUE>
+                                            <DEFINITION-REF DEST="ECUC-FLOAT-PARAM-DEF">/AUTOSAR/EcuDefs/NvDM/NvDMBlockDescriptor/NvDMVariableDataPrototype/NvDMInitValue</DEFINITION-REF>
+                                            <VALUE>0</VALUE>
+                                        </ECUC-NUMERICAL-PARAM-VALUE>
+                                    </PARAMETER-VALUES>
+                                    <REFERENCE-VALUES>
+                                        <ECUC-REFERENCE-VALUE>
+                                            <DEFINITION-REF DEST="ECUC-FOREIGN-REFERENCE-DEF">/AUTOSAR/EcuDefs/NvDM/NvDMBlockDescriptor/NvDMVariableDataPrototype/NvDMBaseTypeRef</DEFINITION-REF>
+                                            <VALUE-REF DEST="SW-BASE-TYPE">/AUTOSAR_Platform/BaseTypes/uint8</VALUE-REF>
+                                        </ECUC-REFERENCE-VALUE>
+                                        <ECUC-REFERENCE-VALUE>
+                                            <DEFINITION-REF DEST="ECUC-FOREIGN-REFERENCE-DEF">/AUTOSAR/EcuDefs/NvDM/NvDMBlockDescriptor/NvDMVariableDataPrototype/NvDMVariableDataPrototypeRef</DEFINITION-REF>
+                                            <VALUE-REF DEST="VARIABLE-DATA-PROTOTYPE">/RootP_ASWC_A26/ASWC_A26/PRP_SR_ConsoMoyenneHY2/ConsoMoyenneHY2</VALUE-REF>
+                                        </ECUC-REFERENCE-VALUE>
+                                        <ECUC-REFERENCE-VALUE>
+                                            <DEFINITION-REF DEST="ECUC-FOREIGN-REFERENCE-DEF">/AUTOSAR/EcuDefs/NvDM/NvDMBlockDescriptor/NvDMVariableDataPrototype/NvDMTypeRef</DEFINITION-REF>
+                                            <VALUE-REF DEST="IMPLEMENTATION-DATA-TYPE">/Pack_sw_Types/tBYTE</VALUE-REF>
+                                        </ECUC-REFERENCE-VALUE>
+                                    </REFERENCE-VALUES>
+                                </ECUC-CONTAINER-VALUE>
+                                <ECUC-CONTAINER-VALUE>
+                                    <SHORT-NAME>ASWC_A26_PRP_SR_ConsoMoyenneHY3_ConsoMoyenneHY3</SHORT-NAME>
+                                    <DEFINITION-REF DEST="ECUC-PARAM-CONF-CONTAINER-DEF">/AUTOSAR/EcuDefs/NvDM/NvDMBlockDescriptor/NvDMVariableDataPrototype</DEFINITION-REF>
+                                    <PARAMETER-VALUES>
+                                        <ECUC-NUMERICAL-PARAM-VALUE>
+                                            <DEFINITION-REF DEST="ECUC-FLOAT-PARAM-DEF">/AUTOSAR/EcuDefs/NvDM/NvDMBlockDescriptor/NvDMVariableDataPrototype/NvDMInitValue</DEFINITION-REF>
+                                            <VALUE>0</VALUE>
+                                        </ECUC-NUMERICAL-PARAM-VALUE>
+                                    </PARAMETER-VALUES>
+                                    <REFERENCE-VALUES>
+                                        <ECUC-REFERENCE-VALUE>
+                                            <DEFINITION-REF DEST="ECUC-FOREIGN-REFERENCE-DEF">/AUTOSAR/EcuDefs/NvDM/NvDMBlockDescriptor/NvDMVariableDataPrototype/NvDMBaseTypeRef</DEFINITION-REF>
+                                            <VALUE-REF DEST="SW-BASE-TYPE">/AUTOSAR_Platform/BaseTypes/uint8</VALUE-REF>
+                                        </ECUC-REFERENCE-VALUE>
+                                        <ECUC-REFERENCE-VALUE>
+                                            <DEFINITION-REF DEST="ECUC-FOREIGN-REFERENCE-DEF">/AUTOSAR/EcuDefs/NvDM/NvDMBlockDescriptor/NvDMVariableDataPrototype/NvDMVariableDataPrototypeRef</DEFINITION-REF>
+                                            <VALUE-REF DEST="VARIABLE-DATA-PROTOTYPE">/RootP_ASWC_A26/ASWC_A26/PRP_SR_ConsoMoyenneHY3/ConsoMoyenneHY3</VALUE-REF>
+                                        </ECUC-REFERENCE-VALUE>
+                                        <ECUC-REFERENCE-VALUE>
+                                            <DEFINITION-REF DEST="ECUC-FOREIGN-REFERENCE-DEF">/AUTOSAR/EcuDefs/NvDM/NvDMBlockDescriptor/NvDMVariableDataPrototype/NvDMTypeRef</DEFINITION-REF>
+                                            <VALUE-REF DEST="IMPLEMENTATION-DATA-TYPE">/Pack_sw_Types/tBYTE</VALUE-REF>
+                                        </ECUC-REFERENCE-VALUE>
+                                    </REFERENCE-VALUES>
+                                </ECUC-CONTAINER-VALUE>
+                                <ECUC-CONTAINER-VALUE>
+                                    <SHORT-NAME>ASWC_A26_PRP_SR_ConsoMoyenneHY4_ConsoMoyenneHY4</SHORT-NAME>
+                                    <DEFINITION-REF DEST="ECUC-PARAM-CONF-CONTAINER-DEF">/AUTOSAR/EcuDefs/NvDM/NvDMBlockDescriptor/NvDMVariableDataPrototype</DEFINITION-REF>
+                                    <PARAMETER-VALUES>
+                                        <ECUC-NUMERICAL-PARAM-VALUE>
+                                            <DEFINITION-REF DEST="ECUC-FLOAT-PARAM-DEF">/AUTOSAR/EcuDefs/NvDM/NvDMBlockDescriptor/NvDMVariableDataPrototype/NvDMInitValue</DEFINITION-REF>
+                                            <VALUE>0</VALUE>
+                                        </ECUC-NUMERICAL-PARAM-VALUE>
+                                    </PARAMETER-VALUES>
+                                    <REFERENCE-VALUES>
+                                        <ECUC-REFERENCE-VALUE>
+                                            <DEFINITION-REF DEST="ECUC-FOREIGN-REFERENCE-DEF">/AUTOSAR/EcuDefs/NvDM/NvDMBlockDescriptor/NvDMVariableDataPrototype/NvDMBaseTypeRef</DEFINITION-REF>
+                                            <VALUE-REF DEST="SW-BASE-TYPE">/AUTOSAR_Platform/BaseTypes/uint8</VALUE-REF>
+                                        </ECUC-REFERENCE-VALUE>
+                                        <ECUC-REFERENCE-VALUE>
+                                            <DEFINITION-REF DEST="ECUC-FOREIGN-REFERENCE-DEF">/AUTOSAR/EcuDefs/NvDM/NvDMBlockDescriptor/NvDMVariableDataPrototype/NvDMVariableDataPrototypeRef</DEFINITION-REF>
+                                            <VALUE-REF DEST="VARIABLE-DATA-PROTOTYPE">/RootP_ASWC_A26/ASWC_A26/PRP_SR_ConsoMoyenneHY4/ConsoMoyenneHY4</VALUE-REF>
+                                        </ECUC-REFERENCE-VALUE>
+                                        <ECUC-REFERENCE-VALUE>
+                                            <DEFINITION-REF DEST="ECUC-FOREIGN-REFERENCE-DEF">/AUTOSAR/EcuDefs/NvDM/NvDMBlockDescriptor/NvDMVariableDataPrototype/NvDMTypeRef</DEFINITION-REF>
+                                            <VALUE-REF DEST="IMPLEMENTATION-DATA-TYPE">/Pack_sw_Types/tBYTE</VALUE-REF>
+                                        </ECUC-REFERENCE-VALUE>
+                                    </REFERENCE-VALUES>
+                                </ECUC-CONTAINER-VALUE>
+                                <ECUC-CONTAINER-VALUE>
+                                    <SHORT-NAME>ASWC_A26_PRP_SR_ConsoMoyenneHY5_ConsoMoyenneHY5</SHORT-NAME>
+                                    <DEFINITION-REF DEST="ECUC-PARAM-CONF-CONTAINER-DEF">/AUTOSAR/EcuDefs/NvDM/NvDMBlockDescriptor/NvDMVariableDataPrototype</DEFINITION-REF>
+                                    <PARAMETER-VALUES>
+                                        <ECUC-NUMERICAL-PARAM-VALUE>
+                                            <DEFINITION-REF DEST="ECUC-FLOAT-PARAM-DEF">/AUTOSAR/EcuDefs/NvDM/NvDMBlockDescriptor/NvDMVariableDataPrototype/NvDMInitValue</DEFINITION-REF>
+                                            <VALUE>0</VALUE>
+                                        </ECUC-NUMERICAL-PARAM-VALUE>
+                                    </PARAMETER-VALUES>
+                                    <REFERENCE-VALUES>
+                                        <ECUC-REFERENCE-VALUE>
+                                            <DEFINITION-REF DEST="ECUC-FOREIGN-REFERENCE-DEF">/AUTOSAR/EcuDefs/NvDM/NvDMBlockDescriptor/NvDMVariableDataPrototype/NvDMBaseTypeRef</DEFINITION-REF>
+                                            <VALUE-REF DEST="SW-BASE-TYPE">/AUTOSAR_Platform/BaseTypes/uint8</VALUE-REF>
+                                        </ECUC-REFERENCE-VALUE>
+                                        <ECUC-REFERENCE-VALUE>
+                                            <DEFINITION-REF DEST="ECUC-FOREIGN-REFERENCE-DEF">/AUTOSAR/EcuDefs/NvDM/NvDMBlockDescriptor/NvDMVariableDataPrototype/NvDMVariableDataPrototypeRef</DEFINITION-REF>
+                                            <VALUE-REF DEST="VARIABLE-DATA-PROTOTYPE">/RootP_ASWC_A26/ASWC_A26/PRP_SR_ConsoMoyenneHY5/ConsoMoyenneHY5</VALUE-REF>
+                                        </ECUC-REFERENCE-VALUE>
+                                        <ECUC-REFERENCE-VALUE>
+                                            <DEFINITION-REF DEST="ECUC-FOREIGN-REFERENCE-DEF">/AUTOSAR/EcuDefs/NvDM/NvDMBlockDescriptor/NvDMVariableDataPrototype/NvDMTypeRef</DEFINITION-REF>
+                                            <VALUE-REF DEST="IMPLEMENTATION-DATA-TYPE">/Pack_sw_Types/tBYTE</VALUE-REF>
+                                        </ECUC-REFERENCE-VALUE>
+                                    </REFERENCE-VALUES>
+                                </ECUC-CONTAINER-VALUE>
+                                <ECUC-CONTAINER-VALUE>
+                                    <SHORT-NAME>ASWC_A26_PRP_SR_ConsoMoyenneHY6_ConsoMoyenneHY6</SHORT-NAME>
+                                    <DEFINITION-REF DEST="ECUC-PARAM-CONF-CONTAINER-DEF">/AUTOSAR/EcuDefs/NvDM/NvDMBlockDescriptor/NvDMVariableDataPrototype</DEFINITION-REF>
+                                    <PARAMETER-VALUES>
+                                        <ECUC-NUMERICAL-PARAM-VALUE>
+                                            <DEFINITION-REF DEST="ECUC-FLOAT-PARAM-DEF">/AUTOSAR/EcuDefs/NvDM/NvDMBlockDescriptor/NvDMVariableDataPrototype/NvDMInitValue</DEFINITION-REF>
+                                            <VALUE>0</VALUE>
+                                        </ECUC-NUMERICAL-PARAM-VALUE>
+                                    </PARAMETER-VALUES>
+                                    <REFERENCE-VALUES>
+                                        <ECUC-REFERENCE-VALUE>
+                                            <DEFINITION-REF DEST="ECUC-FOREIGN-REFERENCE-DEF">/AUTOSAR/EcuDefs/NvDM/NvDMBlockDescriptor/NvDMVariableDataPrototype/NvDMBaseTypeRef</DEFINITION-REF>
+                                            <VALUE-REF DEST="SW-BASE-TYPE">/AUTOSAR_Platform/BaseTypes/uint8</VALUE-REF>
+                                        </ECUC-REFERENCE-VALUE>
+                                        <ECUC-REFERENCE-VALUE>
+                                            <DEFINITION-REF DEST="ECUC-FOREIGN-REFERENCE-DEF">/AUTOSAR/EcuDefs/NvDM/NvDMBlockDescriptor/NvDMVariableDataPrototype/NvDMVariableDataPrototypeRef</DEFINITION-REF>
+                                            <VALUE-REF DEST="VARIABLE-DATA-PROTOTYPE">/RootP_ASWC_A26/ASWC_A26/PRP_SR_ConsoMoyenneHY6/ConsoMoyenneHY6</VALUE-REF>
+                                        </ECUC-REFERENCE-VALUE>
+                                        <ECUC-REFERENCE-VALUE>
+                                            <DEFINITION-REF DEST="ECUC-FOREIGN-REFERENCE-DEF">/AUTOSAR/EcuDefs/NvDM/NvDMBlockDescriptor/NvDMVariableDataPrototype/NvDMTypeRef</DEFINITION-REF>
+                                            <VALUE-REF DEST="IMPLEMENTATION-DATA-TYPE">/Pack_sw_Types/tBYTE</VALUE-REF>
+                                        </ECUC-REFERENCE-VALUE>
+                                    </REFERENCE-VALUES>
+                                </ECUC-CONTAINER-VALUE>
+                            </SUB-CONTAINERS>
+                        </ECUC-CONTAINER-VALUE>
+                        <ECUC-CONTAINER-VALUE>
+                            <SHORT-NAME>NvDM_Default_App_Ram_Implicit_RAR_6</SHORT-NAME>
+                            <DEFINITION-REF DEST="ECUC-PARAM-CONF-CONTAINER-DEF">/AUTOSAR/EcuDefs/NvDM/NvDMBlockDescriptor</DEFINITION-REF>
+                            <PARAMETER-VALUES>
+                                <ECUC-TEXTUAL-PARAM-VALUE>
+                                    <DEFINITION-REF DEST="ECUC-ENUMERATION-PARAM-DEF">/AUTOSAR/EcuDefs/NvDM/NvDMBlockDescriptor/NvDMDurability</DEFINITION-REF>
+                                    <VALUE>SHORT_TERM</VALUE>
+                                </ECUC-TEXTUAL-PARAM-VALUE>
+                                <ECUC-NUMERICAL-PARAM-VALUE>
+                                    <DEFINITION-REF DEST="ECUC-BOOLEAN-PARAM-DEF">/AUTOSAR/EcuDefs/NvDM/NvDMBlockDescriptor/NvDMSafetyBlock</DEFINITION-REF>
+                                    <VALUE>0</VALUE>
+                                </ECUC-NUMERICAL-PARAM-VALUE>
+                                <ECUC-NUMERICAL-PARAM-VALUE>
+                                    <DEFINITION-REF DEST="ECUC-BOOLEAN-PARAM-DEF">/AUTOSAR/EcuDefs/NvDM/NvDMBlockDescriptor/NvDMConsistency</DEFINITION-REF>
+                                    <VALUE>0</VALUE>
+                                </ECUC-NUMERICAL-PARAM-VALUE>
+                                <ECUC-NUMERICAL-PARAM-VALUE>
+                                    <DEFINITION-REF DEST="ECUC-BOOLEAN-PARAM-DEF">/AUTOSAR/EcuDefs/NvDM/NvDMBlockDescriptor/NvDMCRC</DEFINITION-REF>
+                                    <VALUE>0</VALUE>
+                                </ECUC-NUMERICAL-PARAM-VALUE>
+                                <ECUC-NUMERICAL-PARAM-VALUE>
+                                    <DEFINITION-REF DEST="ECUC-FLOAT-PARAM-DEF">/AUTOSAR/EcuDefs/NvDM/NvDMBlockDescriptor/NvDMWriteTimeout</DEFINITION-REF>
+                                    <VALUE>0</VALUE>
+                                </ECUC-NUMERICAL-PARAM-VALUE>
+                                <ECUC-TEXTUAL-PARAM-VALUE>
+                                    <DEFINITION-REF DEST="ECUC-ENUMERATION-PARAM-DEF">/AUTOSAR/EcuDefs/NvDM/NvDMBlockDescriptor/NvDMWritingManagement</DEFINITION-REF>
+                                    <VALUE>Implicit</VALUE>
+                                </ECUC-TEXTUAL-PARAM-VALUE>
+                                <ECUC-TEXTUAL-PARAM-VALUE>
+                                    <DEFINITION-REF DEST="ECUC-ENUMERATION-PARAM-DEF">/AUTOSAR/EcuDefs/NvDM/NvDMBlockDescriptor/NvDMProfile</DEFINITION-REF>
+                                    <VALUE>App_Ram_Implicit</VALUE>
+                                </ECUC-TEXTUAL-PARAM-VALUE>
+                                <ECUC-NUMERICAL-PARAM-VALUE>
+                                    <DEFINITION-REF DEST="ECUC-INTEGER-PARAM-DEF">/AUTOSAR/EcuDefs/NvDM/NvDMBlockDescriptor/NvDMBlockSize</DEFINITION-REF>
+                                    <VALUE>10</VALUE>
+                                </ECUC-NUMERICAL-PARAM-VALUE>
+                                <ECUC-NUMERICAL-PARAM-VALUE>
+                                    <DEFINITION-REF DEST="ECUC-INTEGER-PARAM-DEF">/AUTOSAR/EcuDefs/NvDM/NvDMBlockDescriptor/NvDMBlockID</DEFINITION-REF>
+                                    <VALUE>0</VALUE>
+                                </ECUC-NUMERICAL-PARAM-VALUE>
+                            </PARAMETER-VALUES>
+                            <REFERENCE-VALUES>
+                                <ECUC-REFERENCE-VALUE>
+                                    <DEFINITION-REF DEST="ECUC-REFERENCE-DEF">/AUTOSAR/EcuDefs/NvDM/NvDMBlockDescriptor/NvDMNvMBlockDescriptorRef</DEFINITION-REF>
+                                    <VALUE-REF DEST="ECUC-CONTAINER-VALUE">/NvM/NvM/NvM_Default_App_Ram_Implicit_RAR_6</VALUE-REF>
+                                </ECUC-REFERENCE-VALUE>
+                            </REFERENCE-VALUES>
+                            <SUB-CONTAINERS>
+                                <ECUC-CONTAINER-VALUE>
+                                    <SHORT-NAME>ASWC_A26_PRP_SR_ConsoMoyenneT1_ConsoMoyenneT1</SHORT-NAME>
+                                    <DEFINITION-REF DEST="ECUC-PARAM-CONF-CONTAINER-DEF">/AUTOSAR/EcuDefs/NvDM/NvDMBlockDescriptor/NvDMVariableDataPrototype</DEFINITION-REF>
+                                    <PARAMETER-VALUES>
+                                        <ECUC-NUMERICAL-PARAM-VALUE>
+                                            <DEFINITION-REF DEST="ECUC-FLOAT-PARAM-DEF">/AUTOSAR/EcuDefs/NvDM/NvDMBlockDescriptor/NvDMVariableDataPrototype/NvDMInitValue</DEFINITION-REF>
+                                            <VALUE>0</VALUE>
+                                        </ECUC-NUMERICAL-PARAM-VALUE>
+                                    </PARAMETER-VALUES>
+                                    <REFERENCE-VALUES>
+                                        <ECUC-REFERENCE-VALUE>
+                                            <DEFINITION-REF DEST="ECUC-FOREIGN-REFERENCE-DEF">/AUTOSAR/EcuDefs/NvDM/NvDMBlockDescriptor/NvDMVariableDataPrototype/NvDMBaseTypeRef</DEFINITION-REF>
+                                            <VALUE-REF DEST="SW-BASE-TYPE">/AUTOSAR_Platform/BaseTypes/uint16</VALUE-REF>
+                                        </ECUC-REFERENCE-VALUE>
+                                        <ECUC-REFERENCE-VALUE>
+                                            <DEFINITION-REF DEST="ECUC-FOREIGN-REFERENCE-DEF">/AUTOSAR/EcuDefs/NvDM/NvDMBlockDescriptor/NvDMVariableDataPrototype/NvDMVariableDataPrototypeRef</DEFINITION-REF>
+                                            <VALUE-REF DEST="VARIABLE-DATA-PROTOTYPE">/RootP_ASWC_A26/ASWC_A26/PRP_SR_ConsoMoyenneT1/ConsoMoyenneT1</VALUE-REF>
+                                        </ECUC-REFERENCE-VALUE>
+                                        <ECUC-REFERENCE-VALUE>
+                                            <DEFINITION-REF DEST="ECUC-FOREIGN-REFERENCE-DEF">/AUTOSAR/EcuDefs/NvDM/NvDMBlockDescriptor/NvDMVariableDataPrototype/NvDMTypeRef</DEFINITION-REF>
+                                            <VALUE-REF DEST="IMPLEMENTATION-DATA-TYPE">/Pack_sw_Types/tWORD</VALUE-REF>
+                                        </ECUC-REFERENCE-VALUE>
+                                    </REFERENCE-VALUES>
+                                </ECUC-CONTAINER-VALUE>
+                                <ECUC-CONTAINER-VALUE>
+                                    <SHORT-NAME>ASWC_A26_PRP_SR_ConsoInst_ConsoInst</SHORT-NAME>
+                                    <DEFINITION-REF DEST="ECUC-PARAM-CONF-CONTAINER-DEF">/AUTOSAR/EcuDefs/NvDM/NvDMBlockDescriptor/NvDMVariableDataPrototype</DEFINITION-REF>
+                                    <PARAMETER-VALUES>
+                                        <ECUC-NUMERICAL-PARAM-VALUE>
+                                            <DEFINITION-REF DEST="ECUC-FLOAT-PARAM-DEF">/AUTOSAR/EcuDefs/NvDM/NvDMBlockDescriptor/NvDMVariableDataPrototype/NvDMInitValue</DEFINITION-REF>
+                                            <VALUE>65535</VALUE>
+                                        </ECUC-NUMERICAL-PARAM-VALUE>
+                                    </PARAMETER-VALUES>
+                                    <REFERENCE-VALUES>
+                                        <ECUC-REFERENCE-VALUE>
+                                            <DEFINITION-REF DEST="ECUC-FOREIGN-REFERENCE-DEF">/AUTOSAR/EcuDefs/NvDM/NvDMBlockDescriptor/NvDMVariableDataPrototype/NvDMBaseTypeRef</DEFINITION-REF>
+                                            <VALUE-REF DEST="SW-BASE-TYPE">/AUTOSAR_Platform/BaseTypes/uint16</VALUE-REF>
+                                        </ECUC-REFERENCE-VALUE>
+                                        <ECUC-REFERENCE-VALUE>
+                                            <DEFINITION-REF DEST="ECUC-FOREIGN-REFERENCE-DEF">/AUTOSAR/EcuDefs/NvDM/NvDMBlockDescriptor/NvDMVariableDataPrototype/NvDMVariableDataPrototypeRef</DEFINITION-REF>
+                                            <VALUE-REF DEST="VARIABLE-DATA-PROTOTYPE">/RootP_ASWC_A26/ASWC_A26/PRP_SR_ConsoInst/ConsoInst</VALUE-REF>
+                                        </ECUC-REFERENCE-VALUE>
+                                        <ECUC-REFERENCE-VALUE>
+                                            <DEFINITION-REF DEST="ECUC-FOREIGN-REFERENCE-DEF">/AUTOSAR/EcuDefs/NvDM/NvDMBlockDescriptor/NvDMVariableDataPrototype/NvDMTypeRef</DEFINITION-REF>
+                                            <VALUE-REF DEST="IMPLEMENTATION-DATA-TYPE">/Pack_sw_Types/tWORD</VALUE-REF>
+                                        </ECUC-REFERENCE-VALUE>
+                                    </REFERENCE-VALUES>
+                                </ECUC-CONTAINER-VALUE>
+                                <ECUC-CONTAINER-VALUE>
+                                    <SHORT-NAME>ASWC_A26_PRP_SR_ConsoInstGPL_ConsoInstGPL</SHORT-NAME>
+                                    <DEFINITION-REF DEST="ECUC-PARAM-CONF-CONTAINER-DEF">/AUTOSAR/EcuDefs/NvDM/NvDMBlockDescriptor/NvDMVariableDataPrototype</DEFINITION-REF>
+                                    <PARAMETER-VALUES>
+                                        <ECUC-NUMERICAL-PARAM-VALUE>
+                                            <DEFINITION-REF DEST="ECUC-FLOAT-PARAM-DEF">/AUTOSAR/EcuDefs/NvDM/NvDMBlockDescriptor/NvDMVariableDataPrototype/NvDMInitValue</DEFINITION-REF>
+                                            <VALUE>511</VALUE>
+                                        </ECUC-NUMERICAL-PARAM-VALUE>
+                                    </PARAMETER-VALUES>
+                                    <REFERENCE-VALUES>
+                                        <ECUC-REFERENCE-VALUE>
+                                            <DEFINITION-REF DEST="ECUC-FOREIGN-REFERENCE-DEF">/AUTOSAR/EcuDefs/NvDM/NvDMBlockDescriptor/NvDMVariableDataPrototype/NvDMBaseTypeRef</DEFINITION-REF>
+                                            <VALUE-REF DEST="SW-BASE-TYPE">/AUTOSAR_Platform/BaseTypes/uint16</VALUE-REF>
+                                        </ECUC-REFERENCE-VALUE>
+                                        <ECUC-REFERENCE-VALUE>
+                                            <DEFINITION-REF DEST="ECUC-FOREIGN-REFERENCE-DEF">/AUTOSAR/EcuDefs/NvDM/NvDMBlockDescriptor/NvDMVariableDataPrototype/NvDMVariableDataPrototypeRef</DEFINITION-REF>
+                                            <VALUE-REF DEST="VARIABLE-DATA-PROTOTYPE">/RootP_ASWC_A26/ASWC_A26/PRP_SR_ConsoInstGPL/ConsoInstGPL</VALUE-REF>
+                                        </ECUC-REFERENCE-VALUE>
+                                        <ECUC-REFERENCE-VALUE>
+                                            <DEFINITION-REF DEST="ECUC-FOREIGN-REFERENCE-DEF">/AUTOSAR/EcuDefs/NvDM/NvDMBlockDescriptor/NvDMVariableDataPrototype/NvDMTypeRef</DEFINITION-REF>
+                                            <VALUE-REF DEST="IMPLEMENTATION-DATA-TYPE">/Pack_sw_Types/tWORD</VALUE-REF>
+                                        </ECUC-REFERENCE-VALUE>
+                                    </REFERENCE-VALUES>
+                                </ECUC-CONTAINER-VALUE>
+                                <ECUC-CONTAINER-VALUE>
+                                    <SHORT-NAME>ASWC_A26_PRP_SR_ConsoMoyenneGPLT1_ConsoMoyenneGPLT1</SHORT-NAME>
+                                    <DEFINITION-REF DEST="ECUC-PARAM-CONF-CONTAINER-DEF">/AUTOSAR/EcuDefs/NvDM/NvDMBlockDescriptor/NvDMVariableDataPrototype</DEFINITION-REF>
+                                    <PARAMETER-VALUES>
+                                        <ECUC-NUMERICAL-PARAM-VALUE>
+                                            <DEFINITION-REF DEST="ECUC-FLOAT-PARAM-DEF">/AUTOSAR/EcuDefs/NvDM/NvDMBlockDescriptor/NvDMVariableDataPrototype/NvDMInitValue</DEFINITION-REF>
+                                            <VALUE>0</VALUE>
+                                        </ECUC-NUMERICAL-PARAM-VALUE>
+                                    </PARAMETER-VALUES>
+                                    <REFERENCE-VALUES>
+                                        <ECUC-REFERENCE-VALUE>
+                                            <DEFINITION-REF DEST="ECUC-FOREIGN-REFERENCE-DEF">/AUTOSAR/EcuDefs/NvDM/NvDMBlockDescriptor/NvDMVariableDataPrototype/NvDMBaseTypeRef</DEFINITION-REF>
+                                            <VALUE-REF DEST="SW-BASE-TYPE">/AUTOSAR_Platform/BaseTypes/uint16</VALUE-REF>
+                                        </ECUC-REFERENCE-VALUE>
+                                        <ECUC-REFERENCE-VALUE>
+                                            <DEFINITION-REF DEST="ECUC-FOREIGN-REFERENCE-DEF">/AUTOSAR/EcuDefs/NvDM/NvDMBlockDescriptor/NvDMVariableDataPrototype/NvDMVariableDataPrototypeRef</DEFINITION-REF>
+                                            <VALUE-REF DEST="VARIABLE-DATA-PROTOTYPE">/RootP_ASWC_A26/ASWC_A26/PRP_SR_ConsoMoyenneGPLT1/ConsoMoyenneGPLT1</VALUE-REF>
+                                        </ECUC-REFERENCE-VALUE>
+                                        <ECUC-REFERENCE-VALUE>
+                                            <DEFINITION-REF DEST="ECUC-FOREIGN-REFERENCE-DEF">/AUTOSAR/EcuDefs/NvDM/NvDMBlockDescriptor/NvDMVariableDataPrototype/NvDMTypeRef</DEFINITION-REF>
+                                            <VALUE-REF DEST="IMPLEMENTATION-DATA-TYPE">/Pack_sw_Types/tWORD</VALUE-REF>
+                                        </ECUC-REFERENCE-VALUE>
+                                    </REFERENCE-VALUES>
+                                </ECUC-CONTAINER-VALUE>
+                                <ECUC-CONTAINER-VALUE>
+                                    <SHORT-NAME>ASWC_A26_PRP_SR_ConsoMoyenneGPLT2_ConsoMoyenneGPLT2</SHORT-NAME>
+                                    <DEFINITION-REF DEST="ECUC-PARAM-CONF-CONTAINER-DEF">/AUTOSAR/EcuDefs/NvDM/NvDMBlockDescriptor/NvDMVariableDataPrototype</DEFINITION-REF>
+                                    <PARAMETER-VALUES>
+                                        <ECUC-NUMERICAL-PARAM-VALUE>
+                                            <DEFINITION-REF DEST="ECUC-FLOAT-PARAM-DEF">/AUTOSAR/EcuDefs/NvDM/NvDMBlockDescriptor/NvDMVariableDataPrototype/NvDMInitValue</DEFINITION-REF>
+                                            <VALUE>0</VALUE>
+                                        </ECUC-NUMERICAL-PARAM-VALUE>
+                                    </PARAMETER-VALUES>
+                                    <REFERENCE-VALUES>
+                                        <ECUC-REFERENCE-VALUE>
+                                            <DEFINITION-REF DEST="ECUC-FOREIGN-REFERENCE-DEF">/AUTOSAR/EcuDefs/NvDM/NvDMBlockDescriptor/NvDMVariableDataPrototype/NvDMBaseTypeRef</DEFINITION-REF>
+                                            <VALUE-REF DEST="SW-BASE-TYPE">/AUTOSAR_Platform/BaseTypes/uint16</VALUE-REF>
+                                        </ECUC-REFERENCE-VALUE>
+                                        <ECUC-REFERENCE-VALUE>
+                                            <DEFINITION-REF DEST="ECUC-FOREIGN-REFERENCE-DEF">/AUTOSAR/EcuDefs/NvDM/NvDMBlockDescriptor/NvDMVariableDataPrototype/NvDMVariableDataPrototypeRef</DEFINITION-REF>
+                                            <VALUE-REF DEST="VARIABLE-DATA-PROTOTYPE">/RootP_ASWC_A26/ASWC_A26/PRP_SR_ConsoMoyenneGPLT2/ConsoMoyenneGPLT2</VALUE-REF>
+                                        </ECUC-REFERENCE-VALUE>
+                                        <ECUC-REFERENCE-VALUE>
+                                            <DEFINITION-REF DEST="ECUC-FOREIGN-REFERENCE-DEF">/AUTOSAR/EcuDefs/NvDM/NvDMBlockDescriptor/NvDMVariableDataPrototype/NvDMTypeRef</DEFINITION-REF>
+                                            <VALUE-REF DEST="IMPLEMENTATION-DATA-TYPE">/Pack_sw_Types/tWORD</VALUE-REF>
                                         </ECUC-REFERENCE-VALUE>
                                     </REFERENCE-VALUES>
                                 </ECUC-CONTAINER-VALUE>

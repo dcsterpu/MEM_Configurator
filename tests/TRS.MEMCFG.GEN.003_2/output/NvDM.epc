@@ -82,12 +82,12 @@
                                     </REFERENCE-VALUES>
                                 </ECUC-CONTAINER-VALUE>
                                 <ECUC-CONTAINER-VALUE>
-                                    <SHORT-NAME>ASWC_A26_PRP_SR_ConsoInstGPL_ConsoInst</SHORT-NAME>
+                                    <SHORT-NAME>ASWC_A26_PRP_SR_ConsoInstGPL_ConsoInstGPL</SHORT-NAME>
                                     <DEFINITION-REF DEST="ECUC-PARAM-CONF-CONTAINER-DEF">/AUTOSAR/EcuDefs/NvDM/NvDMBlockDescriptor/NvDMVariableDataPrototype</DEFINITION-REF>
                                     <PARAMETER-VALUES>
                                         <ECUC-NUMERICAL-PARAM-VALUE>
                                             <DEFINITION-REF DEST="ECUC-FLOAT-PARAM-DEF">/AUTOSAR/EcuDefs/NvDM/NvDMBlockDescriptor/NvDMVariableDataPrototype/NvDMInitValue</DEFINITION-REF>
-                                            <VALUE>65535</VALUE>
+                                            <VALUE>511</VALUE>
                                         </ECUC-NUMERICAL-PARAM-VALUE>
                                     </PARAMETER-VALUES>
                                     <REFERENCE-VALUES>
@@ -97,7 +97,7 @@
                                         </ECUC-REFERENCE-VALUE>
                                         <ECUC-REFERENCE-VALUE>
                                             <DEFINITION-REF DEST="ECUC-FOREIGN-REFERENCE-DEF">/AUTOSAR/EcuDefs/NvDM/NvDMBlockDescriptor/NvDMVariableDataPrototype/NvDMVariableDataPrototypeRef</DEFINITION-REF>
-                                            <VALUE-REF DEST="VARIABLE-DATA-PROTOTYPE">/RootP_ASWC_A26/ASWC_A26/PRP_SR_ConsoInstGPL/ConsoInst</VALUE-REF>
+                                            <VALUE-REF DEST="VARIABLE-DATA-PROTOTYPE">/RootP_ASWC_A26/ASWC_A26/PRP_SR_ConsoInstGPL/ConsoInstGPL</VALUE-REF>
                                         </ECUC-REFERENCE-VALUE>
                                         <ECUC-REFERENCE-VALUE>
                                             <DEFINITION-REF DEST="ECUC-FOREIGN-REFERENCE-DEF">/AUTOSAR/EcuDefs/NvDM/NvDMBlockDescriptor/NvDMVariableDataPrototype/NvDMTypeRef</DEFINITION-REF>
