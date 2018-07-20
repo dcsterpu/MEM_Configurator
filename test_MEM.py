@@ -349,248 +349,248 @@ class FileCompare():
             return False
 
 class MEMConfigurator(unittest.TestCase):
-    def test_TRS_MEMCFG_INOUT_001(self):
-        current_path = os.path.realpath(__file__)
-        head, tail = ntpath.split(current_path)
-        os.system('MEM_Configurator.py -in ' + head + '\\tests\\TRS.MEMCFG.INOUT.001\\input -out ' + head + '\\tests\\TRS.MEMCFG.INOUT.001\\output')
-        self.assertTrue(FileCompare.checkParsing(head + '\\tests\\TRS.MEMCFG.INOUT.001\\input', head + '\\tests\\TRS.MEMCFG.INOUT.001\\output\\result_MEM.log', '.arxml', 'is well-formed'))
+    # def test_TRS_MEMCFG_INOUT_001(self):
+    #     current_path = os.path.realpath(__file__)
+    #     head, tail = ntpath.split(current_path)
+    #     os.system('coverage run MEM_Configurator.py -in ' + head + '\\tests\\TRS.MEMCFG.INOUT.001\\input -out ' + head + '\\tests\\TRS.MEMCFG.INOUT.001\\output')
+    #     self.assertTrue(FileCompare.checkParsing(head + '\\tests\\TRS.MEMCFG.INOUT.001\\input', head + '\\tests\\TRS.MEMCFG.INOUT.001\\output\\result_MEM.log', '.arxml', 'is well-formed'))
 
-    def test_TRS_MEMCFG_INOUT_002(self):
-        current_path = os.path.realpath(__file__)
-        head, tail = ntpath.split(current_path)
-        os.system('MEM_Configurator.py -in ' + head + '\\tests\\TRS.MEMCFG.INOUT.002\\input -out ' + head + '\\tests\\TRS.MEMCFG.INOUT.002\\output')
-        self.assertTrue(FileCompare.checkParsing(head + '\\tests\\TRS.MEMCFG.INOUT.002\\input', head + '\\tests\\TRS.MEMCFG.INOUT.002\\output\\result_MEM.log', '.xml', 'is well-formed'))
+    # def test_TRS_MEMCFG_INOUT_002(self):
+    #     current_path = os.path.realpath(__file__)
+    #     head, tail = ntpath.split(current_path)
+    #     os.system('coverage run MEM_Configurator.py -in ' + head + '\\tests\\TRS.MEMCFG.INOUT.002\\input -out ' + head + '\\tests\\TRS.MEMCFG.INOUT.002\\output')
+    #     self.assertTrue(FileCompare.checkParsing(head + '\\tests\\TRS.MEMCFG.INOUT.002\\input', head + '\\tests\\TRS.MEMCFG.INOUT.002\\output\\result_MEM.log', '.xml', 'is well-formed'))
 
-    def test_TRS_MEMCFG_FUNC_001_1(self):
-        current_path = os.path.realpath(__file__)
-        head, tail = ntpath.split(current_path)
-        os.system('MEM_Configurator.py -in ' + head + '\\tests\\TRS.MEMCFG.FUNC.001_1\\input -out ' + head + '\\tests\\TRS.MEMCFG.FUNC.001_1\\output')
-        self.assertTrue(FileCompare.areSorted(head + '\\tests\\TRS.MEMCFG.FUNC.001_1\\output\\NvDM.epc'))
+    # def test_TRS_MEMCFG_FUNC_001_1(self):
+    #     current_path = os.path.realpath(__file__)
+    #     head, tail = ntpath.split(current_path)
+    #     os.system('coverage run MEM_Configurator.py -in ' + head + '\\tests\\TRS.MEMCFG.FUNC.001_1\\input -out ' + head + '\\tests\\TRS.MEMCFG.FUNC.001_1\\output')
+    #     self.assertTrue(FileCompare.areSorted(head + '\\tests\\TRS.MEMCFG.FUNC.001_1\\output\\NvDM.epc'))
 
-    def test_TRS_MEMCFG_FUNC_001_2(self):
-        current_path = os.path.realpath(__file__)
-        head, tail = ntpath.split(current_path)
-        os.system('MEM_Configurator.py -in ' + head + '\\tests\\TRS.MEMCFG.FUNC.001_2\\input -out ' + head + '\\tests\\TRS.MEMCFG.FUNC.001_2\\output')
-        self.assertFalse(FileCompare.areSorted(head + '\\tests\\TRS.MEMCFG.FUNC.001_2\\output\\NvDM.epc'))
+    # def test_TRS_MEMCFG_FUNC_001_2(self):
+    #     current_path = os.path.realpath(__file__)
+    #     head, tail = ntpath.split(current_path)
+    #     os.system('coverage run MEM_Configurator.py -in ' + head + '\\tests\\TRS.MEMCFG.FUNC.001_2\\input -out ' + head + '\\tests\\TRS.MEMCFG.FUNC.001_2\\output')
+    #     self.assertFalse(FileCompare.areSorted(head + '\\tests\\TRS.MEMCFG.FUNC.001_2\\output\\NvDM.epc'))
 
-    def test_TRS_MEMCFG_FUNC_002_1(self):
-        current_path = os.path.realpath(__file__)
-        head, tail = ntpath.split(current_path)
-        os.system('MEM_Configurator.py -in ' + head + '\\tests\\TRS.MEMCFG.FUNC.002_1\\input -out ' + head + '\\tests\\TRS.MEMCFG.FUNC.002_1\\output')
-        self.assertTrue(FileCompare.checkSize(head + '\\tests\\TRS.MEMCFG.FUNC.002_1\\output\\NvDM.epc', 10))
+    # def test_TRS_MEMCFG_FUNC_002_1(self):
+    #     current_path = os.path.realpath(__file__)
+    #     head, tail = ntpath.split(current_path)
+    #     os.system('coverage run MEM_Configurator.py -in ' + head + '\\tests\\TRS.MEMCFG.FUNC.002_1\\input -out ' + head + '\\tests\\TRS.MEMCFG.FUNC.002_1\\output')
+    #     self.assertTrue(FileCompare.checkSize(head + '\\tests\\TRS.MEMCFG.FUNC.002_1\\output\\NvDM.epc', 10))
 
-    def test_TRS_MEMCFG_FUNC_002_2(self):
-        current_path = os.path.realpath(__file__)
-        head, tail = ntpath.split(current_path)
-        os.system('MEM_Configurator.py -in ' + head + '\\tests\\TRS.MEMCFG.FUNC.002_2\\input -out ' + head + '\\tests\\TRS.MEMCFG.FUNC.002_2\\output')
-        self.assertTrue(FileCompare.checkSize(head + '\\tests\\TRS.MEMCFG.FUNC.002_2\\output\\NvDM.epc', 10))
+    # def test_TRS_MEMCFG_FUNC_002_2(self):
+    #     current_path = os.path.realpath(__file__)
+    #     head, tail = ntpath.split(current_path)
+    #     os.system('coverage run MEM_Configurator.py -in ' + head + '\\tests\\TRS.MEMCFG.FUNC.002_2\\input -out ' + head + '\\tests\\TRS.MEMCFG.FUNC.002_2\\output')
+    #     self.assertTrue(FileCompare.checkSize(head + '\\tests\\TRS.MEMCFG.FUNC.002_2\\output\\NvDM.epc', 10))
 
-    def test_TRS_MEMCFG_CHECK_001_1(self):
-        current_path = os.path.realpath(__file__)
-        head, tail = ntpath.split(current_path)
-        os.system('MEM_Configurator.py -in ' + head + '\\tests\\TRS.MEMCFG.CHECK.001_1\\input -out ' + head + '\\tests\\TRS.MEMCFG.CHECK.001_1\\output')
-        self.assertTrue(FileCompare.isOutput(head + '\\tests\\TRS.MEMCFG.CHECK.001_1\\output\\NvDM.epc'))
-        self.assertTrue(FileCompare.isOutput(head + '\\tests\\TRS.MEMCFG.CHECK.001_1\\output\\NvM.epc'))
+    # def test_TRS_MEMCFG_CHECK_001_1(self):
+    #     current_path = os.path.realpath(__file__)
+    #     head, tail = ntpath.split(current_path)
+    #     os.system('coverage run MEM_Configurator.py -in ' + head + '\\tests\\TRS.MEMCFG.CHECK.001_1\\input -out ' + head + '\\tests\\TRS.MEMCFG.CHECK.001_1\\output')
+    #     self.assertTrue(FileCompare.isOutput(head + '\\tests\\TRS.MEMCFG.CHECK.001_1\\output\\NvDM.epc'))
+    #     self.assertTrue(FileCompare.isOutput(head + '\\tests\\TRS.MEMCFG.CHECK.001_1\\output\\NvM.epc'))
 
-    def test_TRS_MEMCFG_CHECK_001_2(self):
-        current_path = os.path.realpath(__file__)
-        head, tail = ntpath.split(current_path)
-        os.system('MEM_Configurator.py -in ' + head + '\\tests\\TRS.MEMCFG.CHECK.001_2\\input -out ' + head + '\\tests\\TRS.MEMCFG.CHECK.001_2\\output')
-        self.assertFalse(FileCompare.isOutput(head + '\\tests\\TRS.MEMCFG.CHECK.001_2\\output\\NvDM.epc'))
-        self.assertFalse(FileCompare.isOutput(head + '\\tests\\TRS.MEMCFG.CHECK.001_2\\output\\NvM.epc'))
-        self.assertTrue(FileCompare.checkLog(head + '\\tests\TRS.MEMCFG.CHECK.001_2\\output\\result_MEM.log', "ERROR", ["Default_App_Ram_Implicit_RAR"]))
+    # def test_TRS_MEMCFG_CHECK_001_2(self):
+    #     current_path = os.path.realpath(__file__)
+    #     head, tail = ntpath.split(current_path)
+    #     os.system('coverage run MEM_Configurator.py -in ' + head + '\\tests\\TRS.MEMCFG.CHECK.001_2\\input -out ' + head + '\\tests\\TRS.MEMCFG.CHECK.001_2\\output')
+    #     self.assertFalse(FileCompare.isOutput(head + '\\tests\\TRS.MEMCFG.CHECK.001_2\\output\\NvDM.epc'))
+    #     self.assertFalse(FileCompare.isOutput(head + '\\tests\\TRS.MEMCFG.CHECK.001_2\\output\\NvM.epc'))
+    #     self.assertTrue(FileCompare.checkLog(head + '\\tests\TRS.MEMCFG.CHECK.001_2\\output\\result_MEM.log', "ERROR", ["Default_App_Ram_Implicit_RAR"]))
 
-    def test_TRS_MEMCFG_CHECK_002_1(self):
-        current_path = os.path.realpath(__file__)
-        head, tail = ntpath.split(current_path)
-        os.system('MEM_Configurator.py -in ' + head + '\\tests\\TRS.MEMCFG.CHECK.002_1\\input\\ASWC_A26.aswc.arxml ' + head + '\\tests\\TRS.MEMCFG.CHECK.002_1\\input\\AUTOSAR_Datatypes.arxml ' + head + '\\tests\\TRS.MEMCFG.CHECK.002_1\\input\\CompiledConfigID.xml' + head + '\\tests\\TRS.MEMCFG.CHECK.002_1\\input\\Profiles_cleaned.xml ' + head + '\\tests\\TRS.MEMCFG.CHECK.002_1\\input\\SystemGenerated.arxml ' + head + '\\tests\\TRS.MEMCFG.CHECK.002_1\\input\\VSM_Types.arxml ' + head + '\\tests\\TRS.MEMCFG.CHECK.002_1\\input\\ASWC_A26.config_mem.xml -out ' + head + '\\tests\\TRS.MEMCFG.CHECK.002_1\\output')
-        self.assertTrue(FileCompare.isOutput(head + '\\tests\\TRS.MEMCFG.CHECK.002_1\\output\\NvDM.epc'))
-        self.assertTrue(FileCompare.isOutput(head + '\\tests\\TRS.MEMCFG.CHECK.002_1\\output\\NvM.epc'))
+    # def test_TRS_MEMCFG_CHECK_002_1(self):
+    #     current_path = os.path.realpath(__file__)
+    #     head, tail = ntpath.split(current_path)
+    #     os.system('coverage run MEM_Configurator.py -in ' + head + '\\tests\\TRS.MEMCFG.CHECK.002_1\\input\\ASWC_A26.aswc.arxml ' + head + '\\tests\\TRS.MEMCFG.CHECK.002_1\\input\\AUTOSAR_Datatypes.arxml ' + head + '\\tests\\TRS.MEMCFG.CHECK.002_1\\input\\CompiledConfigID.xml' + head + '\\tests\\TRS.MEMCFG.CHECK.002_1\\input\\Profiles_cleaned.xml ' + head + '\\tests\\TRS.MEMCFG.CHECK.002_1\\input\\SystemGenerated.arxml ' + head + '\\tests\\TRS.MEMCFG.CHECK.002_1\\input\\VSM_Types.arxml ' + head + '\\tests\\TRS.MEMCFG.CHECK.002_1\\input\\ASWC_A26.config_mem.xml -out ' + head + '\\tests\\TRS.MEMCFG.CHECK.002_1\\output')
+    #     self.assertTrue(FileCompare.isOutput(head + '\\tests\\TRS.MEMCFG.CHECK.002_1\\output\\NvDM.epc'))
+    #     self.assertTrue(FileCompare.isOutput(head + '\\tests\\TRS.MEMCFG.CHECK.002_1\\output\\NvM.epc'))
 
-    def test_TRS_MEMCFG_CHECK_002_2(self):
-        current_path = os.path.realpath(__file__)
-        head, tail = ntpath.split(current_path)
-        os.system('MEM_Configurator.py -in @' + head + '\\tests\\TRS.MEMCFG.CHECK.002_2\\input_list.txt -out ' + head + '\\tests\\TRS.MEMCFG.CHECK.002_2\\output')
-        self.assertFalse(FileCompare.isOutput(head + '\\tests\\TRS.MEMCFG.CHECK.002_2\\output\\NvDM.epc'))
-        self.assertFalse(FileCompare.isOutput(head + '\\tests\\TRS.MEMCFG.CHECK.002_2\\output\\NvM.epc'))
-        self.assertTrue(FileCompare.checkLog(head + '\\tests\TRS.MEMCFG.CHECK.002_2\\output\\result_MEM.log', "ERROR", ["App_Ram_Implicit"]))
+    # def test_TRS_MEMCFG_CHECK_002_2(self):
+    #     current_path = os.path.realpath(__file__)
+    #     head, tail = ntpath.split(current_path)
+    #     os.system('coverage run MEM_Configurator.py -in @' + head + '\\tests\\TRS.MEMCFG.CHECK.002_2\\input_list.txt -out ' + head + '\\tests\\TRS.MEMCFG.CHECK.002_2\\output')
+    #     self.assertFalse(FileCompare.isOutput(head + '\\tests\\TRS.MEMCFG.CHECK.002_2\\output\\NvDM.epc'))
+    #     self.assertFalse(FileCompare.isOutput(head + '\\tests\\TRS.MEMCFG.CHECK.002_2\\output\\NvM.epc'))
+    #     self.assertTrue(FileCompare.checkLog(head + '\\tests\TRS.MEMCFG.CHECK.002_2\\output\\result_MEM.log', "ERROR", ["App_Ram_Implicit"]))
 
-    def test_TRS_MEMCFG_CHECK_002_3(self):
-        current_path = os.path.realpath(__file__)
-        head, tail = ntpath.split(current_path)
-        os.system('MEM_Configurator.py -in ' + head + '\\tests\\TRS.MEMCFG.CHECK.002_3\\input -out ' + head + '\\tests\\TRS.MEMCFG.CHECK.002_3\\output')
-        self.assertFalse(FileCompare.isOutput(head + '\\tests\\TRS.MEMCFG.CHECK.002_3\\output\\NvDM.epc'))
-        self.assertFalse(FileCompare.isOutput(head + '\\tests\\TRS.MEMCFG.CHECK.002_3\\output\\NvM.epc'))
-        self.assertTrue(FileCompare.checkLog(head + '\\tests\TRS.MEMCFG.CHECK.002_3\\output\\result_MEM.log', "ERROR", ["Default_App_Ram_Implicit_RAR"]))
+    # def test_TRS_MEMCFG_CHECK_002_3(self):
+    #     current_path = os.path.realpath(__file__)
+    #     head, tail = ntpath.split(current_path)
+    #     os.system('coverage run MEM_Configurator.py -in ' + head + '\\tests\\TRS.MEMCFG.CHECK.002_3\\input -out ' + head + '\\tests\\TRS.MEMCFG.CHECK.002_3\\output')
+    #     self.assertFalse(FileCompare.isOutput(head + '\\tests\\TRS.MEMCFG.CHECK.002_3\\output\\NvDM.epc'))
+    #     self.assertFalse(FileCompare.isOutput(head + '\\tests\\TRS.MEMCFG.CHECK.002_3\\output\\NvM.epc'))
+    #     self.assertTrue(FileCompare.checkLog(head + '\\tests\TRS.MEMCFG.CHECK.002_3\\output\\result_MEM.log', "ERROR", ["Default_App_Ram_Implicit_RAR"]))
 
-    def test_TRS_MEMCFG_CHECK_003_1(self):
-        current_path = os.path.realpath(__file__)
-        head, tail = ntpath.split(current_path)
-        os.system('MEM_Configurator.py -in ' + head + '\\tests\\TRS.MEMCFG.CHECK.003_1\\input -out ' + head + '\\tests\\TRS.MEMCFG.CHECK.003_1\\output')
-        self.assertTrue(FileCompare.isOutput(head + '\\tests\\TRS.MEMCFG.CHECK.003_1\\output\\NvDM.epc'))
-        self.assertTrue(FileCompare.isOutput(head + '\\tests\\TRS.MEMCFG.CHECK.003_1\\output\\NvM.epc'))
+    # def test_TRS_MEMCFG_CHECK_003_1(self):
+    #     current_path = os.path.realpath(__file__)
+    #     head, tail = ntpath.split(current_path)
+    #     os.system('coverage run MEM_Configurator.py -in ' + head + '\\tests\\TRS.MEMCFG.CHECK.003_1\\input -out ' + head + '\\tests\\TRS.MEMCFG.CHECK.003_1\\output')
+    #     self.assertTrue(FileCompare.isOutput(head + '\\tests\\TRS.MEMCFG.CHECK.003_1\\output\\NvDM.epc'))
+    #     self.assertTrue(FileCompare.isOutput(head + '\\tests\\TRS.MEMCFG.CHECK.003_1\\output\\NvM.epc'))
+    #
+    # def test_TRS_MEMCFG_CHECK_003_2(self):
+    #     current_path = os.path.realpath(__file__)
+    #     head, tail = ntpath.split(current_path)
+    #     os.system('coverage run MEM_Configurator.py -in ' + head + '\\tests\\TRS.MEMCFG.CHECK.003_2\\input -out ' + head + '\\tests\\TRS.MEMCFG.CHECK.003_2\\output')
+    #     self.assertFalse(FileCompare.isOutput(head + '\\tests\\TRS.MEMCFG.CHECK.003_2\\output\\NvDM.epc'))
+    #     self.assertFalse(FileCompare.isOutput(head + '\\tests\\TRS.MEMCFG.CHECK.003_2\\output\\NvM.epc'))
+    #     self.assertTrue(FileCompare.checkLog(head + '\\tests\TRS.MEMCFG.CHECK.003_2\\output\\result_MEM.log', "ERROR", ["SR_ConsoAutonomieGM"]))
 
-    def test_TRS_MEMCFG_CHECK_003_2(self):
-        current_path = os.path.realpath(__file__)
-        head, tail = ntpath.split(current_path)
-        os.system('MEM_Configurator.py -in ' + head + '\\tests\\TRS.MEMCFG.CHECK.003_2\\input -out ' + head + '\\tests\\TRS.MEMCFG.CHECK.003_2\\output')
-        self.assertFalse(FileCompare.isOutput(head + '\\tests\\TRS.MEMCFG.CHECK.003_2\\output\\NvDM.epc'))
-        self.assertFalse(FileCompare.isOutput(head + '\\tests\\TRS.MEMCFG.CHECK.003_2\\output\\NvM.epc'))
-        self.assertTrue(FileCompare.checkLog(head + '\\tests\TRS.MEMCFG.CHECK.003_2\\output\\result_MEM.log', "ERROR", ["SR_ConsoAutonomieGM"]))
+    # def test_TRS_MEMCFG_CHECK_004(self):
+    #     current_path = os.path.realpath(__file__)
+    #     head, tail = ntpath.split(current_path)
+    #     os.system('coverage run MEM_Configurator.py -in ' + head + '\\tests\\TRS.MEMCFG.CHECK.004\\input -out ' + head + '\\tests\\TRS.MEMCFG.CHECK.004\\output')
+    #     self.assertFalse(FileCompare.isOutput(head + '\\tests\\TRS.MEMCFG.CHECK.004\\output\\NvDM.epc'))
+    #     self.assertFalse(FileCompare.isOutput(head + '\\tests\\TRS.MEMCFG.CHECK.004\\output\\NvM.epc'))
+    #     self.assertTrue(FileCompare.checkLog(head + '\\tests\TRS.MEMCFG.CHECK.004\\output\\result_MEM.log', "ERROR", ["EEEEEE"]))
 
-    def test_TRS_MEMCFG_CHECK_004(self):
-        current_path = os.path.realpath(__file__)
-        head, tail = ntpath.split(current_path)
-        os.system('MEM_Configurator.py -in ' + head + '\\tests\\TRS.MEMCFG.CHECK.004\\input -out ' + head + '\\tests\\TRS.MEMCFG.CHECK.004\\output')
-        self.assertFalse(FileCompare.isOutput(head + '\\tests\\TRS.MEMCFG.CHECK.004\\output\\NvDM.epc'))
-        self.assertFalse(FileCompare.isOutput(head + '\\tests\\TRS.MEMCFG.CHECK.004\\output\\NvM.epc'))
-        self.assertTrue(FileCompare.checkLog(head + '\\tests\TRS.MEMCFG.CHECK.004\\output\\result_MEM.log', "ERROR", ["EEEEEE"]))
+    # def test_TRS_MEMCFG_CHECK_005_1(self):
+    #     current_path = os.path.realpath(__file__)
+    #     head, tail = ntpath.split(current_path)
+    #     os.system('coverage run MEM_Configurator.py -in ' + head + '\\tests\\TRS.MEMCFG.CHECK.005_1\\input -out ' + head + '\\tests\\TRS.MEMCFG.CHECK.005_1\\output')
+    #     self.assertTrue(FileCompare.checkSafety(head + '\\tests\\TRS.MEMCFG.CHECK.005_1\\output\\NvDM.epc', 0))
 
-    def test_TRS_MEMCFG_CHECK_005_1(self):
-        current_path = os.path.realpath(__file__)
-        head, tail = ntpath.split(current_path)
-        os.system('MEM_Configurator.py -in ' + head + '\\tests\\TRS.MEMCFG.CHECK.005_1\\input -out ' + head + '\\tests\\TRS.MEMCFG.CHECK.005_1\\output')
-        self.assertTrue(FileCompare.checkSafety(head + '\\tests\\TRS.MEMCFG.CHECK.005_1\\output\\NvDM.epc', 0))
+    # def test_TRS_MEMCFG_CHECK_005_2(self):
+    #     current_path = os.path.realpath(__file__)
+    #     head, tail = ntpath.split(current_path)
+    #     os.system('coverage run MEM_Configurator.py -in ' + head + '\\tests\\TRS.MEMCFG.CHECK.005_2\\input -out ' + head + '\\tests\\TRS.MEMCFG.CHECK.005_2\\output')
+    #     self.assertTrue(FileCompare.checkSafety(head + '\\tests\\TRS.MEMCFG.CHECK.005_2\\output\\NvDM.epc', 0))
 
-    def test_TRS_MEMCFG_CHECK_005_2(self):
-        current_path = os.path.realpath(__file__)
-        head, tail = ntpath.split(current_path)
-        os.system('MEM_Configurator.py -in ' + head + '\\tests\\TRS.MEMCFG.CHECK.005_2\\input -out ' + head + '\\tests\\TRS.MEMCFG.CHECK.005_2\\output')
-        self.assertTrue(FileCompare.checkSafety(head + '\\tests\\TRS.MEMCFG.CHECK.005_2\\output\\NvDM.epc', 0))
+    # def test_TRS_MEMCFG_CHECK_005_3(self):
+    #     current_path = os.path.realpath(__file__)
+    #     head, tail = ntpath.split(current_path)
+    #     os.system('coverage run MEM_Configurator.py -in ' + head + '\\tests\\TRS.MEMCFG.CHECK.005_3\\input -out ' + head + '\\tests\\TRS.MEMCFG.CHECK.005_3\\output')
+    #     self.assertTrue(FileCompare.checkSafety(head + '\\tests\\TRS.MEMCFG.CHECK.005_3\\output\\NvDM.epc', 0))
 
-    def test_TRS_MEMCFG_CHECK_005_3(self):
-        current_path = os.path.realpath(__file__)
-        head, tail = ntpath.split(current_path)
-        os.system('MEM_Configurator.py -in ' + head + '\\tests\\TRS.MEMCFG.CHECK.005_3\\input -out ' + head + '\\tests\\TRS.MEMCFG.CHECK.005_3\\output')
-        self.assertTrue(FileCompare.checkSafety(head + '\\tests\\TRS.MEMCFG.CHECK.005_3\\output\\NvDM.epc', 0))
+    # def test_TRS_MEMCFG_CHECK_005_4(self):
+    #     current_path = os.path.realpath(__file__)
+    #     head, tail = ntpath.split(current_path)
+    #     os.system('coverage run MEM_Configurator.py -in ' + head + '\\tests\\TRS.MEMCFG.CHECK.005_4\\input -out ' + head + '\\tests\\TRS.MEMCFG.CHECK.005_4\\output')
+    #     self.assertTrue(FileCompare.checkSafety(head + '\\tests\\TRS.MEMCFG.CHECK.005_4\\output\\NvDM.epc', 1))
 
-    def test_TRS_MEMCFG_CHECK_005_4(self):
-        current_path = os.path.realpath(__file__)
-        head, tail = ntpath.split(current_path)
-        os.system('MEM_Configurator.py -in ' + head + '\\tests\\TRS.MEMCFG.CHECK.005_4\\input -out ' + head + '\\tests\\TRS.MEMCFG.CHECK.005_4\\output')
-        self.assertTrue(FileCompare.checkSafety(head + '\\tests\\TRS.MEMCFG.CHECK.005_4\\output\\NvDM.epc', 1))
+    # def test_TRS_MEMCFG_CHECK_006_1(self):
+    #     current_path = os.path.realpath(__file__)
+    #     head, tail = ntpath.split(current_path)
+    #     os.system('coverage run MEM_Configurator.py -in ' + head + '\\tests\\TRS.MEMCFG.CHECK.006_1\\input -out ' + head + '\\tests\\TRS.MEMCFG.CHECK.006_1\\output')
+    #     self.assertTrue(FileCompare.isOutput(head + '\\tests\\TRS.MEMCFG.CHECK.006_1\\output\\NvDM.epc'))
+    #     self.assertTrue(FileCompare.isOutput(head + '\\tests\\TRS.MEMCFG.CHECK.006_1\\output\\NvM.epc'))
 
-    def test_TRS_MEMCFG_CHECK_006_1(self):
-        current_path = os.path.realpath(__file__)
-        head, tail = ntpath.split(current_path)
-        os.system('MEM_Configurator.py -in ' + head + '\\tests\\TRS.MEMCFG.CHECK.006_1\\input -out ' + head + '\\tests\\TRS.MEMCFG.CHECK.006_1\\output')
-        self.assertTrue(FileCompare.isOutput(head + '\\tests\\TRS.MEMCFG.CHECK.006_1\\output\\NvDM.epc'))
-        self.assertTrue(FileCompare.isOutput(head + '\\tests\\TRS.MEMCFG.CHECK.006_1\\output\\NvM.epc'))
+    # def test_TRS_MEMCFG_CHECK_006_2(self):
+    #     current_path = os.path.realpath(__file__)
+    #     head, tail = ntpath.split(current_path)
+    #     os.system('coverage run MEM_Configurator.py -in ' + head + '\\tests\\TRS.MEMCFG.CHECK.006_2\\input -out ' + head + '\\tests\\TRS.MEMCFG.CHECK.006_2\\output')
+    #     self.assertFalse(FileCompare.isOutput(head + '\\tests\\TRS.MEMCFG.CHECK.006_2\\output\\NvDM.epc'))
+    #     self.assertFalse(FileCompare.isOutput(head + '\\tests\\TRS.MEMCFG.CHECK.006_2\\output\\NvM.epc'))
+    #     self.assertTrue(FileCompare.checkLog(head + '\\tests\TRS.MEMCFG.CHECK.004\\output\\result_MEM.log', "ERROR", ["Default_App_Ram_Implicit_RAR"]))
 
-    def test_TRS_MEMCFG_CHECK_006_2(self):
-        current_path = os.path.realpath(__file__)
-        head, tail = ntpath.split(current_path)
-        os.system('MEM_Configurator.py -in ' + head + '\\tests\\TRS.MEMCFG.CHECK.006_2\\input -out ' + head + '\\tests\\TRS.MEMCFG.CHECK.006_2\\output')
-        self.assertFalse(FileCompare.isOutput(head + '\\tests\\TRS.MEMCFG.CHECK.006_2\\output\\NvDM.epc'))
-        self.assertFalse(FileCompare.isOutput(head + '\\tests\\TRS.MEMCFG.CHECK.006_2\\output\\NvM.epc'))
-        self.assertTrue(FileCompare.checkLog(head + '\\tests\TRS.MEMCFG.CHECK.004\\output\\result_MEM.log', "ERROR", ["Default_App_Ram_Implicit_RAR"]))
+    # def test_TRS_MEMCFG_GEN_001(self):
+    #     current_path = os.path.realpath(__file__)
+    #     head, tail = ntpath.split(current_path)
+    #     os.system('coverage run MEM_Configurator.py -in ' + head + '\\tests\\TRS.MEMCFG.GEN.001\\input -out ' + head + '\\tests\\TRS.MEMCFG.GEN.001\\output')
+    #     self.assertTrue(FileCompare.NvDMStructure(head + '\\tests\\TRS.MEMCFG.GEN.001\\output\\NvDM.epc'))
+    #
+    # def test_TRS_MEMCFG_GEN_002_1(self):
+    #     current_path = os.path.realpath(__file__)
+    #     head, tail = ntpath.split(current_path)
+    #     os.system('coverage run MEM_Configurator.py -in ' + head + '\\tests\\TRS.MEMCFG.GEN.002_1\\input -out ' + head + '\\tests\\TRS.MEMCFG.GEN.002_1\\output')
+    #     self.assertTrue(FileCompare.checkBlockName(head + '\\tests\\TRS.MEMCFG.GEN.002_1\\output\\NvDM.epc', 'NvDM'))
 
-    def test_TRS_MEMCFG_GEN_001(self):
-        current_path = os.path.realpath(__file__)
-        head, tail = ntpath.split(current_path)
-        os.system('MEM_Configurator.py -in ' + head + '\\tests\\TRS.MEMCFG.GEN.001\\input -out ' + head + '\\tests\\TRS.MEMCFG.GEN.001\\output')
-        self.assertTrue(FileCompare.NvDMStructure(head + '\\tests\\TRS.MEMCFG.GEN.001\\output\\NvDM.epc'))
+    # def test_TRS_MEMCFG_GEN_002_2(self):
+    #     current_path = os.path.realpath(__file__)
+    #     head, tail = ntpath.split(current_path)
+    #     os.system('coverage run MEM_Configurator.py -in ' + head + '\\tests\\TRS.MEMCFG.GEN.002_2\\input -out ' + head + '\\tests\\TRS.MEMCFG.GEN.002_2\\output')
+    #     self.assertTrue(FileCompare.checkBlockName(head + '\\tests\\TRS.MEMCFG.GEN.002_2\\output\\NvDM.epc', 'NvDM'))
 
-    def test_TRS_MEMCFG_GEN_002_1(self):
-        current_path = os.path.realpath(__file__)
-        head, tail = ntpath.split(current_path)
-        os.system('MEM_Configurator.py -in ' + head + '\\tests\\TRS.MEMCFG.GEN.002_1\\input -out ' + head + '\\tests\\TRS.MEMCFG.GEN.002_1\\output')
-        self.assertTrue(FileCompare.checkBlockName(head + '\\tests\\TRS.MEMCFG.GEN.002_1\\output\\NvDM.epc', 'NvDM'))
+    # def test_TRS_MEMCFG_GEN_003(self):
+    #     current_path = os.path.realpath(__file__)
+    #     head, tail = ntpath.split(current_path)
+    #     os.system('coverage run MEM_Configurator.py -in ' + head + '\\tests\\TRS.MEMCFG.GEN.002bis\\input -out ' + head + '\\tests\\TRS.MEMCFG.GEN.002bis\\output')
+    #     self.assertTrue(FileCompare.NvMStructure(head + '\\tests\\TRS.MEMCFG.GEN.002bis\\output\\NvM.epc'))
 
-    def test_TRS_MEMCFG_GEN_002_2(self):
-        current_path = os.path.realpath(__file__)
-        head, tail = ntpath.split(current_path)
-        os.system('MEM_Configurator.py -in ' + head + '\\tests\\TRS.MEMCFG.GEN.002_2\\input -out ' + head + '\\tests\\TRS.MEMCFG.GEN.002_2\\output')
-        self.assertTrue(FileCompare.checkBlockName(head + '\\tests\\TRS.MEMCFG.GEN.002_2\\output\\NvDM.epc', 'NvDM'))
+    # def test_TRS_MEMCFG_GEN_004_1(self):
+    #     current_path = os.path.realpath(__file__)
+    #     head, tail = ntpath.split(current_path)
+    #     os.system('coverage run MEM_Configurator.py -in ' + head + '\\tests\\TRS.MEMCFG.GEN.003_1\\input -out ' + head + '\\tests\\TRS.MEMCFG.GEN.003_1\\output')
+    #     self.assertTrue(FileCompare.checkBlockName(head + '\\tests\\TRS.MEMCFG.GEN.003_1\\output\\NvM.epc', 'NvM'))
 
-    def test_TRS_MEMCFG_GEN_002bis(self):
-        current_path = os.path.realpath(__file__)
-        head, tail = ntpath.split(current_path)
-        os.system('MEM_Configurator.py -in ' + head + '\\tests\\TRS.MEMCFG.GEN.002bis\\input -out ' + head + '\\tests\\TRS.MEMCFG.GEN.002bis\\output')
-        self.assertTrue(FileCompare.NvMStructure(head + '\\tests\\TRS.MEMCFG.GEN.002bis\\output\\NvM.epc'))
+    # def test_TRS_MEMCFG_GEN_004_2(self):
+    #     current_path = os.path.realpath(__file__)
+    #     head, tail = ntpath.split(current_path)
+    #     os.system('coverage run MEM_Configurator.py -in ' + head + '\\tests\\TRS.MEMCFG.GEN.003_2\\input -out ' + head + '\\tests\\TRS.MEMCFG.GEN.003_2\\output')
+    #     self.assertTrue(FileCompare.checkBlockName(head + '\\tests\\TRS.MEMCFG.GEN.003_2\\output\\NvM.epc', 'NvM'))
 
-    def test_TRS_MEMCFG_GEN_003_1(self):
-        current_path = os.path.realpath(__file__)
-        head, tail = ntpath.split(current_path)
-        os.system('MEM_Configurator.py -in ' + head + '\\tests\\TRS.MEMCFG.GEN.003_1\\input -out ' + head + '\\tests\\TRS.MEMCFG.GEN.003_1\\output')
-        self.assertTrue(FileCompare.checkBlockName(head + '\\tests\\TRS.MEMCFG.GEN.003_1\\output\\NvM.epc', 'NvM'))
+    # def test_TRS_MEMCFG_GEN_005(self):
+    #     current_path = os.path.realpath(__file__)
+    #     head, tail = ntpath.split(current_path)
+    #     os.system('coverage run MEM_Configurator.py -in ' + head + '\\tests\\TRS.MEMCFG.FUNC.004\\input -out ' + head + '\\tests\\TRS.MEMCFG.FUNC.004\\output')
+    #     self.assertTrue(FileCompare.checkParameter(head + '\\tests\\TRS.MEMCFG.FUNC.004\\output\\NvM.epc', 'NvMRamBlockDataAddress'))
 
-    def test_TRS_MEMCFG_GEN_003_2(self):
-        current_path = os.path.realpath(__file__)
-        head, tail = ntpath.split(current_path)
-        os.system('MEM_Configurator.py -in ' + head + '\\tests\\TRS.MEMCFG.GEN.003_2\\input -out ' + head + '\\tests\\TRS.MEMCFG.GEN.003_2\\output')
-        self.assertTrue(FileCompare.checkBlockName(head + '\\tests\\TRS.MEMCFG.GEN.003_2\\output\\NvM.epc', 'NvM'))
+    # def test_TRS_MEMCFG_GEN_006(self):
+    #     current_path = os.path.realpath(__file__)
+    #     head, tail = ntpath.split(current_path)
+    #     os.system('coverage run MEM_Configurator.py -in ' + head + '\\tests\\TRS.MEMCFG.FUNC.005\\input -out ' + head + '\\tests\\TRS.MEMCFG.FUNC.005\\output')
+    #     self.assertTrue(FileCompare.checkParameter(head + '\\tests\\TRS.MEMCFG.FUNC.005\\output\\NvM.epc', 'NvMRomBlockDataAddress'))
 
-    def test_TRS_MEMCFG_FUNC_004(self):
-        current_path = os.path.realpath(__file__)
-        head, tail = ntpath.split(current_path)
-        os.system('MEM_Configurator.py -in ' + head + '\\tests\\TRS.MEMCFG.FUNC.004\\input -out ' + head + '\\tests\\TRS.MEMCFG.FUNC.004\\output')
-        self.assertTrue(FileCompare.checkParameter(head + '\\tests\\TRS.MEMCFG.FUNC.004\\output\\NvM.epc', 'NvMRamBlockDataAddress'))
+    # def test_TRS_MEMCFG_GEN_007_1(self):
+    #     current_path = os.path.realpath(__file__)
+    #     head, tail = ntpath.split(current_path)
+    #     os.system('coverage run MEM_Configurator.py -in ' + head + '\\tests\\TRS.MEMCFG.FUNC.006_1\\input -out ' + head + '\\tests\\TRS.MEMCFG.FUNC.006_1\\output')
+    #     self.assertTrue(FileCompare.checkReference(head + '\\tests\\TRS.MEMCFG.FUNC.006_1\\output\\NvM.epc', 'EA'))
 
-    def test_TRS_MEMCFG_FUNC_005(self):
-        current_path = os.path.realpath(__file__)
-        head, tail = ntpath.split(current_path)
-        os.system('MEM_Configurator.py -in ' + head + '\\tests\\TRS.MEMCFG.FUNC.005\\input -out ' + head + '\\tests\\TRS.MEMCFG.FUNC.005\\output')
-        self.assertTrue(FileCompare.checkParameter(head + '\\tests\\TRS.MEMCFG.FUNC.005\\output\\NvM.epc', 'NvMRomBlockDataAddress'))
+    # def test_TRS_MEMCFG_GEN_007_2(self):
+    #     current_path = os.path.realpath(__file__)
+    #     head, tail = ntpath.split(current_path)
+    #     os.system('coverage run MEM_Configurator.py -in ' + head + '\\tests\\TRS.MEMCFG.FUNC.006_2\\input -out ' + head + '\\tests\\TRS.MEMCFG.FUNC.006_2\\output')
+    #     self.assertTrue(FileCompare.checkReference(head + '\\tests\\TRS.MEMCFG.FUNC.006_2\\output\\NvM.epc', 'FEE'))
 
-    def test_TRS_MEMCFG_FUNC_006_1(self):
-        current_path = os.path.realpath(__file__)
-        head, tail = ntpath.split(current_path)
-        os.system('MEM_Configurator.py -in ' + head + '\\tests\\TRS.MEMCFG.FUNC.006_1\\input -out ' + head + '\\tests\\TRS.MEMCFG.FUNC.006_1\\output')
-        self.assertTrue(FileCompare.checkReference(head + '\\tests\\TRS.MEMCFG.FUNC.006_1\\output\\NvM.epc', 'EA'))
+    # def test_TRS_MEMCFG_GEN_00B(self):
+    #     current_path = os.path.realpath(__file__)
+    #     head, tail = ntpath.split(current_path)
+    #     os.system('coverage run MEM_Configurator.py -in ' + head + '\\tests\\TRS.MEMCFG.GEN.008\\input -out ' + head + '\\tests\\TRS.MEMCFG.GEN.008\\output')
+    #     self.assertFalse(FileCompare.isOutput(head + '\\tests\\TRS.MEMCFG.GEN.008\\output\\NvM.epc'))
+    #     self.assertTrue(FileCompare.checkLog(head + '\\tests\\TRS.MEMCFG.GEN.008\\output\\result_MEM.log', "ERROR", ["Default_App_Ram_Implicit_SAV"]))
 
-    def test_TRS_MEMCFG_FUNC_006_2(self):
-        current_path = os.path.realpath(__file__)
-        head, tail = ntpath.split(current_path)
-        os.system('MEM_Configurator.py -in ' + head + '\\tests\\TRS.MEMCFG.FUNC.006_2\\input -out ' + head + '\\tests\\TRS.MEMCFG.FUNC.006_2\\output')
-        self.assertTrue(FileCompare.checkReference(head + '\\tests\\TRS.MEMCFG.FUNC.006_2\\output\\NvM.epc', 'FEE'))
+    # def test_TRS_MEMCFG_GEN_00C(self):
+    #     current_path = os.path.realpath(__file__)
+    #     head, tail = ntpath.split(current_path)
+    #     os.system('coverage run MEM_Configurator.py -in ' + head + '\\tests\\TRS.MEMCFG.GEN.009\\input -out ' + head + '\\tests\\TRS.MEMCFG.GEN.009\\output')
+    #     self.assertTrue(FileCompare.checkOrder(head + '\\tests\\TRS.MEMCFG.GEN.009\\output\\NvM.epc'))
 
-    def test_TRS_MEMCFG_GEN_008(self):
-        current_path = os.path.realpath(__file__)
-        head, tail = ntpath.split(current_path)
-        os.system('MEM_Configurator.py -in ' + head + '\\tests\\TRS.MEMCFG.GEN.008\\input -out ' + head + '\\tests\\TRS.MEMCFG.GEN.008\\output')
-        self.assertFalse(FileCompare.isOutput(head + '\\tests\\TRS.MEMCFG.GEN.008\\output\\NvM.epc'))
-        self.assertTrue(FileCompare.checkLog(head + '\\tests\\TRS.MEMCFG.GEN.008\\output\\result_MEM.log', "ERROR", ["Default_App_Ram_Implicit_SAV"]))
+    # def test_TRS_MEMCFG_GEN_011(self):
+    #     current_path = os.path.realpath(__file__)
+    #     head, tail = ntpath.split(current_path)
+    #     os.system('coverage run MEM_Configurator.py -in ' + head + '\\tests\\TRS.MEMCFG.GEN.011\\input -out ' + head + '\\tests\\TRS.MEMCFG.GEN.011\\output')
+    #     self.assertTrue(FileCompare.isOutput(head + '\\tests\\TRS.MEMCFG.GEN.011\\output\\NvDM.epc'))
 
-    def test_TRS_MEMCFG_GEN_009(self):
-        current_path = os.path.realpath(__file__)
-        head, tail = ntpath.split(current_path)
-        os.system('MEM_Configurator.py -in ' + head + '\\tests\\TRS.MEMCFG.GEN.009\\input -out ' + head + '\\tests\\TRS.MEMCFG.GEN.009\\output')
-        self.assertTrue(FileCompare.checkOrder(head + '\\tests\\TRS.MEMCFG.GEN.009\\output\\NvM.epc'))
+    # def test_TRS_MEMCFG_GEN_012(self):
+    #     current_path = os.path.realpath(__file__)
+    #     head, tail = ntpath.split(current_path)
+    #     os.system('coverage run MEM_Configurator.py -in ' + head + '\\tests\\TRS.MEMCFG.GEN.012\\input -out ' + head + '\\tests\\TRS.MEMCFG.GEN.012\\output')
+    #     self.assertTrue(FileCompare.isOutput(head + '\\tests\\TRS.MEMCFG.GEN.012\\output\\NvM.epc'))
 
-    def test_TRS_MEMCFG_GEN_011(self):
-        current_path = os.path.realpath(__file__)
-        head, tail = ntpath.split(current_path)
-        os.system('MEM_Configurator.py -in ' + head + '\\tests\\TRS.MEMCFG.GEN.011\\input -out ' + head + '\\tests\\TRS.MEMCFG.GEN.011\\output')
-        self.assertTrue(FileCompare.isOutput(head + '\\tests\\TRS.MEMCFG.GEN.011\\output\\NvDM.epc'))
+    # def test_CHECK_XML(self):
+    #     current_path = os.path.realpath(__file__)
+    #     head, tail = ntpath.split(current_path)
+    #     os.system('coverage run MEM_Configurator.py -in ' + head + '\\tests\\CHECK.XML\\input -out ' + head + '\\tests\\CHECK.XML\\output')
+    #     self.assertFalse(FileCompare.isOutput(head + '\\tests\\CHECK.XML\\output\\NvDM.epc'))
+    #     self.assertFalse(FileCompare.isOutput(head + '\\tests\\CHECK.XML\\output\\NvM.epc'))
+    #     self.assertTrue(FileCompare.checkLog(head + '\\tests\\CHECK.XML\\output\\result_MEM.log', "ERROR", [""]))
 
-    def test_TRS_MEMCFG_GEN_012(self):
-        current_path = os.path.realpath(__file__)
-        head, tail = ntpath.split(current_path)
-        os.system('MEM_Configurator.py -in ' + head + '\\tests\\TRS.MEMCFG.GEN.012\\input -out ' + head + '\\tests\\TRS.MEMCFG.GEN.012\\output')
-        self.assertTrue(FileCompare.isOutput(head + '\\tests\\TRS.MEMCFG.GEN.012\\output\\NvM.epc'))
+    # def test_TBD(self):
+    #     current_path = os.path.realpath(__file__)
+    #     head, tail = ntpath.split(current_path)
+    #     os.system('coverage run MEM_Configurator.py -in ' + head + '\\tests\\TBD\\input -out ' + head + '\\tests\\TBD\\output')
+    #     self.assertTrue(FileCompare.checkID(head + '\\tests\\TBD\\output\\NvM.epc'))
 
-    def test_CHECK_XML(self):
-        current_path = os.path.realpath(__file__)
-        head, tail = ntpath.split(current_path)
-        os.system('MEM_Configurator.py -in ' + head + '\\tests\\CHECK.XML\\input -out ' + head + '\\tests\\CHECK.XML\\output')
-        self.assertFalse(FileCompare.isOutput(head + '\\tests\\CHECK.XML\\output\\NvDM.epc'))
-        self.assertFalse(FileCompare.isOutput(head + '\\tests\\CHECK.XML\\output\\NvM.epc'))
-        self.assertTrue(FileCompare.checkLog(head + '\\tests\\CHECK.XML\\output\\result_MEM.log', "ERROR", [""]))
-
-    def test_TBD(self):
-        current_path = os.path.realpath(__file__)
-        head, tail = ntpath.split(current_path)
-        os.system('MEM_Configurator.py -in ' + head + '\\tests\\TBD\\input -out ' + head + '\\tests\\TBD\\output')
-        self.assertTrue(FileCompare.checkID(head + '\\tests\\TBD\\output\\NvM.epc'))
-
-    def test_TBD_2(self):
-        current_path = os.path.realpath(__file__)
-        head, tail = ntpath.split(current_path)
-        os.system('MEM_Configurator.py -in ' + head + '\\tests\\TBD_2\\input -out ' + head + '\\tests\\TBD_2\\output')
-        self.assertFalse(FileCompare.isOutput(head + '\\tests\\TBD_2\\output\\NvDM.epc'))
-        self.assertFalse(FileCompare.isOutput(head + '\\tests\\TBD_2\\output\\NvM.epc'))
-        self.assertTrue(FileCompare.checkLog(head + '\\tests\\TBD_2\\output\\result_MEM.log', "ERROR", [""]))
+    # def test_TBD_2(self):
+    #     current_path = os.path.realpath(__file__)
+    #     head, tail = ntpath.split(current_path)
+    #     os.system('coverage run MEM_Configurator.py -in ' + head + '\\tests\\TBD_2\\input -out ' + head + '\\tests\\TBD_2\\output')
+    #     self.assertFalse(FileCompare.isOutput(head + '\\tests\\TBD_2\\output\\NvDM.epc'))
+    #     self.assertFalse(FileCompare.isOutput(head + '\\tests\\TBD_2\\output\\NvM.epc'))
+    #     self.assertTrue(FileCompare.checkLog(head + '\\tests\\TBD_2\\output\\result_MEM.log', "ERROR", [""]))
 
 
 suite = unittest.TestLoader().loadTestsFromTestCase(MEMConfigurator)
