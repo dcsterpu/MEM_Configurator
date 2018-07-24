@@ -11,7 +11,7 @@ from xml.dom.minidom import parseString             # pragma: no cover
 
 
 def arg_parse(parser):
-    parser.add_argument('-in', '--inp', nargs='+', help="input path or file", required=True, default="")
+    parser.add_argument('-in', '--inp', nargs='*', help="input path or file", required=True, default="")
     parser.add_argument('-out', '--out', help="output path", required=False, default="")
     parser.add_argument('-out_epc', '--out_epc', help="output path for configuration file(s)", required=False, default="")
     parser.add_argument('-out_log', '--out_log', help="output path for log file", required=False, default="")
