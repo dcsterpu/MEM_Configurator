@@ -255,7 +255,6 @@ def create_MEM_config(file_list, path_list, output_path, logger):
                     obj_block['PORT'] = block_ports
                     obj_block['MAX-SIZE'] = None
                     blocks.append(obj_block)
-                    blocks.append(obj_block)
                 profile = root.findall(".//PROFILE")
                 for elem in profile:
                     obj_profile = {}
@@ -418,7 +417,6 @@ def create_MEM_config(file_list, path_list, output_path, logger):
                         obj_block['PORT'] = block_ports
                         obj_block['MAX-SIZE'] = None
                         blocks.append(obj_block)
-                        blocks.append(obj_block)
                     profile = root.findall(".//PROFILE")
                     for elem in profile:
                         obj_profile = {}
@@ -580,13 +578,14 @@ def create_MEM_config(file_list, path_list, output_path, logger):
                             print('ERROR: The block  ' + elem1['NAME'] + ' cannot be defined in multiple ASWC because SDF = true')
                             error_no = error_no + 1
         # merge two block with the same name:
-        for elem1 in blocks[:]:
+        for elem1 in blocks:
             for elem2 in blocks[:]:
                 if blocks.index(elem1) != blocks.index(elem2):
                     if elem1['NAME'] == elem2['NAME']:
                         for port in elem2['PORT']:
                             elem1['PORT'].append(port)
-        blocks = list(remove_duplicates(blocks))
+                        blocks.remove(elem2)
+        # blocks = list(remove_duplicates(blocks))
         # check if there are NvMResistantToChangedSw blocks
         for block in blocks:
             if block['RESISTENT'] == "True":

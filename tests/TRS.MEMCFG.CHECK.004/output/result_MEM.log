@@ -1,11 +1,10 @@
-2018-07-17 10:38:51,575 INFO The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.CHECK.004\input\ASWC_A26.aswc.arxml is well-formed
-2018-07-17 10:38:51,585 INFO  The file C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.CHECK.004\input\ASWC_A26.config_mem.xml is well-formed
-2018-07-17 10:38:51,602 INFO The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.CHECK.004\input\ASWC_A27.aswc.arxml is well-formed
-2018-07-17 10:38:51,609 INFO  The file C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.CHECK.004\input\ASWC_A27.config_mem.xml is well-formed
-2018-07-17 10:38:51,612 INFO The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.CHECK.004\input\AUTOSAR_Datatypes.arxml is well-formed
-2018-07-17 10:38:51,614 INFO  The file C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.CHECK.004\input\CompiledConfigID.xml is well-formed
-2018-07-17 10:38:51,616 INFO  The file C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.CHECK.004\input\Profiles_cleaned.xml is well-formed
-2018-07-17 10:38:51,693 INFO The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.CHECK.004\input\SystemGenerated.arxml is well-formed
-2018-07-17 10:38:51,754 INFO The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.CHECK.004\input\VSM_Types.arxml is well-formed
-2018-07-17 10:38:51,849 ERROR Port: /RootP_ASWC_A26/ASWC_A26/EEEEEE of block Default_App_Ram_Implicit_RAR is not present in the arxml files
-2018-07-17 10:38:51,849 ERROR Port: /RootP_ASWC_A26/ASWC_A26/EEEEEE of block Default_App_Ram_Implicit_RAR is not present in the arxml files
+2018-08-07 09:51:13,857 INFO The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.CHECK.004\input\ASWC_A26.aswc.arxml is well-formed
+2018-08-07 09:51:13,869 INFO  The file C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.CHECK.004\input\ASWC_A26.config_mem.xml is well-formed
+2018-08-07 09:51:13,890 INFO The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.CHECK.004\input\ASWC_A27.aswc.arxml is well-formed
+2018-08-07 09:51:13,896 INFO  The file C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.CHECK.004\input\ASWC_A27.config_mem.xml is well-formed
+2018-08-07 09:51:13,901 INFO The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.CHECK.004\input\AUTOSAR_Datatypes.arxml is well-formed
+2018-08-07 09:51:13,904 INFO  The file C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.CHECK.004\input\CompiledConfigID.xml is well-formed
+2018-08-07 09:51:13,906 INFO  The file C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.CHECK.004\input\Profiles_cleaned.xml is well-formed
+2018-08-07 09:51:14,000 INFO The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.CHECK.004\input\SystemGenerated.arxml is well-formed
+2018-08-07 09:51:14,082 INFO The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.CHECK.004\input\VSM_Types.arxml is well-formed
+2018-08-07 09:51:14,473 ERROR Port: /RootP_ASWC_A26/ASWC_A26/EEEEEE of block Default_App_Ram_Implicit_RAR is not present in the arxml files
