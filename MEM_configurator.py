@@ -55,6 +55,7 @@ def main():
     arg_parse(parser)
     args = parser.parse_args()
     input_path = args.inp
+    error = False
     path_list = []
     file_list = []
     for path in input_path:
@@ -64,14 +65,17 @@ def main():
             while line_file != "":
                 line_file = line_file.rstrip()
                 line_file = line_file.lstrip()
-                if os.path.isdir(line_file):
-                    path_list.append(line_file)
-                elif os.path.isfile(line_file):
-                    file_list.append(line_file)
+                if "#" not in line_file:
+                    if os.path.isdir(line_file):
+                        path_list.append(line_file)
+                    elif os.path.isfile(line_file):
+                        file_list.append(line_file)
+                    else:
+                        print("\nError defining the input path: " + line_file + "\n")
+                        error = True
+                    line_file = file.readline()
                 else:
-                    print("\nError defining the input path(s)!\n")
-                    sys.exit(1)
-                line_file = file.readline()
+                    line_file = file.readline()
             file.close()
         else:
             if os.path.isdir(path):
@@ -79,8 +83,10 @@ def main():
             elif os.path.isfile(path):
                 file_list.append(path)
             else:
-                print("\nError defining the input path(s)!\n")
-                sys.exit(1)
+                print("\nError defining the input path: " + path + "\n")
+                error = True
+    if error:
+        sys.exit(1)
     output_path = args.out
     output_epc = args.out_epc
     output_log = args.out_log
@@ -107,10 +113,10 @@ def main():
                     print("\nError defining the output log path!\n")
                     sys.exit(1)
                 logger = set_logger(output_log)
-                create_MEM_config(file_list, path_list, output_path, logger)
+                create_MEM_config(file_list, path_list, output_epc, logger)
             else:
                 logger = set_logger(output_epc)
-                create_MEM_config(file_list, path_list, output_path, logger)
+                create_MEM_config(file_list, path_list, output_epc, logger)
     else:
         print("\nNo output path defined!\n")
         sys.exit(1)
@@ -295,167 +301,168 @@ def create_MEM_config(file_list, path_list, output_path, logger):
                 for elem in ids:
                     config_ids.append(elem.text)
         for path in path_list:
-            for file in os.listdir(path):
-                if file.endswith('.arxml'):
-                    fullname = os.path.join(path, file)
-                    try:
-                        check_if_xml_is_wellformed(fullname)
-                        logger.info('The file: ' + fullname + ' is well-formed')
-                        info_no = info_no + 1
-                    except Exception as e:
-                        logger.error('The file: ' + fullname + ' is not well-formed: ' + str(e))
-                        print('ERROR: The file: ' + fullname + ' is not well-formed: ' + str(e))
-                        error_no = error_no + 1
-                    tree = etree.parse(fullname)
-                    root = tree.getroot()
-                    sender_receiver_interface = root.findall(".//{http://autosar.org/schema/r4.0}SENDER-RECEIVER-INTERFACE")
-                    for elem in sender_receiver_interface:
-                        obj_elem = {}
-                        variable_data_prototype = []
-                        obj_elem['NAME'] = elem.find(".//{http://autosar.org/schema/r4.0}SHORT-NAME").text
-                        obj_elem['ROOT'] = elem.getparent().getparent().getchildren()[0].text
-                        data_elements = elem.findall(".//{http://autosar.org/schema/r4.0}VARIABLE-DATA-PROTOTYPE")
-                        for data_prototype in data_elements:
-                            obj_variable = {}
-                            obj_variable['NAME'] = data_prototype.find('.//{http://autosar.org/schema/r4.0}SHORT-NAME').text
-                            obj_variable['TYPE'] = data_prototype.find('.//{http://autosar.org/schema/r4.0}TYPE-TREF').text
-                            if data_prototype.find('.//{http://autosar.org/schema/r4.0}VALUE') is not None:
-                                obj_variable['INIT'] = data_prototype.find('.//{http://autosar.org/schema/r4.0}VALUE').text
+            for directory, directories, files in os.walk(path):
+                for file in files:
+                    if file.endswith('.arxml'):
+                        fullname = os.path.join(directory, file)
+                        try:
+                            check_if_xml_is_wellformed(fullname)
+                            logger.info('The file: ' + fullname + ' is well-formed')
+                            info_no = info_no + 1
+                        except Exception as e:
+                            logger.error('The file: ' + fullname + ' is not well-formed: ' + str(e))
+                            print('ERROR: The file: ' + fullname + ' is not well-formed: ' + str(e))
+                            error_no = error_no + 1
+                        tree = etree.parse(fullname)
+                        root = tree.getroot()
+                        sender_receiver_interface = root.findall(".//{http://autosar.org/schema/r4.0}SENDER-RECEIVER-INTERFACE")
+                        for elem in sender_receiver_interface:
+                            obj_elem = {}
+                            variable_data_prototype = []
+                            obj_elem['NAME'] = elem.find(".//{http://autosar.org/schema/r4.0}SHORT-NAME").text
+                            obj_elem['ROOT'] = elem.getparent().getparent().getchildren()[0].text
+                            data_elements = elem.findall(".//{http://autosar.org/schema/r4.0}VARIABLE-DATA-PROTOTYPE")
+                            for data_prototype in data_elements:
+                                obj_variable = {}
+                                obj_variable['NAME'] = data_prototype.find('.//{http://autosar.org/schema/r4.0}SHORT-NAME').text
+                                obj_variable['TYPE'] = data_prototype.find('.//{http://autosar.org/schema/r4.0}TYPE-TREF').text
+                                if data_prototype.find('.//{http://autosar.org/schema/r4.0}VALUE') is not None:
+                                    obj_variable['INIT'] = data_prototype.find('.//{http://autosar.org/schema/r4.0}VALUE').text
+                                else:
+                                    obj_variable['INIT'] = 0
+                                    logger.warning(str(obj_variable['NAME']) + " doesn't have an initial value defined")
+                                    warning_no = warning_no + 1
+                                obj_variable['SW-BASE-TYPE'] = None
+                                obj_variable['SIZE'] = None
+                                variable_data_prototype.append(obj_variable)
+                            obj_elem['DATA-ELEMENTS'] = variable_data_prototype
+                            obj_elem['SIZE'] = None
+                            arxml_interfaces.append(obj_elem)
+                        implementation_data_types = root.findall(".//{http://autosar.org/schema/r4.0}IMPLEMENTATION-DATA-TYPE")
+                        for elem in implementation_data_types:
+                            obj_elem = {}
+                            obj_elem['NAME'] = elem.find(".//{http://autosar.org/schema/r4.0}SHORT-NAME").text
+                            if elem.find(".//{http://autosar.org/schema/r4.0}BASE-TYPE-REF") is not None:
+                                obj_elem['BASE-TYPE'] = elem.find(".//{http://autosar.org/schema/r4.0}BASE-TYPE-REF").text
                             else:
-                                obj_variable['INIT'] = 0
-                                logger.warning(str(obj_variable['NAME']) + " doesn't have an initial value defined")
-                                warning_no = warning_no + 1
-                            obj_variable['SW-BASE-TYPE'] = None
-                            obj_variable['SIZE'] = None
-                            variable_data_prototype.append(obj_variable)
-                        obj_elem['DATA-ELEMENTS'] = variable_data_prototype
-                        obj_elem['SIZE'] = None
-                        arxml_interfaces.append(obj_elem)
-                    implementation_data_types = root.findall(".//{http://autosar.org/schema/r4.0}IMPLEMENTATION-DATA-TYPE")
-                    for elem in implementation_data_types:
-                        obj_elem = {}
-                        obj_elem['NAME'] = elem.find(".//{http://autosar.org/schema/r4.0}SHORT-NAME").text
-                        if elem.find(".//{http://autosar.org/schema/r4.0}BASE-TYPE-REF") is not None:
-                            obj_elem['BASE-TYPE'] = elem.find(".//{http://autosar.org/schema/r4.0}BASE-TYPE-REF").text
-                        else:
-                            continue
-                        arxml_data_types.append(obj_elem)
-                    base_types = root.findall(".//{http://autosar.org/schema/r4.0}SW-BASE-TYPE")
-                    for elem in base_types:
-                        obj_elem = {}
-                        obj_elem['NAME'] = elem.find(".//{http://autosar.org/schema/r4.0}SHORT-NAME").text
-                        obj_elem['PACKAGE'] = elem.getparent().getparent().getchildren()[0].text
-                        obj_elem['SIZE'] = elem.find(".//{http://autosar.org/schema/r4.0}BASE-TYPE-SIZE").text
-                        arxml_base_types.append(obj_elem)
-                    pr_ports = root.findall(".//{http://autosar.org/schema/r4.0}PR-PORT-PROTOTYPE")
-                    for elem in pr_ports:
-                        obj_elem = {}
-                        obj_elem['NAME'] = elem.find(".//{http://autosar.org/schema/r4.0}SHORT-NAME").text
-                        obj_elem['ASWC'] = elem.getparent().getparent().getchildren()[0].text
-                        obj_elem['ROOT'] = elem.getparent().getparent().getparent().getparent().getchildren()[0].text
-                        obj_elem['INTERFACE'] = elem.find(".//{http://autosar.org/schema/r4.0}PROVIDED-REQUIRED-INTERFACE-TREF").text
-                        obj_elem['SIZE'] = None
-                        obj_elem['DATA-ELEMENTS'] = None
-                        ports.append(obj_elem)
-                if file.endswith('.xml'):
-                    fullname = os.path.join(path, file)
-                    try:
-                        check_if_xml_is_wellformed(fullname)
-                        logger.info(' The file ' + fullname + ' is well-formed')
-                        info_no = info_no + 1
-                    except Exception as e:
-                        logger.error(' The file ' + fullname + ' is not well-formed: ' + str(e))
-                        print('ERROR: The file ' + fullname + ' is not well-formed: ' + str(e))
-                        error_no = error_no + 1
-                    tree = etree.parse(fullname)
-                    root = tree.getroot()
-                    block = root.findall(".//BLOCK")
-                    for elem in block:
-                        obj_block = {}
-                        block_ports = []
-                        obj_block['NAME'] = elem.find('SHORT-NAME').text
-                        obj_block['TYPE'] = elem.find('TYPE').text
-                        # implementing requirement TRS.SYSDESC.CHECK.002
-                        if elem.find('PROFIL-REF') is not None:
-                            if elem.find('PROFIL-REF').text != '':
-                                obj_block['PROFILE'] = elem.find('PROFIL-REF').text
+                                continue
+                            arxml_data_types.append(obj_elem)
+                        base_types = root.findall(".//{http://autosar.org/schema/r4.0}SW-BASE-TYPE")
+                        for elem in base_types:
+                            obj_elem = {}
+                            obj_elem['NAME'] = elem.find(".//{http://autosar.org/schema/r4.0}SHORT-NAME").text
+                            obj_elem['PACKAGE'] = elem.getparent().getparent().getchildren()[0].text
+                            obj_elem['SIZE'] = elem.find(".//{http://autosar.org/schema/r4.0}BASE-TYPE-SIZE").text
+                            arxml_base_types.append(obj_elem)
+                        pr_ports = root.findall(".//{http://autosar.org/schema/r4.0}PR-PORT-PROTOTYPE")
+                        for elem in pr_ports:
+                            obj_elem = {}
+                            obj_elem['NAME'] = elem.find(".//{http://autosar.org/schema/r4.0}SHORT-NAME").text
+                            obj_elem['ASWC'] = elem.getparent().getparent().getchildren()[0].text
+                            obj_elem['ROOT'] = elem.getparent().getparent().getparent().getparent().getchildren()[0].text
+                            obj_elem['INTERFACE'] = elem.find(".//{http://autosar.org/schema/r4.0}PROVIDED-REQUIRED-INTERFACE-TREF").text
+                            obj_elem['SIZE'] = None
+                            obj_elem['DATA-ELEMENTS'] = None
+                            ports.append(obj_elem)
+                    if file.endswith('.xml'):
+                        fullname = os.path.join(directory, file)
+                        try:
+                            check_if_xml_is_wellformed(fullname)
+                            logger.info(' The file ' + fullname + ' is well-formed')
+                            info_no = info_no + 1
+                        except Exception as e:
+                            logger.error(' The file ' + fullname + ' is not well-formed: ' + str(e))
+                            print('ERROR: The file ' + fullname + ' is not well-formed: ' + str(e))
+                            error_no = error_no + 1
+                        tree = etree.parse(fullname)
+                        root = tree.getroot()
+                        block = root.findall(".//BLOCK")
+                        for elem in block:
+                            obj_block = {}
+                            block_ports = []
+                            obj_block['NAME'] = elem.find('SHORT-NAME').text
+                            obj_block['TYPE'] = elem.find('TYPE').text
+                            # implementing requirement TRS.SYSDESC.CHECK.002
+                            if elem.find('PROFIL-REF') is not None:
+                                if elem.find('PROFIL-REF').text != '':
+                                    obj_block['PROFILE'] = elem.find('PROFIL-REF').text
+                                else:
+                                    logger.error('No profile defined for block ' + elem.find('SHORT-NAME').text)
+                                    print('ERROR: No profile defined for block ' + elem.find('SHORT-NAME').text)
+                                    error_no = error_no + 1
                             else:
                                 logger.error('No profile defined for block ' + elem.find('SHORT-NAME').text)
                                 print('ERROR: No profile defined for block ' + elem.find('SHORT-NAME').text)
                                 error_no = error_no + 1
-                        else:
-                            logger.error('No profile defined for block ' + elem.find('SHORT-NAME').text)
-                            print('ERROR: No profile defined for block ' + elem.find('SHORT-NAME').text)
-                            error_no = error_no + 1
-                        if elem.find('WRITE-TIMEOUT') is not None:
-                            obj_block['TIMEOUT'] = elem.find('WRITE-TIMEOUT').text
-                        else:
-                            obj_block['TIMEOUT'] = None
-                        if elem.find('RESPECT-MAPPING') is not None:
-                            obj_block['MAPPING'] = elem.find('RESPECT-MAPPING').text
-                        else:
-                            obj_block['MAPPING'] = None
-                        if elem.find('SDF') is not None:
-                            obj_block['SDF'] = elem.find('SDF').text
-                        else:
-                            obj_block['SDF'] = None
-                        obj_block['DEVICE'] = None
-                        obj_block['RESISTENT'] = None
-                        obj_block['POSITION'] = None
-                        obj_block['CONSISTENCY'] = None
-                        obj_block['CRC'] = None
-                        obj_block['ID'] = None
-                        pr_ports = elem.findall('.//PR-PORT-PROTOTYPE-REF')
-                        for element in pr_ports:
-                            obj_interface = {}
-                            obj_interface['NAME'] = element.text
-                            obj_interface['ASWC'] = None
-                            obj_interface['SIZE'] = 0
-                            obj_interface['SW-BASE-TYPE'] = None
-                            obj_interface['DATA-PROTOTYPE'] = None
-                            block_ports.append(obj_interface)
-                        obj_block['PORT'] = block_ports
-                        obj_block['MAX-SIZE'] = None
-                        blocks.append(obj_block)
-                    profile = root.findall(".//PROFILE")
-                    for elem in profile:
-                        obj_profile = {}
-                        params = []
-                        obj_profile['NAME'] = elem.find('SHORT-NAME').text
-                        obj_profile['MANAGEMENT'] = elem.find('MANAGEMENT').text
-                        obj_profile['DURABILITY'] = elem.find('DURABILITY').text
-                        obj_profile['MAX-SIZE'] = elem.find('BLOCK-SIZE-MAX').text
-                        if elem.find('SAFETY') is not None:
-                            obj_profile['SAFETY'] = elem.find('SAFETY').text
-                        else:
-                            obj_profile['SAFETY'] = 'false'
-                        if elem.find('CONSISTENCY') is not None:
-                            obj_profile['CONSISTENCY'] = elem.find('CONSISTENCY').text
-                        else:
-                            obj_profile['CONSISTENCY'] = 'false'
-                        if elem.find('CRC') is not None:
-                            obj_profile['CRC'] = elem.find('CRC').text
-                        else:
-                            obj_profile['CRC'] = 'false'
-                        obj_profile['DEVICE'] = elem.find('DEVICE').text
-                        obj_profile['WRITING-NUMBER'] = elem.find('WRITING-NUMBER').text
-                        param = elem.findall('.//PARAM')
-                        for element in param:
-                            obj = {}
-                            obj['TYPE'] = element.attrib['DEST']
-                            obj['VALUE'] = element.text
-                            params.append(obj)
-                        obj_profile['PARAM'] = params
-                        profiles.append(obj_profile)
-                    mapping = root.findall(".//MAPPING")
-                    for elem in mapping:
-                        obj_mapping = {}
-                        obj_mapping['BLOCK'] = elem.find('BLOCK-REF').text
-                        obj_mapping['POSITION'] = int(elem.find('POSITION').text)
-                        mappings.append(obj_mapping)
-                    ids = root.findall(".//NVM_COMPILED_CONFIG_ID")
-                    for elem in ids:
-                        config_ids.append(elem.text)
+                            if elem.find('WRITE-TIMEOUT') is not None:
+                                obj_block['TIMEOUT'] = elem.find('WRITE-TIMEOUT').text
+                            else:
+                                obj_block['TIMEOUT'] = None
+                            if elem.find('RESPECT-MAPPING') is not None:
+                                obj_block['MAPPING'] = elem.find('RESPECT-MAPPING').text
+                            else:
+                                obj_block['MAPPING'] = None
+                            if elem.find('SDF') is not None:
+                                obj_block['SDF'] = elem.find('SDF').text
+                            else:
+                                obj_block['SDF'] = None
+                            obj_block['DEVICE'] = None
+                            obj_block['RESISTENT'] = None
+                            obj_block['POSITION'] = None
+                            obj_block['CONSISTENCY'] = None
+                            obj_block['CRC'] = None
+                            obj_block['ID'] = None
+                            pr_ports = elem.findall('.//PR-PORT-PROTOTYPE-REF')
+                            for element in pr_ports:
+                                obj_interface = {}
+                                obj_interface['NAME'] = element.text
+                                obj_interface['ASWC'] = None
+                                obj_interface['SIZE'] = 0
+                                obj_interface['SW-BASE-TYPE'] = None
+                                obj_interface['DATA-PROTOTYPE'] = None
+                                block_ports.append(obj_interface)
+                            obj_block['PORT'] = block_ports
+                            obj_block['MAX-SIZE'] = None
+                            blocks.append(obj_block)
+                        profile = root.findall(".//PROFILE")
+                        for elem in profile:
+                            obj_profile = {}
+                            params = []
+                            obj_profile['NAME'] = elem.find('SHORT-NAME').text
+                            obj_profile['MANAGEMENT'] = elem.find('MANAGEMENT').text
+                            obj_profile['DURABILITY'] = elem.find('DURABILITY').text
+                            obj_profile['MAX-SIZE'] = elem.find('BLOCK-SIZE-MAX').text
+                            if elem.find('SAFETY') is not None:
+                                obj_profile['SAFETY'] = elem.find('SAFETY').text
+                            else:
+                                obj_profile['SAFETY'] = 'false'
+                            if elem.find('CONSISTENCY') is not None:
+                                obj_profile['CONSISTENCY'] = elem.find('CONSISTENCY').text
+                            else:
+                                obj_profile['CONSISTENCY'] = 'false'
+                            if elem.find('CRC') is not None:
+                                obj_profile['CRC'] = elem.find('CRC').text
+                            else:
+                                obj_profile['CRC'] = 'false'
+                            obj_profile['DEVICE'] = elem.find('DEVICE').text
+                            obj_profile['WRITING-NUMBER'] = elem.find('WRITING-NUMBER').text
+                            param = elem.findall('.//PARAM')
+                            for element in param:
+                                obj = {}
+                                obj['TYPE'] = element.attrib['DEST']
+                                obj['VALUE'] = element.text
+                                params.append(obj)
+                            obj_profile['PARAM'] = params
+                            profiles.append(obj_profile)
+                        mapping = root.findall(".//MAPPING")
+                        for elem in mapping:
+                            obj_mapping = {}
+                            obj_mapping['BLOCK'] = elem.find('BLOCK-REF').text
+                            obj_mapping['POSITION'] = int(elem.find('POSITION').text)
+                            mappings.append(obj_mapping)
+                        ids = root.findall(".//NVM_COMPILED_CONFIG_ID")
+                        for elem in ids:
+                            config_ids.append(elem.text)
         #################################
         if error_no != 0:
             print("There is at least one blocking error! Check the generated log.")
