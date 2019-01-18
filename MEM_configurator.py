@@ -394,7 +394,7 @@ def create_MEM_config(files_list, output_path, logger):
                     block[key] = tresos_parameters[key]
 
 
-        # check if mandatory parameters are not present
+        # check if mandatory parameters are not present test
         mandatory_parameters = ['NvMNvramBlockIdentifier', 'NvNvMRamBlockDataAddressMNvBlockNum', 'NvMNvBlockLength', 'NvMStaticBlockIDCheck', 'NvMResistantToChangedSw', 'NvMMaxNumOfReadRetries', 'NvMNvBlockBaseNumber',
                                 'NvMBlockUseCrc', 'NvMBswMBlockStatusInformation', 'NvMRomBlockNum', 'NvMNvramDeviceId', 'NvMWriteVerification', 'NvMWriteBlockOnce', 'NvMMaxNumOfWriteRetries',
                                 'NvMBlockJobPriority', 'NvMBlockManagementType', 'NvMAdvancedRecovery', 'NvMBlockUseSyncMechanism', 'NvMBlockWriteProt', 'NvMExtraBlockChecks', 'NvMProvideRteAdminPort',
