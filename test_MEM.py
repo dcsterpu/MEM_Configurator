@@ -180,7 +180,7 @@ class FileCompare():
         path = used for defining the file that contains the output data
         """
         structure_valid = True
-        attributes = ['NvDMDurability', 'NvDMSafetyBlock', 'NvDMWriteTimeout', 'NvDMWritingManagement', 'NvDMProfile', 'NvDMBlockSize', 'NvDMBlockID']
+        attributes = ['NvDMDurability', 'NvDMSafetyBlock', 'NvDMWriteTimeout', 'NvDMProfile', 'NvDMBlockSize', 'NvDMBlockID']
         tree = etree.parse(path)
         root = tree.getroot()
         blocks = root.findall(".//{http://autosar.org/schema/r4.0}ECUC-CONTAINER-VALUE")
@@ -228,7 +228,6 @@ class FileCompare():
                     else:
                         return False
 
-
     def NvMStructure(path):
         """
         path = used for defining the file that contains the output data
@@ -241,7 +240,7 @@ class FileCompare():
             obj_block = {}
             if block.getparent().tag == '{http://autosar.org/schema/r4.0}CONTAINERS':
                 if block.find(".//{http://autosar.org/schema/r4.0}SHORT-NAME").text != 'CommonPublishedInformation' and block.find(".//{http://autosar.org/schema/r4.0}SHORT-NAME").text != 'NvMCommon':
-                    parameters = ['NvMNvramBlockIdentifier', 'NvMNvBlockNum', 'NvMRomBlockDataAddress', 'NvMRamBlockDataAddress', 'NvMBlockUseAutoValidation', 'NvMStaticBlockIDCheck',
+                    parameters = ['NvMNvramBlockIdentifier', 'NvMNvBlockNum', 'NvMRomBlockDataAddress', 'NvMBlockUseAutoValidation', 'NvMStaticBlockIDCheck',
                                   'NvMResistantToChangedSw', 'NvMBswMBlockStatusInformation', 'NvMRomBlockNum', 'NvMNvramDeviceId', 'NvMWriteVerification', 'NvMWriteBlockOnce',
                                   'NvMMaxNumOfWriteRetries', 'NvMMaxNumOfReadRetries', 'NvMBlockJobPriority', 'NvMBlockManagementType', 'NvMNvBlockLength', 'NvMBlockUseCrc']
                     references = block.findall(".//{http://autosar.org/schema/r4.0}DEFINITION-REF")
@@ -272,9 +271,6 @@ class FileCompare():
                         if reference.text.split("/")[-1] == parameter:
                             if parameter == "NvMRomBlockDataAddress":
                                 if reference.getnext().text != "&NvDM_RomBlock_" + name:
-                                    return False
-                            elif parameter == "NvMRamBlockDataAddress":
-                                if reference.getnext().text != "&NvDM_RamBlock_" + name:
                                     return False
         return True
 
@@ -496,13 +492,13 @@ class MEMConfigurator(unittest.TestCase):
         current_path = os.path.realpath(__file__)
         head, tail = ntpath.split(current_path)
         os.system('coverage run MEM_Configurator.py -in ' + head + '\\tests\\TRS.MEMCFG.GEN.002_1\\input -out ' + head + '\\tests\\TRS.MEMCFG.GEN.002_1\\output')
-        self.assertTrue(FileCompare.checkBlockName(head + '\\tests\\TRS.MEMCFG.GEN.002_1\\output\\NvDM.epc', 'NvDM'))
+        self.assertTrue(FileCompare.checkBlockName(head + '\\tests\\TRS.MEMCFG.GEN.002_1\\output\\NvDM.epc', ''))
 
     def test_TRS_MEMCFG_GEN_002_2(self):
         current_path = os.path.realpath(__file__)
         head, tail = ntpath.split(current_path)
         os.system('coverage run MEM_Configurator.py -in ' + head + '\\tests\\TRS.MEMCFG.GEN.002_2\\input -out ' + head + '\\tests\\TRS.MEMCFG.GEN.002_2\\output')
-        self.assertTrue(FileCompare.checkBlockName(head + '\\tests\\TRS.MEMCFG.GEN.002_2\\output\\NvDM.epc', 'NvDM'))
+        self.assertTrue(FileCompare.checkBlockName(head + '\\tests\\TRS.MEMCFG.GEN.002_2\\output\\NvDM.epc', ''))
 
     def test_TRS_MEMCFG_GEN_003(self):
         current_path = os.path.realpath(__file__)

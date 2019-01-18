@@ -1,12 +1,12 @@
-2018-08-07 09:51:06,239 INFO The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TBD_2\input\ASWC_A26.aswc.arxml is well-formed
-2018-08-07 09:51:06,251 INFO  The file C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TBD_2\input\ASWC_A26.config_mem.xml is well-formed
-2018-08-07 09:51:06,272 INFO The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TBD_2\input\ASWC_A27.aswc.arxml is well-formed
-2018-08-07 09:51:06,279 INFO  The file C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TBD_2\input\ASWC_A27.config_mem.xml is well-formed
-2018-08-07 09:51:06,375 INFO The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TBD_2\input\ASWC_A28.aswc.arxml is well-formed
-2018-08-07 09:51:06,408 INFO The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TBD_2\input\AUTOSAR_Datatypes.arxml is well-formed
-2018-08-07 09:51:06,415 INFO  The file C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TBD_2\input\CompiledConfigID.xml is well-formed
-2018-08-07 09:51:06,417 INFO  The file C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TBD_2\input\MAPPING.xml is well-formed
-2018-08-07 09:51:06,419 INFO  The file C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TBD_2\input\Profiles_cleaned.xml is well-formed
-2018-08-07 09:51:06,518 INFO The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TBD_2\input\SystemGenerated.arxml is well-formed
-2018-08-07 09:51:06,609 INFO The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TBD_2\input\VSM_Types.arxml is well-formed
-2018-08-07 09:51:06,610 ERROR None or multiple CompiledConfigID parameters defined
+2018-12-06 10:49:47,277 INFO The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TBD_2\input\ASWC_A26.aswc.arxml is well-formed
+2018-12-06 10:49:47,277 INFO  The file C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TBD_2\input\ASWC_A26.config_mem.xml is well-formed
+2018-12-06 10:49:47,292 INFO The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TBD_2\input\ASWC_A27.aswc.arxml is well-formed
+2018-12-06 10:49:47,308 INFO  The file C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TBD_2\input\ASWC_A27.config_mem.xml is well-formed
+2018-12-06 10:49:47,386 INFO The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TBD_2\input\ASWC_A28.aswc.arxml is well-formed
+2018-12-06 10:49:47,417 INFO The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TBD_2\input\AUTOSAR_Datatypes.arxml is well-formed
+2018-12-06 10:49:47,433 INFO  The file C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TBD_2\input\CompiledConfigID.xml is well-formed
+2018-12-06 10:49:47,433 INFO  The file C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TBD_2\input\MAPPING.xml is well-formed
+2018-12-06 10:49:47,433 INFO  The file C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TBD_2\input\Profiles_cleaned.xml is well-formed
+2018-12-06 10:49:47,511 INFO The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TBD_2\input\SystemGenerated.arxml is well-formed
+2018-12-06 10:49:47,589 INFO The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TBD_2\input\VSM_Types.arxml is well-formed
+2018-12-06 10:49:47,589 ERROR It is forbidden to map a block on position 1; this position is reserved

@@ -99,7 +99,7 @@
 				<PARAM DEST="NvMMaxNumOfReadRetries">0</PARAM>
 				<PARAM DEST="NvMMaxNumOfWriteRetries">0</PARAM>
 				<PARAM DEST="NvMNvBlockNum">1</PARAM>
-				<PARAM DEST="NvMResistantToChangedSw">False</PARAM>
+				<PARAM DEST="NvMResistantToChangedSw">True</PARAM>
 				<PARAM DEST="NvMRomBlockNum">1</PARAM>
 				<PARAM DEST="NvMSelectBlockForReadAll">True</PARAM>
 				<PARAM DEST="NvMSelectBlockForWriteAll">False</PARAM>

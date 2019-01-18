@@ -2,27 +2,7 @@
     <MAPPINGS>
         <MAPPING>
             <BLOCK-REF>Default_App_Ram_Implicit_RAR</BLOCK-REF>
-            <POSITION>1</POSITION>
-        </MAPPING>
-        <MAPPING>
-            <BLOCK-REF>Default_CfgVh_2_SECURE</BLOCK-REF>
             <POSITION>2</POSITION>
-        </MAPPING>
-        <MAPPING>
-            <BLOCK-REF>Default_CfgVh_2_SAV</BLOCK-REF>
-            <POSITION>3</POSITION>
-        </MAPPING>
-        <MAPPING>
-            <BLOCK-REF>Default_App_Eep_Explicit_2_RAR</BLOCK-REF>
-            <POSITION>4</POSITION>
-        </MAPPING>
-        <MAPPING>
-            <BLOCK-REF>Default_App_Eep_Explicit_2_SECURE</BLOCK-REF>
-            <POSITION>5</POSITION>
-        </MAPPING>
-        <MAPPING>
-            <BLOCK-REF>Default_App_Eep_Explicit_2_SAV</BLOCK-REF>
-            <POSITION>6</POSITION>
-        </MAPPING>		
+        </MAPPING>	
     </MAPPINGS>
 </CONFIG_PSA_NVM>

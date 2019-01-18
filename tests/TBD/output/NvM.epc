@@ -28,24 +28,60 @@
                                     <VALUE>2</VALUE>
                                 </ECUC-NUMERICAL-PARAM-VALUE>
                                 <ECUC-NUMERICAL-PARAM-VALUE>
+                                    <DEFINITION-REF DEST="ECUC-INTEGER-PARAM-DEF">/AUTOSAR/EcuDefs/NvM/NvMBlockDescriptor/NvMNvBlockBaseNumber</DEFINITION-REF>
+                                    <VALUE>0</VALUE>
+                                </ECUC-NUMERICAL-PARAM-VALUE>
+                                <ECUC-NUMERICAL-PARAM-VALUE>
                                     <DEFINITION-REF DEST="ECUC-INTEGER-PARAM-DEF">/AUTOSAR/EcuDefs/NvM/NvMBlockDescriptor/NvMNvBlockNum</DEFINITION-REF>
                                     <VALUE>2</VALUE>
+                                </ECUC-NUMERICAL-PARAM-VALUE>
+                                <ECUC-NUMERICAL-PARAM-VALUE>
+                                    <DEFINITION-REF DEST="ECUC-BOOLEAN-PARAM-DEF">/AUTOSAR/EcuDefs/NvM/NvMBlockDescriptor/NvMBlockUseSyncMechanism</DEFINITION-REF>
+                                    <VALUE>True</VALUE>
+                                </ECUC-NUMERICAL-PARAM-VALUE>
+                                <ECUC-NUMERICAL-PARAM-VALUE>
+                                    <DEFINITION-REF DEST="ECUC-BOOLEAN-PARAM-DEF">/AUTOSAR/EcuDefs/NvM/NvMBlockDescriptor/NvMBlockWriteProt</DEFINITION-REF>
+                                    <VALUE>False</VALUE>
                                 </ECUC-NUMERICAL-PARAM-VALUE>
                                 <ECUC-NUMERICAL-PARAM-VALUE>
                                     <DEFINITION-REF DEST="ECUC-INTEGER-PARAM-DEF">/AUTOSAR/EcuDefs/NvM/NvMBlockDescriptor/NvMNvBlockLength</DEFINITION-REF>
                                     <VALUE>8</VALUE>
                                 </ECUC-NUMERICAL-PARAM-VALUE>
+                                <ECUC-NUMERICAL-PARAM-VALUE>
+                                    <DEFINITION-REF DEST="ECUC-BOOLEAN-PARAM-DEF">/AUTOSAR/EcuDefs/NvM/NvMBlockDescriptor/NvMAdvancedRecovery</DEFINITION-REF>
+                                    <VALUE>False</VALUE>
+                                </ECUC-NUMERICAL-PARAM-VALUE>
+                                <ECUC-NUMERICAL-PARAM-VALUE>
+                                    <DEFINITION-REF DEST="ECUC-BOOLEAN-PARAM-DEF">/AUTOSAR/EcuDefs/NvM/NvMBlockDescriptor/NvMExtraBlockChecks</DEFINITION-REF>
+                                    <VALUE>False</VALUE>
+                                </ECUC-NUMERICAL-PARAM-VALUE>
+                                <ECUC-NUMERICAL-PARAM-VALUE>
+                                    <DEFINITION-REF DEST="ECUC-BOOLEAN-PARAM-DEF">/AUTOSAR/EcuDefs/NvM/NvMBlockDescriptor/NvMProvideRteAdminPort</DEFINITION-REF>
+                                    <VALUE>False</VALUE>
+                                </ECUC-NUMERICAL-PARAM-VALUE>
+                                <ECUC-NUMERICAL-PARAM-VALUE>
+                                    <DEFINITION-REF DEST="ECUC-BOOLEAN-PARAM-DEF">/AUTOSAR/EcuDefs/NvM/NvMBlockDescriptor/NvMProvideRteInitBlockPort</DEFINITION-REF>
+                                    <VALUE>False</VALUE>
+                                </ECUC-NUMERICAL-PARAM-VALUE>
+                                <ECUC-NUMERICAL-PARAM-VALUE>
+                                    <DEFINITION-REF DEST="ECUC-BOOLEAN-PARAM-DEF">/AUTOSAR/EcuDefs/NvM/NvMBlockDescriptor/NvMProvideRteJobFinishedPort</DEFINITION-REF>
+                                    <VALUE>False</VALUE>
+                                </ECUC-NUMERICAL-PARAM-VALUE>
+                                <ECUC-NUMERICAL-PARAM-VALUE>
+                                    <DEFINITION-REF DEST="ECUC-BOOLEAN-PARAM-DEF">/AUTOSAR/EcuDefs/NvM/NvMBlockDescriptor/NvMProvideRteMirrorPort</DEFINITION-REF>
+                                    <VALUE>False</VALUE>
+                                </ECUC-NUMERICAL-PARAM-VALUE>
+                                <ECUC-NUMERICAL-PARAM-VALUE>
+                                    <DEFINITION-REF DEST="ECUC-BOOLEAN-PARAM-DEF">/AUTOSAR/EcuDefs/NvM/NvMBlockDescriptor/NvMProvideRteServicePort</DEFINITION-REF>
+                                    <VALUE>False</VALUE>
+                                </ECUC-NUMERICAL-PARAM-VALUE>
+                                <ECUC-NUMERICAL-PARAM-VALUE>
+                                    <DEFINITION-REF DEST="ECUC-BOOLEAN-PARAM-DEF">/AUTOSAR/EcuDefs/NvM/NvMBlockDescriptor/NvMUserProvidesSpaceForBlockAndCrc</DEFINITION-REF>
+                                    <VALUE>False</VALUE>
+                                </ECUC-NUMERICAL-PARAM-VALUE>
                                 <ECUC-TEXTUAL-PARAM-VALUE>
                                     <DEFINITION-REF DEST="ECUC-STRING-PARAM-DEF">/AUTOSAR/EcuDefs/NvM/NvMBlockDescriptor/NvMRomBlockDataAddress</DEFINITION-REF>
                                     <VALUE>&amp;NvDM_RomBlock_Default_App_Ram_Implicit_RAR</VALUE>
-                                </ECUC-TEXTUAL-PARAM-VALUE>
-                                <ECUC-TEXTUAL-PARAM-VALUE>
-                                    <DEFINITION-REF DEST="ECUC-STRING-PARAM-DEF">/AUTOSAR/EcuDefs/NvM/NvMBlockDescriptor/NvMRamBlockDataAddress</DEFINITION-REF>
-                                    <VALUE>&amp;NvDM_RamBlock_Default_App_Ram_Implicit_RAR</VALUE>
-                                </ECUC-TEXTUAL-PARAM-VALUE>
-                                <ECUC-TEXTUAL-PARAM-VALUE>
-                                    <DEFINITION-REF DEST="ECUC-STRING-PARAM-DEF">/AUTOSAR/EcuDefs/NvM/NvMBlockDescriptor/NvMSingleBlockCallback</DEFINITION-REF>
-                                    <VALUE>NULL</VALUE>
                                 </ECUC-TEXTUAL-PARAM-VALUE>
                                 <ECUC-NUMERICAL-PARAM-VALUE>
                                     <DEFINITION-REF DEST="ECUC-BOOLEAN-PARAM-DEF">/AUTOSAR/EcuDefs/NvM/NvMBlockDescriptor/NvMBlockUseAutoValidation</DEFINITION-REF>
@@ -144,24 +180,64 @@
                                     <VALUE>3</VALUE>
                                 </ECUC-NUMERICAL-PARAM-VALUE>
                                 <ECUC-NUMERICAL-PARAM-VALUE>
+                                    <DEFINITION-REF DEST="ECUC-INTEGER-PARAM-DEF">/AUTOSAR/EcuDefs/NvM/NvMBlockDescriptor/NvMNvBlockBaseNumber</DEFINITION-REF>
+                                    <VALUE>0</VALUE>
+                                </ECUC-NUMERICAL-PARAM-VALUE>
+                                <ECUC-NUMERICAL-PARAM-VALUE>
                                     <DEFINITION-REF DEST="ECUC-INTEGER-PARAM-DEF">/AUTOSAR/EcuDefs/NvM/NvMBlockDescriptor/NvMNvBlockNum</DEFINITION-REF>
                                     <VALUE>1</VALUE>
+                                </ECUC-NUMERICAL-PARAM-VALUE>
+                                <ECUC-NUMERICAL-PARAM-VALUE>
+                                    <DEFINITION-REF DEST="ECUC-INTEGER-PARAM-DEF">/AUTOSAR/EcuDefs/NvM/NvMBlockDescriptor/NvMWriteVerificationDataSize</DEFINITION-REF>
+                                    <VALUE>4</VALUE>
+                                </ECUC-NUMERICAL-PARAM-VALUE>
+                                <ECUC-NUMERICAL-PARAM-VALUE>
+                                    <DEFINITION-REF DEST="ECUC-BOOLEAN-PARAM-DEF">/AUTOSAR/EcuDefs/NvM/NvMBlockDescriptor/NvMBlockUseSyncMechanism</DEFINITION-REF>
+                                    <VALUE>True</VALUE>
+                                </ECUC-NUMERICAL-PARAM-VALUE>
+                                <ECUC-NUMERICAL-PARAM-VALUE>
+                                    <DEFINITION-REF DEST="ECUC-BOOLEAN-PARAM-DEF">/AUTOSAR/EcuDefs/NvM/NvMBlockDescriptor/NvMBlockWriteProt</DEFINITION-REF>
+                                    <VALUE>True</VALUE>
                                 </ECUC-NUMERICAL-PARAM-VALUE>
                                 <ECUC-NUMERICAL-PARAM-VALUE>
                                     <DEFINITION-REF DEST="ECUC-INTEGER-PARAM-DEF">/AUTOSAR/EcuDefs/NvM/NvMBlockDescriptor/NvMNvBlockLength</DEFINITION-REF>
                                     <VALUE>5</VALUE>
                                 </ECUC-NUMERICAL-PARAM-VALUE>
+                                <ECUC-NUMERICAL-PARAM-VALUE>
+                                    <DEFINITION-REF DEST="ECUC-BOOLEAN-PARAM-DEF">/AUTOSAR/EcuDefs/NvM/NvMBlockDescriptor/NvMAdvancedRecovery</DEFINITION-REF>
+                                    <VALUE>False</VALUE>
+                                </ECUC-NUMERICAL-PARAM-VALUE>
+                                <ECUC-NUMERICAL-PARAM-VALUE>
+                                    <DEFINITION-REF DEST="ECUC-BOOLEAN-PARAM-DEF">/AUTOSAR/EcuDefs/NvM/NvMBlockDescriptor/NvMExtraBlockChecks</DEFINITION-REF>
+                                    <VALUE>False</VALUE>
+                                </ECUC-NUMERICAL-PARAM-VALUE>
+                                <ECUC-NUMERICAL-PARAM-VALUE>
+                                    <DEFINITION-REF DEST="ECUC-BOOLEAN-PARAM-DEF">/AUTOSAR/EcuDefs/NvM/NvMBlockDescriptor/NvMProvideRteAdminPort</DEFINITION-REF>
+                                    <VALUE>False</VALUE>
+                                </ECUC-NUMERICAL-PARAM-VALUE>
+                                <ECUC-NUMERICAL-PARAM-VALUE>
+                                    <DEFINITION-REF DEST="ECUC-BOOLEAN-PARAM-DEF">/AUTOSAR/EcuDefs/NvM/NvMBlockDescriptor/NvMProvideRteInitBlockPort</DEFINITION-REF>
+                                    <VALUE>False</VALUE>
+                                </ECUC-NUMERICAL-PARAM-VALUE>
+                                <ECUC-NUMERICAL-PARAM-VALUE>
+                                    <DEFINITION-REF DEST="ECUC-BOOLEAN-PARAM-DEF">/AUTOSAR/EcuDefs/NvM/NvMBlockDescriptor/NvMProvideRteJobFinishedPort</DEFINITION-REF>
+                                    <VALUE>False</VALUE>
+                                </ECUC-NUMERICAL-PARAM-VALUE>
+                                <ECUC-NUMERICAL-PARAM-VALUE>
+                                    <DEFINITION-REF DEST="ECUC-BOOLEAN-PARAM-DEF">/AUTOSAR/EcuDefs/NvM/NvMBlockDescriptor/NvMProvideRteMirrorPort</DEFINITION-REF>
+                                    <VALUE>False</VALUE>
+                                </ECUC-NUMERICAL-PARAM-VALUE>
+                                <ECUC-NUMERICAL-PARAM-VALUE>
+                                    <DEFINITION-REF DEST="ECUC-BOOLEAN-PARAM-DEF">/AUTOSAR/EcuDefs/NvM/NvMBlockDescriptor/NvMProvideRteServicePort</DEFINITION-REF>
+                                    <VALUE>False</VALUE>
+                                </ECUC-NUMERICAL-PARAM-VALUE>
+                                <ECUC-NUMERICAL-PARAM-VALUE>
+                                    <DEFINITION-REF DEST="ECUC-BOOLEAN-PARAM-DEF">/AUTOSAR/EcuDefs/NvM/NvMBlockDescriptor/NvMUserProvidesSpaceForBlockAndCrc</DEFINITION-REF>
+                                    <VALUE>False</VALUE>
+                                </ECUC-NUMERICAL-PARAM-VALUE>
                                 <ECUC-TEXTUAL-PARAM-VALUE>
                                     <DEFINITION-REF DEST="ECUC-STRING-PARAM-DEF">/AUTOSAR/EcuDefs/NvM/NvMBlockDescriptor/NvMRomBlockDataAddress</DEFINITION-REF>
                                     <VALUE>&amp;NvDM_RomBlock_Default_App_Ram_Implicit_ARA</VALUE>
-                                </ECUC-TEXTUAL-PARAM-VALUE>
-                                <ECUC-TEXTUAL-PARAM-VALUE>
-                                    <DEFINITION-REF DEST="ECUC-STRING-PARAM-DEF">/AUTOSAR/EcuDefs/NvM/NvMBlockDescriptor/NvMRamBlockDataAddress</DEFINITION-REF>
-                                    <VALUE>&amp;NvDM_RamBlock_Default_App_Ram_Implicit_ARA</VALUE>
-                                </ECUC-TEXTUAL-PARAM-VALUE>
-                                <ECUC-TEXTUAL-PARAM-VALUE>
-                                    <DEFINITION-REF DEST="ECUC-STRING-PARAM-DEF">/AUTOSAR/EcuDefs/NvM/NvMBlockDescriptor/NvMSingleBlockCallback</DEFINITION-REF>
-                                    <VALUE>Null</VALUE>
                                 </ECUC-TEXTUAL-PARAM-VALUE>
                                 <ECUC-NUMERICAL-PARAM-VALUE>
                                     <DEFINITION-REF DEST="ECUC-BOOLEAN-PARAM-DEF">/AUTOSAR/EcuDefs/NvM/NvMBlockDescriptor/NvMBlockUseAutoValidation</DEFINITION-REF>

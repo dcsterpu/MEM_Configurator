@@ -2,13 +2,13 @@
     <MAPPINGS>
         <MAPPING>
             <BLOCK-REF>Default_App_Ram_Implicit_RAR</BLOCK-REF>
-            <POSITION>1</POSITION>
+            <POSITION>3</POSITION>
         </MAPPING>
         <MAPPING>
-            <BLOCK-REF>Default_CfgVh_2_SECURE</BLOCK-REF>
+            <BLOCK-REF>Default_App_Ram_Implicit_ARA</BLOCK-REF>
             <POSITION>2</POSITION>
         </MAPPING>
-        <MAPPING>
+        <!--MAPPING>
             <BLOCK-REF>Default_CfgVh_2_SAV</BLOCK-REF>
             <POSITION>3</POSITION>
         </MAPPING>
@@ -23,6 +23,6 @@
         <MAPPING>
             <BLOCK-REF>Default_App_Eep_Explicit_2_SAV</BLOCK-REF>
             <POSITION>6</POSITION>
-        </MAPPING>		
+        </MAPPING-->		
     </MAPPINGS>
 </CONFIG_PSA_NVM>

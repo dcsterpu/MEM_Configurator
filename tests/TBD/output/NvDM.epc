@@ -10,7 +10,7 @@
                     <IMPLEMENTATION-CONFIG-VARIANT>VARIANT-PRE-COMPILE</IMPLEMENTATION-CONFIG-VARIANT>
                     <CONTAINERS>
                         <ECUC-CONTAINER-VALUE>
-                            <SHORT-NAME>NvDM_Default_App_Ram_Implicit_RAR</SHORT-NAME>
+                            <SHORT-NAME>Default_App_Ram_Implicit_RAR</SHORT-NAME>
                             <DEFINITION-REF DEST="ECUC-PARAM-CONF-CONTAINER-DEF">/AUTOSAR/EcuDefs/NvDM/NvDMBlockDescriptor</DEFINITION-REF>
                             <PARAMETER-VALUES>
                                 <ECUC-TEXTUAL-PARAM-VALUE>
@@ -33,10 +33,6 @@
                                     <DEFINITION-REF DEST="ECUC-FLOAT-PARAM-DEF">/AUTOSAR/EcuDefs/NvDM/NvDMBlockDescriptor/NvDMWriteTimeout</DEFINITION-REF>
                                     <VALUE>0</VALUE>
                                 </ECUC-NUMERICAL-PARAM-VALUE>
-                                <ECUC-TEXTUAL-PARAM-VALUE>
-                                    <DEFINITION-REF DEST="ECUC-ENUMERATION-PARAM-DEF">/AUTOSAR/EcuDefs/NvDM/NvDMBlockDescriptor/NvDMWritingManagement</DEFINITION-REF>
-                                    <VALUE>Explicit</VALUE>
-                                </ECUC-TEXTUAL-PARAM-VALUE>
                                 <ECUC-TEXTUAL-PARAM-VALUE>
                                     <DEFINITION-REF DEST="ECUC-ENUMERATION-PARAM-DEF">/AUTOSAR/EcuDefs/NvDM/NvDMBlockDescriptor/NvDMProfile</DEFINITION-REF>
                                     <VALUE>CfgVh_2</VALUE>
@@ -156,7 +152,7 @@
                             </SUB-CONTAINERS>
                         </ECUC-CONTAINER-VALUE>
                         <ECUC-CONTAINER-VALUE>
-                            <SHORT-NAME>NvDM_Default_App_Ram_Implicit_ARA</SHORT-NAME>
+                            <SHORT-NAME>Default_App_Ram_Implicit_ARA</SHORT-NAME>
                             <DEFINITION-REF DEST="ECUC-PARAM-CONF-CONTAINER-DEF">/AUTOSAR/EcuDefs/NvDM/NvDMBlockDescriptor</DEFINITION-REF>
                             <PARAMETER-VALUES>
                                 <ECUC-TEXTUAL-PARAM-VALUE>
@@ -179,10 +175,6 @@
                                     <DEFINITION-REF DEST="ECUC-FLOAT-PARAM-DEF">/AUTOSAR/EcuDefs/NvDM/NvDMBlockDescriptor/NvDMWriteTimeout</DEFINITION-REF>
                                     <VALUE>0</VALUE>
                                 </ECUC-NUMERICAL-PARAM-VALUE>
-                                <ECUC-TEXTUAL-PARAM-VALUE>
-                                    <DEFINITION-REF DEST="ECUC-ENUMERATION-PARAM-DEF">/AUTOSAR/EcuDefs/NvDM/NvDMBlockDescriptor/NvDMWritingManagement</DEFINITION-REF>
-                                    <VALUE>Implicit</VALUE>
-                                </ECUC-TEXTUAL-PARAM-VALUE>
                                 <ECUC-TEXTUAL-PARAM-VALUE>
                                     <DEFINITION-REF DEST="ECUC-ENUMERATION-PARAM-DEF">/AUTOSAR/EcuDefs/NvDM/NvDMBlockDescriptor/NvDMProfile</DEFINITION-REF>
                                     <VALUE>App_Ram_Implicit</VALUE>

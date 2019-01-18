@@ -1,2 +1,2 @@
-2018-08-07 09:51:03,364 INFO The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\CHECK.XML\input\ASWC_A26.aswc.arxml is well-formed
-2018-08-07 09:51:03,390 ERROR  The file C:\Users\Cristi\PycharmProjects\MEM_Config\tests\CHECK.XML\input\ASWC_A26.config_mem.xml is not well-formed: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\CHECK.XML\input\ASWC_A26.config_mem.xml:22:0: junk after document element
+2018-12-06 10:49:45,358 INFO The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\CHECK.XML\input\ASWC_A26.aswc.arxml is well-formed
+2018-12-06 10:49:45,358 ERROR  The file C:\Users\Cristi\PycharmProjects\MEM_Config\tests\CHECK.XML\input\ASWC_A26.config_mem.xml is not well-formed: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\CHECK.XML\input\ASWC_A26.config_mem.xml:22:0: junk after document element

@@ -1,8 +1,8 @@
-2018-08-07 09:51:11,166 INFO The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.CHECK.002_3\input\ASWC_A26.aswc.arxml is well-formed
-2018-08-07 09:51:11,178 INFO  The file C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.CHECK.002_3\input\ASWC_A26.config_mem.xml is well-formed
-2018-08-07 09:51:11,178 ERROR No profile defined for block Default_App_Ram_Implicit_RAR
-2018-08-07 09:51:11,183 INFO The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.CHECK.002_3\input\AUTOSAR_Datatypes.arxml is well-formed
-2018-08-07 09:51:11,186 INFO  The file C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.CHECK.002_3\input\CompiledConfigID.xml is well-formed
-2018-08-07 09:51:11,188 INFO  The file C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.CHECK.002_3\input\Profiles_cleaned.xml is well-formed
-2018-08-07 09:51:11,285 INFO The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.CHECK.002_3\input\SystemGenerated.arxml is well-formed
-2018-08-07 09:51:11,363 INFO The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.CHECK.002_3\input\VSM_Types.arxml is well-formed
+2018-12-06 10:49:50,742 INFO The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.CHECK.002_3\input\ASWC_A26.aswc.arxml is well-formed
+2018-12-06 10:49:50,757 INFO  The file C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.CHECK.002_3\input\ASWC_A26.config_mem.xml is well-formed
+2018-12-06 10:49:50,757 ERROR No profile defined for block Default_App_Ram_Implicit_RAR
+2018-12-06 10:49:50,757 INFO The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.CHECK.002_3\input\AUTOSAR_Datatypes.arxml is well-formed
+2018-12-06 10:49:50,757 INFO  The file C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.CHECK.002_3\input\CompiledConfigID.xml is well-formed
+2018-12-06 10:49:50,757 INFO  The file C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.CHECK.002_3\input\Profiles_cleaned.xml is well-formed
+2018-12-06 10:49:50,851 INFO The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.CHECK.002_3\input\SystemGenerated.arxml is well-formed
+2018-12-06 10:49:50,913 INFO The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.CHECK.002_3\input\VSM_Types.arxml is well-formed
