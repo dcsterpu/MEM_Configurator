@@ -394,8 +394,8 @@ def create_MEM_config(files_list, output_path, logger):
                     block[key] = tresos_parameters[key]
 
 
-        # check if mandatory parameters are not present test
-        mandatory_parameters = ['NvMNvramBlockIdentifier', 'NvNvMRamBlockDataAddressMNvBlockNum', 'NvMNvBlockLength', 'NvMStaticBlockIDCheck', 'NvMResistantToChangedSw', 'NvMMaxNumOfReadRetries', 'NvMNvBlockBaseNumber',
+        # check if mandatory parameters are not present in test
+        mandatory_parameters = ['NvMNvramBlockIdentifier', 'NvMNvBlockNum', 'NvMNvBlockLength', 'NvMStaticBlockIDCheck', 'NvMResistantToChangedSw', 'NvMMaxNumOfReadRetries', 'NvMNvBlockBaseNumber',
                                 'NvMBlockUseCrc', 'NvMBswMBlockStatusInformation', 'NvMRomBlockNum', 'NvMNvramDeviceId', 'NvMWriteVerification', 'NvMWriteBlockOnce', 'NvMMaxNumOfWriteRetries',
                                 'NvMBlockJobPriority', 'NvMBlockManagementType', 'NvMAdvancedRecovery', 'NvMBlockUseSyncMechanism', 'NvMBlockWriteProt', 'NvMExtraBlockChecks', 'NvMProvideRteAdminPort',
                                 'NvMProvideRteInitBlockPort', 'NvMProvideRteJobFinishedPort', 'NvMProvideRteMirrorPort', 'NvMProvideRteServicePort', 'NvMUserProvidesSpaceForBlockAndCrc']
@@ -837,6 +837,8 @@ def create_MEM_config(files_list, output_path, logger):
                                 error_no = error_no + 1
                         if elem['TYPE'] == 'NvMAdvancedRecovery':
                             obj_nvm['NvMAdvancedRecovery'] = elem['VALUE']
+                        if elem['TYPE'] == 'NvMNvramDeviceId':
+                            obj_nvm['NvMNvramDeviceId'] = elem['VALUE']
                         if elem['TYPE'] == 'NvMExtraBlockChecks':
                             obj_nvm['NvMExtraBlockChecks'] = elem['VALUE']
                         if elem['TYPE'] == 'NvMProvideRteAdminPort':
@@ -1051,6 +1053,8 @@ def create_MEM_config(files_list, output_path, logger):
                                 error_no = error_no + 1
                         if elem['TYPE'] == 'NvMAdvancedRecovery':
                             obj_nvm['NvMAdvancedRecovery'] = elem['VALUE']
+                        if elem['TYPE'] == 'NvMNvramDeviceId':
+                            obj_nvm['NvMNvramDeviceId'] = elem['VALUE']
                         if elem['TYPE'] == 'NvMExtraBlockChecks':
                             obj_nvm['NvMExtraBlockChecks'] = elem['VALUE']
                         if elem['TYPE'] == 'NvMProvideRteAdminPort':
@@ -1217,9 +1221,17 @@ def create_MEM_config(files_list, output_path, logger):
         if check_ordered(nvm_blocks):
             pass
         else:
-            logger.error('The NvMNvramBlockIdentifier parameters of the blocks are not consecutive and continuously')
-            print('ERROR: The NvMNvramBlockIdentifier parameters of the blocks are not consecutive and continuously')
+            logger.error('The mapping index of all resistant-to-change blocks are not consecutive and continously: Start form 2 (1 is reserved)')
+            print('ERROR: The mapping index of all resistant-to-change blocks are not consecutive and continously: Start form 2 (1 is reserved)')
             error_no = error_no + 1
+
+        ##
+        total_nb_nvm_blocks = 0
+        immediate_nb_nvm_blocks = 0
+        for block in nvm_blocks:
+            total_nb_nvm_blocks = total_nb_nvm_blocks + 1
+            if block['NvMBlockJobPriority'] == '0':
+                immediate_nb_nvm_blocks = immediate_nb_nvm_blocks + 1
         ##############################
         if error_no != 0:
             print("There is at least one blocking error! Check the generated log.")
@@ -1230,6 +1242,8 @@ def create_MEM_config(files_list, output_path, logger):
             except OSError:
                 pass
             sys.exit(1)
+
+
 
         # generate NvM.epc
         rootNvM = etree.Element('AUTOSAR', {attr_qname: 'http://autosar.org/schema/r4.0 AUTOSAR_4-2-2_STRICT_COMPACT.xsd'}, nsmap=NSMAP)
@@ -1256,6 +1270,17 @@ def create_MEM_config(files_list, output_path, logger):
         definition.attrib['DEST'] = "ECUC-INTEGER-PARAM-DEF"
         definition.text = "/AUTOSAR/EcuDefs/NvM/NvMCommon/NvMCompiledConfigId"
         value = etree.SubElement(ecuc_numerical_CompiledConfigID, 'VALUE').text = config_ids[0]
+        ecuc_numerical_StandardJob = etree.SubElement(parameter, 'ECUC-NUMERICAL-PARAM-VALUE')
+        definition = etree.SubElement(ecuc_numerical_StandardJob, 'DEFINITION-REF')
+        definition.attrib['DEST'] = "ECUC-INTEGER-PARAM-DEF"
+        definition.text = "/AUTOSAR/EcuDefs/NvM/NvMCommon/NvMSizeStandardJobQueue"
+        value = etree.SubElement(ecuc_numerical_StandardJob, 'VALUE').text = str(total_nb_nvm_blocks)
+        if immediate_nb_nvm_blocks > 0:
+            ecuc_numerical_ImmediateJob = etree.SubElement(parameter, 'ECUC-NUMERICAL-PARAM-VALUE')
+            definition = etree.SubElement(ecuc_numerical_ImmediateJob, 'DEFINITION-REF')
+            definition.attrib['DEST'] = "ECUC-INTEGER-PARAM-DEF"
+            definition.text = "/AUTOSAR/EcuDefs/NvM/NvMCommon/NvMSizeImmediateJobQueue"
+            value = etree.SubElement(ecuc_numerical_ImmediateJob, 'VALUE').text = str(immediate_nb_nvm_blocks)
         for block in nvm_blocks:
             if block['SOURCE'] == 'Extern':
                 ecuc_container = etree.SubElement(containers, 'ECUC-CONTAINER-VALUE')
