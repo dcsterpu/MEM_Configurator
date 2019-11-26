@@ -1,8 +1,8 @@
-2018-12-06 10:50:10,555 INFO The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.GEN.008\input\ASWC_A26.aswc.arxml is well-formed
-2018-12-06 10:50:10,571 INFO  The file C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.GEN.008\input\ASWC_A26.config_mem.xml is well-formed
-2018-12-06 10:50:10,571 INFO The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.GEN.008\input\AUTOSAR_Datatypes.arxml is well-formed
-2018-12-06 10:50:10,571 INFO  The file C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.GEN.008\input\CompiledConfigID.xml is well-formed
-2018-12-06 10:50:10,571 INFO  The file C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.GEN.008\input\Profiles_cleaned.xml is well-formed
-2018-12-06 10:50:10,664 INFO The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.GEN.008\input\SystemGenerated.arxml is well-formed
-2018-12-06 10:50:10,727 INFO The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.GEN.008\input\VSM_Types.arxml is well-formed
-2018-12-06 10:50:11,008 ERROR Mandatory parameters are not configured for NvM block Default_App_Ram_Implicit_SAV: NvMBlockManagementType
+2019-07-11 08:30:48,020 INFO The file: C:\Users\Cristi\PyCharmProjects\MEM_Config\tests\TRS.MEMCFG.GEN.008\input\ASWC_A26.aswc.arxml is well-formed
+2019-07-11 08:30:48,078 INFO  The file C:\Users\Cristi\PyCharmProjects\MEM_Config\tests\TRS.MEMCFG.GEN.008\input\ASWC_A26.config_mem.xml is well-formed
+2019-07-11 08:30:48,100 INFO The file: C:\Users\Cristi\PyCharmProjects\MEM_Config\tests\TRS.MEMCFG.GEN.008\input\AUTOSAR_Datatypes.arxml is well-formed
+2019-07-11 08:30:48,113 INFO  The file C:\Users\Cristi\PyCharmProjects\MEM_Config\tests\TRS.MEMCFG.GEN.008\input\CompiledConfigID.xml is well-formed
+2019-07-11 08:30:48,125 INFO  The file C:\Users\Cristi\PyCharmProjects\MEM_Config\tests\TRS.MEMCFG.GEN.008\input\Profiles_cleaned.xml is well-formed
+2019-07-11 08:30:48,725 INFO The file: C:\Users\Cristi\PyCharmProjects\MEM_Config\tests\TRS.MEMCFG.GEN.008\input\SystemGenerated.arxml is well-formed
+2019-07-11 08:30:49,051 INFO The file: C:\Users\Cristi\PyCharmProjects\MEM_Config\tests\TRS.MEMCFG.GEN.008\input\VSM_Types.arxml is well-formed
+2019-07-11 08:30:51,142 ERROR Mandatory parameters are not configured for NvM block Default_App_Ram_Implicit_SAV: NvMBlockManagementType

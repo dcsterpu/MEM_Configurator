@@ -1,11 +1,11 @@
-2018-12-06 10:49:58,004 INFO The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.CHECK.006_2\input\ASWC_A26.aswc.arxml is well-formed
-2018-12-06 10:49:58,004 INFO  The file C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.CHECK.006_2\input\ASWC_A26.config_mem.xml is well-formed
-2018-12-06 10:49:58,019 INFO The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.CHECK.006_2\input\ASWC_A27.aswc.arxml is well-formed
-2018-12-06 10:49:58,035 INFO  The file C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.CHECK.006_2\input\ASWC_A27.config_mem.xml is well-formed
-2018-12-06 10:49:58,035 INFO The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.CHECK.006_2\input\AUTOSAR_Datatypes.arxml is well-formed
-2018-12-06 10:49:58,035 INFO  The file C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.CHECK.006_2\input\CompiledConfigID.xml is well-formed
-2018-12-06 10:49:58,035 INFO  The file C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.CHECK.006_2\input\Profiles_cleaned.xml is well-formed
-2018-12-06 10:49:58,128 INFO The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.CHECK.006_2\input\SystemGenerated.arxml is well-formed
-2018-12-06 10:49:58,191 INFO The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.CHECK.006_2\input\VSM_Types.arxml is well-formed
-2018-12-06 10:49:58,487 ERROR The block Default_App_Ram_Implicit_RAR cannot be defined in multiple ASWC because SDF = true
-2018-12-06 10:49:58,487 ERROR The block Default_App_Ram_Implicit_RAR cannot be defined in multiple ASWC because SDF = true
+2019-07-11 08:29:20,266 INFO The file: C:\Users\Cristi\PyCharmProjects\MEM_Config\tests\TRS.MEMCFG.CHECK.006_2\input\ASWC_A26.aswc.arxml is well-formed
+2019-07-11 08:29:20,323 INFO  The file C:\Users\Cristi\PyCharmProjects\MEM_Config\tests\TRS.MEMCFG.CHECK.006_2\input\ASWC_A26.config_mem.xml is well-formed
+2019-07-11 08:29:20,436 INFO The file: C:\Users\Cristi\PyCharmProjects\MEM_Config\tests\TRS.MEMCFG.CHECK.006_2\input\ASWC_A27.aswc.arxml is well-formed
+2019-07-11 08:29:20,468 INFO  The file C:\Users\Cristi\PyCharmProjects\MEM_Config\tests\TRS.MEMCFG.CHECK.006_2\input\ASWC_A27.config_mem.xml is well-formed
+2019-07-11 08:29:20,488 INFO The file: C:\Users\Cristi\PyCharmProjects\MEM_Config\tests\TRS.MEMCFG.CHECK.006_2\input\AUTOSAR_Datatypes.arxml is well-formed
+2019-07-11 08:29:20,500 INFO  The file C:\Users\Cristi\PyCharmProjects\MEM_Config\tests\TRS.MEMCFG.CHECK.006_2\input\CompiledConfigID.xml is well-formed
+2019-07-11 08:29:20,509 INFO  The file C:\Users\Cristi\PyCharmProjects\MEM_Config\tests\TRS.MEMCFG.CHECK.006_2\input\Profiles_cleaned.xml is well-formed
+2019-07-11 08:29:21,008 INFO The file: C:\Users\Cristi\PyCharmProjects\MEM_Config\tests\TRS.MEMCFG.CHECK.006_2\input\SystemGenerated.arxml is well-formed
+2019-07-11 08:29:21,300 INFO The file: C:\Users\Cristi\PyCharmProjects\MEM_Config\tests\TRS.MEMCFG.CHECK.006_2\input\VSM_Types.arxml is well-formed
+2019-07-11 08:29:23,615 ERROR The block Default_App_Ram_Implicit_RAR cannot be defined in multiple ASWC because SDF = true
+2019-07-11 08:29:23,615 ERROR The block Default_App_Ram_Implicit_RAR cannot be defined in multiple ASWC because SDF = true

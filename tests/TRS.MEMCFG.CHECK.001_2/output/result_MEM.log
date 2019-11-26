@@ -1,11 +1,11 @@
-2018-12-06 10:49:49,339 INFO The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.CHECK.001_2\input\ASWC_A26.aswc.arxml is well-formed
-2018-12-06 10:49:49,339 INFO  The file C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.CHECK.001_2\input\ASWC_A26.config_mem.xml is well-formed
-2018-12-06 10:49:49,355 INFO The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.CHECK.001_2\input\ASWC_A27.aswc.arxml is well-formed
-2018-12-06 10:49:49,370 INFO  The file C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.CHECK.001_2\input\ASWC_A27.config_mem.xml is well-formed
-2018-12-06 10:49:49,370 INFO The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.CHECK.001_2\input\AUTOSAR_Datatypes.arxml is well-formed
-2018-12-06 10:49:49,370 INFO  The file C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.CHECK.001_2\input\CompiledConfigID.xml is well-formed
-2018-12-06 10:49:49,370 INFO  The file C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.CHECK.001_2\input\Profiles_cleaned.xml is well-formed
-2018-12-06 10:49:49,464 INFO The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.CHECK.001_2\input\SystemGenerated.arxml is well-formed
-2018-12-06 10:49:49,526 INFO The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.CHECK.001_2\input\VSM_Types.arxml is well-formed
-2018-12-06 10:49:49,526 ERROR Different profiles defined for same block: Default_App_Ram_Implicit_RAR
-2018-12-06 10:49:49,526 ERROR Different profiles defined for same block: Default_App_Ram_Implicit_RAR
+2019-07-11 08:28:19,766 INFO The file: C:\Users\Cristi\PyCharmProjects\MEM_Config\tests\TRS.MEMCFG.CHECK.001_2\input\ASWC_A26.aswc.arxml is well-formed
+2019-07-11 08:28:19,825 INFO  The file C:\Users\Cristi\PyCharmProjects\MEM_Config\tests\TRS.MEMCFG.CHECK.001_2\input\ASWC_A26.config_mem.xml is well-formed
+2019-07-11 08:28:19,979 INFO The file: C:\Users\Cristi\PyCharmProjects\MEM_Config\tests\TRS.MEMCFG.CHECK.001_2\input\ASWC_A27.aswc.arxml is well-formed
+2019-07-11 08:28:20,019 INFO  The file C:\Users\Cristi\PyCharmProjects\MEM_Config\tests\TRS.MEMCFG.CHECK.001_2\input\ASWC_A27.config_mem.xml is well-formed
+2019-07-11 08:28:20,047 INFO The file: C:\Users\Cristi\PyCharmProjects\MEM_Config\tests\TRS.MEMCFG.CHECK.001_2\input\AUTOSAR_Datatypes.arxml is well-formed
+2019-07-11 08:28:20,061 INFO  The file C:\Users\Cristi\PyCharmProjects\MEM_Config\tests\TRS.MEMCFG.CHECK.001_2\input\CompiledConfigID.xml is well-formed
+2019-07-11 08:28:20,075 INFO  The file C:\Users\Cristi\PyCharmProjects\MEM_Config\tests\TRS.MEMCFG.CHECK.001_2\input\Profiles_cleaned.xml is well-formed
+2019-07-11 08:28:20,772 INFO The file: C:\Users\Cristi\PyCharmProjects\MEM_Config\tests\TRS.MEMCFG.CHECK.001_2\input\SystemGenerated.arxml is well-formed
+2019-07-11 08:28:21,194 INFO The file: C:\Users\Cristi\PyCharmProjects\MEM_Config\tests\TRS.MEMCFG.CHECK.001_2\input\VSM_Types.arxml is well-formed
+2019-07-11 08:28:21,202 ERROR Different profiles defined for same block: Default_App_Ram_Implicit_RAR
+2019-07-11 08:28:21,203 ERROR Different profiles defined for same block: Default_App_Ram_Implicit_RAR

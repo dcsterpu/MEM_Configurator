@@ -1,12 +1,12 @@
-2018-12-06 10:49:47,277 INFO The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TBD_2\input\ASWC_A26.aswc.arxml is well-formed
-2018-12-06 10:49:47,277 INFO  The file C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TBD_2\input\ASWC_A26.config_mem.xml is well-formed
-2018-12-06 10:49:47,292 INFO The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TBD_2\input\ASWC_A27.aswc.arxml is well-formed
-2018-12-06 10:49:47,308 INFO  The file C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TBD_2\input\ASWC_A27.config_mem.xml is well-formed
-2018-12-06 10:49:47,386 INFO The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TBD_2\input\ASWC_A28.aswc.arxml is well-formed
-2018-12-06 10:49:47,417 INFO The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TBD_2\input\AUTOSAR_Datatypes.arxml is well-formed
-2018-12-06 10:49:47,433 INFO  The file C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TBD_2\input\CompiledConfigID.xml is well-formed
-2018-12-06 10:49:47,433 INFO  The file C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TBD_2\input\MAPPING.xml is well-formed
-2018-12-06 10:49:47,433 INFO  The file C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TBD_2\input\Profiles_cleaned.xml is well-formed
-2018-12-06 10:49:47,511 INFO The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TBD_2\input\SystemGenerated.arxml is well-formed
-2018-12-06 10:49:47,589 INFO The file: C:\Users\Cristi\PycharmProjects\MEM_Config\tests\TBD_2\input\VSM_Types.arxml is well-formed
-2018-12-06 10:49:47,589 ERROR It is forbidden to map a block on position 1; this position is reserved
+2019-07-11 08:27:58,630 INFO The file: C:\Users\Cristi\PyCharmProjects\MEM_Config\tests\TBD_2\input\ASWC_A26.aswc.arxml is well-formed
+2019-07-11 08:27:58,690 INFO  The file C:\Users\Cristi\PyCharmProjects\MEM_Config\tests\TBD_2\input\ASWC_A26.config_mem.xml is well-formed
+2019-07-11 08:27:58,829 INFO The file: C:\Users\Cristi\PyCharmProjects\MEM_Config\tests\TBD_2\input\ASWC_A27.aswc.arxml is well-formed
+2019-07-11 08:27:58,864 INFO  The file C:\Users\Cristi\PyCharmProjects\MEM_Config\tests\TBD_2\input\ASWC_A27.config_mem.xml is well-formed
+2019-07-11 08:27:59,664 INFO The file: C:\Users\Cristi\PyCharmProjects\MEM_Config\tests\TBD_2\input\ASWC_A28.aswc.arxml is well-formed
+2019-07-11 08:27:59,861 INFO The file: C:\Users\Cristi\PyCharmProjects\MEM_Config\tests\TBD_2\input\AUTOSAR_Datatypes.arxml is well-formed
+2019-07-11 08:27:59,945 INFO  The file C:\Users\Cristi\PyCharmProjects\MEM_Config\tests\TBD_2\input\CompiledConfigID.xml is well-formed
+2019-07-11 08:27:59,952 INFO  The file C:\Users\Cristi\PyCharmProjects\MEM_Config\tests\TBD_2\input\MAPPING.xml is well-formed
+2019-07-11 08:27:59,965 INFO  The file C:\Users\Cristi\PyCharmProjects\MEM_Config\tests\TBD_2\input\Profiles_cleaned.xml is well-formed
+2019-07-11 08:28:00,657 INFO The file: C:\Users\Cristi\PyCharmProjects\MEM_Config\tests\TBD_2\input\SystemGenerated.arxml is well-formed
+2019-07-11 08:28:01,072 INFO The file: C:\Users\Cristi\PyCharmProjects\MEM_Config\tests\TBD_2\input\VSM_Types.arxml is well-formed
+2019-07-11 08:28:01,079 ERROR It is forbidden to map a block on position 1; this position is reserved
