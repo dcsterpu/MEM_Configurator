@@ -15,6 +15,7 @@ def arg_parse(parser):
     parser.add_argument('-out', '--out', help="output path", required=False, default="")
     parser.add_argument('-out_epc', '--out_epc', help="output path for configuration file(s)", required=False, default="")
     parser.add_argument('-out_log', '--out_log', help="output path for log file", required=False, default="")
+    parser.add_argument('-alignment', '--alignment', help="data mode alignment in memory blocks (in bytes)", required=True, choices=['2', '4', '8'])
 
 
 def remove_duplicates(list_to_check):
@@ -125,6 +126,7 @@ def main():
     if error:
         sys.exit(1)
     output_path = args.out
+    alignment = args.alignment
     output_epc = args.out_epc
     output_log = args.out_log
     if output_path:
@@ -136,10 +138,10 @@ def main():
                 print("\nError defining the output log path!\n")
                 sys.exit(1)
             logger = set_logger(output_log)
-            create_MEM_config(entry_list, output_path, logger)
+            create_MEM_config(entry_list, output_path, logger, alignment)
         else:
             logger = set_logger(output_path)
-            create_MEM_config(entry_list, output_path, logger)
+            create_MEM_config(entry_list, output_path, logger, alignment)
     elif not output_path:
         if output_epc:
             if not os.path.isdir(output_epc):
@@ -150,16 +152,16 @@ def main():
                     print("\nError defining the output log path!\n")
                     sys.exit(1)
                 logger = set_logger(output_log)
-                create_MEM_config(entry_list, output_epc, logger)
+                create_MEM_config(entry_list, output_epc, logger, alignment)
             else:
                 logger = set_logger(output_epc)
-                create_MEM_config(entry_list, output_epc, logger)
+                create_MEM_config(entry_list, output_epc, logger, alignment)
     else:
         print("\nNo output path defined!\n")
         sys.exit(1)
 
 
-def create_MEM_config(files_list, output_path, logger):
+def create_MEM_config(files_list, output_path, logger, alignment):
     error_no = 0
     warning_no = 0
     info_no = 0
@@ -501,6 +503,7 @@ def create_MEM_config(files_list, output_path, logger):
             if port['INTERFACE'].split("/")[-1] == interface['NAME']:
                 port['SIZE'] = interface['SIZE']
                 port['DATA-ELEMENTS'] = interface['DATA-ELEMENTS']
+                break
     for port in ports:
         if port['SIZE'] is None:
             logger.error('The port ' + port['NAME'] + " doesn't have an interface defined in the project: " + port['INTERFACE'])
@@ -572,6 +575,34 @@ def create_MEM_config(files_list, output_path, logger):
                     for port in elem2['PORT']:
                         elem1['PORT'].append(port)
                     blocks.remove(elem2)
+    # implement TRS.MEMCFG.FUNC.004
+    count = 0
+    for block in blocks:
+        line_size = 0
+        for port in block['PORT']:
+            for data in port['DATA-PROTOTYPE']:
+                if data['SIZE']/8 > int(alignment):
+                    logger.error('The port ' + port['NAME'] + ' has a referenced data element greater than the alignment: ' + data['NAME'])
+                    print('ERROR: The port ' + port['NAME'] + ' has a referenced data element greater than the alignment: ' + data['NAME'])
+                    sys.exit(1)
+                else:
+                    line_size += data['SIZE']/8
+                    if int(alignment) - line_size < 0:
+                        line_size = 0
+                        for cnt in range(0, abs(int(alignment) - line_size)):
+                            port['SIZE'] = port['SIZE'] + 1
+                            new_dict = {}
+                            new_dict['NAME'] = "Stuffing_" + str(count)
+                            count += 1
+                            new_dict['TYPE'] = "/Pack_sw_Types/tBYTE"
+                            new_dict['SIZE'] = 8
+                            new_dict['SW-BASE-TYPE'] = "/AUTOSAR_Platform/BaseTypes/uint8"
+                            new_dict['INIT'] = "0"
+                            port['DATA-PROTOTYPE'].insert(port['DATA-PROTOTYPE'].index(data), new_dict)
+                    elif int(alignment) - line_size == 0:
+                        line_size = 0
+
+
     # for internal blocks, if block['TYPE']=Specific, check that the total size does not surpass the profile max-size
     for block in blocks:
         if block['TYPE'] == 'Specific':
@@ -1268,7 +1299,10 @@ def create_MEM_config(files_list, output_path, logger):
         except OSError:
             pass
         sys.exit(1)
-
+    # stuff blocks with padding bytes
+    for block in nvm_blocks:
+        if (8 * int(alignment)) - int(block['NvMNvBlockLength']) < 0:
+            pass
 
 
     # generate NvM.epc
