@@ -12,6 +12,7 @@ from xml.dom.minidom import parseString             # pragma: no cover
 
 def arg_parse(parser):
     parser.add_argument('-in', '--inp', nargs='*', help="input path or file", required=True, default="")
+    parser.add_argument('-in_resizing', '--resizing', nargs='*',  help="input path or file for block resizing", required=False, default="")
     parser.add_argument('-out', '--out', help="output path", required=False, default="")
     parser.add_argument('-out_epc', '--out_epc', help="output path for configuration file(s)", required=False, default="")
     parser.add_argument('-out_log', '--out_log', help="output path for log file", required=False, default="")
@@ -86,6 +87,7 @@ def main():
     arg_parse(parser)
     args = parser.parse_args()
     input_path = args.inp
+    resizing_path = args.resizing
     error = False
     path_list = []
     file_list = []
@@ -123,6 +125,23 @@ def main():
                 fullname = dirpath + '\\' + file
                 file_list.append(fullname)
     [entry_list.append(elem) for elem in file_list if elem not in entry_list]
+    priority_list = []
+    path_list = []
+    file_list = []
+    for path in resizing_path:
+        if os.path.isdir(path):
+            path_list.append(path)
+        elif os.path.isfile(path):
+            file_list.append(path)
+        else:
+            print("\nError defining the input path: " + path + "\n")
+            error = True
+    for path in path_list:
+        for (dirpath, dirnames, filenames) in os.walk(path):
+            for file in filenames:
+                fullname = dirpath + '\\' + file
+                file_list.append(fullname)
+    [priority_list.append(elem) for elem in file_list if elem not in priority_list]
     if error:
         sys.exit(1)
     output_path = args.out
@@ -138,10 +157,10 @@ def main():
                 print("\nError defining the output log path!\n")
                 sys.exit(1)
             logger = set_logger(output_log)
-            create_MEM_config(entry_list, output_path, logger, alignment)
+            create_MEM_config(entry_list, priority_list, output_path, logger, alignment)
         else:
             logger = set_logger(output_path)
-            create_MEM_config(entry_list, output_path, logger, alignment)
+            create_MEM_config(entry_list, priority_list, output_path, logger, alignment)
     elif not output_path:
         if output_epc:
             if not os.path.isdir(output_epc):
@@ -152,16 +171,16 @@ def main():
                     print("\nError defining the output log path!\n")
                     sys.exit(1)
                 logger = set_logger(output_log)
-                create_MEM_config(entry_list, output_epc, logger, alignment)
+                create_MEM_config(entry_list, priority_list, output_epc, logger, alignment)
             else:
                 logger = set_logger(output_epc)
-                create_MEM_config(entry_list, output_epc, logger, alignment)
+                create_MEM_config(entry_list, priority_list, output_epc, logger, alignment)
     else:
         print("\nNo output path defined!\n")
         sys.exit(1)
 
 
-def create_MEM_config(files_list, output_path, logger, alignment):
+def create_MEM_config(files_list, priority_list, output_path, logger, alignment):
     error_no = 0
     warning_no = 0
     info_no = 0
@@ -176,11 +195,12 @@ def create_MEM_config(files_list, output_path, logger, alignment):
     arxml_interfaces = []
     arxml_data_types = []
     arxml_base_types = []
+    priority_blocks = []
     ports = []
     NSMAP = {None: 'http://autosar.org/schema/r4.0', "xsi": 'http://www.w3.org/2001/XMLSchema-instance'}
     attr_qname = etree.QName("http://www.w3.org/2001/XMLSchema-instance", "schemaLocation")
-    # parse the arxml files and get the necessary data
     # try:
+        # parse the arxml files and get the necessary data
     for file in files_list:
         if file.endswith('.epc'):
             try:
@@ -328,6 +348,10 @@ def create_MEM_config(files_list, output_path, logger, alignment):
                     logger.error('No profile defined for block ' + elem.find('SHORT-NAME').text)
                     print('ERROR: No profile defined for block ' + elem.find('SHORT-NAME').text)
                     error_no = error_no + 1
+                if elem.find('SINGLE-BLOCK-CALL-BACK-FUNCTION') is not None:
+                    obj_block['CALLBACK'] = elem.find('SINGLE-BLOCK-CALL-BACK-FUNCTION').text
+                else:
+                    obj_block['CALLBACK'] = None
                 if elem.find('WRITE-TIMEOUT') is not None:
                     obj_block['TIMEOUT'] = elem.find('WRITE-TIMEOUT').text
                 else:
@@ -397,6 +421,73 @@ def create_MEM_config(files_list, output_path, logger, alignment):
             ids = root.findall(".//NVM_COMPILED_CONFIG_ID")
             for elem in ids:
                 config_ids.append(elem.text)
+    # parse the xml block data overloading (if any)
+    for file in priority_list:
+        if file.endswith('.xml'):
+            try:
+                check_if_xml_is_wellformed(file)
+                logger.info(' The file ' + file + ' is well-formed')
+                info_no = info_no + 1
+            except Exception as e:
+                logger.error(' The file ' + file + ' is not well-formed: ' + str(e))
+                print('ERROR: The file ' + file + ' is not well-formed: ' + str(e))
+                error_no = error_no + 1
+            parser = etree.XMLParser(remove_comments=True)
+            tree = objectify.parse(file, parser=parser)
+            root = tree.getroot()
+            block = root.findall(".//BLOCK")
+            for elem in block:
+                obj_block = {}
+                block_ports = []
+                obj_block['NAME'] = elem.find('SHORT-NAME').text
+                obj_block['TYPE'] = elem.find('TYPE').text
+                # implementing requirement TRS.SYSDESC.CHECK.002
+                if elem.find('PROFIL-REF') is not None:
+                    if elem.find('PROFIL-REF').text != '' or elem.find('PROFILE-REF') is None:
+                        obj_block['PROFILE'] = elem.find('PROFIL-REF').text
+                    else:
+                        logger.error('No profile defined for block ' + elem.find('SHORT-NAME').text)
+                        print('ERROR: No profile defined for block ' + elem.find('SHORT-NAME').text)
+                        error_no = error_no + 1
+                else:
+                    logger.error('No profile defined for block ' + elem.find('SHORT-NAME').text)
+                    print('ERROR: No profile defined for block ' + elem.find('SHORT-NAME').text)
+                    error_no = error_no + 1
+                if elem.find('SINGLE-BLOCK-CALL-BACK-FUNCTION') is not None:
+                    obj_block['CALLBACK'] = elem.find('SINGLE-BLOCK-CALL-BACK-FUNCTION').text
+                else:
+                    obj_block['CALLBACK'] = None
+                if elem.find('WRITE-TIMEOUT') is not None:
+                    obj_block['TIMEOUT'] = elem.find('WRITE-TIMEOUT').text
+                else:
+                    obj_block['TIMEOUT'] = None
+                if elem.find('RESPECT-MAPPING') is not None:
+                    obj_block['MAPPING'] = elem.find('RESPECT-MAPPING').text
+                else:
+                    obj_block['MAPPING'] = None
+                if elem.find('SDF') is not None:
+                    obj_block['SDF'] = elem.find('SDF').text
+                else:
+                    obj_block['SDF'] = None
+                obj_block['DEVICE'] = None
+                obj_block['RESISTENT'] = None
+                obj_block['POSITION'] = None
+                obj_block['CONSISTENCY'] = None
+                obj_block['CRC'] = None
+                obj_block['ID'] = None
+                pr_ports = elem.findall('.//PR-PORT-PROTOTYPE-REF')
+                for element in pr_ports:
+                    obj_interface = {}
+                    obj_interface['NAME'] = element.text
+                    obj_interface['ASWC'] = None
+                    obj_interface['SIZE'] = 0
+                    obj_interface['SW-BASE-TYPE'] = None
+                    obj_interface['DATA-PROTOTYPE'] = None
+                    block_ports.append(obj_interface)
+                obj_block['PORT'] = block_ports
+                obj_block['MAX-SIZE'] = None
+                priority_blocks.append(obj_block)
+
     ############ external blocks check############
     # add Tresos-generated default parameters with their default value
     tresos_parameters = {'NvMNvBlockBaseNumber': '0', 'NvMNvBlockNum': "1", 'NvMAdvancedRecovery': "False", 'NvMBlockUseSyncMechanism': "False",
@@ -441,6 +532,7 @@ def create_MEM_config(files_list, output_path, logger, alignment):
         except OSError:
             pass
         sys.exit(1)
+
     # check that there is only one CompiledConfigID
     if len(config_ids) > 1 or len(config_ids) == 0:
         logger.error('None or multiple CompiledConfigID parameters defined')
@@ -463,6 +555,77 @@ def create_MEM_config(files_list, output_path, logger, alignment):
                         logger.error('Different mapping defined for same block: ' + blocks[index1]['NAME'])
                         print('ERROR: Different mapping defined for same block: ' + blocks[index1]['NAME'])
                         error_no = error_no + 1
+    # one block with SDF = true cannot be present in multiple files
+    for elem1 in blocks[:]:
+        for elem2 in blocks[:]:
+            if blocks.index(elem1) != blocks.index(elem2):
+                if elem1['NAME'] == elem2['NAME']:
+                    if elem1['SDF'] == 'true':
+                        logger.error('The block ' + elem1['NAME'] + ' cannot be defined in multiple ASWC because SDF = true')
+                        print('ERROR: The block ' + elem1['NAME'] + ' cannot be defined in multiple ASWC because SDF = true')
+                        error_no = error_no + 1
+    # merge two block with the same name
+    # TRS.MEMCFG.CHECK.013(0) : if the same block has different callbacks defined --> error
+    block_list = []
+    block_names = []
+    for index1 in range(len(blocks)):
+        if blocks[index1]['NAME'] not in block_names:
+            block_list.append(blocks[index1])
+            block_names.append(blocks[index1]['NAME'])
+        else:
+            for index2 in range(len(blocks)):
+                if index1 != index2 and blocks[index1]['NAME'] == blocks[index2]['NAME']:
+                    block_index = block_list.index(blocks[index2])
+                    if blocks[index1]['CALLBACK'] is not None and block_list[block_index]['CALLBACK'] is not None and blocks[index1]['CALLBACK'] != block_list[block_index]['CALLBACK']:
+                        logger.error('The block ' + blocks[index1]['NAME'] + ' is defined in multiple files with different callbacks')
+                        print('ERROR: The block ' + blocks[index1]['NAME'] + ' is defined in multiple files with different callbacks')
+                        error_no = error_no + 1
+                        break
+                    for port in blocks[index1]['PORT']:
+                        block_list[block_index]['PORT'].append(port)
+    blocks = block_list
+
+    # overwrite data blocks with data from the priority blocks
+    # TRS.MEMCFG.GEN.015
+    if priority_blocks:
+        for overloaded in priority_blocks:
+            for block in blocks:
+                if block['NAME'] == overloaded['NAME']:
+                    block['TYPE'] = overloaded['TYPE']
+                    block['PROFILE'] = overloaded['PROFILE']
+                    block['CALLBACK'] = overloaded['CALLBACK']
+                    block['TIMEOUT'] = overloaded['TIMEOUT']
+                    block['MAPPING'] = overloaded['MAPPING']
+                    block['SDF'] = overloaded['SDF']
+                    block['DEVICE'] = overloaded['DEVICE']
+                    block['RESISTENT'] = overloaded['RESISTENT']
+                    block['POSITION'] = overloaded['TYPE']
+                    block['CONSISTENCY'] = overloaded['CONSISTENCY']
+                    block['CRC'] = overloaded['CRC']
+                    block['ID'] = overloaded['ID']
+                    block['MAX-SIZE'] = overloaded['MAX-SIZE']
+                    block['PORT'] = overloaded['PORT']
+
+    # get the max-size information for each block from profile
+    for block in blocks:
+        found = False
+        for profile in profiles:
+            if block['PROFILE'] == profile['NAME']:
+                block['MAX-SIZE'] = profile['MAX-SIZE']
+                block['DEVICE'] = profile['DEVICE']
+                block['CONSISTENCY'] = profile['CONSISTENCY']
+                block['CRC'] = profile['CRC']
+                if profile['SAFETY'] != 'true':
+                    block['SDF'] = 'false'
+                for param in profile['PARAM']:
+                    if param['TYPE'] == 'NvMResistantToChangedSw':
+                        block['RESISTENT'] = param['VALUE']
+                found = True
+        if not found:
+            logger.error('The profile ' + str(block['PROFILE']) + ' used in block ' + str(block['NAME']) + ' is not valid (not defined in the project)')
+            print('ERROR: The profile ' + str(block['PROFILE']) + ' used in block ' + str(block['NAME']) + ' is not valid (not defined in the project)')
+            error_no = error_no + 1
+
     # compute size for each interface
     for interface in arxml_interfaces:
         interface_size = 0
@@ -493,7 +656,6 @@ def create_MEM_config(files_list, output_path, logger, alignment):
                                             data_element['SIZE'] = int(data_type['ARRAY-SIZE']) * int(base_type['SIZE'])
                                             found = True
                                             break
-
                 else:
                     break
         interface['SIZE'] = int(interface_size / 8)
@@ -539,69 +701,48 @@ def create_MEM_config(files_list, output_path, logger, alignment):
                         logger.error('Port ' + all_ports[index1]['PORT']['NAME'] + ' is defined in multiple blocks: ' + all_ports[index1]['BLOCK'] + ' and ' + all_ports[index2]['BLOCK'])
                         print('ERROR: Port ' + all_ports[index1]['PORT']['NAME'] + ' is defined in multiple blocks: ' + all_ports[index1]['BLOCK'] + ' and ' + all_ports[index2]['BLOCK'])
                         error_no = error_no + 1
-    # get the max-size information for each block from profile
-    for block in blocks:
-        found = False
-        for profile in profiles:
-            if block['PROFILE'] == profile['NAME']:
-                block['MAX-SIZE'] = profile['MAX-SIZE']
-                block['DEVICE'] = profile['DEVICE']
-                block['CONSISTENCY'] = profile['CONSISTENCY']
-                block['CRC'] = profile['CRC']
-                if profile['SAFETY'] != 'true':
-                    block['SDF'] = 'false'
-                for param in profile['PARAM']:
-                    if param['TYPE'] == 'NvMResistantToChangedSw':
-                        block['RESISTENT'] = param['VALUE']
-                found = True
-        if not found:
-            logger.error('The profile ' + str(block['PROFILE']) + ' used in block ' + str(block['NAME']) + ' is not valid (not defined in the project)')
-            print('ERROR: The profile ' + str(block['PROFILE']) + ' used in block ' + str(block['NAME']) + ' is not valid (not defined in the project)')
-            error_no = error_no + 1
-    # one block with SDF = true cannot be present in multiple files
-    for elem1 in blocks[:]:
-        for elem2 in blocks[:]:
-            if blocks.index(elem1) != blocks.index(elem2):
-                if elem1['NAME'] == elem2['NAME']:
-                    if elem1['SDF'] == 'true':
-                        logger.error('The block ' + elem1['NAME'] + ' cannot be defined in multiple ASWC because SDF = true')
-                        print('ERROR: The block ' + elem1['NAME'] + ' cannot be defined in multiple ASWC because SDF = true')
-                        error_no = error_no + 1
-    # merge two block with the same name:
-    for elem1 in blocks:
-        for elem2 in blocks[:]:
-            if blocks.index(elem1) != blocks.index(elem2):
-                if elem1['NAME'] == elem2['NAME']:
-                    for port in elem2['PORT']:
-                        elem1['PORT'].append(port)
-                    blocks.remove(elem2)
+
+    if error_no != 0:
+        print("There is at least one blocking error! Check the generated log.")
+        print("\nExecution stopped with: " + str(info_no) + " infos, " + str(warning_no) + " warnings, " + str(error_no) + " errors\n")
+        try:
+            os.remove(output_path + '/NvM.epc')
+            os.remove(output_path + '/NvDM.epc')
+        except OSError:
+            pass
+        sys.exit(1)
+
     # implement TRS.MEMCFG.FUNC.004
     count = 0
     for block in blocks:
         line_size = 0
         for port in block['PORT']:
-            for data in port['DATA-PROTOTYPE']:
-                if data['SIZE']/8 > int(alignment):
-                    logger.error('The port ' + port['NAME'] + ' has a referenced data element greater than the alignment: ' + data['NAME'])
-                    print('ERROR: The port ' + port['NAME'] + ' has a referenced data element greater than the alignment: ' + data['NAME'])
-                    sys.exit(1)
-                else:
-                    line_size += data['SIZE']/8
-                    if int(alignment) - line_size < 0:
-                        line_size = 0
-                        for cnt in range(0, abs(int(alignment) - line_size)):
-                            port['SIZE'] = port['SIZE'] + 1
-                            new_dict = {}
-                            new_dict['NAME'] = "Stuffing_" + str(count)
-                            count += 1
-                            new_dict['TYPE'] = "/Pack_sw_Types/tBYTE"
-                            new_dict['SIZE'] = 8
-                            new_dict['SW-BASE-TYPE'] = "/AUTOSAR_Platform/BaseTypes/uint8"
-                            new_dict['INIT'] = "0"
-                            port['DATA-PROTOTYPE'].insert(port['DATA-PROTOTYPE'].index(data), new_dict)
-                    elif int(alignment) - line_size == 0:
-                        line_size = 0
-
+            if port['DATA-PROTOTYPE']:
+                for indexD in range(len(port['DATA-PROTOTYPE'])):
+                    if port['DATA-PROTOTYPE'][indexD]['SIZE']/8 > int(alignment):
+                        logger.error('The port ' + port['NAME'] + ' has a referenced data element greater than the alignment: ' + port['DATA-PROTOTYPE'][indexD]['NAME'])
+                        print('ERROR: The port ' + port['NAME'] + ' has a referenced data element greater than the alignment: ' + port['DATA-PROTOTYPE'][indexD]['NAME'])
+                        sys.exit(1)
+                    else:
+                        line_size += port['DATA-PROTOTYPE'][indexD]['SIZE'] / 8
+                        if int(alignment) - line_size < 0:
+                            line_size -= port['DATA-PROTOTYPE'][indexD]['SIZE'] / 8
+                            for cnt in range(0, int(int(alignment) - line_size)):
+                                port['SIZE'] = port['SIZE'] + 1
+                                new_dict = {}
+                                new_dict['NAME'] = "Stuffing_" + str(count)
+                                count += 1
+                                new_dict['TYPE'] = "/Pack_sw_Types/tBYTE"
+                                new_dict['SIZE'] = 8
+                                new_dict['SW-BASE-TYPE'] = "/AUTOSAR_Platform/BaseTypes/uint8"
+                                new_dict['INIT'] = "0"
+                                port['DATA-PROTOTYPE'].insert(port['DATA-PROTOTYPE'].index(port['DATA-PROTOTYPE'][indexD]), new_dict)
+                                indexD += 1
+                            line_size = 0
+                            line_size += port['DATA-PROTOTYPE'][indexD]['SIZE']/8
+                            continue
+                        elif int(alignment) - line_size == 0:
+                            line_size = 0
 
     # for internal blocks, if block['TYPE']=Specific, check that the total size does not surpass the profile max-size
     for block in blocks:
@@ -658,6 +799,7 @@ def create_MEM_config(files_list, output_path, logger, alignment):
                     obj_subblock['TIMEOUT'] = block['TIMEOUT']
                     obj_subblock['MAPPING'] = block['MAPPING']
                     obj_subblock['DEVICE'] = block['DEVICE']
+                    obj_subblock['CALLBACK'] = block['CALLBACK']
                     obj_subblock['CONSISTENCY'] = block['CONSISTENCY']
                     obj_subblock['CRC'] = block['CRC']
                     obj_subblock['SDF'] = block['SDF']
@@ -678,6 +820,7 @@ def create_MEM_config(files_list, output_path, logger, alignment):
                 obj_subblock['TIMEOUT'] = block['TIMEOUT']
                 obj_subblock['MAPPING'] = block['MAPPING']
                 obj_subblock['DEVICE'] = block['DEVICE']
+                obj_subblock['CALLBACK'] = block['CALLBACK']
                 obj_subblock['CONSISTENCY'] = block['CONSISTENCY']
                 obj_subblock['CRC'] = block['CRC']
                 obj_subblock['SDF'] = block['SDF']
@@ -700,6 +843,7 @@ def create_MEM_config(files_list, output_path, logger, alignment):
             obj_subblock['TIMEOUT'] = block['TIMEOUT']
             obj_subblock['MAPPING'] = block['MAPPING']
             obj_subblock['DEVICE'] = block['DEVICE']
+            obj_subblock['CALLBACK'] = block['CALLBACK']
             obj_subblock['CONSISTENCY'] = block['CONSISTENCY']
             obj_subblock['CRC'] = block['CRC']
             obj_subblock['SDF'] = block['SDF']
@@ -723,6 +867,7 @@ def create_MEM_config(files_list, output_path, logger, alignment):
         obj_block['MAPPING'] = block['MAPPING']
         obj_block['PROFILE'] = block['PROFILE']
         obj_block['DEVICE'] = block['DEVICE']
+        obj_block['CALLBACK'] = block['CALLBACK']
         obj_block['TIMEOUT'] = block['TIMEOUT']
         obj_block['CONSISTENCY'] = block['CONSISTENCY']
         obj_block['CRC'] = block['CRC']
@@ -753,6 +898,7 @@ def create_MEM_config(files_list, output_path, logger, alignment):
         obj_block['MAPPING'] = subblock['MAPPING']
         obj_block['PROFILE'] = subblock['PROFILE']
         obj_block['DEVICE'] = subblock['DEVICE']
+        obj_block['CALLBACK'] = subblock['CALLBACK']
         obj_block['TIMEOUT'] = subblock['TIMEOUT']
         obj_block['CONSISTENCY'] = subblock['CONSISTENCY']
         obj_block['CRC'] = subblock['CRC']
@@ -782,6 +928,7 @@ def create_MEM_config(files_list, output_path, logger, alignment):
         obj_block['MAPPING'] = block['MAPPING']
         obj_block['PROFILE'] = block['PROFILE']
         obj_block['DEVICE'] = block['DEVICE']
+        obj_block['CALLBACK'] = block['CALLBACK']
         obj_block['TIMEOUT'] = block['TIMEOUT']
         obj_block['CONSISTENCY'] = block['CONSISTENCY']
         obj_block['CRC'] = block['CRC']
@@ -803,17 +950,15 @@ def create_MEM_config(files_list, output_path, logger, alignment):
     for block in final_blocks:
         if block['MAPPING'] == 'false':
             block['DATA'] = sorted(block['DATA'], key=lambda x: x['SIZE'], reverse=True)
-    # determine the staring ID of the generated blocks
+    # determine the starting ID of the generated blocks
     #index = 4
     for block in final_fixed_blocks:
         obj_nvm = {}
-        #index = index + 1
         obj_nvm['NAME'] = block['NAME']
         obj_nvm['SOURCE'] = 'Intern'
         obj_nvm['DEVICE'] = block['DEVICE']
         obj_nvm['NvMNvramBlockIdentifier'] = 0
         obj_nvm['NvMRomBlockDataAddress'] = "&NvDM_RomBlock_" + block['NAME']
-        #obj_nvm['NvMRamBlockDataAddress'] = "&NvDM_RamBlock_" + block['NAME']
         obj_nvm['NvMNvBlockLength'] = block['SIZE']
         obj_nvm['NvMSingleBlockCallback'] = None
         obj_nvm['NvMNvBlockBaseNumber'] = 0
@@ -1014,6 +1159,8 @@ def create_MEM_config(files_list, output_path, logger, alignment):
                     if elem['TYPE'] == 'NvMSingleBlockCallback':
                         if elem['VALUE'] != "":
                             obj_nvm['NvMSingleBlockCallback'] = elem['VALUE']
+        if block['CALLBACK'] is not None:
+            obj_nvm['NvMSingleBlockCallback'] = block['CALLBACK']
         for key, value in obj_nvm.items():
             if value is None:
                 if key not in ['NvMRomBlockDataAddress', 'NvMBlockUseAutoValidation', 'NvMSingleBlockCallback', 'NvMSelectBlockForWriteAll', 'NvMSelectBlockForReadAll', 'NvMCalcRamBlockCrc', 'NvMBlockCrcType', 'NvMWriteRamBlockToNvCallback', 'NvMReadRamBlockFromNvCallback', 'NvMInitBlockCallback', 'NvMRPortInterfacesASRVersion', 'NvMWriteVerificationDataSize']:
@@ -1023,13 +1170,11 @@ def create_MEM_config(files_list, output_path, logger, alignment):
         nvm_blocks.append(obj_nvm)
     for block in final_blocks:
         obj_nvm = {}
-        #index = index + 1
         obj_nvm['NAME'] = block['NAME']
         obj_nvm['SOURCE'] = 'Intern'
         obj_nvm['DEVICE'] = block['DEVICE']
         obj_nvm['NvMNvramBlockIdentifier'] = 0
         obj_nvm['NvMRomBlockDataAddress'] = "&NvDM_RomBlock_" + block['NAME']
-        #obj_nvm['NvMRamBlockDataAddress'] = "&NvDM_RamBlock_" + block['NAME']
         obj_nvm['NvMNvBlockLength'] = block['SIZE']
         obj_nvm['NvMSingleBlockCallback'] = None
         obj_nvm['NvMNvBlockBaseNumber'] = 0
@@ -1229,6 +1374,8 @@ def create_MEM_config(files_list, output_path, logger, alignment):
                     if elem['TYPE'] == 'NvMSingleBlockCallback':
                         if elem['VALUE'] != "":
                             obj_nvm['NvMSingleBlockCallback'] = elem['VALUE']
+        if block['CALLBACK'] is not None:
+            obj_nvm['NvMSingleBlockCallback'] = block['CALLBACK']
         for key, value in obj_nvm.items():
             if value is None:
                 if key not in ['NvMRomBlockDataAddress', 'NvMBlockUseAutoValidation', 'NvMSingleBlockCallback', 'NvMSelectBlockForWriteAll', 'NvMSelectBlockForReadAll', 'NvMCalcRamBlockCrc', 'NvMBlockCrcType', 'NvMWriteRamBlockToNvCallback', 'NvMReadRamBlockFromNvCallback', 'NvMInitBlockCallback', 'NvMRPortInterfacesASRVersion', 'NvMWriteVerificationDataSize']:
@@ -1521,6 +1668,13 @@ def create_MEM_config(files_list, output_path, logger, alignment):
                 definition.attrib['DEST'] = "ECUC-FUNCTION-NAME-DEF"
                 definition.text = "/AUTOSAR/EcuDefs/NvM/NvMBlockDescriptor/NvMSingleBlockCallback"
                 value = etree.SubElement(ecuc_textual_NvMSingleBlockCallback, 'VALUE').text = 'SingleBlock_' + block['NAME']
+            else:
+                # TRS.MEMCFG.GEN.018(0)
+                ecuc_textual_NvMSingleBlockCallback = etree.SubElement(parameter, 'ECUC-TEXTUAL-PARAM-VALUE')
+                definition = etree.SubElement(ecuc_textual_NvMSingleBlockCallback, 'DEFINITION-REF')
+                definition.attrib['DEST'] = "ECUC-FUNCTION-NAME-DEF"
+                definition.text = "/AUTOSAR/EcuDefs/NvM/NvMBlockDescriptor/NvMSingleBlockCallback"
+                value = etree.SubElement(ecuc_textual_NvMSingleBlockCallback, 'VALUE').text = block['NvMSingleBlockCallback']
         # NvMBlockUseAutoValidation
         if 'NvMBlockUseAutoValidation' in block.keys():
             if block['NvMBlockUseAutoValidation'] is not None:
@@ -1670,7 +1824,7 @@ def create_MEM_config(files_list, output_path, logger, alignment):
             value.text = block['NvMNameOfEaBlock']
     pretty_xml = new_prettify(rootNvM)
     output = etree.ElementTree(etree.fromstring(pretty_xml))
-    output.write(output_path + '/NvM.epc', encoding='UTF-8', xml_declaration=True, method="xml")
+    output.write(output_path + '/NvM.epc', encoding='UTF-8', xml_declaration=True, method="xml", doctype="<!-- XML file generated by MEM_Configurator-15 -->")
 
     # generate NvDM.epc
     rootNvDM = etree.Element('AUTOSAR', {attr_qname: 'http://autosar.org/schema/r4.0 AUTOSAR_4-2-2_STRICT_COMPACT.xsd'}, nsmap=NSMAP)
@@ -1932,7 +2086,7 @@ def create_MEM_config(files_list, output_path, logger, alignment):
             value.text = element['TYPE']
     pretty_xml = new_prettify(rootNvDM)
     output = etree.ElementTree(etree.fromstring(pretty_xml))
-    output.write(output_path + '/NvDM.epc', encoding='UTF-8', xml_declaration=True, method="xml")
+    output.write(output_path + '/NvDM.epc', encoding='UTF-8', xml_declaration=True, method="xml", doctype="<!-- XML file generated by MEM_Configurator-15 -->")
     ##########################################
     if error_no != 0:
         print("There is at least one blocking error! Check the generated log.")
