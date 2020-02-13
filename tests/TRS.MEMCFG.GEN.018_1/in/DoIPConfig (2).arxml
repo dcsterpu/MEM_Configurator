@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<AUTOSAR xmlns="http://autosar.org/schema/r4.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://autosar.org/schema/r4.0 autosar_4-2-2.xsd">
+  <AR-PACKAGES>
+    <AR-PACKAGE>
+      <SHORT-NAME>RootP_NetworkDesc</SHORT-NAME>
+      <AR-PACKAGES>
+        <AR-PACKAGE>
+          <SHORT-NAME>CONFIG</SHORT-NAME>
+          <ELEMENTS>
+            <DIAGNOSTIC-CONNECTION>
+              <SHORT-NAME>DiagConnectionDoIP</SHORT-NAME>
+              <FUNCTIONAL-REQUEST-REFS>
+                <FUNCTIONAL-REQUEST-REF DEST="TP-CONNECTION-IDENT">/RootP_NetworkDesc/CONFIG/DoIPTpConfig/Ident_DoIpDcmRxPduRequestFunctional</FUNCTIONAL-REQUEST-REF>
+              </FUNCTIONAL-REQUEST-REFS>
+              <PHYSICAL-REQUEST-REF DEST="TP-CONNECTION-IDENT">/RootP_NetworkDesc/CONFIG/DoIPTpConfig/Ident_DoIpDcmRxPduRequest</PHYSICAL-REQUEST-REF>
+              <RESPONSE-REF DEST="TP-CONNECTION-IDENT">/RootP_NetworkDesc/CONFIG/DoIPTpConfig/Ident_DoIpDcmTxPduResponse</RESPONSE-REF>
+            </DIAGNOSTIC-CONNECTION>
+            <DO-IP-TP-CONFIG>
+              <SHORT-NAME>DoIPTpConfig</SHORT-NAME>
+              <COMMUNICATION-CLUSTER-REF DEST="ETHERNET-CLUSTER">/RootP_NetworkDesc/CLUSTERS/ETH_DIAG</COMMUNICATION-CLUSTER-REF>
+              <DO-IP-LOGIC-ADDRESSS>
+                <DO-IP-LOGIC-ADDRESS>
+                  <SHORT-NAME>LogicFunctionalAddressVSM</SHORT-NAME>
+                  <ADDRESS>58368</ADDRESS>
+                </DO-IP-LOGIC-ADDRESS>
+                <DO-IP-LOGIC-ADDRESS>
+                  <SHORT-NAME>LogicTesterAddressTool</SHORT-NAME>
+                  <ADDRESS>3712</ADDRESS>
+                </DO-IP-LOGIC-ADDRESS>
+                <DO-IP-LOGIC-ADDRESS>
+                  <SHORT-NAME>LogicPhysAddressVSM</SHORT-NAME>
+                  <ADDRESS>1874</ADDRESS>
+                </DO-IP-LOGIC-ADDRESS>
+              </DO-IP-LOGIC-ADDRESSS>
+              <TP-CONNECTIONS>
+                <DO-IP-TP-CONNECTION>
+                  <IDENT>
+                    <SHORT-NAME>Ident_DoIpDcmRxPduRequestFunctional</SHORT-NAME>
+                  </IDENT>
+                  <DO-IP-SOURCE-ADDRESS-REF DEST="DO-IP-LOGIC-ADDRESS">/RootP_NetworkDesc/CONFIG/DoIPTpConfig/LogicTesterAddressTool</DO-IP-SOURCE-ADDRESS-REF>
+                  <DO-IP-TARGET-ADDRESS-REF DEST="DO-IP-LOGIC-ADDRESS">/RootP_NetworkDesc/CONFIG/DoIPTpConfig/LogicFunctionalAddressVSM</DO-IP-TARGET-ADDRESS-REF>
+                  <TP-SDU-REF DEST="PDU-TRIGGERING">/RootP_NetworkDesc/CLUSTERS/ETH_DIAG/ETH_DIAG_Channel/ipt_DoIpDcmRxPduRequestFunc</TP-SDU-REF>
+                </DO-IP-TP-CONNECTION>
+                <DO-IP-TP-CONNECTION>
+                  <IDENT>
+                    <SHORT-NAME>Ident_DoIpDcmRxPduRequest</SHORT-NAME>
+                  </IDENT>
+                  <DO-IP-SOURCE-ADDRESS-REF DEST="DO-IP-LOGIC-ADDRESS">/RootP_NetworkDesc/CONFIG/DoIPTpConfig/LogicTesterAddressTool</DO-IP-SOURCE-ADDRESS-REF>
+                  <DO-IP-TARGET-ADDRESS-REF DEST="DO-IP-LOGIC-ADDRESS">/RootP_NetworkDesc/CONFIG/DoIPTpConfig/LogicPhysAddressVSM</DO-IP-TARGET-ADDRESS-REF>
+                  <TP-SDU-REF DEST="PDU-TRIGGERING">/RootP_NetworkDesc/CLUSTERS/ETH_DIAG/ETH_DIAG_Channel/ipt_DoIpDcmRxPduRequest</TP-SDU-REF>
+                </DO-IP-TP-CONNECTION>
+                <DO-IP-TP-CONNECTION>
+                  <IDENT>
+                    <SHORT-NAME>Ident_DoIpDcmTxPduResponse</SHORT-NAME>
+                  </IDENT>
+                  <DO-IP-SOURCE-ADDRESS-REF DEST="DO-IP-LOGIC-ADDRESS">/RootP_NetworkDesc/CONFIG/DoIPTpConfig/LogicPhysAddressVSM</DO-IP-SOURCE-ADDRESS-REF>
+                  <DO-IP-TARGET-ADDRESS-REF DEST="DO-IP-LOGIC-ADDRESS">/RootP_NetworkDesc/CONFIG/DoIPTpConfig/LogicTesterAddressTool</DO-IP-TARGET-ADDRESS-REF>
+                  <TP-SDU-REF DEST="PDU-TRIGGERING">/RootP_NetworkDesc/CLUSTERS/ETH_DIAG/ETH_DIAG_Channel/ipt_DoIpDcmTxPduResponse</TP-SDU-REF>
+                </DO-IP-TP-CONNECTION>
+              </TP-CONNECTIONS>
+            </DO-IP-TP-CONFIG>
+          </ELEMENTS>
+        </AR-PACKAGE>
+      </AR-PACKAGES>
+    </AR-PACKAGE>
+  </AR-PACKAGES>
+</AUTOSAR>

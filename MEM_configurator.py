@@ -532,7 +532,6 @@ def create_MEM_config(files_list, priority_list, output_path, logger, alignment)
         except OSError:
             pass
         sys.exit(1)
-
     # check that there is only one CompiledConfigID
     if len(config_ids) > 1 or len(config_ids) == 0:
         logger.error('None or multiple CompiledConfigID parameters defined')

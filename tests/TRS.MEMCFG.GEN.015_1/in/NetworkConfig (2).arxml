@@ -1,0 +1,986 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<AUTOSAR xmlns="http://autosar.org/schema/r4.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://autosar.org/schema/r4.0 autosar_4-2-2.xsd">
+  <AR-PACKAGES>
+    <AR-PACKAGE T="2018-02-16T12:15:44+01:00">
+      <SHORT-NAME>RootP_NetworkDesc</SHORT-NAME>
+      <AR-PACKAGES>
+      
+        <AR-PACKAGE>
+          <SHORT-NAME>CONFIG</SHORT-NAME>
+          <ELEMENTS>
+            <CAN-TP-CONFIG>
+              <SHORT-NAME>CanTpConfig</SHORT-NAME>
+              <COMMUNICATION-CLUSTER-REF DEST="CAN-CLUSTER">/RootP_NetworkDesc/CLUSTERS/DIAG</COMMUNICATION-CLUSTER-REF>
+              <TP-ADDRESSS>
+                <CAN-TP-ADDRESS>
+                  <SHORT-NAME>CanTpAddress_Dcm</SHORT-NAME>
+                  <TP-ADDRESS>0</TP-ADDRESS>
+                </CAN-TP-ADDRESS>
+              </TP-ADDRESSS>
+              <TP-CHANNELS>
+                <CAN-TP-CHANNEL>
+                  <SHORT-NAME>CanTpChannel_Dcm</SHORT-NAME>
+                  <CHANNEL-ID>1</CHANNEL-ID>
+                  <CHANNEL-MODE>FULL-DUPLEX-MODE</CHANNEL-MODE>
+                </CAN-TP-CHANNEL>
+              </TP-CHANNELS>
+              <TP-CONNECTIONS>
+                <CAN-TP-CONNECTION>
+                  <IDENT T="2018-06-14T10:11:39+02:00">
+                    <SHORT-NAME>DcmIPdu_RxDcmIPduDcm</SHORT-NAME>
+                  </IDENT>
+                  <ADDRESSING-FORMAT>STANDARD</ADDRESSING-FORMAT>
+                  <CAN-TP-CHANNEL-REF DEST="CAN-TP-CHANNEL">/RootP_NetworkDesc/CONFIG/CanTpConfig/CanTpChannel_Dcm</CAN-TP-CHANNEL-REF>
+                  <CANCELLATION>false</CANCELLATION>
+                  <DATA-PDU-REF DEST="N-PDU">/RootP_NetworkDesc/PDUS/NPdu_RxNPduDcm</DATA-PDU-REF>
+                  <FLOW-CONTROL-PDU-REF DEST="N-PDU">/RootP_NetworkDesc/PDUS/NPdu_TxNPduDcm</FLOW-CONTROL-PDU-REF>
+                  <MAX-BLOCK-SIZE>0</MAX-BLOCK-SIZE>
+                  <PADDING-ACTIVATION>false</PADDING-ACTIVATION>
+                  <RECEIVER-REFS>
+                    <RECEIVER-REF DEST="CAN-TP-NODE">/RootP_NetworkDesc/CONFIG/CanTpConfig/CanTpNode_Dcm</RECEIVER-REF>
+                  </RECEIVER-REFS>
+                  <TIMEOUT-BR>1.0</TIMEOUT-BR>
+                  <TIMEOUT-BS>0.0</TIMEOUT-BS>
+                  <TIMEOUT-CR>1.0</TIMEOUT-CR>
+                  <TIMEOUT-CS>0.0</TIMEOUT-CS>
+                  <TP-SDU-REF DEST="DCM-I-PDU">/RootP_NetworkDesc/PDUS/DcmIPdu_RxDcmIPduDcm</TP-SDU-REF>
+                  <TRANSMIT-CANCELLATION>false</TRANSMIT-CANCELLATION>
+                  <TRANSMITTER-REF DEST="CAN-TP-NODE">/RootP_NetworkDesc/CONFIG/CanTpConfig/CanTpNode_Dcm</TRANSMITTER-REF>
+                </CAN-TP-CONNECTION>
+                <CAN-TP-CONNECTION>
+                  <IDENT T="2018-06-14T10:11:57+02:00">
+                    <SHORT-NAME>DcmIPdu_TxDcmIPduDcm</SHORT-NAME>
+                  </IDENT>
+                  <ADDRESSING-FORMAT>STANDARD</ADDRESSING-FORMAT>
+                  <CAN-TP-CHANNEL-REF DEST="CAN-TP-CHANNEL">/RootP_NetworkDesc/CONFIG/CanTpConfig/CanTpChannel_Dcm</CAN-TP-CHANNEL-REF>
+                  <CANCELLATION>false</CANCELLATION>
+                  <DATA-PDU-REF DEST="N-PDU">/RootP_NetworkDesc/PDUS/NPdu_TxNPduDcm</DATA-PDU-REF>
+                  <FLOW-CONTROL-PDU-REF DEST="N-PDU">/RootP_NetworkDesc/PDUS/NPdu_RxNPduDcm</FLOW-CONTROL-PDU-REF>
+                  <MAX-BLOCK-SIZE>0</MAX-BLOCK-SIZE>
+                  <PADDING-ACTIVATION>false</PADDING-ACTIVATION>
+                  <RECEIVER-REFS>
+                    <RECEIVER-REF DEST="CAN-TP-NODE">/RootP_NetworkDesc/CONFIG/CanTpConfig/CanTpNode_Dcm</RECEIVER-REF>
+                  </RECEIVER-REFS>
+                  <TIMEOUT-BR>0.0</TIMEOUT-BR>
+                  <TIMEOUT-BS>1.0</TIMEOUT-BS>
+                  <TIMEOUT-CR>0.0</TIMEOUT-CR>
+                  <TIMEOUT-CS>1.0</TIMEOUT-CS>
+                  <TP-SDU-REF DEST="DCM-I-PDU">/RootP_NetworkDesc/PDUS/DcmIPdu_TxDcmIPduDcm</TP-SDU-REF>
+                  <TRANSMIT-CANCELLATION>false</TRANSMIT-CANCELLATION>
+                  <TRANSMITTER-REF DEST="CAN-TP-NODE">/RootP_NetworkDesc/CONFIG/CanTpConfig/CanTpNode_Dcm</TRANSMITTER-REF>
+                </CAN-TP-CONNECTION>
+              </TP-CONNECTIONS>
+              <TP-ECUS>
+                <CAN-TP-ECU>
+                  <CYCLE-TIME-MAIN-FUNCTION>0.005</CYCLE-TIME-MAIN-FUNCTION>
+                  <ECU-INSTANCE-REF DEST="ECU-INSTANCE">/RootP_NetworkDesc/ECUINSTANCES/VSM</ECU-INSTANCE-REF>
+                </CAN-TP-ECU>
+              </TP-ECUS>
+              <TP-NODES>
+                <CAN-TP-NODE>
+                  <SHORT-NAME>CanTpNode_Dcm</SHORT-NAME>
+                  <CONNECTOR-REF DEST="CAN-COMMUNICATION-CONNECTOR">/RootP_NetworkDesc/ECUINSTANCES/VSM/cc_VSM_DIAG</CONNECTOR-REF>
+                  <MAX-FC-WAIT>255</MAX-FC-WAIT>
+                  <ST-MIN>0.005</ST-MIN>
+                  <TIMEOUT-AR>1.0</TIMEOUT-AR>
+                  <TIMEOUT-AS>1.0</TIMEOUT-AS>
+                  <TP-ADDRESS-REF DEST="CAN-TP-ADDRESS">/RootP_NetworkDesc/CONFIG/CanTpConfig/CanTpAddress_Dcm</TP-ADDRESS-REF>
+                </CAN-TP-NODE>
+              </TP-NODES>
+            </CAN-TP-CONFIG>
+          </ELEMENTS>
+        </AR-PACKAGE>
+
+        <AR-PACKAGE>
+          <SHORT-NAME>PDUS</SHORT-NAME>
+          <ELEMENTS>
+
+            <DCM-I-PDU>
+                <SHORT-NAME>DoIpDcmRxPduRequest</SHORT-NAME>
+                <LENGTH>4095</LENGTH>
+                <DIAG-PDU-TYPE>DIAG-REQUEST</DIAG-PDU-TYPE>
+            </DCM-I-PDU>
+            <DCM-I-PDU>
+                <SHORT-NAME>DoIpDcmRxPduRequestFunctional</SHORT-NAME>
+                <LENGTH>4095</LENGTH>
+                <DIAG-PDU-TYPE>DIAG-REQUEST</DIAG-PDU-TYPE>
+            </DCM-I-PDU>
+            <DCM-I-PDU>
+                <SHORT-NAME>DoIpDcmTxPduResponse</SHORT-NAME>
+                <LENGTH>4095</LENGTH>
+                <DIAG-PDU-TYPE>DIAG-RESPONSE</DIAG-PDU-TYPE>
+            </DCM-I-PDU>
+
+            <GENERAL-PURPOSE-PDU>
+              <SHORT-NAME>DoIpSoAdRxPduTcp</SHORT-NAME>
+              <CATEGORY>DoIP</CATEGORY>
+              <LENGTH>1472</LENGTH>
+              <META-DATA-LENGTH>0</META-DATA-LENGTH>
+            </GENERAL-PURPOSE-PDU>
+            <GENERAL-PURPOSE-PDU>
+              <SHORT-NAME>DoIpSoAdTxPduTcp</SHORT-NAME>
+              <CATEGORY>DoIP</CATEGORY>
+              <LENGTH>1472</LENGTH>
+              <META-DATA-LENGTH>0</META-DATA-LENGTH>
+            </GENERAL-PURPOSE-PDU>
+            
+            <GENERAL-PURPOSE-PDU>
+              <SHORT-NAME>DoIpSoAdRxPduTcp_2</SHORT-NAME>
+              <CATEGORY>DoIP</CATEGORY>
+              <LENGTH>1472</LENGTH>
+              <META-DATA-LENGTH>0</META-DATA-LENGTH>
+            </GENERAL-PURPOSE-PDU>
+            <GENERAL-PURPOSE-PDU>
+              <SHORT-NAME>DoIpSoAdTxPduTcp_2</SHORT-NAME>
+              <CATEGORY>DoIP</CATEGORY>
+              <LENGTH>1472</LENGTH>
+              <META-DATA-LENGTH>0</META-DATA-LENGTH>
+            </GENERAL-PURPOSE-PDU>
+
+            <GENERAL-PURPOSE-PDU>
+              <SHORT-NAME>DoIpSoAdRxPduVehicleIdentificationRequestUdp</SHORT-NAME>
+              <CATEGORY>DoIP</CATEGORY>
+              <LENGTH>1472</LENGTH>
+              <META-DATA-LENGTH>0</META-DATA-LENGTH>
+            </GENERAL-PURPOSE-PDU>
+            <GENERAL-PURPOSE-PDU>
+              <SHORT-NAME>DoIpSoAdTxPduVehicleIdentificationResponseUdp</SHORT-NAME>
+              <CATEGORY>DoIP</CATEGORY>
+              <LENGTH>4095</LENGTH>
+              <META-DATA-LENGTH>0</META-DATA-LENGTH>
+            </GENERAL-PURPOSE-PDU>
+            
+            <GENERAL-PURPOSE-PDU>
+              <SHORT-NAME>DoIpSoAdTxPduVehiculeAnnoucementResponseUdp</SHORT-NAME>
+              <CATEGORY>DoIP</CATEGORY>
+              <LENGTH>4095</LENGTH>
+              <META-DATA-LENGTH>0</META-DATA-LENGTH>
+            </GENERAL-PURPOSE-PDU>
+
+            <GENERAL-PURPOSE-PDU>
+              <SHORT-NAME>DoIpSoAdRxPduBroadcastDirectedVehicleIdentificationRequestUdp</SHORT-NAME>
+              <CATEGORY>DoIP</CATEGORY>
+              <LENGTH>1472</LENGTH>
+              <META-DATA-LENGTH>0</META-DATA-LENGTH>
+            </GENERAL-PURPOSE-PDU>
+            <GENERAL-PURPOSE-PDU>
+              <SHORT-NAME>DoIpSoAdTxPduBroadcastDirectedVehicleIdentificationResponseUdp</SHORT-NAME>
+              <CATEGORY>DoIP</CATEGORY>
+              <LENGTH>4095</LENGTH>
+              <META-DATA-LENGTH>0</META-DATA-LENGTH>
+            </GENERAL-PURPOSE-PDU>
+            
+            <GENERAL-PURPOSE-PDU>
+              <SHORT-NAME>DoIpSoAdRxPduBroadcastLimitedVehicleIdentificationRequestUdp</SHORT-NAME>
+              <CATEGORY>DoIP</CATEGORY>
+              <LENGTH>1472</LENGTH>
+              <META-DATA-LENGTH>0</META-DATA-LENGTH>
+            </GENERAL-PURPOSE-PDU>
+            <GENERAL-PURPOSE-PDU>
+              <SHORT-NAME>DoIpSoAdTxPduBroadcastLimitedVehicleIdentificationResponseUdp</SHORT-NAME>
+              <CATEGORY>DoIP</CATEGORY>
+              <LENGTH>4095</LENGTH>
+              <META-DATA-LENGTH>0</META-DATA-LENGTH>
+            </GENERAL-PURPOSE-PDU>
+          </ELEMENTS>
+        </AR-PACKAGE>
+
+        <AR-PACKAGE>
+          <SHORT-NAME>CLUSTERS</SHORT-NAME>
+          <ELEMENTS>
+            <ETHERNET-CLUSTER>
+              <SHORT-NAME>ETH_DIAG</SHORT-NAME>
+              <ETHERNET-CLUSTER-VARIANTS>
+                <ETHERNET-CLUSTER-CONDITIONAL>
+                  <PHYSICAL-CHANNELS>
+                    <ETHERNET-PHYSICAL-CHANNEL>
+                      <SHORT-NAME>ETH_DIAG_Channel</SHORT-NAME>
+                      <COMM-CONNECTORS>
+                        <COMMUNICATION-CONNECTOR-REF-CONDITIONAL>
+                          <COMMUNICATION-CONNECTOR-REF DEST="ETHERNET-COMMUNICATION-CONNECTOR">/RootP_NetworkDesc/ECUINSTANCES/OUTIL_DIAG/cc_OUTIL_DIAG_ETH</COMMUNICATION-CONNECTOR-REF>
+                        </COMMUNICATION-CONNECTOR-REF-CONDITIONAL>
+                        <COMMUNICATION-CONNECTOR-REF-CONDITIONAL>
+                          <COMMUNICATION-CONNECTOR-REF DEST="ETHERNET-COMMUNICATION-CONNECTOR">/RootP_NetworkDesc/ECUINSTANCES/VSM/cc_VSM_ETH</COMMUNICATION-CONNECTOR-REF>
+                        </COMMUNICATION-CONNECTOR-REF-CONDITIONAL>
+                      </COMM-CONNECTORS>
+                      
+                      <I-SIGNAL-TRIGGERINGS>
+                      </I-SIGNAL-TRIGGERINGS>
+                      
+                      <PDU-TRIGGERINGS>
+                        <PDU-TRIGGERING>
+                          <SHORT-NAME>ipt_DoIpDcmRxPduRequest</SHORT-NAME>
+                          <I-PDU-PORT-REFS>
+                            <I-PDU-PORT-REF DEST="I-PDU-PORT">/RootP_NetworkDesc/ECUINSTANCES/VSM/cc_VSM_ETH/ippIn_VSM_ETH</I-PDU-PORT-REF>
+                            <I-PDU-PORT-REF DEST="I-PDU-PORT">/RootP_NetworkDesc/ECUINSTANCES/OUTIL_DIAG/cc_OUTIL_DIAG_ETH/ippIn_OUTIL_DIAG_ETH</I-PDU-PORT-REF>
+                          </I-PDU-PORT-REFS>
+                          <I-PDU-REF DEST="DCM-I-PDU">/RootP_NetworkDesc/PDUS/DoIpDcmRxPduRequest</I-PDU-REF>
+                        </PDU-TRIGGERING>
+                        <PDU-TRIGGERING>
+                          <SHORT-NAME>ipt_DoIpDcmRxPduRequestFunc</SHORT-NAME>
+                          <I-PDU-PORT-REFS>
+                            <I-PDU-PORT-REF DEST="I-PDU-PORT">/RootP_NetworkDesc/ECUINSTANCES/VSM/cc_VSM_ETH/ippIn_VSM_ETH</I-PDU-PORT-REF>
+                            <I-PDU-PORT-REF DEST="I-PDU-PORT">/RootP_NetworkDesc/ECUINSTANCES/OUTIL_DIAG/cc_OUTIL_DIAG_ETH/ippIn_OUTIL_DIAG_ETH</I-PDU-PORT-REF>
+                          </I-PDU-PORT-REFS>
+                          <I-PDU-REF DEST="DCM-I-PDU">/RootP_NetworkDesc/PDUS/DoIpDcmRxPduRequestFunctional</I-PDU-REF>
+                        </PDU-TRIGGERING>
+                        <PDU-TRIGGERING>
+                          <SHORT-NAME>ipt_DoIpDcmTxPduResponse</SHORT-NAME>
+                          <I-PDU-PORT-REFS>
+                            <I-PDU-PORT-REF DEST="I-PDU-PORT">/RootP_NetworkDesc/ECUINSTANCES/OUTIL_DIAG/cc_OUTIL_DIAG_ETH/ippIn_OUTIL_DIAG_ETH</I-PDU-PORT-REF>
+                            <I-PDU-PORT-REF DEST="I-PDU-PORT">/RootP_NetworkDesc/ECUINSTANCES/VSM/cc_VSM_ETH/ippOut_VSM_ETH</I-PDU-PORT-REF>
+                          </I-PDU-PORT-REFS>
+                          <I-PDU-REF DEST="DCM-I-PDU">/RootP_NetworkDesc/PDUS/DoIpDcmTxPduResponse</I-PDU-REF>
+                        </PDU-TRIGGERING>
+                        <PDU-TRIGGERING>
+                          <SHORT-NAME>ipt_DoIpSoAdRxPduTcp</SHORT-NAME>
+                          <I-PDU-PORT-REFS>
+                            <I-PDU-PORT-REF DEST="I-PDU-PORT">/RootP_NetworkDesc/ECUINSTANCES/VSM/cc_VSM_ETH/ippIn_VSM_ETH</I-PDU-PORT-REF>
+                            <I-PDU-PORT-REF DEST="I-PDU-PORT">/RootP_NetworkDesc/ECUINSTANCES/OUTIL_DIAG/cc_OUTIL_DIAG_ETH/ippIn_OUTIL_DIAG_ETH</I-PDU-PORT-REF>
+                          </I-PDU-PORT-REFS>
+                          <I-PDU-REF DEST="GENERAL-PURPOSE-PDU">/RootP_NetworkDesc/PDUS/DoIpSoAdRxPduTcp</I-PDU-REF>
+                        </PDU-TRIGGERING>
+                        <PDU-TRIGGERING>
+                          <SHORT-NAME>ipt_DoIpSoAdRxPduTcp2</SHORT-NAME>
+                          <I-PDU-PORT-REFS>
+                            <I-PDU-PORT-REF DEST="I-PDU-PORT">/RootP_NetworkDesc/ECUINSTANCES/VSM/cc_VSM_ETH/ippIn_VSM_ETH</I-PDU-PORT-REF>
+                            <I-PDU-PORT-REF DEST="I-PDU-PORT">/RootP_NetworkDesc/ECUINSTANCES/OUTIL_DIAG/cc_OUTIL_DIAG_ETH/ippIn_OUTIL_DIAG_ETH</I-PDU-PORT-REF>
+                          </I-PDU-PORT-REFS>
+                          <I-PDU-REF DEST="GENERAL-PURPOSE-PDU">/RootP_NetworkDesc/PDUS/DoIpSoAdRxPduTcp_2</I-PDU-REF>
+                        </PDU-TRIGGERING>
+                        <PDU-TRIGGERING>
+                          <SHORT-NAME>ipt_DoIpSoAdRxPduVehicleIdentificationRequestUdp</SHORT-NAME>
+                          <I-PDU-PORT-REFS>
+                            <I-PDU-PORT-REF DEST="I-PDU-PORT">/RootP_NetworkDesc/ECUINSTANCES/VSM/cc_VSM_ETH/ippIn_VSM_ETH</I-PDU-PORT-REF>
+                            <I-PDU-PORT-REF DEST="I-PDU-PORT">/RootP_NetworkDesc/ECUINSTANCES/OUTIL_DIAG/cc_OUTIL_DIAG_ETH/ippIn_OUTIL_DIAG_ETH</I-PDU-PORT-REF>
+                          </I-PDU-PORT-REFS>
+                          <I-PDU-REF DEST="GENERAL-PURPOSE-PDU">/RootP_NetworkDesc/PDUS/DoIpSoAdRxPduVehicleIdentificationRequestUdp</I-PDU-REF>
+                        </PDU-TRIGGERING>
+                        <PDU-TRIGGERING>
+                          <SHORT-NAME>ipt_DoIpSoAdTxPduTcp</SHORT-NAME>
+                          <I-PDU-PORT-REFS>
+                            <I-PDU-PORT-REF DEST="I-PDU-PORT">/RootP_NetworkDesc/ECUINSTANCES/OUTIL_DIAG/cc_OUTIL_DIAG_ETH/ippIn_OUTIL_DIAG_ETH</I-PDU-PORT-REF>
+                            <I-PDU-PORT-REF DEST="I-PDU-PORT">/RootP_NetworkDesc/ECUINSTANCES/VSM/cc_VSM_ETH/ippOut_VSM_ETH</I-PDU-PORT-REF>
+                          </I-PDU-PORT-REFS>
+                          <I-PDU-REF DEST="GENERAL-PURPOSE-PDU">/RootP_NetworkDesc/PDUS/DoIpSoAdTxPduTcp</I-PDU-REF>
+                        </PDU-TRIGGERING>
+                        <PDU-TRIGGERING>
+                          <SHORT-NAME>ipt_DoIpSoAdTxPduTcp_2</SHORT-NAME>
+                          <I-PDU-PORT-REFS>
+                            <I-PDU-PORT-REF DEST="I-PDU-PORT">/RootP_NetworkDesc/ECUINSTANCES/OUTIL_DIAG/cc_OUTIL_DIAG_ETH/ippIn_OUTIL_DIAG_ETH</I-PDU-PORT-REF>
+                            <I-PDU-PORT-REF DEST="I-PDU-PORT">/RootP_NetworkDesc/ECUINSTANCES/VSM/cc_VSM_ETH/ippOut_VSM_ETH</I-PDU-PORT-REF>
+                          </I-PDU-PORT-REFS>
+                          <I-PDU-REF DEST="GENERAL-PURPOSE-PDU">/RootP_NetworkDesc/PDUS/DoIpSoAdTxPduTcp_2</I-PDU-REF>
+                        </PDU-TRIGGERING>
+                        <PDU-TRIGGERING>
+                          <SHORT-NAME>ipt_DoIpSoAdTxPduVehicleIdentificationResponseUdp</SHORT-NAME>
+                          <I-PDU-PORT-REFS>
+                            <I-PDU-PORT-REF DEST="I-PDU-PORT">/RootP_NetworkDesc/ECUINSTANCES/OUTIL_DIAG/cc_OUTIL_DIAG_ETH/ippIn_OUTIL_DIAG_ETH</I-PDU-PORT-REF>
+                            <I-PDU-PORT-REF DEST="I-PDU-PORT">/RootP_NetworkDesc/ECUINSTANCES/VSM/cc_VSM_ETH/ippOut_VSM_ETH</I-PDU-PORT-REF>
+                          </I-PDU-PORT-REFS>
+                          <I-PDU-REF DEST="GENERAL-PURPOSE-PDU">/RootP_NetworkDesc/PDUS/DoIpSoAdTxPduVehicleIdentificationResponseUdp</I-PDU-REF>
+                        </PDU-TRIGGERING>
+                        <PDU-TRIGGERING>
+                          <SHORT-NAME>ipt_DoIpSoAdTxPduVehiculeAnnoucementResponseUdp</SHORT-NAME>
+                          <I-PDU-PORT-REFS>
+                            <I-PDU-PORT-REF DEST="I-PDU-PORT">/RootP_NetworkDesc/ECUINSTANCES/OUTIL_DIAG/cc_OUTIL_DIAG_ETH/ippIn_OUTIL_DIAG_ETH</I-PDU-PORT-REF>
+                            <I-PDU-PORT-REF DEST="I-PDU-PORT">/RootP_NetworkDesc/ECUINSTANCES/VSM/cc_VSM_ETH/ippOut_VSM_ETH</I-PDU-PORT-REF>
+                          </I-PDU-PORT-REFS>
+                          <I-PDU-REF DEST="GENERAL-PURPOSE-PDU">/RootP_NetworkDesc/PDUS/DoIpSoAdTxPduVehiculeAnnoucementResponseUdp</I-PDU-REF>
+                        </PDU-TRIGGERING>
+
+                        <PDU-TRIGGERING>
+                          <SHORT-NAME>ipt_DoIpSoAdTxPduBroadcastDirectedVehicleIdentificationRequestUdp</SHORT-NAME>
+                          <I-PDU-PORT-REFS>
+                            <I-PDU-PORT-REF DEST="I-PDU-PORT">/RootP_NetworkDesc/ECUINSTANCES/OUTIL_DIAG/cc_OUTIL_DIAG_ETH/ippIn_OUTIL_DIAG_ETH</I-PDU-PORT-REF>
+                            <I-PDU-PORT-REF DEST="I-PDU-PORT">/RootP_NetworkDesc/ECUINSTANCES/VSM/cc_VSM_ETH/ippOut_VSM_ETH</I-PDU-PORT-REF>
+                          </I-PDU-PORT-REFS>
+                          <I-PDU-REF DEST="GENERAL-PURPOSE-PDU">/RootP_NetworkDesc/PDUS/DoIpSoAdTxPduBroadcastDirectedVehicleIdentificationResponseUdp</I-PDU-REF>
+                        </PDU-TRIGGERING>
+                        <PDU-TRIGGERING>
+                          <SHORT-NAME>ipt_DoIpSoAdRxPduBroadcastDirectedVehicleIdentificationRequestUdp</SHORT-NAME>
+                          <I-PDU-PORT-REFS>
+                            <I-PDU-PORT-REF DEST="I-PDU-PORT">/RootP_NetworkDesc/ECUINSTANCES/VSM/cc_VSM_ETH/ippIn_VSM_ETH</I-PDU-PORT-REF>
+                            <I-PDU-PORT-REF DEST="I-PDU-PORT">/RootP_NetworkDesc/ECUINSTANCES/OUTIL_DIAG/cc_OUTIL_DIAG_ETH/ippIn_OUTIL_DIAG_ETH</I-PDU-PORT-REF>
+                          </I-PDU-PORT-REFS>
+                          <I-PDU-REF DEST="GENERAL-PURPOSE-PDU">/RootP_NetworkDesc/PDUS/DoIpSoAdRxPduBroadcastDirectedVehicleIdentificationRequestUdp</I-PDU-REF>
+                        </PDU-TRIGGERING>
+                        
+                        <PDU-TRIGGERING>
+                          <SHORT-NAME>ipt_DoIpSoAdTxPduBroadcastLimitedVehicleIdentificationRequestUdp</SHORT-NAME>
+                          <I-PDU-PORT-REFS>
+                            <I-PDU-PORT-REF DEST="I-PDU-PORT">/RootP_NetworkDesc/ECUINSTANCES/OUTIL_DIAG/cc_OUTIL_DIAG_ETH/ippIn_OUTIL_DIAG_ETH</I-PDU-PORT-REF>
+                            <I-PDU-PORT-REF DEST="I-PDU-PORT">/RootP_NetworkDesc/ECUINSTANCES/VSM/cc_VSM_ETH/ippOut_VSM_ETH</I-PDU-PORT-REF>
+                          </I-PDU-PORT-REFS>
+                          <I-PDU-REF DEST="GENERAL-PURPOSE-PDU">/RootP_NetworkDesc/PDUS/DoIpSoAdTxPduBroadcastLimitedVehicleIdentificationResponseUdp</I-PDU-REF>
+                        </PDU-TRIGGERING>
+                        <PDU-TRIGGERING>
+                          <SHORT-NAME>ipt_DoIpSoAdRxPduBroadcastLimitedVehicleIdentificationRequestUdp</SHORT-NAME>
+                          <I-PDU-PORT-REFS>
+                            <I-PDU-PORT-REF DEST="I-PDU-PORT">/RootP_NetworkDesc/ECUINSTANCES/VSM/cc_VSM_ETH/ippIn_VSM_ETH</I-PDU-PORT-REF>
+                            <I-PDU-PORT-REF DEST="I-PDU-PORT">/RootP_NetworkDesc/ECUINSTANCES/OUTIL_DIAG/cc_OUTIL_DIAG_ETH/ippIn_OUTIL_DIAG_ETH</I-PDU-PORT-REF>
+                          </I-PDU-PORT-REFS>
+                          <I-PDU-REF DEST="GENERAL-PURPOSE-PDU">/RootP_NetworkDesc/PDUS/DoIpSoAdRxPduBroadcastLimitedVehicleIdentificationRequestUdp</I-PDU-REF>
+                        </PDU-TRIGGERING>
+                      </PDU-TRIGGERINGS>
+                      
+                      <NETWORK-ENDPOINTS>
+                        <NETWORK-ENDPOINT>
+                          <SHORT-NAME>SocketAddress_OUTIL_DIAG_NEP</SHORT-NAME>
+                          <FULLY-QUALIFIED-DOMAIN-NAME>IP_OUTIL_DIAG</FULLY-QUALIFIED-DOMAIN-NAME>
+                          <INFRASTRUCTURE-SERVICES>
+                            <DO-IP-ENTITY>
+                              <DO-IP-ENTITY-ROLE>NODE</DO-IP-ENTITY-ROLE>
+                            </DO-IP-ENTITY>
+                          </INFRASTRUCTURE-SERVICES>
+                          <NETWORK-ENDPOINT-ADDRESSES>
+                            <IPV-4-CONFIGURATION>
+                              <ASSIGNMENT-PRIORITY>1</ASSIGNMENT-PRIORITY>
+                              <IP-ADDRESS-KEEP-BEHAVIOR>FORGET</IP-ADDRESS-KEEP-BEHAVIOR>
+                              <IPV-4-ADDRESS>192.168.254.2</IPV-4-ADDRESS>
+                              <IPV-4-ADDRESS-SOURCE>FIXED</IPV-4-ADDRESS-SOURCE>
+                              <NETWORK-MASK>255.255.255.0</NETWORK-MASK>
+                              <TTL>64</TTL>
+                            </IPV-4-CONFIGURATION>
+                          </NETWORK-ENDPOINT-ADDRESSES>
+                        </NETWORK-ENDPOINT>
+                        <NETWORK-ENDPOINT>
+                          <SHORT-NAME>SocketAddress_VSM_NEP</SHORT-NAME>
+                          <FULLY-QUALIFIED-DOMAIN-NAME>IP_VSM</FULLY-QUALIFIED-DOMAIN-NAME>
+                          <NETWORK-ENDPOINT-ADDRESSES>
+                            <IPV-4-CONFIGURATION>
+                              <ASSIGNMENT-PRIORITY>1</ASSIGNMENT-PRIORITY>
+                              <DEFAULT-GATEWAY>255.255.255.255</DEFAULT-GATEWAY>
+                              <IP-ADDRESS-KEEP-BEHAVIOR>FORGET</IP-ADDRESS-KEEP-BEHAVIOR>
+                              <IPV-4-ADDRESS>192.168.254.1</IPV-4-ADDRESS>
+                              <IPV-4-ADDRESS-SOURCE>DHCPV-4</IPV-4-ADDRESS-SOURCE>
+                              <NETWORK-MASK>255.255.255.0</NETWORK-MASK>
+                              <TTL>64</TTL>
+                            </IPV-4-CONFIGURATION>
+                            <IPV-4-CONFIGURATION>
+                              <ASSIGNMENT-PRIORITY>2</ASSIGNMENT-PRIORITY>
+                              <DEFAULT-GATEWAY>255.255.255.255</DEFAULT-GATEWAY>
+                              <IP-ADDRESS-KEEP-BEHAVIOR>FORGET</IP-ADDRESS-KEEP-BEHAVIOR>
+                              <IPV-4-ADDRESS>192.168.254.1</IPV-4-ADDRESS>
+                              <IPV-4-ADDRESS-SOURCE>FIXED</IPV-4-ADDRESS-SOURCE>
+                              <NETWORK-MASK>255.255.255.0</NETWORK-MASK>
+                              <TTL>64</TTL>
+                            </IPV-4-CONFIGURATION>
+                            <IPV-4-CONFIGURATION>
+                              <ASSIGNMENT-PRIORITY>3</ASSIGNMENT-PRIORITY>
+                              <DEFAULT-GATEWAY>255.255.255.255</DEFAULT-GATEWAY>
+                              <IP-ADDRESS-KEEP-BEHAVIOR>FORGET</IP-ADDRESS-KEEP-BEHAVIOR>
+                              <IPV-4-ADDRESS>192.168.254.1</IPV-4-ADDRESS>
+                              <IPV-4-ADDRESS-SOURCE>AUTO-IP--DOIP</IPV-4-ADDRESS-SOURCE>
+                              <NETWORK-MASK>255.255.255.0</NETWORK-MASK>
+                              <TTL>64</TTL>
+                            </IPV-4-CONFIGURATION>
+                          </NETWORK-ENDPOINT-ADDRESSES>
+                        </NETWORK-ENDPOINT>
+                        <NETWORK-ENDPOINT>
+                          <SHORT-NAME>SocketAddress_BroadcastDirectedVSM_NEP</SHORT-NAME>
+                          <FULLY-QUALIFIED-DOMAIN-NAME>IP_BroadcastDirecteded</FULLY-QUALIFIED-DOMAIN-NAME>
+                          <NETWORK-ENDPOINT-ADDRESSES>
+                            <IPV-4-CONFIGURATION>
+                              <ASSIGNMENT-PRIORITY>1</ASSIGNMENT-PRIORITY>
+                              <DEFAULT-GATEWAY>255.255.255.255</DEFAULT-GATEWAY>
+                              <IP-ADDRESS-KEEP-BEHAVIOR>FORGET</IP-ADDRESS-KEEP-BEHAVIOR>
+                              <IPV-4-ADDRESS>192.168.254.255</IPV-4-ADDRESS>
+                              <IPV-4-ADDRESS-SOURCE>FIXED</IPV-4-ADDRESS-SOURCE>
+                            </IPV-4-CONFIGURATION>
+                          </NETWORK-ENDPOINT-ADDRESSES>
+                        </NETWORK-ENDPOINT>
+                        <NETWORK-ENDPOINT>
+                          <SHORT-NAME>SocketAddress_BroadcastLimitedVSM_NEP</SHORT-NAME>
+                          <FULLY-QUALIFIED-DOMAIN-NAME>IP_BroadcastLimited</FULLY-QUALIFIED-DOMAIN-NAME>
+                          <NETWORK-ENDPOINT-ADDRESSES>
+                            <IPV-4-CONFIGURATION>
+                              <ASSIGNMENT-PRIORITY>1</ASSIGNMENT-PRIORITY>
+                              <DEFAULT-GATEWAY>255.255.255.255</DEFAULT-GATEWAY>
+                              <IP-ADDRESS-KEEP-BEHAVIOR>FORGET</IP-ADDRESS-KEEP-BEHAVIOR>
+                              <IPV-4-ADDRESS>255.255.255.255</IPV-4-ADDRESS>
+                              <IPV-4-ADDRESS-SOURCE>FIXED</IPV-4-ADDRESS-SOURCE>
+                            </IPV-4-CONFIGURATION>
+                          </NETWORK-ENDPOINT-ADDRESSES>
+                        </NETWORK-ENDPOINT>
+                      </NETWORK-ENDPOINTS>
+                      <SO-AD-CONFIG>
+                        <CONNECTION-BUNDLES>
+
+                          <SOCKET-CONNECTION-BUNDLE>
+                            <SHORT-NAME>SocketConnectionBundleDOIP_BroadcastLimitedVehicleIdentification_UDP</SHORT-NAME>
+                            <BUNDLED-CONNECTIONS>
+                              <SOCKET-CONNECTION>
+                                <AUTOSAR-CONNECTOR>DO-IP</AUTOSAR-CONNECTOR>
+                                <CLIENT-IP-ADDR-FROM-CONNECTION-REQUEST>true</CLIENT-IP-ADDR-FROM-CONNECTION-REQUEST>
+                                <CLIENT-PORT-FROM-CONNECTION-REQUEST>true</CLIENT-PORT-FROM-CONNECTION-REQUEST>
+                                <CLIENT-PORT-REF DEST="SOCKET-ADDRESS">/RootP_NetworkDesc/CLUSTERS/ETH_DIAG/ETH_DIAG_Channel/SocketAddress_OUTIL_DIAG_UDP_BroadcastLimitedVehicleIdentification_DOIP</CLIENT-PORT-REF>
+                                <DO-IP-SOURCE-ADDRESS-REF DEST="LOGIC-ADDRESS">/RootP_NetworkDesc/CLUSTERS/ETH_DIAG/ETH_DIAG_Channel/LogicAddressVSM</DO-IP-SOURCE-ADDRESS-REF>
+                                <DO-IP-TARGET-ADDRESS-REF DEST="LOGIC-ADDRESS">/RootP_NetworkDesc/CLUSTERS/ETH_DIAG/ETH_DIAG_Channel/LogicAddressTool</DO-IP-TARGET-ADDRESS-REF>
+                                <LOCAL-PORT-REF DEST="SOCKET-ADDRESS">/RootP_NetworkDesc/CLUSTERS/ETH_DIAG/ETH_DIAG_Channel/SocketAddress_BroadcastLimitedVSM_UDP_DOIP_VehicleIdentification</LOCAL-PORT-REF>
+                                <PDUS>
+                                  <SOCKET-CONNECTION-IPDU-IDENTIFIER>
+                                    <PDU-COLLECTION-TRIGGER>ALWAYS</PDU-COLLECTION-TRIGGER>
+                                    <PDU-REF DEST="GENERAL-PURPOSE-PDU">/RootP_NetworkDesc/PDUS/DoIpSoAdTxPduBroadcastLimitedVehicleIdentificationResponseUdp</PDU-REF>
+                                    <PDU-TRIGGERING-REF DEST="PDU-TRIGGERING">/RootP_NetworkDesc/CLUSTERS/ETH_DIAG/ETH_DIAG_Channel/ipt_DoIpSoAdTxPduBroadcastLimitedVehicleIdentificationRequestUdp</PDU-TRIGGERING-REF>
+                                  </SOCKET-CONNECTION-IPDU-IDENTIFIER>
+                                </PDUS>
+                                <REMOTE-PORT-REF DEST="SOCKET-ADDRESS">/RootP_NetworkDesc/CLUSTERS/ETH_DIAG/ETH_DIAG_Channel/SocketAddress_OUTIL_DIAG_UDP_BroadcastLimitedVehicleIdentification_DOIP</REMOTE-PORT-REF>
+                                <RUNTIME-IP-ADDRESS-CONFIGURATION>SD</RUNTIME-IP-ADDRESS-CONFIGURATION>
+                                <RUNTIME-PORT-CONFIGURATION>SD</RUNTIME-PORT-CONFIGURATION>
+                                <SHORT-LABEL>SocketConnectionDOIP_BroadcastLimitedVehicleIdentification_UDP</SHORT-LABEL>
+                                <SOCKET-PROTOCOL>UDP</SOCKET-PROTOCOL>
+                              </SOCKET-CONNECTION>
+                            </BUNDLED-CONNECTIONS>
+                            <PDUS>
+                              <SOCKET-CONNECTION-IPDU-IDENTIFIER>
+                                <PDU-COLLECTION-TRIGGER>ALWAYS</PDU-COLLECTION-TRIGGER>
+                                <PDU-REF DEST="GENERAL-PURPOSE-PDU">/RootP_NetworkDesc/PDUS/DoIpSoAdRxPduBroadcastLimitedVehicleIdentificationRequestUdp</PDU-REF>
+                                <PDU-TRIGGERING-REF DEST="PDU-TRIGGERING">/RootP_NetworkDesc/CLUSTERS/ETH_DIAG/ETH_DIAG_Channel/ipt_DoIpSoAdRxPduBroadcastLimitedVehicleIdentificationRequestUdp</PDU-TRIGGERING-REF>
+                              </SOCKET-CONNECTION-IPDU-IDENTIFIER>
+                            </PDUS>
+                            <SERVER-PORT-REF DEST="SOCKET-ADDRESS">/RootP_NetworkDesc/CLUSTERS/ETH_DIAG/ETH_DIAG_Channel/SocketAddress_BroadcastLimitedVSM_UDP_DOIP_VehicleIdentification</SERVER-PORT-REF>
+                          </SOCKET-CONNECTION-BUNDLE>
+
+                          <SOCKET-CONNECTION-BUNDLE>
+                            <SHORT-NAME>SocketConnectionBundleDOIP_BroadcastDirectedVehicleIdentification_UDP</SHORT-NAME>
+                            <BUNDLED-CONNECTIONS>
+                              <SOCKET-CONNECTION>
+                                <AUTOSAR-CONNECTOR>DO-IP</AUTOSAR-CONNECTOR>
+                                <CLIENT-IP-ADDR-FROM-CONNECTION-REQUEST>false</CLIENT-IP-ADDR-FROM-CONNECTION-REQUEST>
+                                <CLIENT-PORT-FROM-CONNECTION-REQUEST>false</CLIENT-PORT-FROM-CONNECTION-REQUEST>
+                                <CLIENT-PORT-REF DEST="SOCKET-ADDRESS">/RootP_NetworkDesc/CLUSTERS/ETH_DIAG/ETH_DIAG_Channel/SocketAddress_OUTIL_DIAG_UDP_BroadcastDirectedVehicleIdentification_DOIP</CLIENT-PORT-REF>
+                                <DO-IP-SOURCE-ADDRESS-REF DEST="LOGIC-ADDRESS">/RootP_NetworkDesc/CLUSTERS/ETH_DIAG/ETH_DIAG_Channel/LogicAddressVSM</DO-IP-SOURCE-ADDRESS-REF>
+                                <DO-IP-TARGET-ADDRESS-REF DEST="LOGIC-ADDRESS">/RootP_NetworkDesc/CLUSTERS/ETH_DIAG/ETH_DIAG_Channel/LogicAddressTool</DO-IP-TARGET-ADDRESS-REF>
+                                <LOCAL-PORT-REF DEST="SOCKET-ADDRESS">/RootP_NetworkDesc/CLUSTERS/ETH_DIAG/ETH_DIAG_Channel/SocketAddress_BroadcastDirectedVSM_UDP_DOIP_VehicleIdentification</LOCAL-PORT-REF>
+                                <PDUS>
+                                  <SOCKET-CONNECTION-IPDU-IDENTIFIER>
+                                    <PDU-COLLECTION-TRIGGER>ALWAYS</PDU-COLLECTION-TRIGGER>
+                                    <PDU-REF DEST="GENERAL-PURPOSE-PDU">/RootP_NetworkDesc/PDUS/DoIpSoAdTxPduBroadcastDirectedVehicleIdentificationResponseUdp</PDU-REF>
+                                    <PDU-TRIGGERING-REF DEST="PDU-TRIGGERING">/RootP_NetworkDesc/CLUSTERS/ETH_DIAG/ETH_DIAG_Channel/ipt_DoIpSoAdTxPduBroadcastDirectedVehicleIdentificationRequestUdp</PDU-TRIGGERING-REF>
+                                  </SOCKET-CONNECTION-IPDU-IDENTIFIER>
+                                </PDUS>
+                                <REMOTE-PORT-REF DEST="SOCKET-ADDRESS">/RootP_NetworkDesc/CLUSTERS/ETH_DIAG/ETH_DIAG_Channel/SocketAddress_OUTIL_DIAG_UDP_BroadcastDirectedVehicleIdentification_DOIP</REMOTE-PORT-REF>
+                                <RUNTIME-IP-ADDRESS-CONFIGURATION>NONE</RUNTIME-IP-ADDRESS-CONFIGURATION>
+                                <RUNTIME-PORT-CONFIGURATION>SD</RUNTIME-PORT-CONFIGURATION>
+                                <SHORT-LABEL>SocketConnectionDOIP_BroadcastDirectedVehicleIdentification_UDP</SHORT-LABEL>
+                                <SOCKET-PROTOCOL>UDP</SOCKET-PROTOCOL>
+                              </SOCKET-CONNECTION>
+                            </BUNDLED-CONNECTIONS>
+                            <PDUS>
+                              <SOCKET-CONNECTION-IPDU-IDENTIFIER>
+                                <PDU-COLLECTION-TRIGGER>ALWAYS</PDU-COLLECTION-TRIGGER>
+                                <PDU-REF DEST="GENERAL-PURPOSE-PDU">/RootP_NetworkDesc/PDUS/DoIpSoAdRxPduBroadcastDirectedVehicleIdentificationRequestUdp</PDU-REF>
+                                <PDU-TRIGGERING-REF DEST="PDU-TRIGGERING">/RootP_NetworkDesc/CLUSTERS/ETH_DIAG/ETH_DIAG_Channel/ipt_DoIpSoAdRxPduBroadcastDirectedVehicleIdentificationRequestUdp</PDU-TRIGGERING-REF>
+                              </SOCKET-CONNECTION-IPDU-IDENTIFIER>
+                            </PDUS>
+                            <SERVER-PORT-REF DEST="SOCKET-ADDRESS">/RootP_NetworkDesc/CLUSTERS/ETH_DIAG/ETH_DIAG_Channel/SocketAddress_BroadcastDirectedVSM_UDP_DOIP_VehicleIdentification</SERVER-PORT-REF>
+                          </SOCKET-CONNECTION-BUNDLE>
+
+                          <SOCKET-CONNECTION-BUNDLE>
+                            <SHORT-NAME>SocketConnectionBundleDOIP_VehicleIdentification_UDP</SHORT-NAME>
+                            <BUNDLED-CONNECTIONS>
+                              <SOCKET-CONNECTION>
+                                <AUTOSAR-CONNECTOR>DO-IP</AUTOSAR-CONNECTOR>
+                                <CLIENT-IP-ADDR-FROM-CONNECTION-REQUEST>false</CLIENT-IP-ADDR-FROM-CONNECTION-REQUEST>
+                                <CLIENT-PORT-FROM-CONNECTION-REQUEST>false</CLIENT-PORT-FROM-CONNECTION-REQUEST>
+                                <CLIENT-PORT-REF DEST="SOCKET-ADDRESS">/RootP_NetworkDesc/CLUSTERS/ETH_DIAG/ETH_DIAG_Channel/SocketAddress_OUTIL_DIAG_UDP_VehicleId_DOIP</CLIENT-PORT-REF>
+                                <DO-IP-SOURCE-ADDRESS-REF DEST="LOGIC-ADDRESS">/RootP_NetworkDesc/CLUSTERS/ETH_DIAG/ETH_DIAG_Channel/LogicAddressVSM</DO-IP-SOURCE-ADDRESS-REF>
+                                <DO-IP-TARGET-ADDRESS-REF DEST="LOGIC-ADDRESS">/RootP_NetworkDesc/CLUSTERS/ETH_DIAG/ETH_DIAG_Channel/LogicAddressTool</DO-IP-TARGET-ADDRESS-REF>
+                                <LOCAL-PORT-REF DEST="SOCKET-ADDRESS">/RootP_NetworkDesc/CLUSTERS/ETH_DIAG/ETH_DIAG_Channel/SocketAddress_VSM_UDP_DOIP_VehicleIdentification</LOCAL-PORT-REF>
+                                <PDUS>
+                                  <SOCKET-CONNECTION-IPDU-IDENTIFIER>
+                                    <PDU-COLLECTION-TRIGGER>ALWAYS</PDU-COLLECTION-TRIGGER>
+                                    <PDU-REF DEST="GENERAL-PURPOSE-PDU">/RootP_NetworkDesc/PDUS/DoIpSoAdTxPduVehicleIdentificationResponseUdp</PDU-REF>
+                                    <PDU-TRIGGERING-REF DEST="PDU-TRIGGERING">/RootP_NetworkDesc/CLUSTERS/ETH_DIAG/ETH_DIAG_Channel/ipt_DoIpSoAdTxPduVehicleIdentificationResponseUdp</PDU-TRIGGERING-REF>
+                                  </SOCKET-CONNECTION-IPDU-IDENTIFIER>
+                                </PDUS>
+                                <REMOTE-PORT-REF DEST="SOCKET-ADDRESS">/RootP_NetworkDesc/CLUSTERS/ETH_DIAG/ETH_DIAG_Channel/SocketAddress_OUTIL_DIAG_UDP_VehicleId_DOIP</REMOTE-PORT-REF>
+                                <RUNTIME-IP-ADDRESS-CONFIGURATION>NONE</RUNTIME-IP-ADDRESS-CONFIGURATION>
+                                <RUNTIME-PORT-CONFIGURATION>SD</RUNTIME-PORT-CONFIGURATION>
+                                <SHORT-LABEL>SocketConnectionDOIP_VehicleIdentification_UDP</SHORT-LABEL>
+                                <SOCKET-PROTOCOL>UDP</SOCKET-PROTOCOL>
+                              </SOCKET-CONNECTION>
+                            </BUNDLED-CONNECTIONS>
+                            <PDUS>
+                              <SOCKET-CONNECTION-IPDU-IDENTIFIER>
+                                <PDU-COLLECTION-TRIGGER>ALWAYS</PDU-COLLECTION-TRIGGER>
+                                <PDU-REF DEST="GENERAL-PURPOSE-PDU">/RootP_NetworkDesc/PDUS/DoIpSoAdRxPduVehicleIdentificationRequestUdp</PDU-REF>
+                                <PDU-TRIGGERING-REF DEST="PDU-TRIGGERING">/RootP_NetworkDesc/CLUSTERS/ETH_DIAG/ETH_DIAG_Channel/ipt_DoIpSoAdRxPduVehicleIdentificationRequestUdp</PDU-TRIGGERING-REF>
+                              </SOCKET-CONNECTION-IPDU-IDENTIFIER>
+                            </PDUS>
+                            <SERVER-PORT-REF DEST="SOCKET-ADDRESS">/RootP_NetworkDesc/CLUSTERS/ETH_DIAG/ETH_DIAG_Channel/SocketAddress_VSM_UDP_DOIP_VehicleIdentification</SERVER-PORT-REF>
+                          </SOCKET-CONNECTION-BUNDLE>
+
+                          <SOCKET-CONNECTION-BUNDLE>
+                            <SHORT-NAME>SocketConnectionBundleDOIP_VehicleAnnouncement_UDP</SHORT-NAME>
+                            <BUNDLED-CONNECTIONS>
+                              <SOCKET-CONNECTION>
+                                <AUTOSAR-CONNECTOR>DO-IP</AUTOSAR-CONNECTOR>
+                                <CLIENT-IP-ADDR-FROM-CONNECTION-REQUEST>false</CLIENT-IP-ADDR-FROM-CONNECTION-REQUEST>
+                                <CLIENT-PORT-FROM-CONNECTION-REQUEST>false</CLIENT-PORT-FROM-CONNECTION-REQUEST>
+                                <CLIENT-PORT-REF DEST="SOCKET-ADDRESS">/RootP_NetworkDesc/CLUSTERS/ETH_DIAG/ETH_DIAG_Channel/SocketAddress_Broadcast_UDP_VehicleAnnouncement_DOIP</CLIENT-PORT-REF>
+                                <DO-IP-SOURCE-ADDRESS-REF DEST="LOGIC-ADDRESS">/RootP_NetworkDesc/CLUSTERS/ETH_DIAG/ETH_DIAG_Channel/LogicAddressVSM</DO-IP-SOURCE-ADDRESS-REF>
+                                <DO-IP-TARGET-ADDRESS-REF DEST="LOGIC-ADDRESS">/RootP_NetworkDesc/CLUSTERS/ETH_DIAG/ETH_DIAG_Channel/LogicAddressTool</DO-IP-TARGET-ADDRESS-REF>
+                                <LOCAL-PORT-REF DEST="SOCKET-ADDRESS">/RootP_NetworkDesc/CLUSTERS/ETH_DIAG/ETH_DIAG_Channel/SocketAddress_Broadcast_UDP_VehicleAnnouncement_DOIP</LOCAL-PORT-REF>
+                                <PDUS>
+                                  <SOCKET-CONNECTION-IPDU-IDENTIFIER>
+                                    <PDU-COLLECTION-TRIGGER>ALWAYS</PDU-COLLECTION-TRIGGER>
+                                    <PDU-REF DEST="GENERAL-PURPOSE-PDU">/RootP_NetworkDesc/PDUS/DoIpSoAdTxPduVehiculeAnnoucementResponseUdp</PDU-REF>
+                                    <PDU-TRIGGERING-REF DEST="PDU-TRIGGERING">/RootP_NetworkDesc/CLUSTERS/ETH_DIAG/ETH_DIAG_Channel/ipt_DoIpSoAdTxPduVehiculeAnnoucementResponseUdp</PDU-TRIGGERING-REF>
+                                  </SOCKET-CONNECTION-IPDU-IDENTIFIER>
+                                </PDUS>
+                                <REMOTE-PORT-REF DEST="SOCKET-ADDRESS">/RootP_NetworkDesc/CLUSTERS/ETH_DIAG/ETH_DIAG_Channel/SocketAddress_Broadcast_UDP_VehicleAnnouncement_DOIP</REMOTE-PORT-REF>
+                                <RUNTIME-IP-ADDRESS-CONFIGURATION>NONE</RUNTIME-IP-ADDRESS-CONFIGURATION>
+                                <RUNTIME-PORT-CONFIGURATION>SD</RUNTIME-PORT-CONFIGURATION>
+                                <SHORT-LABEL>SocketConnectionDOIP_VehiculeAnnoucement_UDP</SHORT-LABEL>
+                                <SOCKET-PROTOCOL>UDP</SOCKET-PROTOCOL>
+                              </SOCKET-CONNECTION>
+                            </BUNDLED-CONNECTIONS>
+                            <SERVER-PORT-REF DEST="SOCKET-ADDRESS">/RootP_NetworkDesc/CLUSTERS/ETH_DIAG/ETH_DIAG_Channel/SocketAddress_VSM_UDP_DOIP_VehicleAnnouncement</SERVER-PORT-REF>
+                          </SOCKET-CONNECTION-BUNDLE>
+
+                          <SOCKET-CONNECTION-BUNDLE>
+                            <SHORT-NAME>SocketConnectionBundleTCP2_OUTIL_DIAGtoVSM</SHORT-NAME>
+                            <BUNDLED-CONNECTIONS>
+                              <SOCKET-CONNECTION>
+                                <AUTOSAR-CONNECTOR>DO-IP</AUTOSAR-CONNECTOR>
+                                <CLIENT-IP-ADDR-FROM-CONNECTION-REQUEST>true</CLIENT-IP-ADDR-FROM-CONNECTION-REQUEST>
+                                <CLIENT-PORT-FROM-CONNECTION-REQUEST>true</CLIENT-PORT-FROM-CONNECTION-REQUEST>
+                                <CLIENT-PORT-REF DEST="SOCKET-ADDRESS">/RootP_NetworkDesc/CLUSTERS/ETH_DIAG/ETH_DIAG_Channel/SocketAddress_OUTIL_DIAG_TCP2_DOIP</CLIENT-PORT-REF>
+                                <DO-IP-SOURCE-ADDRESS-REF DEST="LOGIC-ADDRESS">/RootP_NetworkDesc/CLUSTERS/ETH_DIAG/ETH_DIAG_Channel/LogicAddressVSM</DO-IP-SOURCE-ADDRESS-REF>
+                                <DO-IP-TARGET-ADDRESS-REF DEST="LOGIC-ADDRESS">/RootP_NetworkDesc/CLUSTERS/ETH_DIAG/ETH_DIAG_Channel/LogicAddressTool</DO-IP-TARGET-ADDRESS-REF>
+                                <LOCAL-PORT-REF DEST="SOCKET-ADDRESS">/RootP_NetworkDesc/CLUSTERS/ETH_DIAG/ETH_DIAG_Channel/SocketAddress_BroadcastVSM_TCP2_DOIP</LOCAL-PORT-REF>
+                                <PDUS>
+                                  <SOCKET-CONNECTION-IPDU-IDENTIFIER>
+                                    <PDU-COLLECTION-TRIGGER>ALWAYS</PDU-COLLECTION-TRIGGER>
+                                    <PDU-REF DEST="GENERAL-PURPOSE-PDU">/RootP_NetworkDesc/PDUS/DoIpSoAdTxPduTcp_2</PDU-REF>
+                                    <PDU-TRIGGERING-REF DEST="PDU-TRIGGERING">/RootP_NetworkDesc/CLUSTERS/ETH_DIAG/ETH_DIAG_Channel/ipt_DoIpSoAdTxPduTcp_2</PDU-TRIGGERING-REF>
+                                  </SOCKET-CONNECTION-IPDU-IDENTIFIER>
+                                </PDUS>
+                                <PDU-COLLECTION-MAX-BUFFER-SIZE>536</PDU-COLLECTION-MAX-BUFFER-SIZE>
+                                <RUNTIME-IP-ADDRESS-CONFIGURATION>SD</RUNTIME-IP-ADDRESS-CONFIGURATION>
+                                <RUNTIME-PORT-CONFIGURATION>SD</RUNTIME-PORT-CONFIGURATION>
+                                <SHORT-LABEL>SocketConnectionDOIP_TCP2</SHORT-LABEL>
+                                <SOCKET-PROTOCOL>TCP</SOCKET-PROTOCOL>
+                              </SOCKET-CONNECTION>
+                            </BUNDLED-CONNECTIONS>
+                            <PDUS>
+                              <SOCKET-CONNECTION-IPDU-IDENTIFIER>
+                                <PDU-COLLECTION-TRIGGER>ALWAYS</PDU-COLLECTION-TRIGGER>
+                                <PDU-REF DEST="GENERAL-PURPOSE-PDU">/RootP_NetworkDesc/PDUS/DoIpSoAdRxPduTcp_2</PDU-REF>
+                                <PDU-TRIGGERING-REF DEST="PDU-TRIGGERING">/RootP_NetworkDesc/CLUSTERS/ETH_DIAG/ETH_DIAG_Channel/ipt_DoIpSoAdRxPduTcp2</PDU-TRIGGERING-REF>
+                              </SOCKET-CONNECTION-IPDU-IDENTIFIER>
+                            </PDUS>
+                            <SERVER-PORT-REF DEST="SOCKET-ADDRESS">/RootP_NetworkDesc/CLUSTERS/ETH_DIAG/ETH_DIAG_Channel/SocketAddress_BroadcastVSM_TCP2_DOIP</SERVER-PORT-REF>
+                          </SOCKET-CONNECTION-BUNDLE>
+
+                          <SOCKET-CONNECTION-BUNDLE>
+                            <SHORT-NAME>SocketConnectionBundleTCP_OUTIL_DIAGtoVSM</SHORT-NAME>
+                            <BUNDLED-CONNECTIONS>
+                              <SOCKET-CONNECTION>
+                                <AUTOSAR-CONNECTOR>PDU-R</AUTOSAR-CONNECTOR>
+                                <CLIENT-IP-ADDR-FROM-CONNECTION-REQUEST>true</CLIENT-IP-ADDR-FROM-CONNECTION-REQUEST>
+                                <CLIENT-PORT-FROM-CONNECTION-REQUEST>true</CLIENT-PORT-FROM-CONNECTION-REQUEST>
+                                <CLIENT-PORT-REF DEST="SOCKET-ADDRESS">/RootP_NetworkDesc/CLUSTERS/ETH_DIAG/ETH_DIAG_Channel/SocketAddress_OUTIL_DIAG_TCP_0</CLIENT-PORT-REF>
+                                <DO-IP-SOURCE-ADDRESS-REF DEST="LOGIC-ADDRESS">/RootP_NetworkDesc/CLUSTERS/ETH_DIAG/ETH_DIAG_Channel/LogicAddressVSM</DO-IP-SOURCE-ADDRESS-REF>
+                                <DO-IP-TARGET-ADDRESS-REF DEST="LOGIC-ADDRESS">/RootP_NetworkDesc/CLUSTERS/ETH_DIAG/ETH_DIAG_Channel/LogicAddressTool</DO-IP-TARGET-ADDRESS-REF>
+                                <LOCAL-PORT-REF DEST="SOCKET-ADDRESS">/RootP_NetworkDesc/CLUSTERS/ETH_DIAG/ETH_DIAG_Channel/SocketAddress_VSM_TCP_DOIP</LOCAL-PORT-REF>
+                                <PDUS>
+                                  <SOCKET-CONNECTION-IPDU-IDENTIFIER>
+                                    <PDU-COLLECTION-TRIGGER>ALWAYS</PDU-COLLECTION-TRIGGER>
+                                    <PDU-REF DEST="GENERAL-PURPOSE-PDU">/RootP_NetworkDesc/PDUS/DoIpSoAdTxPduTcp</PDU-REF>
+                                    <PDU-TRIGGERING-REF DEST="PDU-TRIGGERING">/RootP_NetworkDesc/CLUSTERS/ETH_DIAG/ETH_DIAG_Channel/ipt_DoIpSoAdTxPduTcp</PDU-TRIGGERING-REF>
+                                  </SOCKET-CONNECTION-IPDU-IDENTIFIER>
+                                </PDUS>
+                                <PDU-COLLECTION-MAX-BUFFER-SIZE>536</PDU-COLLECTION-MAX-BUFFER-SIZE>
+                                <RUNTIME-IP-ADDRESS-CONFIGURATION>SD</RUNTIME-IP-ADDRESS-CONFIGURATION>
+                                <RUNTIME-PORT-CONFIGURATION>SD</RUNTIME-PORT-CONFIGURATION>
+                                <SHORT-LABEL>SocketConnectionDOIP_TCP</SHORT-LABEL>
+                                <SOCKET-PROTOCOL>TCP</SOCKET-PROTOCOL>
+                              </SOCKET-CONNECTION>
+                            </BUNDLED-CONNECTIONS>
+                            <PDUS>
+                              <SOCKET-CONNECTION-IPDU-IDENTIFIER>
+                                <PDU-COLLECTION-TRIGGER>ALWAYS</PDU-COLLECTION-TRIGGER>
+                                <PDU-REF DEST="GENERAL-PURPOSE-PDU">/RootP_NetworkDesc/PDUS/DoIpSoAdRxPduTcp</PDU-REF>
+                                <PDU-TRIGGERING-REF DEST="PDU-TRIGGERING">/RootP_NetworkDesc/CLUSTERS/ETH_DIAG/ETH_DIAG_Channel/ipt_DoIpSoAdRxPduTcp</PDU-TRIGGERING-REF>
+                              </SOCKET-CONNECTION-IPDU-IDENTIFIER>
+                            </PDUS>
+                            <SERVER-PORT-REF DEST="SOCKET-ADDRESS">/RootP_NetworkDesc/CLUSTERS/ETH_DIAG/ETH_DIAG_Channel/SocketAddress_VSM_TCP_DOIP</SERVER-PORT-REF>
+                          </SOCKET-CONNECTION-BUNDLE>
+
+                        </CONNECTION-BUNDLES>
+                        <LOGIC-ADDRESSS>
+                          <LOGIC-ADDRESS>
+                            <SHORT-NAME>LogicAddressVSM</SHORT-NAME>
+                            <ADDRESS>1874</ADDRESS>
+                          </LOGIC-ADDRESS>
+                          <LOGIC-ADDRESS>
+                            <SHORT-NAME>LogicAddressTool</SHORT-NAME>
+                            <ADDRESS>3712</ADDRESS>
+                          </LOGIC-ADDRESS>
+                        </LOGIC-ADDRESSS>
+                        <SOCKET-ADDRESSS>
+                          <SOCKET-ADDRESS>
+                            <SHORT-NAME>SocketAddress_Broadcast_UDP_VehicleAnnouncement_DOIP</SHORT-NAME>
+                            <APPLICATION-ENDPOINT>
+                              <SHORT-NAME>SocketAddress_Broadcast_UDP_VehicleAnnouncement_DOIP_AEP</SHORT-NAME>
+                              <NETWORK-ENDPOINT-REF DEST="NETWORK-ENDPOINT">/RootP_NetworkDesc/CLUSTERS/ETH_DIAG/ETH_DIAG_Channel/SocketAddress_BroadcastLimitedVSM_NEP</NETWORK-ENDPOINT-REF>
+                              <TP-CONFIGURATION>
+                                <UDP-TP>
+                                  <UDP-TP-PORT>
+                                    <PORT-NUMBER>13400</PORT-NUMBER>
+                                  </UDP-TP-PORT>
+                                </UDP-TP>
+                              </TP-CONFIGURATION>
+                            </APPLICATION-ENDPOINT>
+                            <CONNECTOR-REF DEST="ETHERNET-COMMUNICATION-CONNECTOR">/RootP_NetworkDesc/ECUINSTANCES/VSM/cc_VSM_ETH</CONNECTOR-REF>
+                            <IP-ADDRESS>255.255.255.255</IP-ADDRESS>
+                            <MULTICAST-CONNECTOR-REFS>
+                              <MULTICAST-CONNECTOR-REF DEST="ETHERNET-COMMUNICATION-CONNECTOR">/RootP_NetworkDesc/ECUINSTANCES/VSM/cc_VSM_ETH</MULTICAST-CONNECTOR-REF>
+                            </MULTICAST-CONNECTOR-REFS>
+                          </SOCKET-ADDRESS>
+                          <SOCKET-ADDRESS>
+                            <SHORT-NAME>SocketAddress_VSM_UDP</SHORT-NAME>
+                            <APPLICATION-ENDPOINT>
+                              <SHORT-NAME>SocketAddress_VSM_UDP_50000_AEP</SHORT-NAME>
+                              <NETWORK-ENDPOINT-REF DEST="NETWORK-ENDPOINT">/RootP_NetworkDesc/CLUSTERS/ETH_DIAG/ETH_DIAG_Channel/SocketAddress_VSM_NEP</NETWORK-ENDPOINT-REF>
+                              <TP-CONFIGURATION>
+                                <UDP-TP>
+                                  <UDP-TP-PORT>
+                                    <PORT-NUMBER>50000</PORT-NUMBER>
+                                  </UDP-TP-PORT>
+                                </UDP-TP>
+                              </TP-CONFIGURATION>
+                            </APPLICATION-ENDPOINT>
+                            <CONNECTOR-REF DEST="ETHERNET-COMMUNICATION-CONNECTOR">/RootP_NetworkDesc/ECUINSTANCES/VSM/cc_VSM_ETH</CONNECTOR-REF>
+                          </SOCKET-ADDRESS>
+                          <SOCKET-ADDRESS>
+                            <SHORT-NAME>SocketAddress_VSM_UDP_DOIP_VehicleIdentification</SHORT-NAME>
+                            <APPLICATION-ENDPOINT>
+                              <SHORT-NAME>SocketAddress_VSM_UDP_DOIP_VehicleIdentification_AEP</SHORT-NAME>
+                              <NETWORK-ENDPOINT-REF DEST="NETWORK-ENDPOINT">/RootP_NetworkDesc/CLUSTERS/ETH_DIAG/ETH_DIAG_Channel/SocketAddress_VSM_NEP</NETWORK-ENDPOINT-REF>
+                              <TP-CONFIGURATION>
+                                <UDP-TP>
+                                  <UDP-TP-PORT>
+                                    <PORT-NUMBER>13400</PORT-NUMBER>
+                                  </UDP-TP-PORT>
+                                </UDP-TP>
+                              </TP-CONFIGURATION>
+                            </APPLICATION-ENDPOINT>
+                            <CONNECTOR-REF DEST="ETHERNET-COMMUNICATION-CONNECTOR">/RootP_NetworkDesc/ECUINSTANCES/VSM/cc_VSM_ETH</CONNECTOR-REF>
+                          </SOCKET-ADDRESS>
+                          <SOCKET-ADDRESS>
+                            <SHORT-NAME>SocketAddress_BroadcastDirectedVSM_UDP_DOIP_VehicleIdentification</SHORT-NAME>
+                            <APPLICATION-ENDPOINT>
+                              <SHORT-NAME>SocketAddress_BroadcastDirectedVSM_UDP_DOIP_VehicleIdentification_AEP</SHORT-NAME>
+                              <NETWORK-ENDPOINT-REF DEST="NETWORK-ENDPOINT">/RootP_NetworkDesc/CLUSTERS/ETH_DIAG/ETH_DIAG_Channel/SocketAddress_BroadcastDirectedVSM_NEP</NETWORK-ENDPOINT-REF>
+                              <TP-CONFIGURATION>
+                                <UDP-TP>
+                                  <UDP-TP-PORT>
+                                    <PORT-NUMBER>13400</PORT-NUMBER>
+                                  </UDP-TP-PORT>
+                                </UDP-TP>
+                              </TP-CONFIGURATION>
+                            </APPLICATION-ENDPOINT>
+                            <CONNECTOR-REF DEST="ETHERNET-COMMUNICATION-CONNECTOR">/RootP_NetworkDesc/ECUINSTANCES/VSM/cc_VSM_ETH</CONNECTOR-REF>
+                          </SOCKET-ADDRESS>
+                          <SOCKET-ADDRESS>
+                            <SHORT-NAME>SocketAddress_BroadcastLimitedVSM_UDP_DOIP_VehicleIdentification</SHORT-NAME>
+                            <APPLICATION-ENDPOINT>
+                              <SHORT-NAME>SocketAddress_BroadcastLimitedVSM_UDP_DOIP_VehicleIdentification_AEP</SHORT-NAME>
+                              <NETWORK-ENDPOINT-REF DEST="NETWORK-ENDPOINT">/RootP_NetworkDesc/CLUSTERS/ETH_DIAG/ETH_DIAG_Channel/SocketAddress_BroadcastLimitedVSM_NEP</NETWORK-ENDPOINT-REF>
+                              <TP-CONFIGURATION>
+                                <UDP-TP>
+                                  <UDP-TP-PORT>
+                                    <PORT-NUMBER>13400</PORT-NUMBER>
+                                  </UDP-TP-PORT>
+                                </UDP-TP>
+                              </TP-CONFIGURATION>
+                            </APPLICATION-ENDPOINT>
+                            <CONNECTOR-REF DEST="ETHERNET-COMMUNICATION-CONNECTOR">/RootP_NetworkDesc/ECUINSTANCES/VSM/cc_VSM_ETH</CONNECTOR-REF>
+                          </SOCKET-ADDRESS>
+                          <SOCKET-ADDRESS>
+                            <SHORT-NAME>SocketAddress_BroadcastVSM_TCP2_DOIP</SHORT-NAME>
+                            <APPLICATION-ENDPOINT>
+                              <SHORT-NAME>SocketAddress_BroadcastVSM_TCP2_DOIP</SHORT-NAME>
+                              <NETWORK-ENDPOINT-REF DEST="NETWORK-ENDPOINT">/RootP_NetworkDesc/CLUSTERS/ETH_DIAG/ETH_DIAG_Channel/SocketAddress_BroadcastLimitedVSM_NEP</NETWORK-ENDPOINT-REF>
+                              <TP-CONFIGURATION>
+                                <TCP-TP>
+                                  <TCP-TP-PORT>
+                                    <PORT-NUMBER>13400</PORT-NUMBER>
+                                  </TCP-TP-PORT>
+                                </TCP-TP>
+                              </TP-CONFIGURATION>
+                            </APPLICATION-ENDPOINT>
+                            <CONNECTOR-REF DEST="ETHERNET-COMMUNICATION-CONNECTOR">/RootP_NetworkDesc/ECUINSTANCES/VSM/cc_VSM_ETH</CONNECTOR-REF>
+                            <IP-ADDRESS>255.255.255.255</IP-ADDRESS>
+                          </SOCKET-ADDRESS>
+                          <SOCKET-ADDRESS>
+                            <SHORT-NAME>SocketAddress_VSM_UDP_DOIP_VehicleAnnouncement</SHORT-NAME>
+                            <APPLICATION-ENDPOINT>
+                              <SHORT-NAME>SocketAddress_VSM_UDP_DOIP_VehicleAnnouncement_AEP</SHORT-NAME>
+                              <NETWORK-ENDPOINT-REF DEST="NETWORK-ENDPOINT">/RootP_NetworkDesc/CLUSTERS/ETH_DIAG/ETH_DIAG_Channel/SocketAddress_VSM_NEP</NETWORK-ENDPOINT-REF>
+                              <TP-CONFIGURATION>
+                                <UDP-TP>
+                                  <UDP-TP-PORT>
+                                    <PORT-NUMBER>13400</PORT-NUMBER>
+                                  </UDP-TP-PORT>
+                                </UDP-TP>
+                              </TP-CONFIGURATION>
+                            </APPLICATION-ENDPOINT>
+                            <CONNECTOR-REF DEST="ETHERNET-COMMUNICATION-CONNECTOR">/RootP_NetworkDesc/ECUINSTANCES/VSM/cc_VSM_ETH</CONNECTOR-REF>
+                          </SOCKET-ADDRESS>
+                          <SOCKET-ADDRESS>
+                            <SHORT-NAME>SocketAddress_VSM_TCP</SHORT-NAME>
+                            <APPLICATION-ENDPOINT>
+                              <SHORT-NAME>SocketAddress_VSM_TCP_50020_AEP</SHORT-NAME>
+                              <NETWORK-ENDPOINT-REF DEST="NETWORK-ENDPOINT">/RootP_NetworkDesc/CLUSTERS/ETH_DIAG/ETH_DIAG_Channel/SocketAddress_VSM_NEP</NETWORK-ENDPOINT-REF>
+                              <TP-CONFIGURATION>
+                                <TCP-TP>
+                                  <TCP-TP-PORT>
+                                    <PORT-NUMBER>50020</PORT-NUMBER>
+                                  </TCP-TP-PORT>
+                                </TCP-TP>
+                              </TP-CONFIGURATION>
+                            </APPLICATION-ENDPOINT>
+                            <CONNECTOR-REF DEST="ETHERNET-COMMUNICATION-CONNECTOR">/RootP_NetworkDesc/ECUINSTANCES/VSM/cc_VSM_ETH</CONNECTOR-REF>
+                          </SOCKET-ADDRESS>
+                          <SOCKET-ADDRESS>
+                            <SHORT-NAME>SocketAddress_VSM_TCP_DOIP</SHORT-NAME>
+                            <APPLICATION-ENDPOINT>
+                              <SHORT-NAME>SocketAddress_VSM_TCP_DOIP_AEP</SHORT-NAME>
+                              <NETWORK-ENDPOINT-REF DEST="NETWORK-ENDPOINT">/RootP_NetworkDesc/CLUSTERS/ETH_DIAG/ETH_DIAG_Channel/SocketAddress_VSM_NEP</NETWORK-ENDPOINT-REF>
+                              <TP-CONFIGURATION>
+                                <TCP-TP>
+                                  <TCP-TP-PORT>
+                                    <PORT-NUMBER>13400</PORT-NUMBER>
+                                  </TCP-TP-PORT>
+                                </TCP-TP>
+                              </TP-CONFIGURATION>
+                            </APPLICATION-ENDPOINT>
+                            <CONNECTOR-REF DEST="ETHERNET-COMMUNICATION-CONNECTOR">/RootP_NetworkDesc/ECUINSTANCES/VSM/cc_VSM_ETH</CONNECTOR-REF>
+                          </SOCKET-ADDRESS>
+                          <SOCKET-ADDRESS>
+                            <SHORT-NAME>SocketAddress_Broadcast_TCP2_DOIP</SHORT-NAME>
+                            <APPLICATION-ENDPOINT>
+                              <SHORT-NAME>SocketAdress_Broadcast_TCP2_DOIP_AEP</SHORT-NAME>
+                              <NETWORK-ENDPOINT-REF DEST="NETWORK-ENDPOINT">/RootP_NetworkDesc/CLUSTERS/ETH_DIAG/ETH_DIAG_Channel/SocketAddress_BroadcastLimitedVSM_NEP</NETWORK-ENDPOINT-REF>
+                              <TP-CONFIGURATION>
+                                <TCP-TP>
+                                  <TCP-TP-PORT>
+                                    <PORT-NUMBER>13400</PORT-NUMBER>
+                                  </TCP-TP-PORT>
+                                </TCP-TP>
+                              </TP-CONFIGURATION>
+                            </APPLICATION-ENDPOINT>
+                            <CONNECTOR-REF DEST="ETHERNET-COMMUNICATION-CONNECTOR">/RootP_NetworkDesc/ECUINSTANCES/OUTIL_DIAG/cc_OUTIL_DIAG_ETH</CONNECTOR-REF>
+                            <IP-ADDRESS>255.255.255.255</IP-ADDRESS>
+                          </SOCKET-ADDRESS>
+                          <SOCKET-ADDRESS>
+                            <SHORT-NAME>SocketAddress_OUTIL_DIAG_TCP_0</SHORT-NAME>
+                            <APPLICATION-ENDPOINT>
+                              <SHORT-NAME>SocketAddress_OUTIL_DIAG_TCP_0_AEP</SHORT-NAME>
+                              <NETWORK-ENDPOINT-REF DEST="NETWORK-ENDPOINT">/RootP_NetworkDesc/CLUSTERS/ETH_DIAG/ETH_DIAG_Channel/SocketAddress_OUTIL_DIAG_NEP</NETWORK-ENDPOINT-REF>
+                              <TP-CONFIGURATION>
+                                <TCP-TP>
+                                  <TCP-TP-PORT>
+                                    <PORT-NUMBER>0</PORT-NUMBER>
+                                  </TCP-TP-PORT>
+                                </TCP-TP>
+                              </TP-CONFIGURATION>
+                            </APPLICATION-ENDPOINT>
+                            <CONNECTOR-REF DEST="ETHERNET-COMMUNICATION-CONNECTOR">/RootP_NetworkDesc/ECUINSTANCES/OUTIL_DIAG/cc_OUTIL_DIAG_ETH</CONNECTOR-REF>
+                          </SOCKET-ADDRESS>
+                          <SOCKET-ADDRESS>
+                            <SHORT-NAME>SocketAddress_OUTIL_DIAG_TCP2</SHORT-NAME>
+                            <APPLICATION-ENDPOINT>
+                              <SHORT-NAME>SocketAddress_OUTIL_DIAG_TCP2_0_AEP</SHORT-NAME>
+                              <NETWORK-ENDPOINT-REF DEST="NETWORK-ENDPOINT">/RootP_NetworkDesc/CLUSTERS/ETH_DIAG/ETH_DIAG_Channel/SocketAddress_OUTIL_DIAG_NEP</NETWORK-ENDPOINT-REF>
+                              <TP-CONFIGURATION>
+                                <TCP-TP>
+                                  <TCP-TP-PORT>
+                                    <PORT-NUMBER>0</PORT-NUMBER>
+                                  </TCP-TP-PORT>
+                                </TCP-TP>
+                              </TP-CONFIGURATION>
+                            </APPLICATION-ENDPOINT>
+                            <CONNECTOR-REF DEST="ETHERNET-COMMUNICATION-CONNECTOR">/RootP_NetworkDesc/ECUINSTANCES/OUTIL_DIAG/cc_OUTIL_DIAG_ETH</CONNECTOR-REF>
+                          </SOCKET-ADDRESS>
+                          <SOCKET-ADDRESS>
+                            <SHORT-NAME>SocketAddress_OUTIL_DIAG_TCP2_DOIP</SHORT-NAME>
+                            <APPLICATION-ENDPOINT>
+                              <SHORT-NAME>SocketAddress_OUTIL_DIAG_TCP2_DOIP_AEP</SHORT-NAME>
+                              <NETWORK-ENDPOINT-REF DEST="NETWORK-ENDPOINT">/RootP_NetworkDesc/CLUSTERS/ETH_DIAG/ETH_DIAG_Channel/SocketAddress_OUTIL_DIAG_NEP</NETWORK-ENDPOINT-REF>
+                              <TP-CONFIGURATION>
+                                <TCP-TP>
+                                  <TCP-TP-PORT>
+                                    <PORT-NUMBER>13400</PORT-NUMBER>
+                                  </TCP-TP-PORT>
+                                </TCP-TP>
+                              </TP-CONFIGURATION>
+                            </APPLICATION-ENDPOINT>
+                            <CONNECTOR-REF DEST="ETHERNET-COMMUNICATION-CONNECTOR">/RootP_NetworkDesc/ECUINSTANCES/OUTIL_DIAG/cc_OUTIL_DIAG_ETH</CONNECTOR-REF>
+                          </SOCKET-ADDRESS>
+                          <SOCKET-ADDRESS>
+                            <SHORT-NAME>SocketAddress_OUTIL_DIAG_TCP_DOIP</SHORT-NAME>
+                            <APPLICATION-ENDPOINT>
+                              <SHORT-NAME>SocketAddress_OUTIL_DIAG_TCP_DOIP_AEP</SHORT-NAME>
+                              <NETWORK-ENDPOINT-REF DEST="NETWORK-ENDPOINT">/RootP_NetworkDesc/CLUSTERS/ETH_DIAG/ETH_DIAG_Channel/SocketAddress_OUTIL_DIAG_NEP</NETWORK-ENDPOINT-REF>
+                              <TP-CONFIGURATION>
+                                <TCP-TP>
+                                  <TCP-TP-PORT>
+                                    <PORT-NUMBER>49152</PORT-NUMBER>
+                                  </TCP-TP-PORT>
+                                </TCP-TP>
+                              </TP-CONFIGURATION>
+                            </APPLICATION-ENDPOINT>
+                            <CONNECTOR-REF DEST="ETHERNET-COMMUNICATION-CONNECTOR">/RootP_NetworkDesc/ECUINSTANCES/OUTIL_DIAG/cc_OUTIL_DIAG_ETH</CONNECTOR-REF>
+                          </SOCKET-ADDRESS>
+                          <SOCKET-ADDRESS>
+                            <SHORT-NAME>SocketAddress_OUTIL_DIAG_UDP</SHORT-NAME>
+                            <APPLICATION-ENDPOINT>
+                              <SHORT-NAME>SocketAddress_OUTIL_DIAG_UDP_60000_AEP</SHORT-NAME>
+                              <NETWORK-ENDPOINT-REF DEST="NETWORK-ENDPOINT">/RootP_NetworkDesc/CLUSTERS/ETH_DIAG/ETH_DIAG_Channel/SocketAddress_OUTIL_DIAG_NEP</NETWORK-ENDPOINT-REF>
+                              <TP-CONFIGURATION>
+                                <UDP-TP>
+                                  <UDP-TP-PORT>
+                                    <PORT-NUMBER>60000</PORT-NUMBER>
+                                  </UDP-TP-PORT>
+                                </UDP-TP>
+                              </TP-CONFIGURATION>
+                            </APPLICATION-ENDPOINT>
+                            <CONNECTOR-REF DEST="ETHERNET-COMMUNICATION-CONNECTOR">/RootP_NetworkDesc/ECUINSTANCES/OUTIL_DIAG/cc_OUTIL_DIAG_ETH</CONNECTOR-REF>
+                          </SOCKET-ADDRESS>
+                          <SOCKET-ADDRESS>
+                            <SHORT-NAME>SocketAddress_OUTIL_DIAG_UDP_VehicleAnnouncement_DOIP</SHORT-NAME>
+                            <APPLICATION-ENDPOINT>
+                              <SHORT-NAME>SocketAddress_OUTIL_DIAG_UDP_VehicleAnnouncement_DOIP_AEP</SHORT-NAME>
+                              <NETWORK-ENDPOINT-REF DEST="NETWORK-ENDPOINT">/RootP_NetworkDesc/CLUSTERS/ETH_DIAG/ETH_DIAG_Channel/SocketAddress_OUTIL_DIAG_NEP</NETWORK-ENDPOINT-REF>
+                              <TP-CONFIGURATION>
+                                <UDP-TP>
+                                  <UDP-TP-PORT>
+                                    <PORT-NUMBER>13400</PORT-NUMBER>
+                                  </UDP-TP-PORT>
+                                </UDP-TP>
+                              </TP-CONFIGURATION>
+                            </APPLICATION-ENDPOINT>
+                            <CONNECTOR-REF DEST="ETHERNET-COMMUNICATION-CONNECTOR">/RootP_NetworkDesc/ECUINSTANCES/OUTIL_DIAG/cc_OUTIL_DIAG_ETH</CONNECTOR-REF>
+                          </SOCKET-ADDRESS>
+                          <SOCKET-ADDRESS>
+                            <SHORT-NAME>SocketAddress_OUTIL_DIAG_UDP_VehicleId_DOIP</SHORT-NAME>
+                            <APPLICATION-ENDPOINT>
+                              <SHORT-NAME>SocketAddress_OUTIL_DIAG_UDP_VehicleId_DOIP_AEP</SHORT-NAME>
+                              <NETWORK-ENDPOINT-REF DEST="NETWORK-ENDPOINT">/RootP_NetworkDesc/CLUSTERS/ETH_DIAG/ETH_DIAG_Channel/SocketAddress_OUTIL_DIAG_NEP</NETWORK-ENDPOINT-REF>
+                              <TP-CONFIGURATION>
+                                <UDP-TP>
+                                  <UDP-TP-PORT>
+                                    <PORT-NUMBER>49152</PORT-NUMBER>
+                                  </UDP-TP-PORT>
+                                </UDP-TP>
+                              </TP-CONFIGURATION>
+                            </APPLICATION-ENDPOINT>
+                            <CONNECTOR-REF DEST="ETHERNET-COMMUNICATION-CONNECTOR">/RootP_NetworkDesc/ECUINSTANCES/OUTIL_DIAG/cc_OUTIL_DIAG_ETH</CONNECTOR-REF>
+                          </SOCKET-ADDRESS>
+                          <SOCKET-ADDRESS>
+                            <SHORT-NAME>SocketAddress_OUTIL_DIAG_UDP_BroadcastDirectedVehicleIdentification_DOIP</SHORT-NAME>
+                            <APPLICATION-ENDPOINT>
+                              <SHORT-NAME>SocketAddress_OUTIL_DIAG_UDP_BroadcastDirectedVehicleId_DOIP_AEP</SHORT-NAME>
+                              <NETWORK-ENDPOINT-REF DEST="NETWORK-ENDPOINT">/RootP_NetworkDesc/CLUSTERS/ETH_DIAG/ETH_DIAG_Channel/SocketAddress_OUTIL_DIAG_NEP</NETWORK-ENDPOINT-REF>
+                              <TP-CONFIGURATION>
+                                <UDP-TP>
+                                  <UDP-TP-PORT>
+                                    <PORT-NUMBER>49152</PORT-NUMBER>
+                                  </UDP-TP-PORT>
+                                </UDP-TP>
+                              </TP-CONFIGURATION>
+                            </APPLICATION-ENDPOINT>
+                            <CONNECTOR-REF DEST="ETHERNET-COMMUNICATION-CONNECTOR">/RootP_NetworkDesc/ECUINSTANCES/OUTIL_DIAG/cc_OUTIL_DIAG_ETH</CONNECTOR-REF>
+                          </SOCKET-ADDRESS>
+                          <SOCKET-ADDRESS>
+                            <SHORT-NAME>SocketAddress_OUTIL_DIAG_UDP_BroadcastLimitedVehicleIdentification_DOIP</SHORT-NAME>
+                            <APPLICATION-ENDPOINT>
+                              <SHORT-NAME>SocketAddress_OUTIL_DIAG_UDP_BroadcastLimitedVehicleId_DOIP_AEP</SHORT-NAME>
+                              <NETWORK-ENDPOINT-REF DEST="NETWORK-ENDPOINT">/RootP_NetworkDesc/CLUSTERS/ETH_DIAG/ETH_DIAG_Channel/SocketAddress_OUTIL_DIAG_NEP</NETWORK-ENDPOINT-REF>
+                              <TP-CONFIGURATION>
+                                <UDP-TP>
+                                  <UDP-TP-PORT>
+                                    <PORT-NUMBER>49152</PORT-NUMBER>
+                                  </UDP-TP-PORT>
+                                </UDP-TP>
+                              </TP-CONFIGURATION>
+                            </APPLICATION-ENDPOINT>
+                            <CONNECTOR-REF DEST="ETHERNET-COMMUNICATION-CONNECTOR">/RootP_NetworkDesc/ECUINSTANCES/OUTIL_DIAG/cc_OUTIL_DIAG_ETH</CONNECTOR-REF>
+                          </SOCKET-ADDRESS>
+                        </SOCKET-ADDRESSS>
+                      </SO-AD-CONFIG>
+                    </ETHERNET-PHYSICAL-CHANNEL>
+                  </PHYSICAL-CHANNELS>
+                  <SPEED>10000</SPEED>
+                </ETHERNET-CLUSTER-CONDITIONAL>
+              </ETHERNET-CLUSTER-VARIANTS>
+            </ETHERNET-CLUSTER>
+
+          </ELEMENTS>
+        </AR-PACKAGE>
+
+        <AR-PACKAGE>
+          <SHORT-NAME>ECUINSTANCES</SHORT-NAME>
+          <ELEMENTS>
+
+          </ELEMENTS>
+        </AR-PACKAGE>
+
+        <AR-PACKAGE>
+          <SHORT-NAME>FRAMES</SHORT-NAME>
+          <ELEMENTS>
+
+          </ELEMENTS>
+        </AR-PACKAGE>
+
+        <AR-PACKAGE>
+          <SHORT-NAME>IPDUGROUP</SHORT-NAME>
+          <ELEMENTS>
+            <I-SIGNAL-I-PDU-GROUP UUID="c7af4a97-bacd-0419-e37f-ad8a00194a74">
+              <SHORT-NAME>IPDUGROUP_ETH_APPLICATION_RX</SHORT-NAME>
+              <COMMUNICATION-DIRECTION>IN</COMMUNICATION-DIRECTION>
+              <COMMUNICATION-MODE>IPDUGROUP_ETH_APPLICATION_RX</COMMUNICATION-MODE>
+              <I-SIGNAL-I-PDUS>
+              </I-SIGNAL-I-PDUS>
+            </I-SIGNAL-I-PDU-GROUP>
+            <I-SIGNAL-I-PDU-GROUP UUID="4593ab7e-f2b3-34f0-0e39-628725804032">
+              <SHORT-NAME>IPDUGROUP_ETH_APPLICATION_TX</SHORT-NAME>
+              <COMMUNICATION-DIRECTION>OUT</COMMUNICATION-DIRECTION>
+              <COMMUNICATION-MODE>IPDUGROUP_ETH_APPLICATION_TX</COMMUNICATION-MODE>
+              <I-SIGNAL-I-PDUS>
+              </I-SIGNAL-I-PDUS>
+            </I-SIGNAL-I-PDU-GROUP>
+          </ELEMENTS>
+        </AR-PACKAGE>
+
+        <AR-PACKAGE>
+          <SHORT-NAME>ISIGNALS</SHORT-NAME>
+          <ELEMENTS>
+
+          </ELEMENTS>
+        </AR-PACKAGE>
+
+        <AR-PACKAGE>
+          <SHORT-NAME>SYSSIGNALS</SHORT-NAME>
+          <ELEMENTS>
+
+          </ELEMENTS>
+        </AR-PACKAGE>
+
+        <AR-PACKAGE>
+          <SHORT-NAME>GATEWAYS</SHORT-NAME>
+          <ELEMENTS>
+
+          </ELEMENTS>
+        </AR-PACKAGE>
+
+      </AR-PACKAGES>
+    </AR-PACKAGE>
+  </AR-PACKAGES>
+</AUTOSAR>

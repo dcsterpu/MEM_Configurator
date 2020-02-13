@@ -1,8 +1,8 @@
-2019-07-11 08:28:39,174 INFO The file: C:\Users\Cristi\PyCharmProjects\MEM_Config\tests\TRS.MEMCFG.CHECK.003_2\input\ASWC_A26.aswc.arxml is well-formed
-2019-07-11 08:28:39,229 INFO  The file C:\Users\Cristi\PyCharmProjects\MEM_Config\tests\TRS.MEMCFG.CHECK.003_2\input\ASWC_A26.config_mem.xml is well-formed
-2019-07-11 08:28:39,255 INFO The file: C:\Users\Cristi\PyCharmProjects\MEM_Config\tests\TRS.MEMCFG.CHECK.003_2\input\AUTOSAR_Datatypes.arxml is well-formed
-2019-07-11 08:28:39,265 INFO  The file C:\Users\Cristi\PyCharmProjects\MEM_Config\tests\TRS.MEMCFG.CHECK.003_2\input\CompiledConfigID.xml is well-formed
-2019-07-11 08:28:39,274 INFO  The file C:\Users\Cristi\PyCharmProjects\MEM_Config\tests\TRS.MEMCFG.CHECK.003_2\input\Profiles_cleaned.xml is well-formed
-2019-07-11 08:28:39,806 INFO The file: C:\Users\Cristi\PyCharmProjects\MEM_Config\tests\TRS.MEMCFG.CHECK.003_2\input\SystemGenerated.arxml is well-formed
-2019-07-11 08:28:40,152 INFO The file: C:\Users\Cristi\PyCharmProjects\MEM_Config\tests\TRS.MEMCFG.CHECK.003_2\input\VSM_Types.arxml is well-formed
-2019-07-11 08:28:42,088 ERROR The port PRP_SR_ConsoAutonomieGM doesn't have an interface defined in the project: /RootP_SR_Data/SR_ConsoAutonomieGM
+2020-02-13 11:22:15,732 INFO The file: C:\Users\dcsterpu\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.CHECK.003_2\input\ASWC_A26.aswc.arxml is well-formed
+2020-02-13 11:22:15,747 INFO  The file C:\Users\dcsterpu\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.CHECK.003_2\input\ASWC_A26.config_mem.xml is well-formed
+2020-02-13 11:22:15,747 INFO The file: C:\Users\dcsterpu\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.CHECK.003_2\input\AUTOSAR_Datatypes.arxml is well-formed
+2020-02-13 11:22:15,763 INFO  The file C:\Users\dcsterpu\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.CHECK.003_2\input\CompiledConfigID.xml is well-formed
+2020-02-13 11:22:15,763 INFO  The file C:\Users\dcsterpu\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.CHECK.003_2\input\Profiles_cleaned.xml is well-formed
+2020-02-13 11:22:15,848 INFO The file: C:\Users\dcsterpu\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.CHECK.003_2\input\SystemGenerated.arxml is well-formed
+2020-02-13 11:22:15,917 INFO The file: C:\Users\dcsterpu\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.CHECK.003_2\input\VSM_Types.arxml is well-formed
+2020-02-13 11:22:16,521 ERROR The port PRP_SR_ConsoAutonomieGM doesn't have an interface defined in the project: /RootP_SR_Data/SR_ConsoAutonomieGM

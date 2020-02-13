@@ -1,0 +1,47 @@
+2020-02-13 11:40:32,169 INFO The file: C:\Users\dcsterpu\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.CHECK.013_1\in\Aswc_IntDcm.aswc.arxml is well-formed
+2020-02-13 11:40:32,184 INFO The file: C:\Users\dcsterpu\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.CHECK.013_1\in\Aswc_IntDcm.communprop.arxml is well-formed
+2020-02-13 11:40:32,184 INFO The file: C:\Users\dcsterpu\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.CHECK.013_1\in\Aswc_IntDcm.diag.arxml is well-formed
+2020-02-13 11:40:32,200 INFO The file: C:\Users\dcsterpu\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.CHECK.013_1\in\Aswc_IntDcm.diagdesc.arxml is well-formed
+2020-02-13 11:40:32,501 INFO The file: C:\Users\dcsterpu\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.CHECK.013_1\in\Aswc_IntDcm.did.arxml is well-formed
+2020-02-13 11:40:32,617 INFO  The file C:\Users\dcsterpu\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.CHECK.013_1\in\Aswc_IntDcm.mem.config.xml is well-formed
+2020-02-13 11:40:32,654 INFO The file: C:\Users\dcsterpu\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.CHECK.013_1\in\Aswc_IntDcm.nvm.arxml is well-formed
+2020-02-13 11:40:32,654 INFO The file: C:\Users\dcsterpu\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.CHECK.013_1\in\AUTOSAR_ASCMEMMAP_214 (2).arxml is well-formed
+2020-02-13 11:40:32,654 INFO The file: C:\Users\dcsterpu\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.CHECK.013_1\in\AUTOSAR_ASCMEMMAP_214.arxml is well-formed
+2020-02-13 11:40:32,654 INFO The file: C:\Users\dcsterpu\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.CHECK.013_1\in\AUTOSAR_Datatypes (2).arxml is well-formed
+2020-02-13 11:40:32,654 INFO The file: C:\Users\dcsterpu\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.CHECK.013_1\in\AUTOSAR_Datatypes.arxml is well-formed
+2020-02-13 11:40:32,670 INFO The file: C:\Users\dcsterpu\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.CHECK.013_1\in\BswMMode (2).arxml is well-formed
+2020-02-13 11:40:32,670 INFO The file: C:\Users\dcsterpu\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.CHECK.013_1\in\BswMMode.arxml is well-formed
+2020-02-13 11:40:32,670 INFO The file: C:\Users\dcsterpu\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.CHECK.013_1\in\DCM_ServicesClass (2).arxml is well-formed
+2020-02-13 11:40:32,670 INFO The file: C:\Users\dcsterpu\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.CHECK.013_1\in\DCM_ServicesClass.arxml is well-formed
+2020-02-13 11:40:32,670 INFO The file: C:\Users\dcsterpu\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.CHECK.013_1\in\DefN.diagdesc (2).arxml is well-formed
+2020-02-13 11:40:32,686 INFO The file: C:\Users\dcsterpu\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.CHECK.013_1\in\DefN.diagdesc.arxml is well-formed
+2020-02-13 11:40:32,686 INFO  The file C:\Users\dcsterpu\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.CHECK.013_1\in\DemPsa_NvM.epc is well-formed
+2020-02-13 11:40:32,701 INFO The file: C:\Users\dcsterpu\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.CHECK.013_1\in\Dem_EnableCondition (2).arxml is well-formed
+2020-02-13 11:40:32,717 INFO The file: C:\Users\dcsterpu\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.CHECK.013_1\in\Dem_EnableCondition.arxml is well-formed
+2020-02-13 11:40:32,717 INFO The file: C:\Users\dcsterpu\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.CHECK.013_1\in\Dem_swc_interface (2).arxml is well-formed
+2020-02-13 11:40:32,717 INFO The file: C:\Users\dcsterpu\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.CHECK.013_1\in\Dem_swc_interface.arxml is well-formed
+2020-02-13 11:40:32,717 INFO The file: C:\Users\dcsterpu\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.CHECK.013_1\in\DoIPConfig (2).arxml is well-formed
+2020-02-13 11:40:32,717 INFO The file: C:\Users\dcsterpu\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.CHECK.013_1\in\DoIPConfig.arxml is well-formed
+2020-02-13 11:40:32,717 INFO  The file C:\Users\dcsterpu\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.CHECK.013_1\in\MappingResistToChange.mem.config.xml is well-formed
+2020-02-13 11:40:32,717 INFO  The file C:\Users\dcsterpu\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.CHECK.013_1\in\MemConfigMerged.mem.config.xml is well-formed
+2020-02-13 11:40:32,717 INFO The file: C:\Users\dcsterpu\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.CHECK.013_1\in\NetworkConfig (2).arxml is well-formed
+2020-02-13 11:40:32,733 INFO The file: C:\Users\dcsterpu\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.CHECK.013_1\in\NetworkConfig.arxml is well-formed
+2020-02-13 11:40:32,733 INFO The file: C:\Users\dcsterpu\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.CHECK.013_1\in\NetworkConfig_ETH.arxml is well-formed
+2020-02-13 11:40:32,733 INFO  The file C:\Users\dcsterpu\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.CHECK.013_1\in\NvM.epc is well-formed
+2020-02-13 11:40:32,733 INFO  The file C:\Users\dcsterpu\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.CHECK.013_1\in\Profiles_cleaned.mem.config.xml is well-formed
+2020-02-13 11:40:33,720 INFO The file: C:\Users\dcsterpu\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.CHECK.013_1\in\SoftwareDescriptionGenerated.arxml is well-formed
+2020-02-13 11:40:34,020 WARNING FD3_DYN2_CMF_11E_0 doesn't have an initial value defined
+2020-02-13 11:40:34,020 WARNING FD3_DYN2_CMF_11E_1 doesn't have an initial value defined
+2020-02-13 11:40:34,020 WARNING FD3_DAT_FRADAR_279 doesn't have an initial value defined
+2020-02-13 11:40:34,020 WARNING FD3_DYN_VSM_041 doesn't have an initial value defined
+2020-02-13 11:40:34,020 WARNING FD3_DYN_VSM_2_0E0 doesn't have an initial value defined
+2020-02-13 11:40:34,020 WARNING FD3_DAT_VSM_1FE doesn't have an initial value defined
+2020-02-13 11:40:34,020 WARNING FD3_DAT_VSM_3_356 doesn't have an initial value defined
+2020-02-13 11:40:34,020 WARNING HS6_DAT_VSM_34E doesn't have an initial value defined
+2020-02-13 11:40:34,506 INFO The file: C:\Users\dcsterpu\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.CHECK.013_1\in\SSP_EB_DemEventParameter.diagdesc (2).arxml is well-formed
+2020-02-13 11:40:34,537 INFO The file: C:\Users\dcsterpu\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.CHECK.013_1\in\SSP_EB_DemEventParameter.diagdesc.arxml is well-formed
+2020-02-13 11:40:34,675 INFO The file: C:\Users\dcsterpu\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.CHECK.013_1\in\SystemGenerated_Step1.arxml is well-formed
+2020-02-13 11:40:34,722 INFO The file: C:\Users\dcsterpu\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.CHECK.013_1\in\VSM_Types (2).arxml is well-formed
+2020-02-13 11:40:34,738 INFO The file: C:\Users\dcsterpu\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.CHECK.013_1\in\VSM_Types.arxml is well-formed
+2020-02-13 11:40:34,738 INFO The file: C:\Users\dcsterpu\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.CHECK.013_1\in\XcpMerged.arxml is well-formed
+2020-02-13 11:40:34,760 ERROR The block Default_CfgVh_1_DID is defined in multiple files with different callbacks

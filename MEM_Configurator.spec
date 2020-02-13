@@ -3,8 +3,8 @@
 block_cipher = None
 
 
-a = Analysis(['MEM_configurator.py'],
-             pathex=['D:\\desktop\\PyCharmProjects\\MEM_Config'],
+a = Analysis(['MEM_Configurator.py'],
+             pathex=['C:\\Users\\dcsterpu\\PycharmProjects\\MEM_Config'],
              binaries=[],
              datas=[],
              hiddenimports=[],
@@ -23,7 +23,7 @@ exe = EXE(pyz,
           a.zipfiles,
           a.datas,
           [],
-          name='MEM_configurator',
+          name='MEM_Configurator',
           debug=False,
           bootloader_ignore_signals=False,
           strip=False,

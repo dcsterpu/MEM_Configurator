@@ -1,8 +1,8 @@
-2019-07-11 08:28:29,834 INFO The file: C:\Users\Cristi\PyCharmProjects\MEM_Config\tests\TRS.MEMCFG.CHECK.002_3\input\ASWC_A26.aswc.arxml is well-formed
-2019-07-11 08:28:29,897 INFO  The file C:\Users\Cristi\PyCharmProjects\MEM_Config\tests\TRS.MEMCFG.CHECK.002_3\input\ASWC_A26.config_mem.xml is well-formed
-2019-07-11 08:28:29,901 ERROR No profile defined for block Default_App_Ram_Implicit_RAR
-2019-07-11 08:28:29,929 INFO The file: C:\Users\Cristi\PyCharmProjects\MEM_Config\tests\TRS.MEMCFG.CHECK.002_3\input\AUTOSAR_Datatypes.arxml is well-formed
-2019-07-11 08:28:29,943 INFO  The file C:\Users\Cristi\PyCharmProjects\MEM_Config\tests\TRS.MEMCFG.CHECK.002_3\input\CompiledConfigID.xml is well-formed
-2019-07-11 08:28:29,955 INFO  The file C:\Users\Cristi\PyCharmProjects\MEM_Config\tests\TRS.MEMCFG.CHECK.002_3\input\Profiles_cleaned.xml is well-formed
-2019-07-11 08:28:30,628 INFO The file: C:\Users\Cristi\PyCharmProjects\MEM_Config\tests\TRS.MEMCFG.CHECK.002_3\input\SystemGenerated.arxml is well-formed
-2019-07-11 08:28:31,032 INFO The file: C:\Users\Cristi\PyCharmProjects\MEM_Config\tests\TRS.MEMCFG.CHECK.002_3\input\VSM_Types.arxml is well-formed
+2020-02-13 11:22:13,442 INFO The file: C:\Users\dcsterpu\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.CHECK.002_3\input\ASWC_A26.aswc.arxml is well-formed
+2020-02-13 11:22:13,457 INFO  The file C:\Users\dcsterpu\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.CHECK.002_3\input\ASWC_A26.config_mem.xml is well-formed
+2020-02-13 11:22:13,457 ERROR No profile defined for block Default_App_Ram_Implicit_RAR
+2020-02-13 11:22:13,457 INFO The file: C:\Users\dcsterpu\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.CHECK.002_3\input\AUTOSAR_Datatypes.arxml is well-formed
+2020-02-13 11:22:13,457 INFO  The file C:\Users\dcsterpu\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.CHECK.002_3\input\CompiledConfigID.xml is well-formed
+2020-02-13 11:22:13,457 INFO  The file C:\Users\dcsterpu\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.CHECK.002_3\input\Profiles_cleaned.xml is well-formed
+2020-02-13 11:22:13,573 INFO The file: C:\Users\dcsterpu\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.CHECK.002_3\input\SystemGenerated.arxml is well-formed
+2020-02-13 11:22:13,642 INFO The file: C:\Users\dcsterpu\PycharmProjects\MEM_Config\tests\TRS.MEMCFG.CHECK.002_3\input\VSM_Types.arxml is well-formed
