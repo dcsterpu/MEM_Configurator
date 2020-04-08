@@ -275,6 +275,8 @@ def create_MEM_config(files_list, priority_list, output_path, logger, alignment)
                         warning_no = warning_no + 1
                     obj_variable['SW-BASE-TYPE'] = None
                     obj_variable['SIZE'] = None
+                    obj_variable['REAL-TYPE'] = None
+                    obj_variable['BASE-SIZE'] = 0
                     variable_data_prototype.append(obj_variable)
                 obj_elem['DATA-ELEMENTS'] = variable_data_prototype
                 obj_elem['SIZE'] = None
@@ -317,6 +319,8 @@ def create_MEM_config(files_list, priority_list, output_path, logger, alignment)
                 obj_elem['INTERFACE'] = elem.find(".//{http://autosar.org/schema/r4.0}PROVIDED-REQUIRED-INTERFACE-TREF").text
                 obj_elem['SIZE'] = None
                 obj_elem['DATA-ELEMENTS'] = None
+                obj_elem['REAL-TYPE'] = None
+                obj_elem['BASE-SIZE'] = 0
                 ports.append(obj_elem)
         if file.endswith('.xml'):
             try:
@@ -581,7 +585,13 @@ def create_MEM_config(files_list, priority_list, output_path, logger, alignment)
                         error_no = error_no + 1
                         break
                     for port in blocks[index1]['PORT']:
-                        block_list[block_index]['PORT'].append(port)
+                        if port in block_list[block_index]['PORT']:
+                            logger.error('The data element ' + port['NAME'] + ' is already defined in the block ' + blocks[index1]['NAME'])
+                            print('ERROR: The data element ' + port['NAME'] + ' is already defined in the block ' + blocks[index1]['NAME'])
+                            error_no = error_no + 1
+                            break
+                        else:
+                            block_list[block_index]['PORT'].append(port)
     blocks = block_list
 
     # overwrite data blocks with data from the priority blocks
@@ -642,6 +652,8 @@ def create_MEM_config(files_list, priority_list, output_path, logger, alignment)
                                     interface_size = interface_size + int(base_type['SIZE'])
                                     data_element['SIZE'] = int(base_type['SIZE'])
                                     found = True
+                                    data_element['REAL-TYPE'] = data_type['TYPE']
+                                    data_element['BASE-SIZE'] = base_type['SIZE']
                                     break
                         elif data_type['TYPE'] == "ARRAY":
                             for idt in arxml_data_types:
@@ -651,10 +663,13 @@ def create_MEM_config(files_list, priority_list, output_path, logger, alignment)
                                     package = idt['BASE-TYPE'].split("/")[-2]
                                     for base_type in arxml_base_types:
                                         if base_type['NAME'] == base and base_type['PACKAGE'] == package:
-                                            interface_size = interface_size + (int(data_type['ARRAY-SIZE']) * int(base_type['SIZE']))
+                                            interface_size += (int(data_type['ARRAY-SIZE']) * int(base_type['SIZE']))
                                             data_element['SIZE'] = int(data_type['ARRAY-SIZE']) * int(base_type['SIZE'])
                                             found = True
+                                            data_element['REAL-TYPE'] = data_type['TYPE']
+                                            data_element['BASE-SIZE'] = base_type['SIZE']
                                             break
+                                    break
                 else:
                     break
         interface['SIZE'] = int(interface_size / 8)
@@ -685,6 +700,8 @@ def create_MEM_config(files_list, priority_list, output_path, logger, alignment)
                 elem1['PORT']['SIZE'] = elem2['SIZE']
                 elem1['PORT']['ASWC'] = elem2['ASWC']
                 elem1['PORT']['DATA-PROTOTYPE'] = elem2['DATA-ELEMENTS']
+                elem1['PORT']['REAL-TYPE'] = elem2['REAL-TYPE']
+                elem1['PORT']['BASE-SIZE'] = elem2['BASE-SIZE']
                 found = True
                 break
         if not found:
@@ -719,9 +736,32 @@ def create_MEM_config(files_list, priority_list, output_path, logger, alignment)
             if port['DATA-PROTOTYPE']:
                 for indexD in range(len(port['DATA-PROTOTYPE'])):
                     if port['DATA-PROTOTYPE'][indexD]['SIZE']/8 > int(alignment):
-                        logger.error('The port ' + port['NAME'] + ' has a referenced data element greater than the alignment: ' + port['DATA-PROTOTYPE'][indexD]['NAME'])
-                        print('ERROR: The port ' + port['NAME'] + ' has a referenced data element greater than the alignment: ' + port['DATA-PROTOTYPE'][indexD]['NAME'])
-                        sys.exit(1)
+                        if port['DATA-PROTOTYPE'][indexD]['REAL-TYPE'] != 'ARRAY':
+                            logger.error('The port ' + port['NAME'] + ' has a referenced data element greater than the alignment: ' + port['DATA-PROTOTYPE'][indexD]['NAME'])
+                            print('ERROR: The port ' + port['NAME'] + ' has a referenced data element greater than the alignment: ' + port['DATA-PROTOTYPE'][indexD]['NAME'])
+                            sys.exit(1)
+                        else:
+                            line_size += port['DATA-PROTOTYPE'][indexD]['SIZE'] / 8
+                            if line_size % int(alignment) > 0:
+                                stuff_needed = line_size % int(alignment)
+                                line_size -= port['DATA-PROTOTYPE'][indexD]['SIZE'] / 8
+                                for cnt in range(0, int(int(alignment) - stuff_needed)):
+                                    port['SIZE'] = port['SIZE'] + 1
+                                    new_dict = {}
+                                    new_dict['NAME'] = "Stuffing_" + str(count)
+                                    count += 1
+                                    new_dict['TYPE'] = "/Pack_sw_Types/tBYTE"
+                                    new_dict['SIZE'] = 8
+                                    new_dict['SW-BASE-TYPE'] = "/AUTOSAR_Platform/BaseTypes/uint8"
+                                    new_dict['INIT'] = "0"
+                                    new_dict['REAL-TYPE'] = "VALUE"
+                                    port['DATA-PROTOTYPE'].insert(port['DATA-PROTOTYPE'].index(port['DATA-PROTOTYPE'][indexD]), new_dict)
+                                    indexD += 1
+                                line_size = 0
+                                line_size += port['DATA-PROTOTYPE'][indexD]['SIZE'] / 8
+                                continue
+                            elif int(alignment) - line_size == 0:
+                                line_size = 0
                     else:
                         line_size += port['DATA-PROTOTYPE'][indexD]['SIZE'] / 8
                         if int(alignment) - line_size < 0:
@@ -735,6 +775,7 @@ def create_MEM_config(files_list, priority_list, output_path, logger, alignment)
                                 new_dict['SIZE'] = 8
                                 new_dict['SW-BASE-TYPE'] = "/AUTOSAR_Platform/BaseTypes/uint8"
                                 new_dict['INIT'] = "0"
+                                new_dict['REAL-TYPE'] = "VALUE"
                                 port['DATA-PROTOTYPE'].insert(port['DATA-PROTOTYPE'].index(port['DATA-PROTOTYPE'][indexD]), new_dict)
                                 indexD += 1
                             line_size = 0
@@ -881,6 +922,7 @@ def create_MEM_config(files_list, priority_list, output_path, logger, alignment)
                 obj_data_prototype['TYPE'] = data['TYPE']
                 obj_data_prototype['INIT'] = data['INIT']
                 obj_data_prototype['SIZE'] = data['SIZE']
+                obj_data_prototype['REAL-TYPE'] = data['REAL-TYPE']
                 block_size = block_size + int(data['SIZE'])
                 data_elements.append(obj_data_prototype)
         obj_block['SIZE'] = int(block_size/8)
@@ -912,6 +954,7 @@ def create_MEM_config(files_list, priority_list, output_path, logger, alignment)
                 obj_data_prototype['TYPE'] = data['TYPE']
                 obj_data_prototype['INIT'] = data['INIT']
                 obj_data_prototype['SIZE'] = data['SIZE']
+                obj_data_prototype['REAL-TYPE'] = data['REAL-TYPE']
                 block_size = block_size + int(data['SIZE'])
                 data_elements.append(obj_data_prototype)
         obj_block['SIZE'] = int(block_size/8)
@@ -941,6 +984,7 @@ def create_MEM_config(files_list, priority_list, output_path, logger, alignment)
                 obj_data_prototype['TYPE'] = data['TYPE']
                 obj_data_prototype['INIT'] = data['INIT']
                 obj_data_prototype['SIZE'] = data['SIZE']
+                obj_data_prototype['REAL-TYPE'] = data['REAL-TYPE']
                 block_size = block_size + int(data['SIZE'])
                 data_elements.append(obj_data_prototype)
         obj_block['SIZE'] = int(block_size/8)
@@ -1823,7 +1867,7 @@ def create_MEM_config(files_list, priority_list, output_path, logger, alignment)
             value.text = block['NvMNameOfEaBlock']
     pretty_xml = new_prettify(rootNvM)
     output = etree.ElementTree(etree.fromstring(pretty_xml))
-    output.write(output_path + '/NvM.epc', encoding='UTF-8', xml_declaration=True, method="xml", doctype="<!-- XML file generated by MEM_Configurator-15 -->")
+    output.write(output_path + '/NvM.epc', encoding='UTF-8', xml_declaration=True, method="xml", doctype="<!-- XML file generated by MEM_Configurator-16 -->")
 
     # generate NvDM.epc
     rootNvDM = etree.Element('AUTOSAR', {attr_qname: 'http://autosar.org/schema/r4.0 AUTOSAR_4-2-2_STRICT_COMPACT.xsd'}, nsmap=NSMAP)
@@ -1938,6 +1982,15 @@ def create_MEM_config(files_list, priority_list, output_path, logger, alignment)
             definition.text = "/AUTOSAR/EcuDefs/NvDM/NvDMBlockDescriptor/NvDMVariableDataPrototype/NvDMInitValue"
             value = etree.SubElement(ecuc_reference_values, 'VALUE')
             value.text = element['INIT']
+            ecuc_reference_values = etree.SubElement(parameter, 'ECUC-NUMERICAL-PARAM-VALUE')
+            definition = etree.SubElement(ecuc_reference_values, 'DEFINITION-REF')
+            definition.attrib['DEST'] = "ECUC-BOOLEAN-PARAM-DEF"
+            definition.text = "/AUTOSAR/EcuDefs/NvDM/NvDMBlockDescriptor/NvDMVariableDataPrototype/NvDMArray"
+            value = etree.SubElement(ecuc_reference_values, 'VALUE')
+            if element['REAL-TYPE'] != "ARRAY":
+                value.text = "false"
+            else:
+                value.text = "true"
             reference_values = etree.SubElement(ecuc_container, 'REFERENCE-VALUES')
             ecuc_reference_values = etree.SubElement(reference_values, 'ECUC-REFERENCE-VALUE')
             definition = etree.SubElement(ecuc_reference_values, 'DEFINITION-REF')
@@ -2061,6 +2114,15 @@ def create_MEM_config(files_list, priority_list, output_path, logger, alignment)
             definition.text = "/AUTOSAR/EcuDefs/NvDM/NvDMBlockDescriptor/NvDMVariableDataPrototype/NvDMInitValue"
             value = etree.SubElement(ecuc_reference_values, 'VALUE')
             value.text = element['INIT']
+            ecuc_reference_values = etree.SubElement(parameter, 'ECUC-NUMERICAL-PARAM-VALUE')
+            definition = etree.SubElement(ecuc_reference_values, 'DEFINITION-REF')
+            definition.attrib['DEST'] = "ECUC-BOOLEAN-PARAM-DEF"
+            definition.text = "/AUTOSAR/EcuDefs/NvDM/NvDMBlockDescriptor/NvDMVariableDataPrototype/NvDMArray"
+            value = etree.SubElement(ecuc_reference_values, 'VALUE')
+            if element['REAL-TYPE'] != "ARRAY":
+                value.text = "false"
+            else:
+                value.text = "true"
             reference_values = etree.SubElement(ecuc_container, 'REFERENCE-VALUES')
             ecuc_reference_values = etree.SubElement(reference_values, 'ECUC-REFERENCE-VALUE')
             definition = etree.SubElement(ecuc_reference_values, 'DEFINITION-REF')
@@ -2085,7 +2147,7 @@ def create_MEM_config(files_list, priority_list, output_path, logger, alignment)
             value.text = element['TYPE']
     pretty_xml = new_prettify(rootNvDM)
     output = etree.ElementTree(etree.fromstring(pretty_xml))
-    output.write(output_path + '/NvDM.epc', encoding='UTF-8', xml_declaration=True, method="xml", doctype="<!-- XML file generated by MEM_Configurator-15 -->")
+    output.write(output_path + '/NvDM.epc', encoding='UTF-8', xml_declaration=True, method="xml", doctype="<!-- XML file generated by MEM_Configurator-16 -->")
     ##########################################
     if error_no != 0:
         print("There is at least one blocking error! Check the generated log.")
