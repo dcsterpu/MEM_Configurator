@@ -200,7 +200,7 @@ def create_MEM_config(files_list, priority_list, output_path, logger, alignment)
     NSMAP = {None: 'http://autosar.org/schema/r4.0', "xsi": 'http://www.w3.org/2001/XMLSchema-instance'}
     attr_qname = etree.QName("http://www.w3.org/2001/XMLSchema-instance", "schemaLocation")
     # try:
-        # parse the arxml files and get the necessary data
+        # parse the xml files and get the necessary data
     for file in files_list:
         if file.endswith('.epc'):
             try:
@@ -340,6 +340,11 @@ def create_MEM_config(files_list, priority_list, output_path, logger, alignment)
                 block_ports = []
                 obj_block['NAME'] = elem.find('SHORT-NAME').text
                 obj_block['TYPE'] = elem.find('TYPE').text
+                # implemente new req: tbd
+                if elem.find('NVM-SELECT-BLOCK-FOR-WRITE-ALL') is not None:
+                    obj_block['WRITE-ALL'] = elem.find('NVM-SELECT-BLOCK-FOR-WRITE-ALL').text
+                else:
+                    obj_block['WRITE-ALL'] = None
                 # implementing requirement TRS.SYSDESC.CHECK.002
                 if elem.find('PROFIL-REF') is not None:
                     if elem.find('PROFIL-REF').text != '' or elem.find('PROFILE-REF') is None:
@@ -445,6 +450,11 @@ def create_MEM_config(files_list, priority_list, output_path, logger, alignment)
                 block_ports = []
                 obj_block['NAME'] = elem.find('SHORT-NAME').text
                 obj_block['TYPE'] = elem.find('TYPE').text
+                # implemente new req: tbd
+                if elem.find('NVM-SELECT-BLOCK-FOR-WRITE-ALL') is not None:
+                    obj_block['WRITE-ALL'] = elem.find('NVM-SELECT-BLOCK-FOR-WRITE-ALL').text
+                else:
+                    obj_block['WRITE-ALL'] = None
                 # implementing requirement TRS.SYSDESC.CHECK.002
                 if elem.find('PROFIL-REF') is not None:
                     if elem.find('PROFIL-REF').text != '' or elem.find('PROFILE-REF') is None:
@@ -558,6 +568,7 @@ def create_MEM_config(files_list, priority_list, output_path, logger, alignment)
                         logger.error('Different mapping defined for same block: ' + blocks[index1]['NAME'])
                         print('ERROR: Different mapping defined for same block: ' + blocks[index1]['NAME'])
                         error_no = error_no + 1
+
     # one block with SDF = true cannot be present in multiple files
     for elem1 in blocks[:]:
         for elem2 in blocks[:]:
@@ -566,6 +577,15 @@ def create_MEM_config(files_list, priority_list, output_path, logger, alignment)
                     if elem1['SDF'] == 'true':
                         logger.error('The block ' + elem1['NAME'] + ' cannot be defined in multiple ASWC because SDF = true')
                         print('ERROR: The block ' + elem1['NAME'] + ' cannot be defined in multiple ASWC because SDF = true')
+                        error_no = error_no + 1
+    # TRS.MEMCFG.CHECK.014: the "WRITE-ALL" value has to be the same for all blocks, if defined
+    for elem1 in blocks[:]:
+        for elem2 in blocks[:]:
+            if blocks.index(elem1) != blocks.index(elem2):
+                if elem1['NAME'] == elem2['NAME']:
+                    if elem1['WRITE-ALL'] != elem2['WRITE-ALL'] and elem1['WRITE-ALL'] is not None and elem2['WRITE-ALL'] is not None:
+                        logger.error('The block ' + elem1['NAME'] + ' is defined with different values for <NVM-SELECT-BLOCK-FOR-WRITE-ALL>')
+                        print('ERROR: The block ' + elem1['NAME'] + ' is defined with different values for <NVM-SELECT-BLOCK-FOR-WRITE-ALL>')
                         error_no = error_no + 1
     # merge two block with the same name
     # TRS.MEMCFG.CHECK.013(0) : if the same block has different callbacks defined --> error
@@ -601,6 +621,7 @@ def create_MEM_config(files_list, priority_list, output_path, logger, alignment)
             for block in blocks:
                 if block['NAME'] == overloaded['NAME']:
                     block['TYPE'] = overloaded['TYPE']
+                    block['WRITE-ALL'] = overloaded['WRITE-ALL']
                     block['PROFILE'] = overloaded['PROFILE']
                     block['CALLBACK'] = overloaded['CALLBACK']
                     block['TIMEOUT'] = overloaded['TIMEOUT']
@@ -835,6 +856,7 @@ def create_MEM_config(files_list, priority_list, output_path, logger, alignment)
                 if splitted and block['PORT'].index(port) == len(block['PORT'])-1:
                     obj_subblock['NAME'] = block['NAME'] + "_" + str(subblock_number)
                     obj_subblock['TYPE'] = block['TYPE']
+                    obj_subblock['WRITE-ALL'] = block['WRITE-ALL']
                     obj_subblock['PROFILE'] = block['PROFILE']
                     obj_subblock['TIMEOUT'] = block['TIMEOUT']
                     obj_subblock['MAPPING'] = block['MAPPING']
@@ -856,6 +878,7 @@ def create_MEM_config(files_list, priority_list, output_path, logger, alignment)
                 obj_subblock['NAME'] = block['NAME'] + '_' + str(subblock_number)
                 subblock_number = subblock_number + 1
                 obj_subblock['TYPE'] = block['TYPE']
+                obj_subblock['WRITE-ALL'] = block['WRITE-ALL']
                 obj_subblock['PROFILE'] = block['PROFILE']
                 obj_subblock['TIMEOUT'] = block['TIMEOUT']
                 obj_subblock['MAPPING'] = block['MAPPING']
@@ -879,6 +902,7 @@ def create_MEM_config(files_list, priority_list, output_path, logger, alignment)
             obj_subblock['NAME'] = block['NAME'] + '_' + str(subblock_number)
             subblock_number = subblock_number + 1
             obj_subblock['TYPE'] = block['TYPE']
+            obj_subblock['WRITE-ALL'] = block['WRITE-ALL']
             obj_subblock['PROFILE'] = block['PROFILE']
             obj_subblock['TIMEOUT'] = block['TIMEOUT']
             obj_subblock['MAPPING'] = block['MAPPING']
@@ -904,6 +928,7 @@ def create_MEM_config(files_list, priority_list, output_path, logger, alignment)
         obj_block['NAME'] = block['NAME']
         obj_block['ID'] = block['ID']
         index = index + 1
+        obj_block['WRITE-ALL'] = block['WRITE-ALL']
         obj_block['MAPPING'] = block['MAPPING']
         obj_block['PROFILE'] = block['PROFILE']
         obj_block['DEVICE'] = block['DEVICE']
@@ -936,6 +961,7 @@ def create_MEM_config(files_list, priority_list, output_path, logger, alignment)
         obj_block['NAME'] = subblock['NAME']
         obj_block['ID'] = subblock['ID']
         index = index + 1
+        obj_block['WRITE-ALL'] = subblock['WRITE-ALL']
         obj_block['MAPPING'] = subblock['MAPPING']
         obj_block['PROFILE'] = subblock['PROFILE']
         obj_block['DEVICE'] = subblock['DEVICE']
@@ -967,6 +993,7 @@ def create_MEM_config(files_list, priority_list, output_path, logger, alignment)
         obj_block['NAME'] = block['NAME']
         obj_block['ID'] = block['ID']
         index = index + 1
+        obj_block['WRITE-ALL'] = block['WRITE-ALL']
         obj_block['MAPPING'] = block['MAPPING']
         obj_block['PROFILE'] = block['PROFILE']
         obj_block['DEVICE'] = block['DEVICE']
@@ -1001,6 +1028,7 @@ def create_MEM_config(files_list, priority_list, output_path, logger, alignment)
         obj_nvm['SOURCE'] = 'Intern'
         obj_nvm['DEVICE'] = block['DEVICE']
         obj_nvm['NvMNvramBlockIdentifier'] = 0
+        obj_nvm['NvMSelectBlockForWriteAll'] = 'False'
         obj_nvm['NvMRomBlockDataAddress'] = "&NvDM_RomBlock_" + block['NAME']
         obj_nvm['NvMNvBlockLength'] = block['SIZE']
         obj_nvm['NvMSingleBlockCallback'] = None
@@ -1023,7 +1051,6 @@ def create_MEM_config(files_list, priority_list, output_path, logger, alignment)
         obj_nvm['NvMWriteRamBlockToNvCallback'] = None
         obj_nvm['NvMBlockUseAutoValidation'] = None
         obj_nvm['NvMStaticBlockIDCheck'] = None
-        obj_nvm['NvMSelectBlockForWriteAll'] = None
         obj_nvm['NvMSelectBlockForReadAll'] = None
         obj_nvm['NvMResistantToChangedSw'] = None
         obj_nvm['NvMCalcRamBlockCrc'] = None
@@ -1204,6 +1231,8 @@ def create_MEM_config(files_list, priority_list, output_path, logger, alignment)
                             obj_nvm['NvMSingleBlockCallback'] = elem['VALUE']
         if block['CALLBACK'] is not None:
             obj_nvm['NvMSingleBlockCallback'] = block['CALLBACK']
+        if block['WRITE-ALL'] is not None and block['WRITE-ALL'] == 'true':
+            obj_nvm['NvMSelectBlockForWriteAll'] = "True"
         for key, value in obj_nvm.items():
             if value is None:
                 if key not in ['NvMRomBlockDataAddress', 'NvMBlockUseAutoValidation', 'NvMSingleBlockCallback', 'NvMSelectBlockForWriteAll', 'NvMSelectBlockForReadAll', 'NvMCalcRamBlockCrc', 'NvMBlockCrcType', 'NvMWriteRamBlockToNvCallback', 'NvMReadRamBlockFromNvCallback', 'NvMInitBlockCallback', 'NvMRPortInterfacesASRVersion', 'NvMWriteVerificationDataSize']:
@@ -1217,6 +1246,7 @@ def create_MEM_config(files_list, priority_list, output_path, logger, alignment)
         obj_nvm['SOURCE'] = 'Intern'
         obj_nvm['DEVICE'] = block['DEVICE']
         obj_nvm['NvMNvramBlockIdentifier'] = 0
+        obj_nvm['NvMSelectBlockForWriteAll'] = 'False'
         obj_nvm['NvMRomBlockDataAddress'] = "&NvDM_RomBlock_" + block['NAME']
         obj_nvm['NvMNvBlockLength'] = block['SIZE']
         obj_nvm['NvMSingleBlockCallback'] = None
@@ -1239,7 +1269,6 @@ def create_MEM_config(files_list, priority_list, output_path, logger, alignment)
         obj_nvm['NvMWriteRamBlockToNvCallback'] = None
         obj_nvm['NvMBlockUseAutoValidation'] = None
         obj_nvm['NvMStaticBlockIDCheck'] = None
-        obj_nvm['NvMSelectBlockForWriteAll'] = None
         obj_nvm['NvMSelectBlockForReadAll'] = None
         obj_nvm['NvMResistantToChangedSw'] = None
         obj_nvm['NvMCalcRamBlockCrc'] = None
@@ -1419,6 +1448,8 @@ def create_MEM_config(files_list, priority_list, output_path, logger, alignment)
                             obj_nvm['NvMSingleBlockCallback'] = elem['VALUE']
         if block['CALLBACK'] is not None:
             obj_nvm['NvMSingleBlockCallback'] = block['CALLBACK']
+        if block['WRITE-ALL'] is not None and block['WRITE-ALL'] == 'true':
+            obj_nvm['NvMSelectBlockForWriteAll'] = "True"
         for key, value in obj_nvm.items():
             if value is None:
                 if key not in ['NvMRomBlockDataAddress', 'NvMBlockUseAutoValidation', 'NvMSingleBlockCallback', 'NvMSelectBlockForWriteAll', 'NvMSelectBlockForReadAll', 'NvMCalcRamBlockCrc', 'NvMBlockCrcType', 'NvMWriteRamBlockToNvCallback', 'NvMReadRamBlockFromNvCallback', 'NvMInitBlockCallback', 'NvMRPortInterfacesASRVersion', 'NvMWriteVerificationDataSize']:
@@ -1734,13 +1765,12 @@ def create_MEM_config(files_list, priority_list, output_path, logger, alignment)
         value = etree.SubElement(ecuc_numerical_NvMStaticBlockIDCheck, 'VALUE').text = block['NvMStaticBlockIDCheck']
         # NvMSelectBlockForWriteAll
         if 'NvMSelectBlockForWriteAll' in block.keys():
-            if 'NvMSelectBlockForWriteAll' in block.keys():
-                if block['NvMSelectBlockForWriteAll'] is not None:
-                    ecuc_numerical_NvMSelectBlockForWriteAll = etree.SubElement(parameter, 'ECUC-NUMERICAL-PARAM-VALUE')
-                    definition = etree.SubElement(ecuc_numerical_NvMSelectBlockForWriteAll, 'DEFINITION-REF')
-                    definition.attrib['DEST'] = "ECUC-BOOLEAN-PARAM-DEF"
-                    definition.text = "/AUTOSAR/EcuDefs/NvM/NvMBlockDescriptor/NvMSelectBlockForWriteAll"
-                    value = etree.SubElement(ecuc_numerical_NvMSelectBlockForWriteAll, 'VALUE').text = block['NvMSelectBlockForWriteAll']
+            if block['NvMSelectBlockForWriteAll'] is not None:
+                ecuc_numerical_NvMSelectBlockForWriteAll = etree.SubElement(parameter, 'ECUC-NUMERICAL-PARAM-VALUE')
+                definition = etree.SubElement(ecuc_numerical_NvMSelectBlockForWriteAll, 'DEFINITION-REF')
+                definition.attrib['DEST'] = "ECUC-BOOLEAN-PARAM-DEF"
+                definition.text = "/AUTOSAR/EcuDefs/NvM/NvMBlockDescriptor/NvMSelectBlockForWriteAll"
+                value = etree.SubElement(ecuc_numerical_NvMSelectBlockForWriteAll, 'VALUE').text = block['NvMSelectBlockForWriteAll']
         # NvMSelectBlockForReadAll
         if 'NvMSelectBlockForReadAll' in block.keys():
             if block['NvMSelectBlockForReadAll'] is not None:
