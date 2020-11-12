@@ -13,6 +13,7 @@ from xml.dom.minidom import parseString             # pragma: no cover
 def arg_parse(parser):
     parser.add_argument('-in', '--inp', nargs='*', help="input path or file", required=True, default="")
     parser.add_argument('-in_resizing', '--resizing', nargs='*',  help="input path or file for block resizing", required=False, default="")
+    parser.add_argument('-in_completion_file ', '--override', nargs='*', help="input path or file of block memory to merge NVM/NVDM module configuration", required=False, default="")
     parser.add_argument('-out', '--out', help="output path", required=False, default="")
     parser.add_argument('-out_epc', '--out_epc', help="output path for configuration file(s)", required=False, default="")
     parser.add_argument('-out_log', '--out_log', help="output path for log file", required=False, default="")
@@ -88,6 +89,7 @@ def main():
     args = parser.parse_args()
     input_path = args.inp
     resizing_path = args.resizing
+    override_path = args.override
     error = False
     path_list = []
     file_list = []
@@ -142,6 +144,23 @@ def main():
                 fullname = dirpath + '\\' + file
                 file_list.append(fullname)
     [priority_list.append(elem) for elem in file_list if elem not in priority_list]
+    override_list = []
+    path_list = []
+    file_list = []
+    for path in override_path:
+        if os.path.isdir(path):
+            path_list.append(path)
+        elif os.path.isfile(path):
+            file_list.append(path)
+        else:
+            print("\nError defining the input path: " + path + "\n")
+            error = True
+    for path in path_list:
+        for (dirpath, dirnames,filenames) in os.walk(path):
+            for file in filenames:
+                fullname = dirpath + "\\" + file
+                file_list.append(fullname)
+    [override_list.append(elem) for elem in file_list if elem not in override_list]
     if error:
         sys.exit(1)
     output_path = args.out
@@ -157,10 +176,10 @@ def main():
                 print("\nError defining the output log path!\n")
                 sys.exit(1)
             logger = set_logger(output_log)
-            create_MEM_config(entry_list, priority_list, output_path, logger, alignment)
+            create_MEM_config(entry_list, priority_list, override_list, output_path, logger, alignment)
         else:
             logger = set_logger(output_path)
-            create_MEM_config(entry_list, priority_list, output_path, logger, alignment)
+            create_MEM_config(entry_list, priority_list, override_list, output_path, logger, alignment)
     elif not output_path:
         if output_epc:
             if not os.path.isdir(output_epc):
@@ -171,16 +190,16 @@ def main():
                     print("\nError defining the output log path!\n")
                     sys.exit(1)
                 logger = set_logger(output_log)
-                create_MEM_config(entry_list, priority_list, output_epc, logger, alignment)
+                create_MEM_config(entry_list, priority_list, override_list, output_epc, logger, alignment)
             else:
                 logger = set_logger(output_epc)
-                create_MEM_config(entry_list, priority_list, output_epc, logger, alignment)
+                create_MEM_config(entry_list, priority_list, override_list, output_epc, logger, alignment)
     else:
         print("\nNo output path defined!\n")
         sys.exit(1)
 
 
-def create_MEM_config(files_list, priority_list, output_path, logger, alignment):
+def create_MEM_config(files_list, priority_list, override_list, output_path, logger, alignment):
     error_no = 0
     warning_no = 0
     info_no = 0
@@ -196,6 +215,9 @@ def create_MEM_config(files_list, priority_list, output_path, logger, alignment)
     arxml_data_types = []
     arxml_base_types = []
     priority_blocks = []
+    override_nvm_blocks = []
+    override_nvdm_blocks = []
+    override_common_block = []
     ports = []
     NSMAP = {None: 'http://autosar.org/schema/r4.0', "xsi": 'http://www.w3.org/2001/XMLSchema-instance'}
     attr_qname = etree.QName("http://www.w3.org/2001/XMLSchema-instance", "schemaLocation")
@@ -214,6 +236,14 @@ def create_MEM_config(files_list, priority_list, output_path, logger, alignment)
             parser = etree.XMLParser(remove_comments=True)
             tree = objectify.parse(file, parser=parser)
             root = tree.getroot()
+            containers = root.findall(".//{http://autosar.org/schema/r4.0}ECUC-CONTAINER-VALUE")
+            for container in containers:
+                definition = container.find("./{http://autosar.org/schema/r4.0}DEFINITION-REF").text.split("/")[-1]
+                if definition == "NvMCommon":
+                    values = container.findall(".//{http://autosar.org/schema/r4.0}ECUC-TEXTUAL-PARAM-VALUE")
+                    for value in values:
+                        if value.find(".//{http://autosar.org/schema/r4.0}DEFINITION-REF").text.split("/")[-1] == "NvMUserHeader":
+                            override_common_block.append(value.find(".//{http://autosar.org/schema/r4.0}VALUE").text)
             container = root.find(".//{http://autosar.org/schema/r4.0}CONTAINERS")
             for block in container.findall("{http://autosar.org/schema/r4.0}ECUC-CONTAINER-VALUE"):
                 if block.find("./{http://autosar.org/schema/r4.0}DEFINITION-REF").text.split("/")[-1] != "NvMBlockDescriptor":
@@ -273,6 +303,7 @@ def create_MEM_config(files_list, priority_list, output_path, logger, alignment)
                         obj_variable['INIT'] = 0
                         logger.warning(str(obj_variable['NAME']) + " doesn't have an initial value defined")
                         warning_no = warning_no + 1
+                    obj_variable['PATH'] = "/" + obj_elem['ROOT'] + "/" + obj_elem['NAME'] + "/" + obj_variable['NAME']
                     obj_variable['SW-BASE-TYPE'] = None
                     obj_variable['SIZE'] = None
                     obj_variable['REAL-TYPE'] = None
@@ -340,6 +371,10 @@ def create_MEM_config(files_list, priority_list, output_path, logger, alignment)
                 block_ports = []
                 obj_block['NAME'] = elem.find('SHORT-NAME').text
                 obj_block['TYPE'] = elem.find('TYPE').text
+                if elem.find('BLOCK-SIZE') is not None:
+                    obj_block['REC-SIZE'] = elem.find('BLOCK-SIZE').text
+                else:
+                    obj_block['REC-SIZE'] = None
                 # implemente new req: tbd
                 if elem.find('NVM-SELECT-BLOCK-FOR-WRITE-ALL') is not None:
                     obj_block['WRITE-ALL'] = elem.find('NVM-SELECT-BLOCK-FOR-WRITE-ALL').text
@@ -501,6 +536,44 @@ def create_MEM_config(files_list, priority_list, output_path, logger, alignment)
                 obj_block['PORT'] = block_ports
                 obj_block['MAX-SIZE'] = None
                 priority_blocks.append(obj_block)
+    # parse the overriden files (if any)
+    for file in override_list:
+        if file.endswith('.epc'):
+            try:
+                check_if_xml_is_wellformed(file)
+                logger.info(' The file ' + file + ' is well-formed')
+                info_no = info_no + 1
+            except Exception as e:
+                logger.error(' The file ' + file + ' is not well-formed: ' + str(e))
+                print('ERROR: The file ' + file + ' is not well-formed: ' + str(e))
+                error_no = error_no + 1
+            parser = etree.XMLParser(remove_comments=True)
+            tree = objectify.parse(file, parser=parser)
+            root = tree.getroot()
+            containers = root.findall(".//{http://autosar.org/schema/r4.0}ECUC-CONTAINER-VALUE")
+            for container in containers:
+                definition = container.find("./{http://autosar.org/schema/r4.0}DEFINITION-REF").text.split("/")[-1]
+                if definition == "NvMCommon":
+                    values = container.findall(".//{http://autosar.org/schema/r4.0}ECUC-TEXTUAL-PARAM-VALUE")
+                    for value in values:
+                        if value.find(".//{http://autosar.org/schema/r4.0}DEFINITION-REF").text.split("/")[-1] == "NvMUserHeader":
+                            override_common_block.append(value.find(".//{http://autosar.org/schema/r4.0}VALUE").text)
+                elif definition == "NvMBlockDescriptor":
+                    obj_nvm = {}
+                    obj_nvm['NAME'] = container.find("./{http://autosar.org/schema/r4.0}SHORT-NAME").text
+                    values = container.findall(".//{http://autosar.org/schema/r4.0}ECUC-TEXTUAL-PARAM-VALUE")
+                    for value in values:
+                        if value.find(".//{http://autosar.org/schema/r4.0}DEFINITION-REF").text.split("/")[-1] == "NvMSingleBlockCallback":
+                            obj_nvm['CALLBACK'] = value.find(".//{http://autosar.org/schema/r4.0}VALUE").text
+                    override_nvm_blocks.append(obj_nvm)
+                elif definition == "NvDMBlockDescriptor":
+                    obj_nvdm = {}
+                    obj_nvdm['NAME'] = container.find("./{http://autosar.org/schema/r4.0}SHORT-NAME").text
+                    values = container.findall(".//{http://autosar.org/schema/r4.0}ECUC-NUMERICAL-PARAM-VALUE")
+                    for value in values:
+                        if value.find(".//{http://autosar.org/schema/r4.0}DEFINITION-REF").text.split("/")[-1] == "NvDMExclusionTime":
+                            obj_nvdm['TIME'] = value.find(".//{http://autosar.org/schema/r4.0}VALUE").text
+                    override_nvdm_blocks.append(obj_nvdm)
 
     ############ external blocks check############
     # add Tresos-generated default parameters with their default value
@@ -567,6 +640,10 @@ def create_MEM_config(files_list, priority_list, output_path, logger, alignment)
                     elif blocks[index1]['MAPPING'] != blocks[index2]['MAPPING']:
                         logger.error('Different mapping defined for same block: ' + blocks[index1]['NAME'])
                         print('ERROR: Different mapping defined for same block: ' + blocks[index1]['NAME'])
+                        error_no = error_no + 1
+                    elif blocks[index1]['REC-SIZE'] != blocks[index2]['REC-SIZE']:
+                        logger.error('Different different imposed size defined for same block: ' + blocks[index1]['NAME'])
+                        print('ERROR: Different different imposed size defined for same block: ' + blocks[index1]['NAME'])
                         error_no = error_no + 1
 
     # one block with SDF = true cannot be present in multiple files
@@ -772,6 +849,7 @@ def create_MEM_config(files_list, priority_list, output_path, logger, alignment)
                                     new_dict['NAME'] = "Stuffing_" + str(count)
                                     count += 1
                                     new_dict['TYPE'] = "/Pack_sw_Types/tBYTE"
+                                    new_dict['PATH'] = port['NAME'] + "/" + new_dict['NAME']
                                     new_dict['SIZE'] = 8
                                     new_dict['SW-BASE-TYPE'] = "/AUTOSAR_Platform/BaseTypes/uint8"
                                     new_dict['INIT'] = "0"
@@ -793,6 +871,7 @@ def create_MEM_config(files_list, priority_list, output_path, logger, alignment)
                                 new_dict['NAME'] = "Stuffing_" + str(count)
                                 count += 1
                                 new_dict['TYPE'] = "/Pack_sw_Types/tBYTE"
+                                new_dict['PATH'] = port['NAME'] + "/" + new_dict['NAME']
                                 new_dict['SIZE'] = 8
                                 new_dict['SW-BASE-TYPE'] = "/AUTOSAR_Platform/BaseTypes/uint8"
                                 new_dict['INIT'] = "0"
@@ -815,6 +894,36 @@ def create_MEM_config(files_list, priority_list, output_path, logger, alignment)
                 logger.error('The block ' + block['NAME'] + ' is specific, but the total size is greater than the profile max-size')
                 print('ERROR: The block ' + block['NAME'] + ' is specific, but the total size is greater than the profile max-size')
                 error_no = error_no + 1
+    #check that the total size does not surpass the imposed size (if prezent) and add padding
+    # only for blocks "resistent to change"
+    count = 0
+    for block in blocks:
+        if block['REC-SIZE'] is not None and block['RESISTENT'] == "True":
+            block_size = 0
+            for port in block['PORT']:
+                block_size += port['SIZE']
+            if block_size > int(block['REC-SIZE']):
+                # implement TRS.MEMCFG.CHECK.010
+                logger.error('The block ' + block['NAME'] + ' has the total size greater than the imposed size for this block')
+                print('ERROR: The block ' + block['NAME'] + ' has the total size greater than the imposed size for this block')
+                error_no = error_no + 1
+            elif block_size < int(block['REC-SIZE']):
+                # implement TRS.MEMCFG.FUNC.008
+                for port in block['PORT']:
+                    if port['DATA-PROTOTYPE']:
+                        for iter in range(block_size, int(block['REC-SIZE'])):
+                            new_dict = {}
+                            new_dict['NAME'] = "Forced_Stuffing_" + str(count)
+                            count += 1
+                            new_dict['TYPE'] = "/Pack_sw_Types/tBYTE"
+                            new_dict['PATH'] = port['NAME'] + "/" + new_dict['NAME']
+                            new_dict['SIZE'] = 8
+                            new_dict['SW-BASE-TYPE'] = "/AUTOSAR_Platform/BaseTypes/uint8"
+                            new_dict['INIT'] = "0"
+                            new_dict['REAL-TYPE'] = "VALUE"
+                            port['DATA-PROTOTYPE'].append(new_dict)
+                    port['SIZE'] = port['SIZE'] + (int(block['REC-SIZE']) - port['SIZE'])
+
     # treat NvMResistantToChangedSw blocks separately
     fixed_blocks = []
     for block in blocks[:]:
@@ -934,6 +1043,7 @@ def create_MEM_config(files_list, priority_list, output_path, logger, alignment)
         obj_block['DEVICE'] = block['DEVICE']
         obj_block['CALLBACK'] = block['CALLBACK']
         obj_block['TIMEOUT'] = block['TIMEOUT']
+        obj_block['EXCLUSION-TIME'] = None
         obj_block['CONSISTENCY'] = block['CONSISTENCY']
         obj_block['CRC'] = block['CRC']
         obj_block['SDF'] = block['SDF']
@@ -942,7 +1052,8 @@ def create_MEM_config(files_list, priority_list, output_path, logger, alignment)
             for data in port['DATA-PROTOTYPE']:
                 obj_data_prototype = {}
                 obj_data_prototype['NAME'] = port['ASWC'] + "_" + port['NAME'].split('/')[-1] + "_" + data['NAME']
-                obj_data_prototype['DATA'] = port['NAME'] + "/" + data['NAME']
+                # obj_data_prototype['DATA'] = port['NAME'] + "/" + data['NAME']
+                obj_data_prototype['DATA'] = data['PATH']
                 obj_data_prototype['SW-BASE-TYPE'] = data['SW-BASE-TYPE']
                 obj_data_prototype['TYPE'] = data['TYPE']
                 obj_data_prototype['INIT'] = data['INIT']
@@ -967,6 +1078,7 @@ def create_MEM_config(files_list, priority_list, output_path, logger, alignment)
         obj_block['DEVICE'] = subblock['DEVICE']
         obj_block['CALLBACK'] = subblock['CALLBACK']
         obj_block['TIMEOUT'] = subblock['TIMEOUT']
+        obj_block['EXCLUSION-TIME'] = None
         obj_block['CONSISTENCY'] = subblock['CONSISTENCY']
         obj_block['CRC'] = subblock['CRC']
         obj_block['SDF'] = subblock['SDF']
@@ -975,7 +1087,8 @@ def create_MEM_config(files_list, priority_list, output_path, logger, alignment)
             for data in port['DATA-PROTOTYPE']:
                 obj_data_prototype = {}
                 obj_data_prototype['NAME'] = port['ASWC'] + "_" + port['NAME'].split('/')[-1] + "_" + data['NAME']
-                obj_data_prototype['DATA'] = port['NAME'] + "/" + data['NAME']
+                # obj_data_prototype['DATA'] = port['NAME'] + "/" + data['NAME']
+                obj_data_prototype['DATA'] = data['PATH']
                 obj_data_prototype['SW-BASE-TYPE'] = data['SW-BASE-TYPE']
                 obj_data_prototype['TYPE'] = data['TYPE']
                 obj_data_prototype['INIT'] = data['INIT']
@@ -999,6 +1112,7 @@ def create_MEM_config(files_list, priority_list, output_path, logger, alignment)
         obj_block['DEVICE'] = block['DEVICE']
         obj_block['CALLBACK'] = block['CALLBACK']
         obj_block['TIMEOUT'] = block['TIMEOUT']
+        obj_block['EXCLUSION-TIME'] = None
         obj_block['CONSISTENCY'] = block['CONSISTENCY']
         obj_block['CRC'] = block['CRC']
         obj_block['SDF'] = block['SDF']
@@ -1006,7 +1120,8 @@ def create_MEM_config(files_list, priority_list, output_path, logger, alignment)
             for data in port['DATA-PROTOTYPE']:
                 obj_data_prototype = {}
                 obj_data_prototype['NAME'] = port['ASWC'] + "_" + port['NAME'].split('/')[-1] + "_" + data['NAME']
-                obj_data_prototype['DATA'] = port['NAME'] + "/" + data['NAME']
+                # obj_data_prototype['DATA'] = port['NAME'] + "/" + data['NAME']
+                obj_data_prototype['DATA'] = data['PATH']
                 obj_data_prototype['SW-BASE-TYPE'] = data['SW-BASE-TYPE']
                 obj_data_prototype['TYPE'] = data['TYPE']
                 obj_data_prototype['INIT'] = data['INIT']
@@ -1502,7 +1617,24 @@ def create_MEM_config(files_list, priority_list, output_path, logger, alignment)
         logger.error('The mapping index of all resistant-to-change blocks are not consecutive and continously: Start form 2 (1 is reserved)')
         print('ERROR: The mapping index of all resistant-to-change blocks are not consecutive and continously: Start form 2 (1 is reserved)')
         error_no = error_no + 1
-
+    # override blocks with external data
+    # TRS.MEMCFG.FUNC.006(0)
+    for block in nvm_blocks:
+        for o_block in override_nvm_blocks:
+            if block['NAME'] == o_block["NAME"]:
+                block['NvMSingleBlockCallback'] = o_block['CALLBACK']
+                break
+    # TRS.MEMCFG.FUNC.007(0)
+    for block in final_blocks:
+        for o_block in override_nvdm_blocks:
+            if block['NAME'] == o_block['NAME']:
+                block['EXCLUSION-TIME'] = o_block['TIME']
+                break
+    for block in final_fixed_blocks:
+        for o_block in override_nvdm_blocks:
+            if block['NAME'] == o_block['NAME']:
+                block['EXCLUSION-TIME'] = o_block['TIME']
+                break
     ##
     total_nb_nvm_blocks = 0
     immediate_nb_nvm_blocks = 0
@@ -1555,6 +1687,12 @@ def create_MEM_config(files_list, priority_list, output_path, logger, alignment)
     definition = etree.SubElement(ecuc_numerical_StandardJob, 'DEFINITION-REF')
     definition.attrib['DEST'] = "ECUC-INTEGER-PARAM-DEF"
     definition.text = "/AUTOSAR/EcuDefs/NvM/NvMCommon/NvMSizeStandardJobQueue"
+    for data in override_common_block:
+        ecuc_textual_UserHeader = etree.SubElement(parameter, 'ECUC-TEXTUAL-PARAM-VALUE')
+        definition = etree.SubElement(ecuc_textual_UserHeader, 'DEFINITION-REF')
+        definition.attrib['DEST'] = "ECUC-STRING-PARAM-DEF"
+        definition.text = "/AUTOSAR/EcuDefs/NvM/NvMCommon/NvMUserHeader"
+        value = etree.SubElement(ecuc_textual_UserHeader, 'VALUE').text = data
     value = etree.SubElement(ecuc_numerical_StandardJob, 'VALUE').text = str(total_nb_nvm_blocks)
     if immediate_nb_nvm_blocks > 0:
         ecuc_numerical_ImmediateJob = etree.SubElement(parameter, 'ECUC-NUMERICAL-PARAM-VALUE')
@@ -1897,7 +2035,7 @@ def create_MEM_config(files_list, priority_list, output_path, logger, alignment)
             value.text = block['NvMNameOfEaBlock']
     pretty_xml = new_prettify(rootNvM)
     output = etree.ElementTree(etree.fromstring(pretty_xml))
-    output.write(output_path + '/NvM.epc', encoding='UTF-8', xml_declaration=True, method="xml", doctype="<!-- XML file generated by MEM_Configurator-16 -->")
+    output.write(output_path + '/NvM.epc', encoding='UTF-8', xml_declaration=True, method="xml", doctype="<!-- XML file generated by MEM_Configurator-19 -->")
 
     # generate NvDM.epc
     rootNvDM = etree.Element('AUTOSAR', {attr_qname: 'http://autosar.org/schema/r4.0 AUTOSAR_4-2-2_STRICT_COMPACT.xsd'}, nsmap=NSMAP)
@@ -1920,6 +2058,12 @@ def create_MEM_config(files_list, priority_list, output_path, logger, alignment)
         definition.attrib['DEST'] = "ECUC-PARAM-CONF-CONTAINER-DEF"
         definition.text = "/AUTOSAR/EcuDefs/NvDM/NvDMBlockDescriptor"
         parameter = etree.SubElement(ecuc_container, 'PARAMETER-VALUES')
+        if block['EXCLUSION-TIME'] is not None:
+            ecuc_numerical_NvDMExclusionTime = etree.SubElement(parameter, 'ECUC-NUMERICAL-PARAM-VALUE')
+            definition = etree.SubElement(ecuc_numerical_NvDMExclusionTime, 'DEFINITION-REF')
+            definition.attrib['DEST'] = "ECUC-INTEGER-PARAM-DEF"
+            definition.text = "/AUTOSAR/EcuDefs/NvDM/NvDMBlockDescriptor/NvDMExclusionTime"
+            value = etree.SubElement(ecuc_numerical_NvDMExclusionTime, 'VALUE').text = block['EXCLUSION-TIME']
         for profile in profiles:
             if profile['NAME'] == block['PROFILE']:
                 # NvDMDurability
@@ -2052,6 +2196,12 @@ def create_MEM_config(files_list, priority_list, output_path, logger, alignment)
         definition.attrib['DEST'] = "ECUC-PARAM-CONF-CONTAINER-DEF"
         definition.text = "/AUTOSAR/EcuDefs/NvDM/NvDMBlockDescriptor"
         parameter = etree.SubElement(ecuc_container, 'PARAMETER-VALUES')
+        if block['EXCLUSION-TIME'] is not None:
+            ecuc_numerical_NvDMExclusionTime = etree.SubElement(parameter, 'ECUC-NUMERICAL-PARAM-VALUE')
+            definition = etree.SubElement(ecuc_numerical_NvDMExclusionTime, 'DEFINITION-REF')
+            definition.attrib['DEST'] = "ECUC-INTEGER-PARAM-DEF"
+            definition.text = "/AUTOSAR/EcuDefs/NvDM/NvDMBlockDescriptor/NvDMExclusionTime"
+            value = etree.SubElement(ecuc_numerical_NvDMExclusionTime, 'VALUE').text = block['EXCLUSION-TIME']
         for profile in profiles:
             if profile['NAME'] == block['PROFILE']:
                 # NvDMDurability
@@ -2177,7 +2327,7 @@ def create_MEM_config(files_list, priority_list, output_path, logger, alignment)
             value.text = element['TYPE']
     pretty_xml = new_prettify(rootNvDM)
     output = etree.ElementTree(etree.fromstring(pretty_xml))
-    output.write(output_path + '/NvDM.epc', encoding='UTF-8', xml_declaration=True, method="xml", doctype="<!-- XML file generated by MEM_Configurator-16 -->")
+    output.write(output_path + '/NvDM.epc', encoding='UTF-8', xml_declaration=True, method="xml", doctype="<!-- XML file generated by MEM_Configurator-19 -->")
     ##########################################
     if error_no != 0:
         print("There is at least one blocking error! Check the generated log.")
