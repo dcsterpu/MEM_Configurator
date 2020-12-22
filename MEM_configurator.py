@@ -375,7 +375,7 @@ def create_MEM_config(files_list, priority_list, override_list, output_path, log
                     obj_block['REC-SIZE'] = elem.find('BLOCK-SIZE').text
                 else:
                     obj_block['REC-SIZE'] = None
-                # implemente new req: tbd
+                # implemente new req: TRS.MEMCFG.GEN.020 & TRS.MEMCFG.GEN.019
                 if elem.find('NVM-SELECT-BLOCK-FOR-WRITE-ALL') is not None:
                     obj_block['WRITE-ALL'] = elem.find('NVM-SELECT-BLOCK-FOR-WRITE-ALL').text
                 else:
@@ -485,7 +485,7 @@ def create_MEM_config(files_list, priority_list, override_list, output_path, log
                 block_ports = []
                 obj_block['NAME'] = elem.find('SHORT-NAME').text
                 obj_block['TYPE'] = elem.find('TYPE').text
-                # implemente new req: tbd
+                # implemente new req: TRS.MEMCFG.GEN.020 & TRS.MEMCFG.GEN.019
                 if elem.find('NVM-SELECT-BLOCK-FOR-WRITE-ALL') is not None:
                     obj_block['WRITE-ALL'] = elem.find('NVM-SELECT-BLOCK-FOR-WRITE-ALL').text
                 else:
@@ -833,17 +833,40 @@ def create_MEM_config(files_list, priority_list, override_list, output_path, log
         for port in block['PORT']:
             if port['DATA-PROTOTYPE']:
                 for indexD in range(len(port['DATA-PROTOTYPE'])):
-                    if port['DATA-PROTOTYPE'][indexD]['SIZE']/8 > int(alignment):
-                        if port['DATA-PROTOTYPE'][indexD]['REAL-TYPE'] != 'ARRAY':
-                            logger.error('The port ' + port['NAME'] + ' has a referenced data element greater than the alignment: ' + port['DATA-PROTOTYPE'][indexD]['NAME'])
-                            print('ERROR: The port ' + port['NAME'] + ' has a referenced data element greater than the alignment: ' + port['DATA-PROTOTYPE'][indexD]['NAME'])
-                            sys.exit(1)
+                    if "Stuffing_" not in port['DATA-PROTOTYPE'][indexD]['NAME']:
+                        if port['DATA-PROTOTYPE'][indexD]['SIZE']/8 > int(alignment):
+                            if port['DATA-PROTOTYPE'][indexD]['REAL-TYPE'] != 'ARRAY':
+                                logger.error('The port ' + port['NAME'] + ' has a referenced data element greater than the alignment: ' + port['DATA-PROTOTYPE'][indexD]['NAME'])
+                                print('ERROR: The port ' + port['NAME'] + ' has a referenced data element greater than the alignment: ' + port['DATA-PROTOTYPE'][indexD]['NAME'])
+                                sys.exit(1)
+                            else:
+                                line_size += port['DATA-PROTOTYPE'][indexD]['SIZE'] / 8
+                                if line_size % int(alignment) > 0:
+                                    stuff_needed = line_size % int(alignment)
+                                    line_size -= port['DATA-PROTOTYPE'][indexD]['SIZE'] / 8
+                                    for cnt in range(0, int(int(alignment) - stuff_needed)):
+                                        port['SIZE'] = port['SIZE'] + 1
+                                        new_dict = {}
+                                        new_dict['NAME'] = "Stuffing_" + str(count)
+                                        count += 1
+                                        new_dict['TYPE'] = "/Pack_sw_Types/tBYTE"
+                                        new_dict['PATH'] = port['NAME'] + "/" + new_dict['NAME']
+                                        new_dict['SIZE'] = 8
+                                        new_dict['SW-BASE-TYPE'] = "/AUTOSAR_Platform/BaseTypes/uint8"
+                                        new_dict['INIT'] = "0"
+                                        new_dict['REAL-TYPE'] = "VALUE"
+                                        port['DATA-PROTOTYPE'].insert(port['DATA-PROTOTYPE'].index(port['DATA-PROTOTYPE'][indexD]), new_dict)
+                                        indexD += 1
+                                    line_size = 0
+                                    line_size += port['DATA-PROTOTYPE'][indexD]['SIZE'] / 8
+                                    continue
+                                elif int(alignment) - line_size == 0:
+                                    line_size = 0
                         else:
                             line_size += port['DATA-PROTOTYPE'][indexD]['SIZE'] / 8
-                            if line_size % int(alignment) > 0:
-                                stuff_needed = line_size % int(alignment)
+                            if int(alignment) - line_size < 0:
                                 line_size -= port['DATA-PROTOTYPE'][indexD]['SIZE'] / 8
-                                for cnt in range(0, int(int(alignment) - stuff_needed)):
+                                for cnt in range(0, int(int(alignment) - line_size)):
                                     port['SIZE'] = port['SIZE'] + 1
                                     new_dict = {}
                                     new_dict['NAME'] = "Stuffing_" + str(count)
@@ -857,32 +880,12 @@ def create_MEM_config(files_list, priority_list, override_list, output_path, log
                                     port['DATA-PROTOTYPE'].insert(port['DATA-PROTOTYPE'].index(port['DATA-PROTOTYPE'][indexD]), new_dict)
                                     indexD += 1
                                 line_size = 0
-                                line_size += port['DATA-PROTOTYPE'][indexD]['SIZE'] / 8
+                                line_size += port['DATA-PROTOTYPE'][indexD]['SIZE']/8
                                 continue
                             elif int(alignment) - line_size == 0:
                                 line_size = 0
                     else:
-                        line_size += port['DATA-PROTOTYPE'][indexD]['SIZE'] / 8
-                        if int(alignment) - line_size < 0:
-                            line_size -= port['DATA-PROTOTYPE'][indexD]['SIZE'] / 8
-                            for cnt in range(0, int(int(alignment) - line_size)):
-                                port['SIZE'] = port['SIZE'] + 1
-                                new_dict = {}
-                                new_dict['NAME'] = "Stuffing_" + str(count)
-                                count += 1
-                                new_dict['TYPE'] = "/Pack_sw_Types/tBYTE"
-                                new_dict['PATH'] = port['NAME'] + "/" + new_dict['NAME']
-                                new_dict['SIZE'] = 8
-                                new_dict['SW-BASE-TYPE'] = "/AUTOSAR_Platform/BaseTypes/uint8"
-                                new_dict['INIT'] = "0"
-                                new_dict['REAL-TYPE'] = "VALUE"
-                                port['DATA-PROTOTYPE'].insert(port['DATA-PROTOTYPE'].index(port['DATA-PROTOTYPE'][indexD]), new_dict)
-                                indexD += 1
-                            line_size = 0
-                            line_size += port['DATA-PROTOTYPE'][indexD]['SIZE']/8
-                            continue
-                        elif int(alignment) - line_size == 0:
-                            line_size = 0
+                        continue
 
     # for internal blocks, if block['TYPE']=Specific, check that the total size does not surpass the profile max-size
     for block in blocks:
@@ -904,25 +907,30 @@ def create_MEM_config(files_list, priority_list, override_list, output_path, log
                 block_size += port['SIZE']
             if block_size > int(block['REC-SIZE']):
                 # implement TRS.MEMCFG.CHECK.010
-                logger.error('The block ' + block['NAME'] + ' has the total size greater than the imposed size for this block')
-                print('ERROR: The block ' + block['NAME'] + ' has the total size greater than the imposed size for this block')
+                logger.error('The block ' + block['NAME'] + ' has a specified size smaller than the size of the data that it contains; Check the configuration file!')
+                print('ERROR: The block ' + block['NAME'] + ' has a specified size smaller than the size of the data that it contains; Check the configuration file!')
                 error_no = error_no + 1
             elif block_size < int(block['REC-SIZE']):
                 # implement TRS.MEMCFG.FUNC.008
-                for port in block['PORT']:
-                    if port['DATA-PROTOTYPE']:
-                        for iter in range(block_size, int(block['REC-SIZE'])):
-                            new_dict = {}
-                            new_dict['NAME'] = "Forced_Stuffing_" + str(count)
-                            count += 1
-                            new_dict['TYPE'] = "/Pack_sw_Types/tBYTE"
-                            new_dict['PATH'] = port['NAME'] + "/" + new_dict['NAME']
-                            new_dict['SIZE'] = 8
-                            new_dict['SW-BASE-TYPE'] = "/AUTOSAR_Platform/BaseTypes/uint8"
-                            new_dict['INIT'] = "0"
-                            new_dict['REAL-TYPE'] = "VALUE"
-                            port['DATA-PROTOTYPE'].append(new_dict)
-                    port['SIZE'] = port['SIZE'] + (int(block['REC-SIZE']) - port['SIZE'])
+                # for port in block['PORT']:
+                #     if port['DATA-PROTOTYPE']:
+                for iter in range(block_size, int(block['REC-SIZE'])):
+                    new_dict = {}
+                    new_dict['NAME'] = "Forced_Stuffing_" + str(count)
+                    count += 1
+                    new_dict['TYPE'] = "/Pack_sw_Types/tBYTE"
+                    new_dict['PATH'] = block['PORT'][len(block['PORT']) - 1]['NAME'] + "/" + new_dict['NAME']
+                    new_dict['SIZE'] = 8
+                    new_dict['SW-BASE-TYPE'] = "/AUTOSAR_Platform/BaseTypes/uint8"
+                    new_dict['INIT'] = "0"
+                    new_dict['REAL-TYPE'] = "VALUE"
+                    block['PORT'][len(block['PORT']) - 1]['DATA-PROTOTYPE'].append(new_dict)
+                    # port['SIZE'] = port['SIZE'] + (int(block['REC-SIZE']) - port['SIZE'])
+        elif block['REC-SIZE'] is not None and block['RESISTENT'] != "True":
+            #
+            logger.error('The block ' + block['NAME'] + ' has a imposed size and "NvMResistantToChangedSw"="False”, which is illegal')
+            print('ERROR: The block ' + block['NAME'] + ' has a imposed size and "NvMResistantToChangedSw"="False”, which is illegal')
+            error_no = error_no + 1
 
     # treat NvMResistantToChangedSw blocks separately
     fixed_blocks = []
@@ -1904,6 +1912,7 @@ def create_MEM_config(files_list, priority_list, override_list, output_path, log
         # NvMSelectBlockForWriteAll
         if 'NvMSelectBlockForWriteAll' in block.keys():
             if block['NvMSelectBlockForWriteAll'] is not None:
+                # NvMSelectBlockForWriteAll
                 ecuc_numerical_NvMSelectBlockForWriteAll = etree.SubElement(parameter, 'ECUC-NUMERICAL-PARAM-VALUE')
                 definition = etree.SubElement(ecuc_numerical_NvMSelectBlockForWriteAll, 'DEFINITION-REF')
                 definition.attrib['DEST'] = "ECUC-BOOLEAN-PARAM-DEF"
@@ -2035,7 +2044,7 @@ def create_MEM_config(files_list, priority_list, override_list, output_path, log
             value.text = block['NvMNameOfEaBlock']
     pretty_xml = new_prettify(rootNvM)
     output = etree.ElementTree(etree.fromstring(pretty_xml))
-    output.write(output_path + '/NvM.epc', encoding='UTF-8', xml_declaration=True, method="xml", doctype="<!-- XML file generated by MEM_Configurator-19 -->")
+    output.write(output_path + '/NvM.epc', encoding='UTF-8', xml_declaration=True, method="xml", doctype="<!-- XML file generated by MEM_Configurator-21 -->")
 
     # generate NvDM.epc
     rootNvDM = etree.Element('AUTOSAR', {attr_qname: 'http://autosar.org/schema/r4.0 AUTOSAR_4-2-2_STRICT_COMPACT.xsd'}, nsmap=NSMAP)
@@ -2108,6 +2117,13 @@ def create_MEM_config(files_list, priority_list, override_list, output_path, log
                 definition.attrib['DEST'] = "ECUC-FLOAT-PARAM-DEF"
                 definition.text = "/AUTOSAR/EcuDefs/NvDM/NvDMBlockDescriptor/NvDMWriteTimeout"
                 value = etree.SubElement(ecuc_numerical_NvDMWriteTimeout, 'VALUE').text = block['TIMEOUT']
+                if block['WRITE-ALL'] is not None:
+                    # NvDMWriteAll
+                    ecuc_numerical_NvDMWriteAll = etree.SubElement(parameter, 'ECUC-NUMERICAL-PARAM-VALUE')
+                    definition = etree.SubElement(ecuc_numerical_NvDMWriteAll, 'DEFINITION-REF')
+                    definition.attrib['DEST'] = "ECUC-BOOLEAN-PARAM-DEF"
+                    definition.text = "/AUTOSAR/EcuDefs/NvDM/NvDMBlockDescriptor/NvDMWriteAll"
+                    value = etree.SubElement(ecuc_numerical_NvDMWriteAll, 'VALUE').text = block['WRITE-ALL']
                 # NvDMWritingManagement
                 # ecuc_textual_NvDMWritingManagement = etree.SubElement(parameter, 'ECUC-TEXTUAL-PARAM-VALUE')
                 # definition = etree.SubElement(ecuc_textual_NvDMWritingManagement, 'DEFINITION-REF')
@@ -2165,6 +2181,11 @@ def create_MEM_config(files_list, priority_list, override_list, output_path, log
                 value.text = "false"
             else:
                 value.text = "true"
+            ecuc_reference_values = etree.SubElement(parameter, 'ECUC-TEXTUAL-PARAM-VALUE')
+            definition = etree.SubElement(ecuc_reference_values, 'DEFINITION-REF')
+            definition.attrib['DEST'] = "ECUC-STRING-PARAM-DEF"
+            definition.text = "/AUTOSAR/EcuDefs/NvDM/NvDMBlockDescriptor/NvDMVariableDataPrototype/NvDMVariableDataPrototype"
+            value = etree.SubElement(ecuc_reference_values, 'VALUE').text = element['DATA'].split("/")[-1]
             reference_values = etree.SubElement(ecuc_container, 'REFERENCE-VALUES')
             ecuc_reference_values = etree.SubElement(reference_values, 'ECUC-REFERENCE-VALUE')
             definition = etree.SubElement(ecuc_reference_values, 'DEFINITION-REF')
@@ -2173,13 +2194,13 @@ def create_MEM_config(files_list, priority_list, override_list, output_path, log
             value = etree.SubElement(ecuc_reference_values, 'VALUE-REF')
             value.attrib['DEST'] = "SW-BASE-TYPE"
             value.text = element['SW-BASE-TYPE']
-            ecuc_reference_values = etree.SubElement(reference_values, 'ECUC-REFERENCE-VALUE')
-            definition = etree.SubElement(ecuc_reference_values, 'DEFINITION-REF')
-            definition.attrib['DEST'] = "ECUC-FOREIGN-REFERENCE-DEF"
-            definition.text = "/AUTOSAR/EcuDefs/NvDM/NvDMBlockDescriptor/NvDMVariableDataPrototype/NvDMVariableDataPrototypeRef"
-            value = etree.SubElement(ecuc_reference_values, 'VALUE-REF')
-            value.attrib['DEST'] = "VARIABLE-DATA-PROTOTYPE"
-            value.text = element['DATA']
+            # ecuc_reference_values = etree.SubElement(reference_values, 'ECUC-REFERENCE-VALUE')
+            # definition = etree.SubElement(ecuc_reference_values, 'DEFINITION-REF')
+            # definition.attrib['DEST'] = "ECUC-FOREIGN-REFERENCE-DEF"
+            # definition.text = "/AUTOSAR/EcuDefs/NvDM/NvDMBlockDescriptor/NvDMVariableDataPrototype/NvDMVariableDataPrototypeRef"
+            # value = etree.SubElement(ecuc_reference_values, 'VALUE-REF')
+            # value.attrib['DEST'] = "VARIABLE-DATA-PROTOTYPE"
+            # value.text = element['DATA']
             ecuc_reference_values = etree.SubElement(reference_values, 'ECUC-REFERENCE-VALUE')
             definition = etree.SubElement(ecuc_reference_values, 'DEFINITION-REF')
             definition.attrib['DEST'] = "ECUC-FOREIGN-REFERENCE-DEF"
@@ -2246,6 +2267,13 @@ def create_MEM_config(files_list, priority_list, override_list, output_path, log
                 definition.attrib['DEST'] = "ECUC-FLOAT-PARAM-DEF"
                 definition.text = "/AUTOSAR/EcuDefs/NvDM/NvDMBlockDescriptor/NvDMWriteTimeout"
                 value = etree.SubElement(ecuc_numerical_NvDMWriteTimeout, 'VALUE').text = block['TIMEOUT']
+                if block['WRITE-ALL'] is not None:
+                    # NvDMWriteAll
+                    ecuc_numerical_NvDMWriteAll = etree.SubElement(parameter, 'ECUC-NUMERICAL-PARAM-VALUE')
+                    definition = etree.SubElement(ecuc_numerical_NvDMWriteAll, 'DEFINITION-REF')
+                    definition.attrib['DEST'] = "ECUC-BOOLEAN-PARAM-DEF"
+                    definition.text = "/AUTOSAR/EcuDefs/NvDM/NvDMBlockDescriptor/NvDMWriteAll"
+                    value = etree.SubElement(ecuc_numerical_NvDMWriteAll, 'VALUE').text = block['WRITE-ALL']
                 # NvDMWritingManagement
                 # ecuc_textual_NvDMWritingManagement = etree.SubElement(parameter, 'ECUC-TEXTUAL-PARAM-VALUE')
                 # definition = etree.SubElement(ecuc_textual_NvDMWritingManagement, 'DEFINITION-REF')
@@ -2303,6 +2331,11 @@ def create_MEM_config(files_list, priority_list, override_list, output_path, log
                 value.text = "false"
             else:
                 value.text = "true"
+            ecuc_reference_values = etree.SubElement(parameter, 'ECUC-TEXTUAL-PARAM-VALUE')
+            definition = etree.SubElement(ecuc_reference_values, 'DEFINITION-REF')
+            definition.attrib['DEST'] = "ECUC-STRING-PARAM-DEF"
+            definition.text = "/AUTOSAR/EcuDefs/NvDM/NvDMBlockDescriptor/NvDMVariableDataPrototype/NvDMVariableDataPrototype"
+            value = etree.SubElement(ecuc_reference_values, 'VALUE').text = element['DATA'].split("/")[-1]
             reference_values = etree.SubElement(ecuc_container, 'REFERENCE-VALUES')
             ecuc_reference_values = etree.SubElement(reference_values, 'ECUC-REFERENCE-VALUE')
             definition = etree.SubElement(ecuc_reference_values, 'DEFINITION-REF')
@@ -2311,13 +2344,13 @@ def create_MEM_config(files_list, priority_list, override_list, output_path, log
             value = etree.SubElement(ecuc_reference_values, 'VALUE-REF')
             value.attrib['DEST'] = "SW-BASE-TYPE"
             value.text = element['SW-BASE-TYPE']
-            ecuc_reference_values = etree.SubElement(reference_values, 'ECUC-REFERENCE-VALUE')
-            definition = etree.SubElement(ecuc_reference_values, 'DEFINITION-REF')
-            definition.attrib['DEST'] = "ECUC-FOREIGN-REFERENCE-DEF"
-            definition.text = "/AUTOSAR/EcuDefs/NvDM/NvDMBlockDescriptor/NvDMVariableDataPrototype/NvDMVariableDataPrototypeRef"
-            value = etree.SubElement(ecuc_reference_values, 'VALUE-REF')
-            value.attrib['DEST'] = "VARIABLE-DATA-PROTOTYPE"
-            value.text = element['DATA']
+            # ecuc_reference_values = etree.SubElement(reference_values, 'ECUC-REFERENCE-VALUE')
+            # definition = etree.SubElement(ecuc_reference_values, 'DEFINITION-REF')
+            # definition.attrib['DEST'] = "ECUC-FOREIGN-REFERENCE-DEF"
+            # definition.text = "/AUTOSAR/EcuDefs/NvDM/NvDMBlockDescriptor/NvDMVariableDataPrototype/NvDMVariableDataPrototypeRef"
+            # value = etree.SubElement(ecuc_reference_values, 'VALUE-REF')
+            # value.attrib['DEST'] = "VARIABLE-DATA-PROTOTYPE"
+            # value.text = element['DATA']
             ecuc_reference_values = etree.SubElement(reference_values, 'ECUC-REFERENCE-VALUE')
             definition = etree.SubElement(ecuc_reference_values, 'DEFINITION-REF')
             definition.attrib['DEST'] = "ECUC-FOREIGN-REFERENCE-DEF"
@@ -2327,7 +2360,7 @@ def create_MEM_config(files_list, priority_list, override_list, output_path, log
             value.text = element['TYPE']
     pretty_xml = new_prettify(rootNvDM)
     output = etree.ElementTree(etree.fromstring(pretty_xml))
-    output.write(output_path + '/NvDM.epc', encoding='UTF-8', xml_declaration=True, method="xml", doctype="<!-- XML file generated by MEM_Configurator-19 -->")
+    output.write(output_path + '/NvDM.epc', encoding='UTF-8', xml_declaration=True, method="xml", doctype="<!-- XML file generated by MEM_Configurator-21 -->")
     ##########################################
     if error_no != 0:
         print("There is at least one blocking error! Check the generated log.")
